@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "types": ["cypress", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "@components": ["../src/components/index"]
+    }
+  },
+  "include": [
+    "./cypress.config.ts",
+    "cypress",
+    "**/*.cy.tsx",
+    "**/*.cy.ts",
+    "../cypress/support/*.ts",
+    "../src/**/*.ts",
+    "../src/**/*.tsx"
+  ],
+  "extends": "../tsconfig.json"
+}
