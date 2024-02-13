@@ -14,7 +14,15 @@ module.exports = {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/__test__/__mocks__/fileMock.js',
     '\\.(css|less)$': 'identity-obj-proxy',
-    '^@components/(.*)$': '<rootDir>/src/components/$1',
+    '^@components': '<rootDir>/src/components/index',
+    '^@pages': '<rootDir>/src/pages/index',
+    '^@router': '<rootDir>/src/router/index',
+    '^@auth': '<rootDir>/src/auth/index',
+    '^@types': '<rootDir>/src/types/index',
+    '^@constants': '<rootDir>/src/constants/index',
+    '^@utils': '<rootDir>/src/utils/index',
+    '^@context': '<rootDir>/src/context/index',
+    '^@store': '<rootDir>/src/store/index',
   },
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
@@ -24,4 +32,4 @@ module.exports = {
   testEnvironmentOptions: {
     customExportConditions: [''],
   },
-};
+}
