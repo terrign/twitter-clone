@@ -8,4 +8,5 @@ export default defineConfig({
   resolve: {
     alias: [{ find: '@components', replacement: path.resolve(__dirname, './src/components') }],
   },
+  envPrefix: 'APP_',
 })

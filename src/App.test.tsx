@@ -1,9 +1,9 @@
-import { render } from '@testing-library/react';
+import { render } from '@testing-library/react'
 
-import { App } from './App';
+import { App } from './App'
 
 describe('test', () => {
   it('renders', () => {
-    render(<App />);
-  });
-});
+    render(<App />)
+  })
+})
