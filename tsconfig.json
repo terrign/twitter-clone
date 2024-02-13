@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "es5",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "types": ["node", "jest", "@testing-library/jest-dom", "@testing-library/react", "@testing-library/user-event"],
@@ -8,21 +8,31 @@
     "skipLibCheck": true,
 
     "paths": {
-      "@components/*": ["./src/components/*"]
+      "@components": ["./src/components/index"],
+      "@pages": ["./src/pages/index"],
+      "@router": ["./src/router/index"],
+      "@auth": ["./src/auth/index"],
+      "@types": ["./src/types/index"],
+      "@constants": ["./src/constants/index"],
+      "@utils": ["./src/utils/index"],
+      "@context": ["./src/context/index"],
+      "@store": ["./src/store/index"]
     },
 
-    /* Bundler mode */
+    "allowJs": true,
+    // "baseUrl": ".",
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "jsxImportSource": "react",
     "noEmit": true,
     "jsx": "react-jsx",
 
-    /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "esModuleInterop": true,
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src"],

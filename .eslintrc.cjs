@@ -12,6 +12,7 @@ module.exports = {
     'simple-import-sort/exports': 'error',
     'import/prefer-default-export': 'off',
     'import/no-default-export': 'error',
+
     'no-console': 'error',
     '@stylistic/padding-line-between-statements': [
       'error',
@@ -38,7 +39,17 @@ module.exports = {
     },
     'import/resolver': {
       alias: {
-        map: [['@components', './src/components']],
+        map: [
+          ['@components', './src/components/index'],
+          ['@pages', './src/pages/index'],
+          ['@router', './src/router/index'],
+          ['@auth', './src/auth/index'],
+          ['@types', './src/types/index'],
+          ['@constants', './src/constants/index'],
+          ['@utils', './src/utils/index'],
+          ['@context', './src/context/index'],
+          ['@store', './src/store/index'],
+        ],
         extensions: ['.tsx', '.ts'],
       },
     },

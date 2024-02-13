@@ -1,9 +1,16 @@
 {
   "compilerOptions": {
     "types": ["cypress", "node"],
-    "baseUrl": ".",
     "paths": {
-      "@components": ["../src/components/index"]
+      "@components": ["../src/components/index"],
+      "@pages": ["../src/pages/index"],
+      "@router": ["../src/router/index"],
+      "@auth": ["../src/auth/index"],
+      "@types": ["../src/types/index"],
+      "@constants": ["../src/constants/index"],
+      "@utils": ["../src/utils/index"],
+      "@context": ["../src/context/index"],
+      "@store": ["../src/store/index"]
     }
   },
   "include": [

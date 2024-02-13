@@ -1,9 +1,5 @@
-import { Comp } from '@components/index'
+import { Router } from '@router'
 
-export function App() {
-  return (
-    <div>
-      <Comp />
-    </div>
-  )
+export const App = () => {
+  return <Router />
 }
