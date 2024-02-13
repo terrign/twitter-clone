@@ -1,9 +1,13 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['prettier', 'simple-import-sort', 'import', 'react', '@stylistic'],
-  extends: ['prettier', 'plugin:react/recommended', 'plugin:import/recommended'],
+  plugins: ['@typescript-eslint', 'prettier', 'simple-import-sort', 'import', '@stylistic'],
+  extends: [
+    'prettier',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@stylistic/recommended-extends',
+    'plugin:import/recommended',
+  ],
   rules: {
-    'react/react-in-jsx-scope': 'off',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     'import/prefer-default-export': 'off',
@@ -48,4 +52,4 @@ module.exports = {
     '/dist',
     '/cypress/*',
   ],
-};
+}

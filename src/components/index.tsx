@@ -1,3 +1,3 @@
 export const Comp = () => {
-  return <div>comp</div>;
-};
+  return <div>comp</div>
+}
