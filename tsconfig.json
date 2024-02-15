@@ -8,19 +8,19 @@
     "skipLibCheck": true,
 
     "paths": {
-      "@components": ["./src/components/index"],
-      "@pages": ["./src/pages/index"],
-      "@router": ["./src/router/index"],
-      "@auth": ["./src/auth/index"],
-      "@types": ["./src/types/index"],
-      "@constants": ["./src/constants/index"],
-      "@utils": ["./src/utils/index"],
-      "@context": ["./src/context/index"],
-      "@store": ["./src/store/index"]
+      "@components": ["components/index"],
+      "@pages": ["pages/index"],
+      "@router": ["router/index"],
+      "@auth": ["auth/index"],
+      "@types": ["types/index"],
+      "@constants": ["constants/index"],
+      "@utils": ["utils/index"],
+      "@context": ["context/index"],
+      "@store": ["store/index"]
     },
 
     "allowJs": true,
-    // "baseUrl": ".",
+    "baseUrl": "./src/",
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,

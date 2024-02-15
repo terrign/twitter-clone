@@ -1,20 +1,25 @@
-import { ErrorBoundary } from '@components'
-import { Feed, Home, NotFound, Profile, Root, SignIn, SignUp } from '@pages'
-import { Suspense } from 'react'
+import { NotFound, Root } from '@pages'
+import { lazy, Suspense } from 'react'
 import { RouteObject } from 'react-router-dom'
 
+import { routeGuards } from './loaders/routeGuards'
 import { Route } from './types'
+
+const Home = lazy(() => import('../pages').then((module) => ({ default: module['Home'] })))
+const Feed = lazy(() => import('../pages').then((module) => ({ default: module['Feed'] })))
+const Profile = lazy(() => import('../pages').then((module) => ({ default: module['Profile'] })))
+const SignIn = lazy(() => import('../pages').then((module) => ({ default: module['SignIn'] })))
+const SignUp = lazy(() => import('../pages').then((module) => ({ default: module['SignUp'] })))
 
 export const routes: RouteObject[] = [
   {
-    path: Route.HOME,
+    path: '/',
     element: (
       <Suspense fallback={<div>Loading...</div>}>
-        <ErrorBoundary>
-          <Root />
-        </ErrorBoundary>
+        <Root />
       </Suspense>
     ),
+    loader: routeGuards,
     children: [
       {
         path: Route.HOME,

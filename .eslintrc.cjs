@@ -1,10 +1,10 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'prettier', 'simple-import-sort', 'import', '@stylistic'],
+  plugins: ['@typescript-eslint', 'simple-import-sort', 'import', '@stylistic', 'prettier'],
   extends: [
     'prettier',
     'plugin:@typescript-eslint/recommended',
-    'plugin:@stylistic/recommended-extends',
+    // 'plugin:@stylistic/recommended-extends',
     'plugin:import/recommended',
   ],
   rules: {
@@ -13,11 +13,23 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'import/no-default-export': 'error',
 
-    'no-console': 'error',
+    'no-console': 'off',
+    '@stylistic/arrow-parens': ['error', 'always'],
     '@stylistic/padding-line-between-statements': [
       'error',
 
-      { blankLine: 'always', prev: '*', next: '*' },
+      { blankLine: 'always', prev: '*', next: 'block-like' },
+      { blankLine: 'always', prev: 'block-like', next: '*' },
+
+      { blankLine: 'always', prev: '*', next: 'multiline-expression' },
+      { blankLine: 'always', prev: 'multiline-expression', next: '*' },
+
+      { blankLine: 'always', prev: '*', next: 'multiline-const' },
+      { blankLine: 'always', prev: 'multiline-const', next: '*' },
+
+      { blankLine: 'always', prev: '*', next: 'return' },
+      { blankLine: 'always', prev: '*', next: 'export' },
+
       { blankLine: 'any', prev: 'import', next: 'import' },
     ],
   },

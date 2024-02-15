@@ -55,6 +55,7 @@
     "@vitejs/plugin-react": "^4.2.1",
     "babel": "^6.23.0",
     "babel-jest": "^29.7.0",
+    "babel-plugin-styled-components": "^2.1.4",
     "babel-preset-jest": "^29.6.3",
     "cypress": "^13.6.4",
     "dotenv": "^16.4.3",
