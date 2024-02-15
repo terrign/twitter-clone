@@ -2,15 +2,7 @@
   "presets": [
     ["@babel/preset-react", { "runtime": "automatic" }],
     ["@babel/preset-env", { "targets": { "node": true, "esmodules": true } }],
-    "@babel/preset-typescript",
-    [
-      "babel-plugin-styled-components",
-      {
-        "pure": true,
-        "minify": true,
-        "transpileTemplateLiterals": true
-      }
-    ]
+    "@babel/preset-typescript"
   ],
   "plugins": [
     ["@babel/plugin-transform-typescript", { "allowDeclareFields": true, "legacy": true }],
