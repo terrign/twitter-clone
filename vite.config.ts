@@ -1,10 +1,18 @@
+/// <reference types="vite-plugin-svgr/client" />
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+import svgr from 'vite-plugin-svgr'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    svgr({
+      include: '**/*.svg?react',
+    }),
+    react(),
+  ],
   resolve: {
     alias: [
       { find: '@components', replacement: path.resolve(__dirname, './src/components/index') },
@@ -15,6 +23,8 @@ export default defineConfig({
       { find: '@constants', replacement: path.resolve(__dirname, './src/constants/index') },
       { find: '@context', replacement: path.resolve(__dirname, './src/context/index') },
       { find: '@store', replacement: path.resolve(__dirname, './src/store/index') },
+      { find: '@assets', replacement: path.resolve(__dirname, './src/assets/index') },
+      { find: '@ui', replacement: path.resolve(__dirname, './src/components/UI/index') },
     ],
   },
   envPrefix: 'APP_',

@@ -10,7 +10,9 @@
       "@constants": ["../src/constants/index"],
       "@utils": ["../src/utils/index"],
       "@context": ["../src/context/index"],
-      "@store": ["../src/store/index"]
+      "@store": ["../src/store/index"],
+      "@assets": ["../src/assets/index"],
+      "@ui": ["../src/components/UI/index"]
     }
   },
   "include": [

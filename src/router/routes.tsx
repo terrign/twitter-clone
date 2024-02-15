@@ -2,7 +2,7 @@ import { NotFound, Root } from '@pages'
 import { lazy, Suspense } from 'react'
 import { RouteObject } from 'react-router-dom'
 
-import { routeGuards } from './loaders/routeGuards'
+import { guards } from './loaders/guards'
 import { Route } from './types'
 
 const Home = lazy(() => import('../pages').then((module) => ({ default: module['Home'] })))
@@ -19,7 +19,7 @@ export const routes: RouteObject[] = [
         <Root />
       </Suspense>
     ),
-    loader: routeGuards,
+    loader: guards,
     children: [
       {
         path: Route.HOME,

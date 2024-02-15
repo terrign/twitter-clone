@@ -8,6 +8,8 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
   const theme = useAppSelector((state) => state.user.theme)
   const currentThemeObject = theme === Theme.LIGHT ? lightTheme : darkTheme
 
+  console.log(currentThemeObject)
+
   return (
     <StyledThemeProvider theme={currentThemeObject}>
       <GlobalStyles />

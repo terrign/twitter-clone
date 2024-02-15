@@ -23,6 +23,8 @@ module.exports = {
     '^@utils': '<rootDir>/src/utils/index',
     '^@context': '<rootDir>/src/context/index',
     '^@store': '<rootDir>/src/store/index',
+    '^@assets': '<rootDir>/src/assets/index',
+    '^@ui': '<rootDir>/src/components/UI/index',
   },
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest',

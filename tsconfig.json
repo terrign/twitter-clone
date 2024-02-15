@@ -16,7 +16,9 @@
       "@constants": ["constants/index"],
       "@utils": ["utils/index"],
       "@context": ["context/index"],
-      "@store": ["store/index"]
+      "@store": ["store/index"],
+      "@assets": ["assets/index"],
+      "@ui": ["components/UI/index"]
     },
 
     "allowJs": true,

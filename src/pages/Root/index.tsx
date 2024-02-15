@@ -1,3 +1,11 @@
+import { Outlet } from 'react-router'
+
+import { Main } from './styled'
+
 export const Root = () => {
-  return <div></div>
+  return (
+    <Main>
+      <Outlet />
+    </Main>
+  )
 }

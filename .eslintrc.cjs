@@ -40,6 +40,12 @@ module.exports = {
         'import/no-default-export': 'off',
       },
     },
+    {
+      files: ['./src/assets/index.ts'],
+      rules: {
+        'import/no-unresolved': 'off',
+      },
+    },
   ],
   parserOptions: {
     project: './tsconfig.json',
@@ -61,6 +67,8 @@ module.exports = {
           ['@utils', './src/utils/index'],
           ['@context', './src/context/index'],
           ['@store', './src/store/index'],
+          ['@assets', './src/assets/index'],
+          ['@ui', './src/components/UI/index'],
         ],
         extensions: ['.tsx', '.ts'],
       },

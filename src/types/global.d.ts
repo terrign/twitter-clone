@@ -6,8 +6,8 @@ declare module 'styled-components' {
   export interface DefaultTheme extends ThemeObject {}
 }
 
-declare module '*.svg'
-
 declare module '*.png'
 
 declare module '*.jpg'
+
+declare module '*.svg?react'

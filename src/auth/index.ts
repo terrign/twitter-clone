@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getAuth } from 'firebase/auth'
+import { getAuth, GoogleAuthProvider, signInWithRedirect } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
@@ -18,4 +18,21 @@ const auth = getAuth(app)
 
 const db = getFirestore(app)
 
-export { app, auth, db }
+const googleProvider = new GoogleAuthProvider()
+
+googleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly')
+
+const login = async () => {
+  const res = await signInWithRedirect(auth, googleProvider)
+    .then((result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result)
+      console.log(result, credential)
+    })
+    .catch((error) => {
+      error
+    })
+
+  return res
+}
+
+export { app, auth, db, googleProvider, login }
