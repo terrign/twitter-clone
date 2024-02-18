@@ -3,15 +3,19 @@ const enum Theme {
   DARK,
 }
 
-interface ThemeObject extends Record<string, string> {
+interface ThemeObject {
   fontXXL: string
   fontXL: string
   fontL: string
   fontM: string
   fontS: string
   fontXS: string
-  buttonBgColorBlue: string
+  buttonBgColor: string
   buttonBorderColor: string
+  inputBorderColor: string
+  bgColor: string
+  outlinedButtonHover: string
+  filledButtonHover: string
 }
 
 export { Theme, type ThemeObject }

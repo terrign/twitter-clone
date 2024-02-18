@@ -11,13 +11,14 @@
       "@components": ["components/index"],
       "@pages": ["pages/index"],
       "@router": ["router/index"],
-      "@auth": ["auth/index"],
+      "@services": ["services/index"],
       "@types": ["types/index"],
       "@constants": ["constants/index"],
       "@utils": ["utils/index"],
       "@context": ["context/index"],
       "@store": ["store/index"],
       "@assets": ["assets/index"],
+      "@hooks": ["hooks/index"],
       "@ui": ["components/UI/index"]
     },
 

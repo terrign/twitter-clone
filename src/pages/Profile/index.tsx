@@ -1,10 +1,11 @@
-import { auth } from '@auth'
-import { signOut } from '@firebase/auth'
+import { signOut, useAppDispatch } from '@store'
 import { Button } from '@ui'
 
 export const Profile = () => {
+  const dispatch = useAppDispatch()
+
   const logout = () => {
-    signOut(auth)
+    dispatch(signOut())
   }
 
   return (

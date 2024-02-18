@@ -1,4 +1,7 @@
-import { darkTheme, defaultTheme, GlobalStyles, lightTheme } from './styles'
+import { SignUpFormFields } from '@types'
+import { generateDays, generateYears } from '@utils'
+
+import { Color, darkTheme, defaultTheme, font, GlobalStyles, lightTheme } from './styles'
 
 const LINKS = {
   about: { label: 'About', href: '#' },
@@ -19,4 +22,33 @@ const LINKS = {
   settings: { label: 'Settings', href: '#' },
 }
 
-export { darkTheme, defaultTheme, GlobalStyles, lightTheme, LINKS }
+const YEARS = generateYears()
+const DAYS = generateDays()
+
+const MONTHS = {
+  January: '01',
+  February: '02',
+  March: '03',
+  April: '04',
+  May: '05',
+  June: '06',
+  July: '07',
+  August: '08',
+  September: '09',
+  October: '10',
+  November: '11',
+  December: '12',
+}
+
+const inputNameMap: Record<keyof SignUpFormFields, { label: string; type: string }> = {
+  password: { label: 'Password', type: 'password' },
+  name: { label: 'Name', type: 'text' },
+  email: { label: 'Email', type: 'email' },
+  confirmPassword: { label: 'Confirm password', type: 'password' },
+  phoneNumber: { label: 'Phone number', type: 'tel' },
+  year: { label: 'Year', type: 'text' },
+  month: { label: 'Mear', type: 'text' },
+  day: { label: 'Dear', type: 'text' },
+}
+
+export { Color, darkTheme, DAYS, defaultTheme, font, GlobalStyles, inputNameMap, lightTheme, LINKS, MONTHS, YEARS }

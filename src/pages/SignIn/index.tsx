@@ -1,3 +1,5 @@
+import { SignInForm } from '@components'
+
 export const SignIn = () => {
-  return <div>SignIn</div>
+  return <SignInForm />
 }

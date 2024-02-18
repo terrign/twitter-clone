@@ -5,6 +5,8 @@ export const HomeWrapper = styled.div`
   flex-direction: column;
   height: 100%;
   padding-right: 1rem;
+  margin-top: -1rem;
+  margin-left: -1rem;
 
   section {
     flex: 1 0 auto;
@@ -13,13 +15,12 @@ export const HomeWrapper = styled.div`
   footer {
     flex: 0 0 auto;
     margin-top: 0.5rem;
-    padding-bottom: 1rem;
+    margin-bottom: -1rem;
   }
 `
 
 export const Main = styled.section`
   display: flex;
-  row-gap: 1rem;
   align-items: center;
 `
 
@@ -36,7 +37,6 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-left: 2rem;
-  margin-right: 4rem;
   flex: 1 1 auto;
 
   h1 {
@@ -51,14 +51,10 @@ export const Content = styled.div`
   div {
     max-width: 400px;
 
-    p {
-      font-size: ${({ theme }) => theme.fontXS};
-      margin-top: 1.5rem;
-    }
-
-    p:last-child {
-      font-size: ${({ theme }) => theme.fontS};
-      margin-top: 1rem;
+    a:has(button) {
+      &:hover {
+        text-decoration: none;
+      }
     }
 
     button {
@@ -69,7 +65,20 @@ export const Content = styled.div`
         justify-content: center;
         grid-template-columns: auto auto;
         gap: 5px;
+        text-decoration: none;
       }
     }
   }
+
+  *:not(:first-child) {
+    margin-top: 1rem;
+  }
+`
+
+export const HomeTermsText = styled.p`
+  font-size: ${({ theme }) => theme.fontXS};
+`
+
+export const HomeLoginText = styled.p`
+  font-size: ${({ theme }) => theme.fontS};
 `

@@ -1,7 +1,7 @@
-import { GoogleLogo, TwitterLogo } from '@assets'
+import { DropDownArrow, GoogleLogo, TwitterLogo } from '@assets'
 import styled from 'styled-components'
 
-const TwitterIconMap = {
+const TwitterIconSizeMap = {
   big: {
     width: '50px',
     height: '41px',
@@ -12,12 +12,17 @@ const TwitterIconMap = {
   },
 }
 
-export const TwitterIcon = styled(TwitterLogo)<{ $size: keyof typeof TwitterIconMap }>`
-  height: ${({ $size }) => TwitterIconMap[$size].height};
-  width: ${({ $size }) => TwitterIconMap[$size].width};
+export const TwitterIcon = styled(TwitterLogo)<{ $size: keyof typeof TwitterIconSizeMap }>`
+  height: ${({ $size }) => TwitterIconSizeMap[$size].height};
+  width: ${({ $size }) => TwitterIconSizeMap[$size].width};
 `
 
 export const GoogleIcon = styled(GoogleLogo)`
   height: 24px;
   width: 24px;
+`
+
+export const DropDownIcon = styled(DropDownArrow)<{ $down: boolean }>`
+  transition: transform 0.1s linear;
+  ${({ $down }) => $down && 'transform: rotate(180deg)'}
 `

@@ -5,13 +5,14 @@
       "@components": ["../src/components/index"],
       "@pages": ["../src/pages/index"],
       "@router": ["../src/router/index"],
-      "@auth": ["../src/auth/index"],
+      "@services": ["../src/services/index"],
       "@types": ["../src/types/index"],
       "@constants": ["../src/constants/index"],
       "@utils": ["../src/utils/index"],
       "@context": ["../src/context/index"],
       "@store": ["../src/store/index"],
       "@assets": ["../src/assets/index"],
+      "@hooks": ["../src/hooks/index"],
       "@ui": ["../src/components/UI/index"]
     }
   },

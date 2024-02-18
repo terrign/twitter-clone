@@ -1,3 +1,4 @@
+import { font } from '@constants'
 import styled from 'styled-components'
 
 export const StyledFooter = styled.footer`
@@ -16,5 +17,15 @@ export const StyledFooter = styled.footer`
   *:not(:first-child) {
     display: block;
     margin-left: 1rem;
+  }
+
+  a {
+    ${font}
+  }
+
+  @media (hover: hover) {
+    a:hover {
+      text-decoration: underline;
+    }
   }
 `

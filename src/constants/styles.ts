@@ -24,6 +24,41 @@ const font = css`
   color: black;
 `
 
+const enum Color {
+  BLUE = '#1D9BF0',
+  DARK_BLUE = '#005995de',
+  PALE_GRAY = '#E4EAED',
+  PALE_GRAY_2 = '#e4eaed45',
+  GRAY = '#00000033',
+  WHITE = '#FFFFFF',
+  RED = '#ff0000',
+  ALERT_TEAL = '#8df7c2',
+  ALERT_RED = '#ff9292',
+}
+
+const defaultTheme: ThemeObject = {
+  fontXXL: '3rem', //60
+  fontXL: '1.5rem', //30
+  fontL: '1rem', //20
+  fontM: '0.9rem', //18
+  fontS: '0.8rem', //16
+  fontXS: '0.6rem', //12
+  buttonBgColor: Color.BLUE,
+  buttonBorderColor: Color.PALE_GRAY,
+  inputBorderColor: Color.GRAY,
+  bgColor: Color.WHITE,
+  outlinedButtonHover: Color.PALE_GRAY_2,
+  filledButtonHover: Color.DARK_BLUE,
+}
+
+const darkTheme: ThemeObject = {
+  ...defaultTheme,
+}
+
+const lightTheme: ThemeObject = {
+  ...defaultTheme,
+}
+
 const GlobalStyles = createGlobalStyle`
   :root {
     font-size: 20px;
@@ -53,7 +88,7 @@ const GlobalStyles = createGlobalStyle`
 
   h1,h2 {
     font-weight: 900;
-    letter-spacing: -3px;
+    letter-spacing: -2px;
   }
 
   h1 {
@@ -66,33 +101,20 @@ const GlobalStyles = createGlobalStyle`
 
   button {
     ${font}
-    font-size: 1rem;
+    font-size: ${({ theme }) => theme.fontM};
     font-weight: 500;
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
   }
+
+  @media (hover: hover) {
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+
 `
 
-const enum Color {
-  BLUE = '#1D9BF0',
-  PALE_GRAY = '#E4EAED',
-}
-
-const defaultTheme: ThemeObject = {
-  fontXXL: '3rem', //84
-  fontXL: '1.5rem', //42
-  fontL: '1rem', //20
-  fontM: '0.9rem', //18
-  fontS: '0.8rem', //16
-  fontXS: '0.7rem', //14
-  buttonBgColorBlue: Color.BLUE,
-  buttonBorderColor: Color.PALE_GRAY,
-}
-
-const darkTheme: ThemeObject = {
-  ...defaultTheme,
-}
-
-const lightTheme: ThemeObject = {
-  ...defaultTheme,
-}
-
-export { darkTheme, defaultTheme, GlobalStyles, lightTheme, screen }
+export { Color, darkTheme, defaultTheme, font, GlobalStyles, lightTheme, screen }
