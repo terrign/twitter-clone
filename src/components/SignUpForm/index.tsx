@@ -1,6 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Route } from '@router'
 import { signUpWithEmail, useAppDispatch } from '@store'
+import { EmailSignUpPayload } from '@types'
 import { Button, Form, FormDatepicker, FormInput, FormItem, TwitterIcon } from '@ui'
 import { signUpValidationSchema } from '@utils'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -19,8 +20,20 @@ export const SignUpForm = () => {
   const dispatch = useAppDispatch()
 
   const submitHandler = handleSubmit(async () => {
-    const { day, year, month, ...rest } = getValues()
-    dispatch(signUpWithEmail({ ...rest, dateOfBirth: `${year}-${month}-${day}` }))
+    const { day, year, month, email, password, name, phoneNumber } = getValues()
+
+    const signUpData: EmailSignUpPayload = {
+      password,
+      email,
+      userInfo: {
+        email,
+        name,
+        phoneNumber,
+        dateOfBirth: `${year}-${month}-${day}`,
+      },
+    }
+
+    dispatch(signUpWithEmail(signUpData))
   })
 
   return (
@@ -66,7 +79,7 @@ export const SignUpForm = () => {
           <FormDatepicker />
 
           <FormItem>
-            <Button $type="filled" type="submit" onClick={() => console.log(form.getValues())}>
+            <Button $type="filled" type="submit">
               Next
             </Button>
           </FormItem>

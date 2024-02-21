@@ -3,7 +3,7 @@ import { Theme, ThemeObject } from './theme'
 interface UserInfo {
   uid: string
   name: string
-  authProvider: 'google' | 'firebase' | ''
+  authProvider: AuthProvider | ''
   email: string
   dateOfBirth: string
   phoneNumber: string
@@ -21,9 +21,15 @@ interface SignUpFormFields {
   year: string
 }
 
-interface DbUserRecord {
-  user: UserInfo | undefined
-  recordId: string | undefined
+interface EmailSignUpPayload {
+  password: string
+  email: string
+  userInfo: Omit<UserInfo, 'uid' | 'photoURL' | 'authProvider'>
 }
 
-export { type DbUserRecord, type SignUpFormFields, Theme, type ThemeObject, type UserInfo }
+const enum AuthProvider {
+  EMAIL = 'email',
+  GOOGLE = 'google',
+}
+
+export { AuthProvider, type EmailSignUpPayload, type SignUpFormFields, Theme, type ThemeObject, type UserInfo }

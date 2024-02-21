@@ -10,7 +10,7 @@ import {
   signInWithPopup,
   UserCredential,
 } from 'firebase/auth'
-import { addDoc, collection, doc, Firestore, getDocs, getFirestore, query, setDoc, where } from 'firebase/firestore'
+import { doc, Firestore, getDoc, getFirestore, setDoc } from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: import.meta.env.APP_API_KEY,
@@ -33,19 +33,15 @@ class FirebaseService {
     this.googleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly')
   }
 
-  public saveUserToDb = async (user: UserInfo) => addDoc(collection(this.db, `users`), user)
-
   public emailSignUp = async (email: string, password: string): Promise<UserCredential | AuthError> => {
     try {
-      const result = await createUserWithEmailAndPassword(this.auth, email, password)
+      const emailSignUpResult = await createUserWithEmailAndPassword(this.auth, email, password)
 
-      return result
+      return emailSignUpResult
     } catch (error) {
       return error as AuthError
     }
   }
-
-  public signOut = async () => this.auth.signOut()
 
   public googleSignUp = async () => {
     try {
@@ -59,27 +55,22 @@ class FirebaseService {
 
   public emailSignIn = async (email: string, password: string) => {
     try {
-      const result = await signInWithEmailAndPassword(this.auth, email, password)
+      const emailSignInResult = await signInWithEmailAndPassword(this.auth, email, password)
 
-      return result
+      return emailSignInResult
     } catch (error) {
       return error as AuthError
     }
   }
 
-  public queryUserById = async (uid: string) => {
-    const userQuery = query(collection(this.db, 'users'), where('uid', '==', uid))
-    const doc = await getDocs(userQuery)
+  public signOut = async () => this.auth.signOut()
 
-    return doc.docs.map((a) => ({ user: a.data(), recordId: a.id }))[0]
-  }
+  public createUser = async (user: UserInfo) => await setDoc(doc(this.db, `users`, user.uid), user)
 
-  public updateDbUserRecord = async (recordId: string, userInfo: Partial<UserInfo>) => {
-    const userRecordRef = doc(this.db, 'users', recordId)
-    await setDoc(userRecordRef, { ...userInfo }, { merge: true })
+  public getUserById = async (uid: string) => (await getDoc(doc(this.db, 'users', uid))).data()
 
-    return userRecordRef
-  }
+  public updateUser = async (uid: string, userInfo: Partial<UserInfo>) =>
+    await setDoc(doc(this.db, 'users', uid), userInfo, { merge: true })
 }
 
 export const firebase = new FirebaseService()

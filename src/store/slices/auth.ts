@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { UserInfo } from '@types'
+import { AuthProvider, EmailSignUpPayload } from '@types'
 
 export interface AuthStateType {
   email: string
   password: string
-  provider: 'google' | 'email' | ''
+  provider: AuthProvider | ''
 }
 
 const initialState: AuthStateType = {
@@ -17,24 +17,19 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    signUpWithEmail(
-      state,
-      { payload }: PayloadAction<Omit<UserInfo, 'uid' | 'photoURL' | 'authProvider'> & { password: string }>,
-    ) {
-      const { email, password } = payload
+    signUpWithEmail(state, { payload: { email, password } }: PayloadAction<EmailSignUpPayload>) {
       state.email = email
       state.password = password
-      state.provider = 'email'
+      state.provider = AuthProvider.EMAIL
     },
     signUpWithGoogle(state) {
-      state.provider = 'google'
+      state.provider = AuthProvider.GOOGLE
+    },
+    signInWithEmail(state, { payload }: PayloadAction<{ email: string; password: string }>) {
+      state.email = payload.email
+      state.password = payload.password
     },
     signOut() {},
-    signInWithEmail(state, { payload }: PayloadAction<{ email: string; password: string }>) {
-      const { email, password } = payload
-      state.email = email
-      state.password = password
-    },
   },
 })
 

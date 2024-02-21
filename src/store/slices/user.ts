@@ -32,8 +32,17 @@ export const userSlice = createSlice({
       state.user = payload
     },
 
+    createUser(state, { payload }: PayloadAction<UserInfo>) {
+      state.user = payload
+    },
+
     switchTheme(state, { payload }: PayloadAction<Theme>) {
       state.theme = payload ^ 1
+    },
+
+    updateUser(state, { payload }: PayloadAction<Partial<UserInfo> & { uid: string }>) {
+      const prevUser = { ...state.user }
+      state.user = { ...prevUser, ...payload }
     },
   },
   extraReducers: (builder) => {
@@ -43,4 +52,4 @@ export const userSlice = createSlice({
   },
 })
 
-export const { setUser, switchTheme } = userSlice.actions
+export const { setUser, createUser, switchTheme, updateUser } = userSlice.actions

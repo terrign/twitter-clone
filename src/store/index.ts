@@ -2,10 +2,10 @@ import { combineSlices, configureStore } from '@reduxjs/toolkit'
 import { useDispatch, useSelector } from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
 
-import { rootSaga } from './saga'
+import { rootSaga } from './sagas'
 import { alertSlice, removeAlert, setAlert } from './slices/alert'
 import { authSlice, signInWithEmail, signOut, signUpWithEmail, signUpWithGoogle } from './slices/auth'
-import { setUser, userSlice } from './slices/user'
+import { setUser, updateUser, userSlice } from './slices/user'
 
 const sagaMiddleware = createSagaMiddleware()
 const rootReducer = combineSlices(userSlice, alertSlice, authSlice)
@@ -34,6 +34,7 @@ export {
   signUpWithEmail,
   signUpWithGoogle,
   store,
+  updateUser,
   useAppDispatch,
   useAppSelector,
 }
