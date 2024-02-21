@@ -38,6 +38,6 @@
     "esModuleInterop": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "./node_modules/redux-persist/types"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -1,5 +1,8 @@
 import { combineSlices, configureStore } from '@reduxjs/toolkit'
 import { useDispatch, useSelector } from 'react-redux'
+import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist'
+// eslint-disable-next-line import/no-unresolved
+import localStorage from 'redux-persist/es/storage'
 import createSagaMiddleware from 'redux-saga'
 
 import { rootSaga } from './sagas'
@@ -7,13 +10,31 @@ import { alertSlice, removeAlert, setAlert } from './slices/alert'
 import { authSlice, signInWithEmail, signOut, signUpWithEmail, signUpWithGoogle } from './slices/auth'
 import { setUser, updateUser, userSlice } from './slices/user'
 
+const rootPersistConfig = {
+  key: 'root',
+  storage: localStorage,
+
+  blacklist: ['auth'],
+}
+
+localStorage
+
 const sagaMiddleware = createSagaMiddleware()
 const rootReducer = combineSlices(userSlice, alertSlice, authSlice)
 
+const persistedReducer = persistReducer(rootPersistConfig, rootReducer)
+
 const store = configureStore({
-  reducer: rootReducer,
-  middleware: (gDM) => gDM().concat(sagaMiddleware),
+  reducer: persistedReducer,
+  middleware: (gDM) =>
+    gDM({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(sagaMiddleware),
 })
+
+const persistor = persistStore(store)
 
 sagaMiddleware.run(rootSaga)
 
@@ -25,6 +46,7 @@ const useAppSelector = useSelector.withTypes<RootState>()
 
 export {
   type AppDispatch,
+  persistor,
   removeAlert,
   type RootState,
   setAlert,
