@@ -29,6 +29,8 @@ function* googleSignUpWorker() {
         authProvider: AuthProvider.GOOGLE,
         dateOfBirth: '',
         phoneNumber: phoneNumber ?? '',
+        gender: '',
+        tgLink: '',
       }
 
       yield put(createUser(newUser))
@@ -65,6 +67,7 @@ function* signInWorker({ payload }: PayloadAction<{ email: string; password: str
 }
 
 function* signOutWorker() {
+  console.log('signout')
   yield firebase.signOut()
 }
 

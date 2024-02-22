@@ -24,8 +24,8 @@ export const Main = styled.section`
   align-items: center;
 `
 
-export const TwitterBackGround = styled.div`
-  background-image: url('./back-twitter.jpg');
+export const TwitterBackGround = styled.div<{ $url: string }>`
+  background-image: url(${({ $url }) => $url});
   background-repeat: no-repeat;
   background-position: center;
   flex-basis: 1114px;

@@ -16,6 +16,8 @@ const EMPTY_USER: UserInfo = {
   uid: '',
   photoURL: '',
   authProvider: '',
+  gender: '',
+  tgLink: '',
 }
 
 const initialState: UserStateType = {

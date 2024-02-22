@@ -22,4 +22,6 @@ const generateDays = () => {
   return days
 }
 
-export { generateDays, generateYears, signUpValidationSchema }
+const nicknameFromEmail = (email: string) => '@' + email.split('@')[0]
+
+export { generateDays, generateYears, nicknameFromEmail, signUpValidationSchema }

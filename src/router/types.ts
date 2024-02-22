@@ -1,8 +1,10 @@
 export enum Route {
-  HOME = '/',
+  WELCOME = '/',
   SIGN_IN = '/signin',
   SIGN_UP = '/signup',
   PROFILE = '/profile',
   ICONS = '/icons',
-  FEED = '/feed',
+  HOME = '/home',
+  TODO = '/todo',
+  EDIT = '/profile/edit',
 }

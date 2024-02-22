@@ -8,6 +8,8 @@ interface UserInfo {
   dateOfBirth: string
   phoneNumber: string
   photoURL: string
+  gender: string
+  tgLink: string
 }
 
 interface SignUpFormFields {

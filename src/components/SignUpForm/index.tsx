@@ -30,6 +30,8 @@ export const SignUpForm = () => {
         name,
         phoneNumber,
         dateOfBirth: `${year}-${month}-${day}`,
+        gender: '',
+        tgLink: '',
       },
     }
 
@@ -41,7 +43,7 @@ export const SignUpForm = () => {
       <FormProvider {...form}>
         <Form onSubmit={submitHandler}>
           <FormItem>
-            <Link to={Route.HOME}>
+            <Link to={Route.WELCOME}>
               <TwitterIcon $size="big" />
             </Link>
           </FormItem>

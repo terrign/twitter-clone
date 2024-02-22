@@ -26,7 +26,7 @@ export const SignInForm = () => {
     <Centered>
       <Form onSubmit={submitHandler}>
         <FormItem>
-          <Link to={Route.HOME}>
+          <Link to={Route.WELCOME}>
             <TwitterIcon $size="big" />
           </Link>
         </FormItem>
@@ -50,7 +50,7 @@ export const SignInForm = () => {
         </FormItem>
 
         <FormItem>
-          <Link to={Route.HOME}>Sign up to Twitter</Link>
+          <Link to={Route.WELCOME}>Sign up to Twitter</Link>
         </FormItem>
       </Form>
     </Centered>

@@ -27,6 +27,7 @@ const font = css`
 const enum Color {
   BLUE = '#1D9BF0',
   DARK_BLUE = '#005995de',
+  PALE_BLUE = '#1d9bf040',
   PALE_GRAY = '#E4EAED',
   PALE_GRAY_2 = '#e4eaed45',
   GRAY = '#00000033',
@@ -49,6 +50,7 @@ const defaultTheme: ThemeObject = {
   bgColor: Color.WHITE,
   outlinedButtonHover: Color.PALE_GRAY_2,
   filledButtonHover: Color.DARK_BLUE,
+  modalBgColor: Color.PALE_BLUE,
 }
 
 const darkTheme: ThemeObject = {

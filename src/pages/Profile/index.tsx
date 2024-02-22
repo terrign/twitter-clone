@@ -1,18 +1,22 @@
-import { signOut, useAppDispatch } from '@store'
-import { Button } from '@ui'
+import { DefaultProfileBackGround } from '@assets'
+import { ProfileInfo } from '@components'
+import { useAppSelector } from '@store'
+import { Outlet } from 'react-router-dom'
+
+import { ProfileBackground, ProfileHeader, ProfileWrapper } from './styled'
 
 export const Profile = () => {
-  const dispatch = useAppDispatch()
-
-  const logout = () => {
-    dispatch(signOut())
-  }
+  const { name } = useAppSelector((state) => state.user.user)
 
   return (
-    <div>
-      <Button onClick={logout} $type="outlined">
-        Logout
-      </Button>
-    </div>
+    <ProfileWrapper>
+      <ProfileHeader>
+        <p>{name}</p>
+        <p>{1} tweets</p>
+      </ProfileHeader>
+      <ProfileBackground $url={DefaultProfileBackGround} />
+      <ProfileInfo />
+      <Outlet />
+    </ProfileWrapper>
   )
 }

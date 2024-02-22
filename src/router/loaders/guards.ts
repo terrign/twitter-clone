@@ -3,21 +3,13 @@ import { LoaderFunction, redirect } from 'react-router-dom'
 
 import { Route } from '../types'
 
-const isPrivateRoute = (route: Route | string) => {
-  if (route === Route.PROFILE || route === Route.FEED) {
-    return true
-  }
+const PRIVATE_ROUTES: (Route | string)[] = [Route.PROFILE, Route.HOME, Route.EDIT, Route.TODO]
 
-  return false
-}
+const PUBLIC_ROUTES: (Route | string)[] = [Route.SIGN_IN, Route.SIGN_UP, Route.WELCOME]
 
-const isAuthRoute = (route: Route | string) => {
-  if (route === Route.SIGN_IN || route === Route.SIGN_UP || route === Route.HOME) {
-    return true
-  }
+const isPrivateRoute = (path: Route | string) => PRIVATE_ROUTES.includes(path)
 
-  return false
-}
+const isPublicRoute = (path: Route | string) => PUBLIC_ROUTES.includes(path)
 
 export const guards: LoaderFunction = async ({ request }) => {
   const { pathname } = new URL(request.url)
@@ -26,10 +18,10 @@ export const guards: LoaderFunction = async ({ request }) => {
   const user = firebase.auth.currentUser
 
   if (!user && isPrivateRoute(pathname)) {
-    return redirect(Route.HOME)
+    return redirect(Route.WELCOME)
   }
 
-  if (user && isAuthRoute(pathname)) {
+  if (user && isPublicRoute(pathname)) {
     return redirect(Route.PROFILE)
   }
 

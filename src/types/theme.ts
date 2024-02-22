@@ -16,6 +16,7 @@ interface ThemeObject {
   bgColor: string
   outlinedButtonHover: string
   filledButtonHover: string
+  modalBgColor: string
 }
 
 export { Theme, type ThemeObject }

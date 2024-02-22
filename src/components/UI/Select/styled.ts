@@ -47,7 +47,7 @@ export const Options = styled.div<{ $show?: boolean }>`
 
 export const IconWrapper = styled.button`
   position: absolute;
-  top: 19px;
+  top: 15px;
   height: 1rem;
   width: 1rem;
   left: calc(100% - 1rem - 15px);
