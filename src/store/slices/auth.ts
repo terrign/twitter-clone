@@ -1,36 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { AuthProvider, EmailSignUpPayload } from '@types'
+import { EmailSignUpPayload } from '@types'
 
-export interface AuthStateType {
-  email: string
-  password: string
-  provider: AuthProvider | ''
-}
+export interface AuthStateType {}
 
-const initialState: AuthStateType = {
-  email: '',
-  password: '',
-  provider: '',
-}
+const initialState: AuthStateType = {}
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    signUpWithEmail(state, { payload: { email, password } }: PayloadAction<EmailSignUpPayload>) {
-      state.email = email
-      state.password = password
-      state.provider = AuthProvider.EMAIL
-    },
-    signUpWithGoogle(state) {
-      state.provider = AuthProvider.GOOGLE
-    },
-    signInWithEmail(state, { payload }: PayloadAction<{ email: string; password: string }>) {
-      state.email = payload.email
-      state.password = payload.password
-    },
+    signUpWithEmail(_, {}: PayloadAction<EmailSignUpPayload>) {},
+    signUpWithGoogle() {},
+    signInWithEmail(_, {}: PayloadAction<{ email: string; password: string }>) {},
+    updatePassword(_, {}: PayloadAction<{ currentPassword: string; newPassword: string }>) {},
     signOut() {},
   },
 })
 
-export const { signUpWithEmail, signUpWithGoogle, signOut, signInWithEmail } = authSlice.actions
+export const { signUpWithEmail, signUpWithGoogle, signOut, signInWithEmail, updatePassword } = authSlice.actions

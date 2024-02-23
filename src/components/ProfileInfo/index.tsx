@@ -4,10 +4,10 @@ import { useAppSelector } from '@store'
 import { Avatar, Button, UserName } from '@ui'
 import { useNavigate } from 'react-router-dom'
 
-import { StyledProfileInfo } from './styled'
+import { Bio, StyledProfileInfo } from './styled'
 
 export const ProfileInfo = () => {
-  const { photoURL, name, email } = useAppSelector((state) => state.user.user)
+  const { photoURL, name, email, bio } = useAppSelector((state) => state.user.user)
 
   const nav = useNavigate()
 
@@ -16,6 +16,7 @@ export const ProfileInfo = () => {
       <div>
         <Avatar $size="l" $url={photoURL || DefaultAvatarImage} />
         <UserName name={name} email={email} col />
+        <Bio>{bio}</Bio>
       </div>
       <Button $type="outlined" onClick={() => nav(Route.EDIT)}>
         Edit profile

@@ -1,17 +1,22 @@
 import { inputNameMap } from '@constants'
-import { SignUpFormFields } from '@types'
 import { FormItem, Input } from '@ui'
 import { useFormContext } from 'react-hook-form'
 
-export const FormInput = ({ name }: { name: keyof SignUpFormFields }) => {
-  const { register, formState } = useFormContext<SignUpFormFields>()
+interface FormInputProps {
+  labeled?: boolean
+  name: keyof typeof inputNameMap
+}
+
+export const FormInput = ({ name, labeled }: FormInputProps) => {
+  const { register, formState } = useFormContext()
   const error = formState.errors[name]?.message
 
   const { type, label } = inputNameMap[name]
 
   return (
-    <FormItem errorMessage={error}>
-      <Input placeholder={label} type={type} {...register(name)} />
+    <FormItem errorMessage={error?.toString()} labeled={labeled}>
+      {labeled && <label htmlFor={name}>{label}</label>}
+      <Input placeholder={labeled ? undefined : label} type={type} {...register(name)} id={name} name={name} />
     </FormItem>
   )
 }

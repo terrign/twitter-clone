@@ -15,13 +15,11 @@ export const SignUpForm = () => {
     resolver: yupResolver(signUpValidationSchema()),
   })
 
-  const { handleSubmit, getValues } = form
+  const { handleSubmit } = form
 
   const dispatch = useAppDispatch()
 
-  const submitHandler = handleSubmit(async () => {
-    const { day, year, month, email, password, name, phoneNumber } = getValues()
-
+  const submitHandler = handleSubmit(async ({ day, year, month, email, password, name, phoneNumber }) => {
     const signUpData: EmailSignUpPayload = {
       password,
       email,
@@ -32,6 +30,7 @@ export const SignUpForm = () => {
         dateOfBirth: `${year}-${month}-${day}`,
         gender: '',
         tgLink: '',
+        bio: '',
       },
     }
 

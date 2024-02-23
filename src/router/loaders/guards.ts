@@ -1,4 +1,4 @@
-import { firebase } from '@services'
+import { authService } from '@services'
 import { LoaderFunction, redirect } from 'react-router-dom'
 
 import { Route } from '../types'
@@ -14,8 +14,8 @@ const isPublicRoute = (path: Route | string) => PUBLIC_ROUTES.includes(path)
 export const guards: LoaderFunction = async ({ request }) => {
   const { pathname } = new URL(request.url)
 
-  await firebase.auth.authStateReady()
-  const user = firebase.auth.currentUser
+  await authService.auth.authStateReady()
+  const user = authService.auth.currentUser
 
   if (!user && isPrivateRoute(pathname)) {
     return redirect(Route.WELCOME)

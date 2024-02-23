@@ -7,7 +7,7 @@ import createSagaMiddleware from 'redux-saga'
 
 import { rootSaga } from './sagas'
 import { alertSlice, removeAlert, setAlert } from './slices/alert'
-import { authSlice, signInWithEmail, signOut, signUpWithEmail, signUpWithGoogle } from './slices/auth'
+import { authSlice, signInWithEmail, signOut, signUpWithEmail, signUpWithGoogle, updatePassword } from './slices/auth'
 import { setUser, updateUser, userSlice } from './slices/user'
 
 const rootPersistConfig = {
@@ -56,6 +56,7 @@ export {
   signUpWithEmail,
   signUpWithGoogle,
   store,
+  updatePassword,
   updateUser,
   useAppDispatch,
   useAppSelector,

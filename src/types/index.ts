@@ -10,6 +10,7 @@ interface UserInfo {
   photoURL: string
   gender: string
   tgLink: string
+  bio: string
 }
 
 interface SignUpFormFields {
@@ -23,6 +24,15 @@ interface SignUpFormFields {
   year: string
 }
 
+interface EditFormFields {
+  name: string
+
+  gender: string
+  tgLink: string
+  image: string
+  bio: string
+}
+
 interface EmailSignUpPayload {
   password: string
   email: string
@@ -34,4 +44,12 @@ const enum AuthProvider {
   GOOGLE = 'google',
 }
 
-export { AuthProvider, type EmailSignUpPayload, type SignUpFormFields, Theme, type ThemeObject, type UserInfo }
+export {
+  AuthProvider,
+  type EditFormFields,
+  type EmailSignUpPayload,
+  type SignUpFormFields,
+  Theme,
+  type ThemeObject,
+  type UserInfo,
+}

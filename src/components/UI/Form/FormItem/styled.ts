@@ -26,7 +26,7 @@ const nextElemMargin = css`
   }
 `
 
-export const StyledFormItem = styled.div<{ $hasError?: boolean }>`
+export const StyledFormItem = styled.div<{ $hasError?: boolean; $labeled?: boolean }>`
   position: relative;
   transition: margin-top ${ANIMATION_DURATION} ease-in-out;
 
@@ -41,7 +41,7 @@ export const StyledFormItem = styled.div<{ $hasError?: boolean }>`
 
     display: block;
     position: absolute;
-    top: 50px;
+    top: ${({ $labeled }) => ($labeled ? 'calc(50px + 1rem)' : '50px')};
     line-height: 1rem;
     font-weight: 500;
     box-sizing: border-box;
@@ -50,5 +50,9 @@ export const StyledFormItem = styled.div<{ $hasError?: boolean }>`
   input {
     width: 100%;
     ${({ $hasError }) => $hasError && `border-color: ${Color.RED}`}
+  }
+
+  label {
+    line-height: 1rem;
   }
 `

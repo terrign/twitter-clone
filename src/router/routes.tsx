@@ -1,3 +1,4 @@
+import { ErrorBoundary } from '@components'
 import { EditProfile, NotFound, PrivateRoot, Root, TempRoute } from '@pages'
 import { lazy, Suspense } from 'react'
 import { RouteObject } from 'react-router-dom'
@@ -19,6 +20,7 @@ export const routes: RouteObject[] = [
         <Root />
       </Suspense>
     ),
+    errorElement: <ErrorBoundary />,
     loader: guards,
     children: [
       {

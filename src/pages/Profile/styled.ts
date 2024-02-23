@@ -6,6 +6,8 @@ export const ProfileWrapper = styled.section``
 export const ProfileHeader = styled.header`
   p:first-child {
     font-weight: 700;
+    word-wrap: break-word;
+    max-width: 300px;
   }
 
   p:last-child {

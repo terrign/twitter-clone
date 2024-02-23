@@ -7,6 +7,13 @@ export const StyledUserName = styled.div<{ $col?: boolean }>`
   display: flex;
   justify-content: flex-start;
 
+  p {
+    word-wrap: nowrap;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    overflow: hidden;
+  }
+
   p:first-child {
     font-weight: 700;
   }

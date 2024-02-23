@@ -1,5 +1,5 @@
 import { Alert } from '@components'
-import { firebase } from '@services'
+import { authService } from '@services'
 import { onAuthStateChanged } from 'firebase/auth'
 import { useEffect } from 'react'
 import { Outlet } from 'react-router'
@@ -12,7 +12,7 @@ export const Root = () => {
   const { pathname } = useLocation()
 
   useEffect(() => {
-    const listener = onAuthStateChanged(firebase.auth, async () => {
+    const listener = onAuthStateChanged(authService.auth, async () => {
       revalidate()
     })
 

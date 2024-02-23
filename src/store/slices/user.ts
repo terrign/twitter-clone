@@ -18,6 +18,7 @@ const EMPTY_USER: UserInfo = {
   authProvider: '',
   gender: '',
   tgLink: '',
+  bio: '',
 }
 
 const initialState: UserStateType = {

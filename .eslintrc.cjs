@@ -12,6 +12,7 @@ module.exports = {
     'simple-import-sort/exports': 'error',
     'import/prefer-default-export': 'off',
     'import/no-default-export': 'error',
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
 
     'no-console': 'off',
     '@stylistic/arrow-parens': ['error', 'always'],

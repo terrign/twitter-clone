@@ -1,3 +1,4 @@
+import AddPhoto from './add-photo.svg?react'
 import WelcomeTwitterBackGroundImage from './back-twitter.jpg'
 import BookmarksFilled from './bookmarks-filled.svg?react'
 import BookmarksOutlined from './bookmarks-outlined.svg?react'
@@ -22,6 +23,7 @@ import ProfileOutlined from './profile-outlined.svg?react'
 import TwitterLogo from './twitter-logo.svg?react'
 
 export {
+  AddPhoto,
   BookmarksFilled,
   BookmarksOutlined,
   Close,

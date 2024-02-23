@@ -1,3 +1,5 @@
+import { changePasswordValidationSchema } from './changePasswordValidationSchema'
+import { EditProfileValidationSchema } from './editProfileValidationSchema'
 import { signUpValidationSchema } from './signUpValidationSchema'
 
 const generateYears = () => {
@@ -22,6 +24,30 @@ const generateDays = () => {
   return days
 }
 
+const convertBase64 = (file: Blob): Promise<string> => {
+  return new Promise((resolve) => {
+    const fileReader = new FileReader()
+
+    if (file) {
+      fileReader.readAsDataURL(file)
+    } else {
+      resolve('')
+    }
+
+    fileReader.onload = () => {
+      resolve(fileReader.result as string)
+    }
+  })
+}
+
 const nicknameFromEmail = (email: string) => '@' + email.split('@')[0]
 
-export { generateDays, generateYears, nicknameFromEmail, signUpValidationSchema }
+export {
+  changePasswordValidationSchema,
+  convertBase64,
+  EditProfileValidationSchema,
+  generateDays,
+  generateYears,
+  nicknameFromEmail,
+  signUpValidationSchema,
+}

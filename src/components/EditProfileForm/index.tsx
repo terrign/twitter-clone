@@ -1,46 +1,62 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { EmailSignUpPayload } from '@types'
-import { Button, Form, FormDatepicker, FormInput, FormItem } from '@ui'
-import { signUpValidationSchema } from '@utils'
+import { storageService } from '@services'
+import { updateUser, useAppDispatch, useAppSelector } from '@store'
+import { Button, Form, FormInput, FormItem } from '@ui'
+import { EditProfileValidationSchema } from '@utils'
 import { FormProvider, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+
+import { ImageInput } from './ImageInput'
 
 export const EditProfileForm = () => {
+  const { photoURL, name, bio, gender, tgLink, uid } = useAppSelector((state) => state.user.user)
+  const dispatch = useAppDispatch()
+
+  const nav = useNavigate()
+
   const form = useForm({
     mode: 'onChange',
-    resolver: yupResolver(signUpValidationSchema()),
+    resolver: yupResolver(EditProfileValidationSchema()),
+    values: {
+      name,
+      bio,
+      gender,
+      tgLink,
+    },
   })
 
-  const { handleSubmit, getValues } = form
+  const { handleSubmit } = form
 
-  const submitHandler = handleSubmit(async () => {
-    const { day, year, month, email, password, name, phoneNumber } = getValues()
-
-    const signUpData: EmailSignUpPayload = {
-      password,
-      email,
-      userInfo: {
-        email,
-        name,
-        phoneNumber,
-        dateOfBirth: `${year}-${month}-${day}`,
-        gender: '',
-        tgLink: '',
-      },
+  const submitHandler = handleSubmit(async ({ image, ...rest }) => {
+    if (image instanceof Blob) {
+      storageService.addBlob(image as Blob, (url) => {
+        dispatch(
+          updateUser({
+            ...rest,
+            uid,
+            photoURL: url,
+          }),
+        )
+      })
+    } else {
+      dispatch(updateUser({ ...rest, uid }))
     }
 
-    console.log(signUpData)
+    nav(-1)
   })
 
   return (
     <FormProvider {...form}>
       <Form onSubmit={submitHandler}>
-        <FormInput name="name" />
+        <ImageInput photoURL={photoURL} />
 
-        <FormInput name="email" />
+        <FormInput name="name" labeled />
 
-        <FormInput name="phoneNumber" />
+        <FormInput name="bio" labeled />
 
-        <FormDatepicker />
+        <FormInput name="tgLink" labeled />
+
+        <FormInput name="gender" labeled />
 
         <FormItem>
           <Button $type="filled" type="submit">

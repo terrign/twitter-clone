@@ -1,4 +1,4 @@
-import { SignUpFormFields } from '@types'
+import { EditFormFields, SignUpFormFields } from '@types'
 import { generateDays, generateYears } from '@utils'
 
 import { Color, darkTheme, defaultTheme, font, GlobalStyles, lightTheme } from './styles'
@@ -40,7 +40,13 @@ const MONTHS = {
   December: '12',
 }
 
-const inputNameMap: Record<keyof SignUpFormFields, { label: string; type: string }> = {
+type inputNameMapKeyType =
+  | keyof SignUpFormFields
+  | keyof Omit<EditFormFields, 'image'>
+  | 'currentPassword'
+  | 'newPassword'
+
+const inputNameMap: Record<inputNameMapKeyType, { label: string; type: string }> = {
   password: { label: 'Password', type: 'password' },
   name: { label: 'Name', type: 'text' },
   email: { label: 'Email', type: 'email' },
@@ -49,6 +55,11 @@ const inputNameMap: Record<keyof SignUpFormFields, { label: string; type: string
   year: { label: 'Year', type: 'text' },
   month: { label: 'Mear', type: 'text' },
   day: { label: 'Dear', type: 'text' },
+  tgLink: { label: 'Telegram link', type: 'text' },
+  gender: { label: 'Gender', type: 'text' },
+  bio: { label: 'Bio', type: 'text' },
+  currentPassword: { label: 'Current password ', type: 'password' },
+  newPassword: { label: 'New password', type: 'password' },
 }
 
 export { Color, darkTheme, DAYS, defaultTheme, font, GlobalStyles, inputNameMap, lightTheme, LINKS, MONTHS, YEARS }

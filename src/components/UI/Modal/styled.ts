@@ -15,6 +15,10 @@ export const Container = styled.div`
   padding: 1rem;
   background-color: ${({ theme }) => theme.bgColor};
   border-radius: 6px;
+  flex-grow: 1;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
 `
 
 export const CloseButton = styled.button.attrs({ type: 'button' })`

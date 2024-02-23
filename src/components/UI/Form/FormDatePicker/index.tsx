@@ -13,7 +13,7 @@ export const FormDatepicker = () => {
     formState: { errors },
   } = useFormContext<SignUpFormFields>()
 
-  const getSelectHandler = (type: keyof Pick<SignUpFormFields, 'day' | 'month' | 'year'>) => (value: string) => {
+  const getSelectHandler = (type: 'day' | 'month' | 'year') => (value: string) => {
     const definedValue = type === 'month' ? MONTHS[value as keyof typeof MONTHS] : value
     setValue(type, definedValue)
     trigger(type)

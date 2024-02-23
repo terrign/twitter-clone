@@ -21,4 +21,10 @@ export const Button = styled.button<{ $type: 'filled' | 'outlined' }>`
       background: ${({ theme, $type }) => ($type === 'filled' ? theme.filledButtonHover : theme.outlinedButtonHover)};
     }
   }
+
+  &:disabled {
+    background: ${({ $type }) => ($type === 'filled' ? Color.GRAY : 'none')};
+
+    color: ${({ $type }) => $type === 'outlined' && Color.GRAY};
+  }
 `

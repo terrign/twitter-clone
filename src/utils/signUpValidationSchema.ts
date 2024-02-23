@@ -14,6 +14,7 @@ const enum ValidationError {
 
   NAME_REQUIRED = 'Enter your name',
   NAME_NO_SPECIAL = 'No special characters or numbers allowed',
+  NAME_LONG = 'Maximum 50 characters',
 
   PASS_WEAK = 'Password must contain special characters, numbers, uppercase and lowercase letters',
   PASS_SHORT = 'Password must contain atleast 8 symbols',
@@ -34,7 +35,11 @@ const enum ValidationError {
 export const signUpValidationSchema = () =>
   yup.object().shape({
     email: yup.string().required(ValidationError.EMAIL_REQUIRED).matches(EMAIL_REGEXP, ValidationError.INVALID_EMAIL),
-    name: yup.string().required(ValidationError.NAME_REQUIRED).matches(NAME_REGEXP, ValidationError.NAME_NO_SPECIAL),
+    name: yup
+      .string()
+      .required(ValidationError.NAME_REQUIRED)
+      .matches(NAME_REGEXP, ValidationError.NAME_NO_SPECIAL)
+      .max(50, ValidationError.NAME_LONG),
     password: yup
       .string()
       .required(ValidationError.PASS_REQUIRED)

@@ -25,6 +25,7 @@ const font = css`
 `
 
 const enum Color {
+  BLACK = '#000000',
   BLUE = '#1D9BF0',
   DARK_BLUE = '#005995de',
   PALE_BLUE = '#1d9bf040',
@@ -109,6 +110,7 @@ const GlobalStyles = createGlobalStyle`
     outline: none;
     border: none;
     cursor: pointer;
+    user-select: none;
   }
 
   @media (hover: hover) {

@@ -1,3 +1,4 @@
+import { Color } from '@constants'
 import styled from 'styled-components'
 
 export const StyledProfileInfo = styled.section`
@@ -17,4 +18,10 @@ export const StyledProfileInfo = styled.section`
     padding: 0;
     height: 40px;
   }
+`
+
+export const Bio = styled.p`
+  /* color: ${Color.GRAY}; */
+  margin-top: 1rem;
+  font-size: ${({ theme }) => theme.fontS};
 `
