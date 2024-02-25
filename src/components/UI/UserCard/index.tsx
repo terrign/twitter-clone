@@ -1,4 +1,3 @@
-import { DefaultAvatarImage } from '@assets'
 import { Avatar, UserName } from '@ui'
 
 import { StyledUserCard } from './styled'
@@ -12,7 +11,7 @@ export interface UserCardProps {
 export const UserCard = ({ url, name, email }: UserCardProps) => {
   return (
     <StyledUserCard>
-      <Avatar $url={url || DefaultAvatarImage} $size="s" />
+      <Avatar photoURL={url} size="s" />
       <UserName col name={name} email={email} />
     </StyledUserCard>
   )

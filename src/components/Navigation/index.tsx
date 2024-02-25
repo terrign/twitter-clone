@@ -1,6 +1,9 @@
+import { TweetForm } from '@components'
 import { Route } from '@router'
+import { tweetService } from '@services'
 import { signOut, useAppDispatch, useAppSelector } from '@store'
-import { Button, TwitterIcon, UserCard } from '@ui'
+import { Button, Modal, TwitterIcon, UserCard } from '@ui'
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import { navLinks } from './constants'
@@ -10,10 +13,24 @@ import { LogoutButton, StyledAsideNavigation } from './styled'
 export const Navigation = () => {
   const dispatch = useAppDispatch()
 
-  const { name, email, photoURL } = useAppSelector((state) => state.user.user)
+  const { name, email, photoURL, uid } = useAppSelector((state) => state.user.user)
+
+  const [tweetModalOpen, setTweetModalOpen] = useState(false)
 
   const logoutHandler = () => {
     dispatch(signOut())
+  }
+
+  const closeModal = () => {
+    setTweetModalOpen(false)
+  }
+
+  const openModal = () => [setTweetModalOpen(true)]
+
+  const getTweets = async () => {
+    const tweets = await tweetService.getTweetsByUserId(uid)
+    console.log(tweets)
+    await tweetService.deleteTweet(tweets[0].id)
   }
 
   return (
@@ -28,14 +45,19 @@ export const Navigation = () => {
         ))}
       </nav>
 
-      <Button $type="filled">Tweet</Button>
-      <div>
+      <Button $type="filled" onClick={openModal}>
+        Tweet
+      </Button>
+      <div onClick={getTweets}>
         <UserCard name={name} email={email} url={photoURL} />
       </div>
 
       <LogoutButton $type="filled" onClick={logoutHandler}>
         Log out
       </LogoutButton>
+      <Modal open={tweetModalOpen} onClose={closeModal} header="Add tweet">
+        <TweetForm />
+      </Modal>
     </StyledAsideNavigation>
   )
 }

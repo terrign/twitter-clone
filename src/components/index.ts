@@ -7,6 +7,7 @@ import { Navigation } from './Navigation'
 import { ProfileInfo } from './ProfileInfo'
 import { SignInForm } from './SignInForm'
 import { SignUpForm } from './SignUpForm'
+import { TweetForm } from './TweetForm'
 
 export {
   Alert,
@@ -18,4 +19,5 @@ export {
   ProfileInfo,
   SignInForm,
   SignUpForm,
+  TweetForm,
 }

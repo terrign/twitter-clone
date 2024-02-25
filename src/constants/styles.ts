@@ -102,7 +102,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: ${({ theme }) => theme.fontXL};
   }
 
-  button {
+  button, textarea, input {
     ${font}
     font-size: ${({ theme }) => theme.fontM};
     font-weight: 500;

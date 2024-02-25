@@ -7,7 +7,6 @@ const outlinedButtonBorder = css`
 
 export const Button = styled.button<{ $type: 'filled' | 'outlined' }>`
   display: block;
-  outline: none;
   background: ${({ theme, $type }) => ($type === 'filled' ? theme.buttonBgColor : 'none')};
   ${({ $type }) => ($type === 'filled' ? 'border: none' : outlinedButtonBorder)};
   border-radius: 42px;

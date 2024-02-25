@@ -16,7 +16,7 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.bgColor};
   border-radius: 6px;
   flex-grow: 1;
-  max-width: 500px;
+  max-width: 600px;
   max-height: 80vh;
   overflow-y: auto;
 `

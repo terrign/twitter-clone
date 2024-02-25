@@ -6,7 +6,7 @@ const sizeMap = {
   m: '60px',
 }
 
-export const Avatar = styled.div<{ $size: keyof typeof sizeMap; $url: string }>`
+export const StyledAvatar = styled.div<{ $size: keyof typeof sizeMap; $url: string }>`
   height: ${({ $size }) => sizeMap[$size]};
   width: ${({ $size }) => sizeMap[$size]};
 

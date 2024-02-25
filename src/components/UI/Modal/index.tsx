@@ -7,7 +7,7 @@ import { Background, CloseButton, Container, ModalHeader } from './styled'
 export interface ModalProps extends PropsWithChildren {
   open: boolean
   onClose: () => void
-  header: JSX.Element | string
+  header?: JSX.Element | string
 }
 
 export const Modal = ({ open, onClose, children, header }: ModalProps) => {

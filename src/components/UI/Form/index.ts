@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Form = styled.form`
   font-size: ${({ theme }) => theme.fontS};
 
-  max-width: 500px;
+  max-width: 600px;
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;

@@ -1,12 +1,7 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'simple-import-sort', 'import', '@stylistic', 'prettier'],
-  extends: [
-    'prettier',
-    'plugin:@typescript-eslint/recommended',
-    // 'plugin:@stylistic/recommended-extends',
-    'plugin:import/recommended',
-  ],
+  extends: ['prettier', 'plugin:@typescript-eslint/recommended', 'plugin:import/recommended'],
   rules: {
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',

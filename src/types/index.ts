@@ -44,6 +44,15 @@ const enum AuthProvider {
   GOOGLE = 'google',
 }
 
+interface Tweet {
+  id: string
+  createdById: string
+  text: string
+  imageURL: string
+  likes: number
+  timestamp: number
+}
+
 export {
   AuthProvider,
   type EditFormFields,
@@ -51,5 +60,6 @@ export {
   type SignUpFormFields,
   Theme,
   type ThemeObject,
+  type Tweet,
   type UserInfo,
 }

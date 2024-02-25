@@ -39,7 +39,7 @@ export const Alert = () => {
   }
 
   const mouseLeaveHandler = () => {
-    intervalRef.current = setTimeout(() => clearAlert, ALERT_EXPIRATION_TIME_MS)
+    intervalRef.current = setTimeout(clearAlert, ALERT_EXPIRATION_TIME_MS)
   }
 
   return (

@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { storageService } from '@services'
-import { updateUser, useAppDispatch, useAppSelector } from '@store'
+import { setAlert, updateUser, useAppDispatch, useAppSelector } from '@store'
 import { Button, Form, FormInput, FormItem } from '@ui'
 import { EditProfileValidationSchema } from '@utils'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -28,21 +28,19 @@ export const EditProfileForm = () => {
   const { handleSubmit } = form
 
   const submitHandler = handleSubmit(async ({ image, ...rest }) => {
-    if (image instanceof Blob) {
-      storageService.addBlob(image as Blob, (url) => {
-        dispatch(
-          updateUser({
-            ...rest,
-            uid,
-            photoURL: url,
-          }),
-        )
-      })
+    if (image instanceof File) {
+      const urlUploadResult: Error | string = await storageService.addFile(image)
+
+      if (urlUploadResult instanceof Error) {
+        dispatch(setAlert({ type: 'error', message: urlUploadResult.message }))
+      } else {
+        dispatch(updateUser({ ...rest, uid, photoURL: urlUploadResult }))
+        nav(-1)
+      }
     } else {
       dispatch(updateUser({ ...rest, uid }))
+      nav(-1)
     }
-
-    nav(-1)
   })
 
   return (

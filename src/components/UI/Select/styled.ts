@@ -11,9 +11,6 @@ export const Option = styled.button`
 
   z-index: 5;
 
-  background: none;
-  outline: none;
-  border: none;
   height: 50px;
   width: 100%;
   display: block;

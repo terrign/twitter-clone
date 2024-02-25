@@ -3,16 +3,16 @@ import { Button } from '@ui'
 import styled from 'styled-components'
 
 export const StyledAsideNavigation = styled.aside`
+  position: sticky;
   margin: 0 auto;
   max-width: 230px;
+  height: calc(100vh - 2rem);
   width: 100%;
-
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
 
   nav {
-    margin-top: 2rem;
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -20,8 +20,12 @@ export const StyledAsideNavigation = styled.aside`
     justify-items: end;
   }
 
+  & > *:not(:first-child) {
+    margin-top: 1rem;
+  }
+
   & > div {
-    margin-top: 2rem;
+    margin-top: auto !important;
   }
 `
 

@@ -7,8 +7,6 @@ export const Input = styled.input`
   border: 1px solid ${({ theme }) => theme.inputBorderColor};
   font-size: ${({ theme }) => theme.fontM};
 
-  background: none;
-  outline: none;
   border-radius: 6px;
   height: 50px;
   padding: 1rem;

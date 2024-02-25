@@ -1,4 +1,3 @@
-import { DefaultAvatarImage } from '@assets'
 import { Route } from '@router'
 import { useAppSelector } from '@store'
 import { Avatar, Button, UserName } from '@ui'
@@ -14,7 +13,7 @@ export const ProfileInfo = () => {
   return (
     <StyledProfileInfo>
       <div>
-        <Avatar $size="l" $url={photoURL || DefaultAvatarImage} />
+        <Avatar size="l" photoURL={photoURL} />
         <UserName name={name} email={email} col />
         <Bio>{bio}</Bio>
       </div>

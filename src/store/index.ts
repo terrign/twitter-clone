@@ -8,6 +8,7 @@ import createSagaMiddleware from 'redux-saga'
 import { rootSaga } from './sagas'
 import { alertSlice, removeAlert, setAlert } from './slices/alert'
 import { authSlice, signInWithEmail, signOut, signUpWithEmail, signUpWithGoogle, updatePassword } from './slices/auth'
+import { tweetsApi, useAddTweetMutation, useFetchTweetsByUserIdQuery } from './slices/tweets.api'
 import { setUser, updateUser, userSlice } from './slices/user'
 
 const rootPersistConfig = {
@@ -17,10 +18,8 @@ const rootPersistConfig = {
   blacklist: ['auth'],
 }
 
-localStorage
-
 const sagaMiddleware = createSagaMiddleware()
-const rootReducer = combineSlices(userSlice, alertSlice, authSlice)
+const rootReducer = combineSlices(userSlice, alertSlice, authSlice, tweetsApi)
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer)
 
@@ -31,7 +30,9 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(sagaMiddleware),
+    })
+      .concat(sagaMiddleware)
+      .concat(tweetsApi.middleware),
 })
 
 const persistor = persistStore(store)
@@ -56,8 +57,11 @@ export {
   signUpWithEmail,
   signUpWithGoogle,
   store,
+  tweetsApi,
   updatePassword,
   updateUser,
+  useAddTweetMutation,
   useAppDispatch,
   useAppSelector,
+  useFetchTweetsByUserIdQuery,
 }
