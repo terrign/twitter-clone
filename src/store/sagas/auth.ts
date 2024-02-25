@@ -72,7 +72,6 @@ function* signInWorker({ payload }: PayloadAction<{ email: string; password: str
 function* updatePasswordWorker({
   payload: { currentPassword, newPassword },
 }: PayloadAction<{ currentPassword: string; newPassword: string }>) {
-  console.log('asdasdasdasdasd')
   const result: AuthError | undefined = yield authService.updatePassword(currentPassword, newPassword)
 
   if (result instanceof Error) {

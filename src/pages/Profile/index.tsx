@@ -1,5 +1,5 @@
 import { DefaultProfileBackGround } from '@assets'
-import { ProfileInfo, TweetForm } from '@components'
+import { ProfileInfo, TweetForm, TweetList } from '@components'
 import { useAppSelector, useFetchTweetsByUserIdQuery } from '@store'
 import { Outlet } from 'react-router-dom'
 
@@ -10,6 +10,8 @@ export const Profile = () => {
 
   const { data } = useFetchTweetsByUserIdQuery(uid)
 
+  console.log(data)
+
   return (
     <ProfileWrapper>
       <ProfileHeader>
@@ -19,6 +21,7 @@ export const Profile = () => {
       <ProfileBackground $url={DefaultProfileBackGround} />
       <ProfileInfo />
       <TweetForm />
+      {data && <TweetList tweets={data} />}
       <Outlet />
     </ProfileWrapper>
   )

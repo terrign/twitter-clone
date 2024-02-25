@@ -1,11 +1,11 @@
 import { UserInfo } from '@types'
-import { doc, Firestore, getDoc, getFirestore, setDoc } from 'firebase/firestore'
+import { doc, Firestore, getDoc, setDoc } from 'firebase/firestore'
 
 import { Collection } from '../constants'
-import { app } from '../init'
+import { db } from '../init'
 
 class UserService {
-  public db: Firestore = getFirestore(app)
+  public db: Firestore = db
   private collection = Collection.USERS
 
   public createUser = async (user: UserInfo) => await setDoc(doc(this.db, this.collection, user.uid), user)

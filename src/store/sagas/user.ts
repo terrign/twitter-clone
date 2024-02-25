@@ -20,7 +20,6 @@ function* createUserWorker({ payload }: PayloadAction<UserInfo>) {
 }
 
 function* updateUserWorker({ payload }: PayloadAction<Partial<UserInfo> & { uid: string }>) {
-  console.log(payload)
   yield call(userService.updateUser, payload.uid, payload)
 }
 

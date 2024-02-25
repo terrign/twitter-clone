@@ -6,7 +6,6 @@ export const tweetsApi = createApi({
   reducerPath: 'tweets',
   baseQuery: fakeBaseQuery(),
   tagTypes: ['userTweets'],
-  keepUnusedDataFor: 60,
   endpoints: (builder) => ({
     fetchTweetsByUserId: builder.query({
       async queryFn(uid: string) {

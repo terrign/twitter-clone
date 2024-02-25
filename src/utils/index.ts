@@ -1,6 +1,9 @@
-import { changePasswordValidationSchema } from './changePasswordValidationSchema'
-import { EditProfileValidationSchema } from './editProfileValidationSchema'
-import { signUpValidationSchema } from './signUpValidationSchema'
+import {
+  changePasswordValidationSchema,
+  editProfileValidationSchema,
+  signUpValidationSchema,
+  tweetValidationSchema,
+} from './formValidationSchemas'
 
 const generateYears = () => {
   const years = []
@@ -45,9 +48,10 @@ const nicknameFromEmail = (email: string) => '@' + email.split('@')[0]
 export {
   changePasswordValidationSchema,
   convertBase64,
-  EditProfileValidationSchema,
+  editProfileValidationSchema,
   generateDays,
   generateYears,
   nicknameFromEmail,
   signUpValidationSchema,
+  tweetValidationSchema,
 }

@@ -4,8 +4,10 @@ import styled from 'styled-components'
 
 export const StyledAsideNavigation = styled.aside`
   position: sticky;
+  top: 1rem;
+  left: 0;
   margin: 0 auto;
-  max-width: 230px;
+
   height: calc(100vh - 2rem);
   width: 100%;
   display: flex;
@@ -26,6 +28,10 @@ export const StyledAsideNavigation = styled.aside`
 
   & > div {
     margin-top: auto !important;
+
+    p {
+      max-width: 150px;
+    }
   }
 `
 

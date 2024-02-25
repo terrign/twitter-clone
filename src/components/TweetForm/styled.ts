@@ -5,7 +5,7 @@ export const StyledTweetForm = styled.section`
   display: grid;
   grid-template-columns: 70px 1fr;
   width: 100%;
-  padding: 0.5rem;
+  padding: 1rem 0;
 
   grid-row-gap: 1rem;
 
@@ -33,7 +33,6 @@ export const StyledTextArea = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 0.5rem 0 0 0.5rem;
 
   textarea {
     ${font};

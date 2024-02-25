@@ -3,7 +3,7 @@ import { storageService } from '@services'
 import { setAlert, useAddTweetMutation, useAppDispatch, useAppSelector } from '@store'
 import { Avatar, Button } from '@ui'
 import { convertBase64 } from '@utils'
-import { ChangeEvent, FormEvent, useEffect, useId, useRef, useState } from 'react'
+import { ChangeEvent, FormEvent, useId, useState } from 'react'
 
 import { CloseButton, StyledTextArea, StyledTweetForm } from './styled'
 
@@ -12,11 +12,10 @@ const MAX_CHARACTERS = 500
 export const TweetForm = () => {
   const [tweet, setTweet] = useState('')
   const [image, setImage] = useState('')
+  const [file, setFile] = useState<File | null>(null)
   const { photoURL } = useAppSelector((state) => state.user.user)
   const imageInputId = useId()
-  const fileInputRef = useRef<HTMLInputElement>(null)
   const dispatch = useAppDispatch()
-
   const [addTweet, { status }] = useAddTweetMutation()
 
   const tweetChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -29,7 +28,6 @@ export const TweetForm = () => {
 
   const submitHandler = async (event: FormEvent) => {
     event.preventDefault()
-    const file = fileInputRef.current?.files?.[0]
     let imageUploadResult: Error | string = ''
 
     if (file) {
@@ -37,21 +35,17 @@ export const TweetForm = () => {
 
       if (imageUploadResult instanceof Error) {
         dispatch(setAlert({ type: 'error', message: imageUploadResult.message }))
-      }
 
-      return
+        return
+      }
     }
 
-    addTweet({ text: tweet, imageURL: imageUploadResult })
-
-    const form = event.target as HTMLFormElement
-
-    setTweet('')
-    form.reset()
-    removeImage()
+    addTweet({ text: tweet, imageURL: imageUploadResult }).then(() => {
+      setTweet('')
+      setFile(null)
+      removeImage()
+    })
   }
-
-  useEffect(() => console.log(status), [status])
 
   const fileInputChangeHandler = async (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files
@@ -62,9 +56,10 @@ export const TweetForm = () => {
 
     const img = await convertBase64(files[0])
     setImage(img)
+    setFile(files[0])
   }
 
-  const buttonDisabed = tweet.trim().length === 0 && image.length === 0
+  const buttonDisabed = (tweet.trim().length === 0 && image.length === 0) || status === 'pending'
 
   return (
     <StyledTweetForm>
@@ -80,7 +75,7 @@ export const TweetForm = () => {
 
       <form onSubmit={submitHandler}>
         <StyledTextArea>
-          <textarea placeholder="What's happening" maxLength={300} onChange={tweetChangeHandler} />
+          <textarea placeholder="What's happening" maxLength={500} onChange={tweetChangeHandler} value={tweet} />
           <div>
             <label htmlFor={imageInputId}>
               <AddImageOutlined />
@@ -94,7 +89,7 @@ export const TweetForm = () => {
         </StyledTextArea>
 
         <Button $type="filled" disabled={buttonDisabed}>
-          {status === 'pending' ? 'loading' : 'Tweet'}
+          Tweet
         </Button>
       </form>
     </StyledTweetForm>

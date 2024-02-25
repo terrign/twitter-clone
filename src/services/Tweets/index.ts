@@ -10,13 +10,13 @@ class TweetService {
   private collection = Collection.TWEETS
 
   public createTweet = async ({ text, imageURL }: Pick<Tweet, 'imageURL' | 'text'>) => {
-    const userId = store.getState().user.user.uid
+    const createdBy = store.getState().user.user
     const tweetId = crypto.randomUUID()
 
     const tweet: Tweet = {
       id: tweetId,
-      createdById: userId,
-      likes: 0,
+      createdBy,
+      likedUserIds: [],
       imageURL,
       text,
       timestamp: Date.now(),
@@ -28,7 +28,7 @@ class TweetService {
   public getTweetsByUserId = async (userId: string) => {
     const tweetQuery = query(
       collection(this.db, this.collection),
-      where('createdById', '==', userId),
+      where('createdBy.uid', '==', userId),
       orderBy('timestamp', 'desc'),
     )
 

@@ -7,7 +7,9 @@ import { Navigation } from './Navigation'
 import { ProfileInfo } from './ProfileInfo'
 import { SignInForm } from './SignInForm'
 import { SignUpForm } from './SignUpForm'
+import { TweetCard } from './TweetCard'
 import { TweetForm } from './TweetForm'
+import { TweetList } from './TweetList'
 
 export {
   Alert,
@@ -19,5 +21,7 @@ export {
   ProfileInfo,
   SignInForm,
   SignUpForm,
+  TweetCard,
   TweetForm,
+  TweetList,
 }

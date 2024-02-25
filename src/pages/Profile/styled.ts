@@ -1,7 +1,9 @@
 import { Color } from '@constants'
 import styled from 'styled-components'
 
-export const ProfileWrapper = styled.section``
+export const ProfileWrapper = styled.section`
+  width: 100%;
+`
 
 export const ProfileHeader = styled.header`
   p:first-child {
@@ -20,7 +22,8 @@ export const ProfileBackground = styled.div<{ $url: string }>`
   margin-top: 0.5rem;
   background-image: url(${({ $url }) => $url});
   background-repeat: no-repeat;
+  background-size: cover;
   background-position: center;
-  max-width: 910px;
-  height: 280px;
+  width: 100%;
+  height: 300px;
 `

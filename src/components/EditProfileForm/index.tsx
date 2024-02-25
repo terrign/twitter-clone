@@ -2,7 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { storageService } from '@services'
 import { setAlert, updateUser, useAppDispatch, useAppSelector } from '@store'
 import { Button, Form, FormInput, FormItem } from '@ui'
-import { EditProfileValidationSchema } from '@utils'
+import { editProfileValidationSchema } from '@utils'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
@@ -16,7 +16,7 @@ export const EditProfileForm = () => {
 
   const form = useForm({
     mode: 'onChange',
-    resolver: yupResolver(EditProfileValidationSchema()),
+    resolver: yupResolver(editProfileValidationSchema()),
     values: {
       name,
       bio,

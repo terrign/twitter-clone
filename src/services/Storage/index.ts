@@ -1,9 +1,9 @@
-import { FirebaseStorage, getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage'
+import { FirebaseStorage, getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 
-import { app } from '../init'
+import { storage } from '../init'
 
 class StorageService {
-  public storage: FirebaseStorage = getStorage(app)
+  public storage: FirebaseStorage = storage
   public storageRef = ref(this.storage)
 
   public addFile = async (file: File) => {

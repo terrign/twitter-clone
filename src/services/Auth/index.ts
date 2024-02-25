@@ -3,7 +3,6 @@ import {
   AuthError,
   createUserWithEmailAndPassword,
   EmailAuthProvider,
-  getAuth,
   GoogleAuthProvider,
   reauthenticateWithCredential,
   signInWithEmailAndPassword,
@@ -13,10 +12,10 @@ import {
 } from 'firebase/auth'
 
 import { GOOGLE_PROVIDER_SCOPE } from '../constants'
-import { app } from '../init'
+import { auth } from '../init'
 
 class AuthService {
-  public auth: Auth = getAuth(app)
+  public auth: Auth = auth
   private googleProvider: GoogleAuthProvider = new GoogleAuthProvider()
 
   constructor() {
@@ -54,17 +53,12 @@ class AuthService {
   }
 
   public updatePassword = async (oldPassword: string, newPassword: string) => {
-    console.log('update pass service')
-
     if (this.auth.currentUser) {
       try {
-        console.log('try')
         const credential = EmailAuthProvider.credential(this.auth.currentUser.email ?? '', oldPassword)
         await reauthenticateWithCredential(this.auth.currentUser, credential)
         await updatePassword(this.auth.currentUser, newPassword)
       } catch (error) {
-        console.log('catch')
-
         return error as AuthError
       }
     }
