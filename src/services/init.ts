@@ -13,10 +13,10 @@ const auth = getAuth()
 
 const storage = getStorage()
 
-connectFirestoreEmulator(db, '127.0.0.1', 9096)
+import.meta.env.DEV && connectFirestoreEmulator(db, '127.0.0.1', 9096)
 
-connectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings: true })
+import.meta.env.DEV && connectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings: true })
 
-connectStorageEmulator(storage, '127.0.0.1', 9097)
+import.meta.env.DEV && connectStorageEmulator(storage, '127.0.0.1', 9097)
 
 export { auth, db, storage }

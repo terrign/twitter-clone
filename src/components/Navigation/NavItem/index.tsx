@@ -20,7 +20,7 @@ export const NavItem = ({ label, icon: { filled, outlined }, path }: NavItemProp
 
   return (
     <StyledNavItem>
-      <NavLink to={path} ref={linkRef}>
+      <NavLink to={path} ref={linkRef} title={label}>
         <div>{pathname.includes(path) ? filled : outlined}</div>
 
         <span>{label}</span>

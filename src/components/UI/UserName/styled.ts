@@ -8,6 +8,8 @@ export const StyledUserName = styled.div<{ $col?: boolean }>`
   justify-content: flex-start;
 
   p {
+    font-size: ${({ theme }) => theme.fontS};
+    flex: 0 2 auto;
     word-wrap: nowrap;
     text-overflow: ellipsis;
     max-width: 150px;

@@ -1,6 +1,20 @@
 import { store } from '@store'
 import { Tweet } from '@types'
-import { collection, deleteDoc, doc, Firestore, getDocs, orderBy, query, setDoc, where } from 'firebase/firestore'
+import {
+  arrayRemove,
+  arrayUnion,
+  collection,
+  deleteDoc,
+  doc,
+  Firestore,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+  setDoc,
+  updateDoc,
+  where,
+} from 'firebase/firestore'
 
 import { Collection } from '../constants'
 import { db } from '../init'
@@ -10,12 +24,12 @@ class TweetService {
   private collection = Collection.TWEETS
 
   public createTweet = async ({ text, imageURL }: Pick<Tweet, 'imageURL' | 'text'>) => {
-    const createdBy = store.getState().user.user
+    const { uid } = store.getState().user.user
     const tweetId = crypto.randomUUID()
 
     const tweet: Tweet = {
       id: tweetId,
-      createdBy,
+      createdById: uid,
       likedUserIds: [],
       imageURL,
       text,
@@ -28,7 +42,7 @@ class TweetService {
   public getTweetsByUserId = async (userId: string) => {
     const tweetQuery = query(
       collection(this.db, this.collection),
-      where('createdBy.uid', '==', userId),
+      where('createdById', '==', userId),
       orderBy('timestamp', 'desc'),
     )
 
@@ -39,6 +53,22 @@ class TweetService {
 
   public deleteTweet = async (tweetId: string) => {
     return deleteDoc(doc(this.db, this.collection, tweetId))
+  }
+
+  public likeTweet = async (tweetId: string, uid: string) => {
+    return await updateDoc(doc(this.db, this.collection, tweetId), {
+      likedUserIds: arrayUnion(uid),
+    })
+  }
+
+  public unlikeTweet = async (tweetId: string, uid: string) => {
+    return await updateDoc(doc(this.db, this.collection, tweetId), {
+      likedUserIds: arrayRemove(uid),
+    })
+  }
+
+  public getTweetByid = async (tweetId: string) => {
+    return (await getDoc(doc(this.db, this.collection, tweetId))).data() as Tweet | undefined
   }
 }
 

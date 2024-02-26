@@ -46,7 +46,7 @@ const enum AuthProvider {
 
 interface Tweet {
   id: string
-  createdBy: UserInfo
+  createdById: string
   text: string
   imageURL: string
   likedUserIds: string[]

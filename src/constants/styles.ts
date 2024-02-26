@@ -11,12 +11,30 @@ const breakpoints = {
 }
 
 const screen = {
-  xxs: `(max-width: ${breakpoints.xxs})`,
-  xs: `(max-width: ${breakpoints.xs})`,
-  s: `(max-width: ${breakpoints.s})`,
-  m: `(max-width: ${breakpoints.m})`,
-  l: `(max-width: ${breakpoints.l})`,
-  xl: `(max-width: ${breakpoints.xl})`,
+  /**
+   * 320px
+   */
+  xxs: `screen and (max-width: ${breakpoints.xxs})`,
+  /**
+   * 375px
+   */
+  xs: `screen and (max-width: ${breakpoints.xs})`,
+  /**
+   * 425px
+   */
+  s: `screen and (max-width: ${breakpoints.s})`,
+  /**
+   * 768px
+   */
+  m: `screen and (max-width: ${breakpoints.m})`,
+  /**
+   * 1024px
+   */
+  l: `screen and (max-width: ${breakpoints.l})`,
+  /**
+   * 1440px
+   */
+  xl: `screen and (max-width: ${breakpoints.xl})`,
 }
 
 const font = css`
@@ -31,6 +49,7 @@ const enum Color {
   PALE_BLUE = '#1d9bf040',
   PALE_GRAY = '#E4EAED',
   PALE_GRAY_2 = '#e4eaed45',
+  FONT_GRAY = 'rgb(83, 100, 113)',
   GRAY = '#00000033',
   WHITE = '#FFFFFF',
   RED = '#ff0000',
@@ -52,6 +71,7 @@ const defaultTheme: ThemeObject = {
   outlinedButtonHover: Color.PALE_GRAY_2,
   filledButtonHover: Color.DARK_BLUE,
   modalBgColor: Color.PALE_BLUE,
+  fontSecondary: Color.FONT_GRAY,
 }
 
 const darkTheme: ThemeObject = {
@@ -64,7 +84,7 @@ const lightTheme: ThemeObject = {
 
 const GlobalStyles = createGlobalStyle`
   :root {
-    font-size: 20px;
+    font-size: 18px;
     ${font}
   }
 
@@ -111,6 +131,12 @@ const GlobalStyles = createGlobalStyle`
     border: none;
     cursor: pointer;
     user-select: none;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   @media (hover: hover) {

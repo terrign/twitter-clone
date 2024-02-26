@@ -5,10 +5,16 @@ import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, R
 import localStorage from 'redux-persist/es/storage'
 import createSagaMiddleware from 'redux-saga'
 
+import {
+  tweetsApi,
+  useAddTweetMutation,
+  useFetchTweetsByUserIdQuery,
+  useLikeTweetMutation,
+  useUnlikeTweetMutation,
+} from './api/tweets.api'
 import { rootSaga } from './sagas'
 import { alertSlice, removeAlert, setAlert } from './slices/alert'
 import { authSlice, signInWithEmail, signOut, signUpWithEmail, signUpWithGoogle, updatePassword } from './slices/auth'
-import { tweetsApi, useAddTweetMutation, useFetchTweetsByUserIdQuery } from './slices/tweets.api'
 import { setUser, updateUser, userSlice } from './slices/user'
 
 const rootPersistConfig = {
@@ -64,4 +70,6 @@ export {
   useAppDispatch,
   useAppSelector,
   useFetchTweetsByUserIdQuery,
+  useLikeTweetMutation,
+  useUnlikeTweetMutation,
 }

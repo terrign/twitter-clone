@@ -13,6 +13,7 @@ interface ThemeObject {
   buttonBgColor: string
   buttonBorderColor: string
   inputBorderColor: string
+  fontSecondary: string
   bgColor: string
   outlinedButtonHover: string
   filledButtonHover: string

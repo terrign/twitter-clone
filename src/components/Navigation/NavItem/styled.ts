@@ -1,4 +1,4 @@
-import { font } from '@constants'
+import { font, screen } from '@constants'
 import styled from 'styled-components'
 
 export const StyledNavItem = styled.li`
@@ -22,6 +22,10 @@ export const StyledNavItem = styled.li`
   span {
     display: inline-block;
     margin-left: 0.5rem;
+
+    @media ${screen.l} {
+      display: none;
+    }
   }
 
   div {

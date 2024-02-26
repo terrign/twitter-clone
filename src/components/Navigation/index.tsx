@@ -1,13 +1,14 @@
+import { TweetButtonIcon } from '@assets'
 import { TweetForm } from '@components'
 import { Route } from '@router'
 import { signOut, useAppDispatch, useAppSelector } from '@store'
-import { Button, Modal, TwitterIcon, UserCard } from '@ui'
+import { Avatar, Modal, TwitterIcon, UserCard } from '@ui'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import { navLinks } from './constants'
 import { NavItem } from './NavItem'
-import { LogoutButton, StyledAsideNavigation } from './styled'
+import { LogoutButton, StyledAsideNavigation, TweetButton } from './styled'
 
 export const Navigation = () => {
   const dispatch = useAppDispatch()
@@ -41,15 +42,18 @@ export const Navigation = () => {
           ))}
         </nav>
 
-        <Button $type="filled" onClick={openModal}>
-          Tweet
-        </Button>
+        <TweetButton $type="filled" onClick={openModal} title="Tweet">
+          <span>Tweet</span>
+
+          <TweetButtonIcon />
+        </TweetButton>
         <div>
           <UserCard name={name} email={email} url={photoURL} />
         </div>
 
-        <LogoutButton $type="filled" onClick={logoutHandler}>
-          Log out
+        <LogoutButton $type="filled" onClick={logoutHandler} title="Logout">
+          <span>Log out</span>
+          <Avatar size="s" photoURL={photoURL} />
         </LogoutButton>
         <Modal open={tweetModalOpen} onClose={closeModal} header="Add tweet">
           <TweetForm />

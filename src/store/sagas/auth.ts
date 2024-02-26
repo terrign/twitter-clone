@@ -1,5 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit'
 import { authService } from '@services'
+import { persistor } from '@store'
 import { AuthProvider, EmailSignUpPayload, UserInfo } from '@types'
 import { AuthError, UserCredential } from 'firebase/auth'
 import { all, call, put, takeLeading } from 'redux-saga/effects'
@@ -83,6 +84,7 @@ function* updatePasswordWorker({
 
 function* signOutWorker() {
   yield authService.signOut()
+  persistor.purge()
 }
 
 function* watchGoogleSignUp() {

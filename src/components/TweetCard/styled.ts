@@ -8,6 +8,7 @@ export const StyledTweetCard = styled.article`
   width: 100%;
   border-bottom: 1px solid ${Color.GRAY};
   padding-bottom: 1rem;
+  grid-row-gap: 0.5rem;
 `
 
 export const CardHeader = styled.header`
@@ -49,12 +50,19 @@ export const TweetAvatar = styled.div`
 `
 
 export const Likes = styled.footer`
+  color: ${({ theme }) => theme.fontSecondary};
+
+  display: flex;
   grid-column: 2;
+
+  button {
+    font-size: ${({ theme }) => theme.fontS};
+    padding: 0;
+  }
 `
 
 export const TweetContent = styled.p`
   grid-column: 2;
-  margin-top: 0.5rem;
 
   span {
     display: block;

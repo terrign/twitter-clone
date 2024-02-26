@@ -29,7 +29,7 @@ export const EditProfileForm = () => {
 
   const submitHandler = handleSubmit(async ({ image, ...rest }) => {
     if (image instanceof File) {
-      const urlUploadResult: Error | string = await storageService.addFile(image)
+      const urlUploadResult: Error | string = await storageService.addUserAvatar(image, uid)
 
       if (urlUploadResult instanceof Error) {
         dispatch(setAlert({ type: 'error', message: urlUploadResult.message }))

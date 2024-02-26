@@ -2,7 +2,7 @@ import { Centered } from '@ui'
 import styled from 'styled-components'
 
 export const Background = styled(Centered)`
-  position: absolute;
+  position: fixed;
   height: 100%;
   width: 100%;
   left: 0;

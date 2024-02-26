@@ -17,6 +17,18 @@ class StorageService {
       return new Error('Upload failed, please try again')
     }
   }
+
+  public addUserAvatar = async (file: File, uid: string) => {
+    try {
+      const uploadTask = await uploadBytesResumable(ref(this.storageRef, uid), file)
+
+      const url = await getDownloadURL(uploadTask.ref)
+
+      return url
+    } catch (e) {
+      return new Error('Upload failed, please try again')
+    }
+  }
 }
 
 export const storageService = new StorageService()

@@ -1,7 +1,7 @@
 import { EditFormFields, SignUpFormFields } from '@types'
 import { generateDays, generateYears } from '@utils'
 
-import { Color, darkTheme, defaultTheme, font, GlobalStyles, lightTheme } from './styles'
+import { Color, darkTheme, defaultTheme, font, GlobalStyles, lightTheme, screen } from './styles'
 
 const LINKS = {
   about: { label: 'About', href: '#' },
@@ -62,4 +62,17 @@ const inputNameMap: Record<inputNameMapKeyType, { label: string; type: string }>
   newPassword: { label: 'New password', type: 'password' },
 }
 
-export { Color, darkTheme, DAYS, defaultTheme, font, GlobalStyles, inputNameMap, lightTheme, LINKS, MONTHS, YEARS }
+export {
+  Color,
+  darkTheme,
+  DAYS,
+  defaultTheme,
+  font,
+  GlobalStyles,
+  inputNameMap,
+  lightTheme,
+  LINKS,
+  MONTHS,
+  screen,
+  YEARS,
+}

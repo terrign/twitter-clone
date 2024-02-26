@@ -12,6 +12,8 @@ import ExploreOutlined from './explore-outlined.svg?react'
 import GoogleLogo from './google.svg?react'
 import HomeFilled from './home-filled.svg?react'
 import HomeOutlined from './home-outlined.svg?react'
+import Like from './like.svg?react'
+import LikeFilled from './like-filled.svg?react'
 import ListsFilled from './lists-filled.svg?react'
 import ListsOutlined from './lists-outlined.svg?react'
 import MessagesFilled from './messages-filled.svg?react'
@@ -21,6 +23,7 @@ import NotificationFilled from './notification-filled.svg?react'
 import NotificationOutlined from './notification-outlined.svg?react'
 import ProfileFilled from './profile-filled.svg?react'
 import ProfileOutlined from './profile-outlined.svg?react'
+import TweetButtonIcon from './tweet-button.svg?react'
 import TwitterLogo from './twitter-logo.svg?react'
 
 export {
@@ -37,6 +40,8 @@ export {
   GoogleLogo,
   HomeFilled,
   HomeOutlined,
+  Like,
+  LikeFilled,
   ListsFilled,
   ListsOutlined,
   MessagesFilled,
@@ -46,6 +51,7 @@ export {
   NotificationOutlined,
   ProfileFilled,
   ProfileOutlined,
+  TweetButtonIcon,
   TwitterLogo,
   WelcomeTwitterBackGroundImage,
 }
