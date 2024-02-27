@@ -1,5 +1,5 @@
 import { UserInfo } from '@types'
-import { collection, doc, Firestore, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore'
+import { collection, doc, Firestore, getDoc, getDocs, limit, query, setDoc, where } from 'firebase/firestore'
 
 import { Collection } from '../constants'
 import { db } from '../init'
@@ -14,6 +14,14 @@ class UserService {
 
   public getUsersByIds = async (userIds: string[]) => {
     const userQuery = query(collection(this.db, this.collection), where('uid', 'in', userIds))
+    const querySnap = await getDocs(userQuery)
+
+    return querySnap.docs.map((tweet) => tweet.data()) as UserInfo[]
+  }
+
+  public getSuggestedUsers = async (userId: string) => {
+    const userQuery = query(collection(this.db, this.collection), where('uid', '!=', userId), limit(4))
+
     const querySnap = await getDocs(userQuery)
 
     return querySnap.docs.map((tweet) => tweet.data()) as UserInfo[]

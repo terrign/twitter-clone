@@ -10,8 +10,6 @@ export const Profile = () => {
 
   const { data } = useFetchTweetsByUserIdQuery(uid)
 
-  console.log(data)
-
   return (
     <ProfileWrapper>
       <ProfileHeader>

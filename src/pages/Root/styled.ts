@@ -6,7 +6,7 @@ export const Main = styled.main`
   min-height: 100vh;
   padding: 1rem;
 
-  @media ${screen.s} {
+  @media ${screen.l} {
     padding: 0;
   }
 `

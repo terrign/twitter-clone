@@ -11,26 +11,20 @@ export const StyledAsideNavigation = styled.aside`
   height: calc(100vh - 2rem);
   width: 100%;
   max-width: 230px;
-  /* overflow-x: hidden; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 
   @media ${screen.l} {
-    justify-content: center;
+    align-items: center;
   }
 
-  @media ${screen.s} {
+  @media ${screen.l} {
     padding-top: 1rem;
     top: 0;
 
     a {
       margin: 0 auto;
-    }
-    max-height: 90dvh;
-
-    & > * {
-      overflow: visible !important;
     }
   }
 
@@ -51,12 +45,8 @@ export const StyledAsideNavigation = styled.aside`
   }
 
   & > div {
-    margin-top: auto !important;
-
-    p {
-      max-width: 150px;
-    }
-
+    max-width: 100%;
+    overflow: hidden;
     @media ${screen.l} {
       div:first-child {
         display: none;
@@ -68,6 +58,7 @@ export const StyledAsideNavigation = styled.aside`
 export const LogoutButton = styled(Button)`
   background-color: ${Color.GRAY};
   padding: 0;
+  margin-top: 2rem;
 
   div {
     display: none;

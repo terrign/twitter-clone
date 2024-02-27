@@ -49,6 +49,7 @@ const enum Color {
   PALE_BLUE = '#1d9bf040',
   PALE_GRAY = '#E4EAED',
   PALE_GRAY_2 = '#e4eaed45',
+  DARK_GRAY = '#5C6C79',
   FONT_GRAY = 'rgb(83, 100, 113)',
   GRAY = '#00000033',
   WHITE = '#FFFFFF',
@@ -147,4 +148,25 @@ const GlobalStyles = createGlobalStyle`
 
 `
 
-export { Color, darkTheme, defaultTheme, font, GlobalStyles, lightTheme, screen }
+const hoverTitle = css<{ $title: string }>`
+  &:hover {
+    &::after {
+      content: ${({ $title }) => `'${$title}'`};
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 2rem;
+      width: 100px;
+      padding: 0.5rem;
+      background: ${({ theme }) => theme.buttonBgColor};
+      border: 1px solid ${({ theme }) => theme.buttonBorderColor};
+      border-radius: 6px;
+      ${font}
+
+      color: ${Color.WHITE};
+      z-index: 10;
+    }
+  }
+`
+
+export { Color, darkTheme, defaultTheme, font, GlobalStyles, hoverTitle, lightTheme, screen }

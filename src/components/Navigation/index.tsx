@@ -30,35 +30,33 @@ export const Navigation = () => {
   }
 
   return (
-    <div>
-      <StyledAsideNavigation>
-        <NavLink to={Route.HOME}>
-          <TwitterIcon $size="default" />
-        </NavLink>
+    <StyledAsideNavigation>
+      <NavLink to={Route.HOME}>
+        <TwitterIcon $size="default" />
+      </NavLink>
 
-        <nav>
-          {navLinks.map((a) => (
-            <NavItem {...a} key={a.label} />
-          ))}
-        </nav>
+      <nav>
+        {navLinks.map((a) => (
+          <NavItem {...a} key={a.label} />
+        ))}
+      </nav>
 
-        <TweetButton $type="filled" onClick={openModal} title="Tweet">
-          <span>Tweet</span>
+      <TweetButton $type="filled" onClick={openModal} title="Tweet">
+        <span>Tweet</span>
 
-          <TweetButtonIcon />
-        </TweetButton>
-        <div>
-          <UserCard name={name} email={email} url={photoURL} />
-        </div>
+        <TweetButtonIcon />
+      </TweetButton>
+      <div>
+        <UserCard name={name} email={email} url={photoURL} />
+      </div>
 
-        <LogoutButton $type="filled" onClick={logoutHandler} title="Logout">
-          <span>Log out</span>
-          <Avatar size="s" photoURL={photoURL} />
-        </LogoutButton>
-        <Modal open={tweetModalOpen} onClose={closeModal} header="Add tweet">
-          <TweetForm />
-        </Modal>
-      </StyledAsideNavigation>
-    </div>
+      <LogoutButton $type="filled" onClick={logoutHandler} title="Logout">
+        <span>Log out</span>
+        <Avatar size="s" photoURL={photoURL} />
+      </LogoutButton>
+      <Modal open={tweetModalOpen} onClose={closeModal} header="Add tweet">
+        <TweetForm />
+      </Modal>
+    </StyledAsideNavigation>
   )
 }

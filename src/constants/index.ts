@@ -1,7 +1,7 @@
 import { EditFormFields, SignUpFormFields } from '@types'
 import { generateDays, generateYears } from '@utils'
 
-import { Color, darkTheme, defaultTheme, font, GlobalStyles, lightTheme, screen } from './styles'
+import { Color, darkTheme, defaultTheme, font, GlobalStyles, hoverTitle, lightTheme, screen } from './styles'
 
 const LINKS = {
   about: { label: 'About', href: '#' },
@@ -69,6 +69,7 @@ export {
   defaultTheme,
   font,
   GlobalStyles,
+  hoverTitle,
   inputNameMap,
   lightTheme,
   LINKS,

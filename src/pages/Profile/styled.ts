@@ -6,11 +6,9 @@ export const ProfileWrapper = styled.section`
   border-left: 1px solid ${Color.PALE_GRAY};
   border-right: 1px solid ${Color.PALE_GRAY};
   margin-top: -1rem;
-  padding-top: 1rem;
+  padding: 1rem 0.5rem 0.5rem;
 
-  padding: 0.5rem;
-
-  @media ${screen.s} {
+  @media ${screen.l} {
     margin-top: 0;
   }
 `
@@ -37,7 +35,7 @@ export const ProfileBackground = styled.div<{ $url: string }>`
   width: 100%;
   height: 300px;
 
-  @media ${screen.s} {
+  @media ${screen.m} {
     height: 150px;
   }
 `

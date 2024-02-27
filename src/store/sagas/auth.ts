@@ -83,8 +83,8 @@ function* updatePasswordWorker({
 }
 
 function* signOutWorker() {
+  yield persistor.purge()
   yield authService.signOut()
-  persistor.purge()
 }
 
 function* watchGoogleSignUp() {

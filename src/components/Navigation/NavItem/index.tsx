@@ -1,5 +1,4 @@
 import { Route } from '@router'
-import { useRef } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 
 import { StyledNavItem } from './styled'
@@ -16,11 +15,9 @@ export interface NavItemProps {
 export const NavItem = ({ label, icon: { filled, outlined }, path }: NavItemProps) => {
   const { pathname } = useLocation()
 
-  const linkRef = useRef<HTMLAnchorElement>(null)
-
   return (
-    <StyledNavItem>
-      <NavLink to={path} ref={linkRef} title={label}>
+    <StyledNavItem $title={label}>
+      <NavLink to={path}>
         <div>{pathname.includes(path) ? filled : outlined}</div>
 
         <span>{label}</span>

@@ -9,6 +9,7 @@ import {
   Firestore,
   getDoc,
   getDocs,
+  limit,
   orderBy,
   query,
   setDoc,
@@ -69,6 +70,21 @@ class TweetService {
 
   public getTweetByid = async (tweetId: string) => {
     return (await getDoc(doc(this.db, this.collection, tweetId))).data() as Tweet | undefined
+  }
+
+  public getSuggestedTweets = async (userId: string) => {
+    const tweetQuery = query(
+      collection(this.db, this.collection),
+      where('imageURL', '!=', ''),
+      orderBy('timestamp', 'desc'),
+      limit(20),
+    )
+
+    const querySnap = await getDocs(tweetQuery)
+
+    return (querySnap.docs.map((tweet) => tweet.data()) as Tweet[])
+      .filter((tweet) => tweet.createdById !== userId)
+      .slice(0, 6)
   }
 }
 

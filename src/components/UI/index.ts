@@ -8,6 +8,7 @@ import { FormItem } from './Form/FormItem'
 import { DropDownIcon, GoogleIcon, TwitterIcon } from './Icons'
 import { Input } from './Input'
 import { Modal } from './Modal'
+import { SearchInput } from './SearchInput'
 import { Select } from './Select'
 import { UserCard } from './UserCard'
 import { UserName } from './UserName'
@@ -24,6 +25,7 @@ export {
   GoogleIcon,
   Input,
   Modal,
+  SearchInput,
   Select,
   TwitterIcon,
   UserCard,

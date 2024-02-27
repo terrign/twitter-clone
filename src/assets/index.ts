@@ -23,6 +23,7 @@ import NotificationFilled from './notification-filled.svg?react'
 import NotificationOutlined from './notification-outlined.svg?react'
 import ProfileFilled from './profile-filled.svg?react'
 import ProfileOutlined from './profile-outlined.svg?react'
+import SearchIcon from './search.svg?react'
 import TweetButtonIcon from './tweet-button.svg?react'
 import TwitterLogo from './twitter-logo.svg?react'
 
@@ -51,6 +52,7 @@ export {
   NotificationOutlined,
   ProfileFilled,
   ProfileOutlined,
+  SearchIcon,
   TweetButtonIcon,
   TwitterLogo,
   WelcomeTwitterBackGroundImage,

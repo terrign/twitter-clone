@@ -12,6 +12,7 @@ import {
   useLikeTweetMutation,
   useUnlikeTweetMutation,
 } from './api/tweets.api'
+import { useGetUserSuggestionsQuery, usersApi } from './api/users.api'
 import { rootSaga } from './sagas'
 import { alertSlice, removeAlert, setAlert } from './slices/alert'
 import { authSlice, signInWithEmail, signOut, signUpWithEmail, signUpWithGoogle, updatePassword } from './slices/auth'
@@ -25,7 +26,7 @@ const rootPersistConfig = {
 }
 
 const sagaMiddleware = createSagaMiddleware()
-const rootReducer = combineSlices(userSlice, alertSlice, authSlice, tweetsApi)
+const rootReducer = combineSlices(userSlice, alertSlice, authSlice, tweetsApi, usersApi)
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer)
 
@@ -38,7 +39,8 @@ const store = configureStore({
       },
     })
       .concat(sagaMiddleware)
-      .concat(tweetsApi.middleware),
+      .concat(tweetsApi.middleware)
+      .concat(usersApi.middleware),
 })
 
 const persistor = persistStore(store)
@@ -70,6 +72,8 @@ export {
   useAppDispatch,
   useAppSelector,
   useFetchTweetsByUserIdQuery,
+  useGetUserSuggestionsQuery,
   useLikeTweetMutation,
+  usersApi,
   useUnlikeTweetMutation,
 }

@@ -1,10 +1,11 @@
-import { Color } from '@constants'
+import { Color, screen } from '@constants'
 import styled from 'styled-components'
 
 export const StyledTweetCard = styled.article`
   display: grid;
   grid-template-columns: 70px minmax(200px, 1fr) 70px;
-  grid-template-rows: 1rem 1fr 1rem;
+  /* grid-template-rows: max-content 1fr 1rem; */
+  grid-auto-rows: minmax(1rem, auto);
   width: 100%;
   border-bottom: 1px solid ${Color.GRAY};
   padding-bottom: 1rem;
@@ -17,7 +18,6 @@ export const CardHeader = styled.header`
   flex-wrap: nowrap;
   justify-content: space-between;
 
-  height: 1rem;
   line-height: 1rem;
 
   font-size: ${({ theme }) => theme.fontS};
@@ -31,6 +31,10 @@ export const CardHeader = styled.header`
 
     & > span {
       color: ${Color.GRAY};
+    }
+
+    @media ${screen.l} {
+      flex-wrap: wrap;
     }
   }
 

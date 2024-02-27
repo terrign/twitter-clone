@@ -5,7 +5,7 @@ import { Tweet } from '@types'
 export const tweetsApi = createApi({
   reducerPath: 'tweets',
   baseQuery: fakeBaseQuery(),
-  tagTypes: ['userTweets'],
+  tagTypes: ['userTweets', 'latestTweets'],
   endpoints: (builder) => ({
     fetchTweetsByUserId: builder.query({
       async queryFn(uid: string) {
@@ -22,7 +22,7 @@ export const tweetsApi = createApi({
 
         return { data: null }
       },
-      invalidatesTags: ['userTweets'],
+      invalidatesTags: ['userTweets', 'latestTweets'],
     }),
 
     likeTweet: builder.mutation({

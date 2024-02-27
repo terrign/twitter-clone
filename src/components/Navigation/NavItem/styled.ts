@@ -1,9 +1,10 @@
-import { font, screen } from '@constants'
+import { font, hoverTitle, screen } from '@constants'
 import styled from 'styled-components'
 
-export const StyledNavItem = styled.li`
+export const StyledNavItem = styled.li<{ $title: string }>`
   display: flex;
   justify-content: space-between;
+  position: relative;
   flex-wrap: nowrap;
   align-items: center;
 
@@ -34,5 +35,9 @@ export const StyledNavItem = styled.li`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  @media ${screen.l} and (hover: hover) {
+    ${hoverTitle}
   }
 `

@@ -10,6 +10,7 @@ import { SignUpForm } from './SignUpForm'
 import { TweetCard } from './TweetCard'
 import { TweetForm } from './TweetForm'
 import { TweetList } from './TweetList'
+import { YouMightLike } from './YouMightLike'
 
 export {
   Alert,
@@ -24,4 +25,5 @@ export {
   TweetCard,
   TweetForm,
   TweetList,
+  YouMightLike,
 }
