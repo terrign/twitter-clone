@@ -1,4 +1,3 @@
-import { Color } from '@constants'
 import styled from 'styled-components'
 
 export const StyledUserName = styled.div<{ $col?: boolean }>`
@@ -21,7 +20,6 @@ export const StyledUserName = styled.div<{ $col?: boolean }>`
   }
 
   p:last-child {
-    color: ${Color.GRAY};
-    font-size: ${({ theme }) => theme.fontS};
+    color: ${({ theme }) => theme.fontColorTertiary};
   }
 `

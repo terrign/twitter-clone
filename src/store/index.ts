@@ -16,7 +16,7 @@ import { useGetUserSuggestionsQuery, usersApi } from './api/users.api'
 import { rootSaga } from './sagas'
 import { alertSlice, removeAlert, setAlert } from './slices/alert'
 import { authSlice, signInWithEmail, signOut, signUpWithEmail, signUpWithGoogle, updatePassword } from './slices/auth'
-import { setUser, updateUser, userSlice } from './slices/user'
+import { setUser, switchTheme, updateUser, userSlice } from './slices/user'
 
 const rootPersistConfig = {
   key: 'root',
@@ -65,6 +65,7 @@ export {
   signUpWithEmail,
   signUpWithGoogle,
   store,
+  switchTheme,
   tweetsApi,
   updatePassword,
   updateUser,

@@ -1,3 +1,4 @@
+import { screen } from '@constants'
 import styled from 'styled-components'
 
 export const Form = styled.form`
@@ -14,5 +15,9 @@ export const Form = styled.form`
 
   div:has(a):last-child {
     place-self: end;
+  }
+
+  @media ${screen.m} {
+    padding: 1rem;
   }
 `

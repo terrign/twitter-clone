@@ -42,9 +42,8 @@ export const TweetCard = ({
       </TweetAvatar>
       <CardHeader>
         <div>
-          <UserName name={name} email={email} />
-          <span>&bull;</span>
-          <span>{date}</span>
+          <UserName name={name} email={email} col />
+          <span>&bull;{date}</span>
         </div>
       </CardHeader>
       {uid === createdByInfo.uid && (

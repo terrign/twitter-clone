@@ -1,11 +1,11 @@
-import { AddImageOutlined } from '@assets'
+import { AddImageOutlined, TweetButtonIcon } from '@assets'
 import { storageService } from '@services'
 import { setAlert, useAddTweetMutation, useAppDispatch, useAppSelector } from '@store'
-import { Avatar, Button } from '@ui'
+import { Avatar } from '@ui'
 import { convertBase64 } from '@utils'
 import { ChangeEvent, FormEvent, useId, useState } from 'react'
 
-import { CloseButton, StyledTextArea, StyledTweetForm } from './styled'
+import { AddedImage, CloseButton, FirstColumn, StyledTextArea, StyledTweetForm, TweetFormSubmitButton } from './styled'
 
 const MAX_CHARACTERS = 500
 
@@ -63,15 +63,15 @@ export const TweetForm = () => {
 
   return (
     <StyledTweetForm>
-      <div>
+      <FirstColumn>
         <Avatar size="s" photoURL={photoURL} />
         {image && (
-          <div>
+          <AddedImage>
             <CloseButton onClick={removeImage}>✖</CloseButton>
             <img src={image} height={50} width={50} />
-          </div>
+          </AddedImage>
         )}
-      </div>
+      </FirstColumn>
 
       <form onSubmit={submitHandler}>
         <StyledTextArea>
@@ -88,9 +88,10 @@ export const TweetForm = () => {
           </div>
         </StyledTextArea>
 
-        <Button $type="filled" disabled={buttonDisabed}>
-          Tweet
-        </Button>
+        <TweetFormSubmitButton $type="filled" disabled={buttonDisabed}>
+          <span>Tweet</span>
+          <TweetButtonIcon />
+        </TweetFormSubmitButton>
       </form>
     </StyledTweetForm>
   )

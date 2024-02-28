@@ -15,8 +15,12 @@ export const StyledYouMightLike = styled.section`
   grid-template-columns: 1fr;
   gap: 1rem;
 
+  position: sticky;
+  top: 1rem;
+
   @media ${screen.l} {
     padding: 1rem 0.5rem 0.5rem;
+    top: 0;
   }
 
   h3 {
@@ -51,5 +55,25 @@ export const SuggestedUsers = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+`
+
+export const Header = styled.header`
+  display: flex;
+
+  & > div {
+    flex-grow: 1;
+  }
+
+  button {
+    display: none;
+    transform: scaleX(-1);
+  }
+
+  @media ${screen.m} {
+    button {
+      display: block;
+      transform: scaleX(-1);
+    }
   }
 `

@@ -1,3 +1,4 @@
+import { screen } from '@constants'
 import { Centered } from '@ui'
 import styled from 'styled-components'
 
@@ -19,6 +20,15 @@ export const Container = styled.div`
   max-width: 600px;
   max-height: 80vh;
   overflow-y: auto;
+
+  @media ${screen.s} {
+    max-width: 100%;
+    max-height: 100%;
+
+    & > form {
+      padding: 0;
+    }
+  }
 `
 
 export const CloseButton = styled.button.attrs({ type: 'button' })`

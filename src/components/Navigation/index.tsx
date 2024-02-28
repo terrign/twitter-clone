@@ -2,13 +2,13 @@ import { TweetButtonIcon } from '@assets'
 import { TweetForm } from '@components'
 import { Route } from '@router'
 import { signOut, useAppDispatch, useAppSelector } from '@store'
-import { Avatar, Modal, TwitterIcon, UserCard } from '@ui'
+import { Avatar, Modal, TweetButton, TwitterIcon, UserCard } from '@ui'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import { navLinks } from './constants'
 import { NavItem } from './NavItem'
-import { LogoutButton, StyledAsideNavigation, TweetButton } from './styled'
+import { LogoutButton, StyledAsideNavigation } from './styled'
 
 export const Navigation = () => {
   const dispatch = useAppDispatch()

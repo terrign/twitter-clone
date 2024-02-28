@@ -12,6 +12,7 @@ import ExploreOutlined from './explore-outlined.svg?react'
 import GoogleLogo from './google.svg?react'
 import HomeFilled from './home-filled.svg?react'
 import HomeOutlined from './home-outlined.svg?react'
+import LeftArrow from './left-arrow.svg?react'
 import Like from './like.svg?react'
 import LikeFilled from './like-filled.svg?react'
 import ListsFilled from './lists-filled.svg?react'
@@ -41,6 +42,7 @@ export {
   GoogleLogo,
   HomeFilled,
   HomeOutlined,
+  LeftArrow,
   Like,
   LikeFilled,
   ListsFilled,

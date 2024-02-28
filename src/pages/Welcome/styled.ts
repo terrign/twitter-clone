@@ -1,3 +1,4 @@
+import { screen } from '@constants'
 import styled from 'styled-components'
 
 export const HomeWrapper = styled.div`
@@ -17,19 +18,39 @@ export const HomeWrapper = styled.div`
     margin-top: 0.5rem;
     margin-bottom: -1rem;
   }
+
+  @media ${screen.m} {
+    margin-right: -1rem;
+  }
 `
 
 export const Main = styled.section`
   display: flex;
   align-items: center;
+
+  @media ${screen.m} {
+    flex-direction: column;
+  }
+
+  a:has(svg) {
+    display: none;
+  }
 `
 
 export const TwitterBackGround = styled.div<{ $url: string }>`
   background-image: url(${({ $url }) => $url});
   background-repeat: no-repeat;
   background-position: center;
+
   flex-basis: 1114px;
   height: 100%;
+
+  @media ${screen.m} {
+    flex-basis: auto;
+    background-size: cover;
+    width: 100%;
+    height: 250px;
+  }
 `
 
 export const Content = styled.div`
@@ -39,13 +60,13 @@ export const Content = styled.div`
   margin-left: 2rem;
   flex: 1 1 auto;
 
-  h1 {
-    margin-top: 3rem;
-  }
-
   h2 {
     margin-top: 2rem;
     margin-bottom: 1.5rem;
+
+    @media ${screen.m} {
+      margin-top: 0;
+    }
   }
 
   div {
@@ -72,6 +93,11 @@ export const Content = styled.div`
 
   *:not(:first-child) {
     margin-top: 1rem;
+  }
+
+  @media ${screen.m} {
+    padding: 1rem;
+    margin-left: 1rem;
   }
 `
 

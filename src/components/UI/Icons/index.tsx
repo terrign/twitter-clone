@@ -23,6 +23,11 @@ export const GoogleIcon = styled(GoogleLogo)`
 `
 
 export const DropDownIcon = styled(DropDownArrow)<{ $down: boolean }>`
+  height: 15px;
+  width: 15px;
+
+  color: ${({ theme }) => theme.fontColor};
+
   transition: transform 0.1s linear;
   ${({ $down }) => $down && 'transform: rotate(180deg)'}
 `

@@ -39,8 +39,8 @@ export const userSlice = createSlice({
       state.user = payload
     },
 
-    switchTheme(state, { payload }: PayloadAction<Theme>) {
-      state.theme = payload ^ 1
+    switchTheme(state) {
+      state.theme = state.theme ^ 1
     },
 
     updateUser(state, { payload }: PayloadAction<Partial<UserInfo> & { uid: string }>) {

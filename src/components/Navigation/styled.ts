@@ -13,7 +13,6 @@ export const StyledAsideNavigation = styled.aside`
   max-width: 230px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
 
   @media ${screen.l} {
     align-items: center;
@@ -47,6 +46,7 @@ export const StyledAsideNavigation = styled.aside`
   & > div {
     max-width: 100%;
     overflow: hidden;
+
     @media ${screen.l} {
       div:first-child {
         display: none;
@@ -56,9 +56,10 @@ export const StyledAsideNavigation = styled.aside`
 `
 
 export const LogoutButton = styled(Button)`
-  background-color: ${Color.GRAY};
+  background: ${({ theme }) => theme.disabledButtonBgColor};
+  color: ${Color.WHITE};
+
   padding: 0;
-  margin-top: 2rem;
 
   div {
     display: none;
@@ -67,40 +68,15 @@ export const LogoutButton = styled(Button)`
   @media ${screen.l} {
     height: 40px;
     width: 40px;
-    margin: 0 auto;
+
     border: none;
     background: none;
-
-    &:hover {
-      background: none;
-    }
 
     div {
       display: block;
       width: 40px;
       height: 40px;
       border: none;
-    }
-
-    span {
-      display: none;
-    }
-  }
-`
-
-export const TweetButton = styled(Button)`
-  svg {
-    display: none;
-  }
-  @media ${screen.l} {
-    height: 40px;
-    width: 40px;
-    margin: 0 auto;
-
-    svg {
-      display: block;
-      width: 25px;
-      height: 25px;
     }
 
     span {

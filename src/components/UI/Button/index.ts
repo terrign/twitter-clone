@@ -1,4 +1,4 @@
-import { Color } from '@constants'
+import { Color, screen } from '@constants'
 import styled, { css } from 'styled-components'
 
 const outlinedButtonBorder = css`
@@ -22,8 +22,29 @@ export const Button = styled.button<{ $type: 'filled' | 'outlined' }>`
   }
 
   &:disabled {
-    background: ${({ $type }) => ($type === 'filled' ? Color.GRAY : 'none')};
+    background: ${({ $type, theme }) => ($type === 'filled' ? theme.disabledButtonBgColor : 'none')};
 
-    color: ${({ $type }) => $type === 'outlined' && Color.GRAY};
+    color: ${({ $type, theme }) => $type === 'outlined' && theme.fontColorSecondary};
+  }
+`
+
+export const TweetButton = styled(Button)`
+  svg {
+    display: none;
+  }
+  @media ${screen.l} {
+    height: 40px;
+    width: 40px;
+    margin: 0 auto;
+
+    svg {
+      display: block;
+      width: 25px;
+      height: 25px;
+    }
+
+    span {
+      display: none;
+    }
   }
 `

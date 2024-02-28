@@ -1,15 +1,19 @@
-import { Color, screen } from '@constants'
+import { screen } from '@constants'
 import styled from 'styled-components'
 
 export const StyledTweetCard = styled.article`
   display: grid;
   grid-template-columns: 70px minmax(200px, 1fr) 70px;
-  /* grid-template-rows: max-content 1fr 1rem; */
+
   grid-auto-rows: minmax(1rem, auto);
   width: 100%;
-  border-bottom: 1px solid ${Color.GRAY};
+  border-bottom: 1px solid ${({ theme }) => theme.borderColor};
   padding-bottom: 1rem;
   grid-row-gap: 0.5rem;
+
+  @media ${screen.s} {
+    grid-template-columns: 50px 1fr 50px;
+  }
 `
 
 export const CardHeader = styled.header`
@@ -22,15 +26,19 @@ export const CardHeader = styled.header`
 
   font-size: ${({ theme }) => theme.fontS};
 
-  div {
+  & > div {
     display: flex;
-
-    & > *:not(:first-child) {
-      margin-left: 0.2rem;
-    }
+    flex-wrap: wrap;
+    align-items: end;
 
     & > span {
-      color: ${Color.GRAY};
+      color: ${({ theme }) => theme.fontColorTertiary};
+    }
+
+    & > span:first-of-type {
+      @media ${screen.s} {
+        display: none;
+      }
     }
 
     @media ${screen.l} {
@@ -51,6 +59,11 @@ export const CardHeader = styled.header`
 
 export const TweetAvatar = styled.div`
   grid-row: 1 / 3;
+
+  @media ${screen.s} {
+    grid-row: 1;
+    grid-column: 1;
+  }
 `
 
 export const Likes = styled.footer`
@@ -62,6 +75,10 @@ export const Likes = styled.footer`
   button {
     font-size: ${({ theme }) => theme.fontS};
     padding: 0;
+  }
+
+  @media ${screen.s} {
+    grid-column: 1;
   }
 `
 
@@ -85,5 +102,9 @@ export const TweetContent = styled.p`
     border-radius: 6px;
 
     height: auto;
+  }
+
+  @media ${screen.s} {
+    grid-column: 1 / span 3;
   }
 `

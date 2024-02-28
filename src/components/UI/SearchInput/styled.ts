@@ -1,4 +1,4 @@
-import { Color, font } from '@constants'
+import { font } from '@constants'
 import styled from 'styled-components'
 
 export const StyledSearchInput = styled.div`
@@ -6,7 +6,7 @@ export const StyledSearchInput = styled.div`
   display: flex;
   align-items: center;
 
-  background: ${Color.PALE_GRAY};
+  background: ${({ theme }) => theme.buttonBorderColor};
   padding: 1rem;
 
   border-radius: 31px;
@@ -16,7 +16,7 @@ export const StyledSearchInput = styled.div`
   svg {
     height: 1rem;
     width: 1rem;
-    color: ${Color.DARK_GRAY};
+    color: ${({ theme }) => theme.fontColorSecondary};
   }
 
   input {

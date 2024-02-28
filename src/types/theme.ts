@@ -10,14 +10,20 @@ interface ThemeObject {
   fontM: string
   fontS: string
   fontXS: string
-  buttonBgColor: string
-  buttonBorderColor: string
-  inputBorderColor: string
-  fontSecondary: string
   bgColor: string
+  modalBgColor: string
+  buttonBgColor: string
+  disabledButtonBgColor: string
+  fontColor: string
+  buttonBorderColor: string
+  borderColor: string
+  fontColorSecondary: string
+  inputBorderColor: string
+  reverseFontColor: string
+  fontColorTertiary: string
+
   outlinedButtonHover: string
   filledButtonHover: string
-  modalBgColor: string
 }
 
 export { Theme, type ThemeObject }

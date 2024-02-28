@@ -4,7 +4,7 @@ import { createGlobalStyle, css } from 'styled-components'
 const breakpoints = {
   xxs: '320px',
   xs: '375px',
-  s: '425px',
+  s: '475px',
   m: '768px',
   l: '1024px',
   xl: '1440px',
@@ -20,7 +20,7 @@ const screen = {
    */
   xs: `screen and (max-width: ${breakpoints.xs})`,
   /**
-   * 425px
+   * 475px
    */
   s: `screen and (max-width: ${breakpoints.s})`,
   /**
@@ -39,7 +39,7 @@ const screen = {
 
 const font = css`
   font-family: 'Roboto', sans-serif;
-  color: black;
+  color: ${({ theme }) => theme.fontColor};
 `
 
 const enum Color {
@@ -51,7 +51,8 @@ const enum Color {
   PALE_GRAY_2 = '#e4eaed45',
   DARK_GRAY = '#5C6C79',
   FONT_GRAY = 'rgb(83, 100, 113)',
-  GRAY = '#00000033',
+
+  GRAY = '#abb5bd',
   WHITE = '#FFFFFF',
   RED = '#ff0000',
   ALERT_TEAL = '#8df7c2',
@@ -65,18 +66,33 @@ const defaultTheme: ThemeObject = {
   fontM: '0.9rem', //18
   fontS: '0.8rem', //16
   fontXS: '0.6rem', //12
+
+  bgColor: Color.WHITE,
+  fontColor: Color.BLACK,
+  fontColorSecondary: Color.FONT_GRAY,
+  fontColorTertiary: Color.GRAY,
+  reverseFontColor: Color.WHITE,
+
+  modalBgColor: Color.PALE_BLUE,
+
+  inputBorderColor: Color.GRAY,
+
   buttonBgColor: Color.BLUE,
   buttonBorderColor: Color.PALE_GRAY,
-  inputBorderColor: Color.GRAY,
-  bgColor: Color.WHITE,
+  disabledButtonBgColor: Color.PALE_GRAY,
+  borderColor: Color.GRAY,
+
   outlinedButtonHover: Color.PALE_GRAY_2,
   filledButtonHover: Color.DARK_BLUE,
-  modalBgColor: Color.PALE_BLUE,
-  fontSecondary: Color.FONT_GRAY,
 }
 
 const darkTheme: ThemeObject = {
   ...defaultTheme,
+  bgColor: Color.BLACK,
+  fontColor: Color.WHITE,
+  reverseFontColor: Color.BLACK,
+  disabledButtonBgColor: Color.GRAY,
+  borderColor: Color.PALE_GRAY_2,
 }
 
 const lightTheme: ThemeObject = {
@@ -94,6 +110,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     height: 100%;
     box-sizing: border-box;
+    background: ${({ theme }) => theme.bgColor};
   }
 
   * {
@@ -143,6 +160,32 @@ const GlobalStyles = createGlobalStyle`
   @media (hover: hover) {
     a:hover {
       text-decoration: underline;
+    }
+  }
+
+  @media ${screen.m} {
+    body {
+      overflow-x: hidden;
+    }
+  }
+
+  @media ${screen.m} {
+    h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media ${screen.xs} {
+    :root {
+      font-size: 16px;
+    }
+
+    body {
+      overflow-x: auto;
     }
   }
 

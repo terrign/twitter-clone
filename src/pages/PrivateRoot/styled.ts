@@ -1,5 +1,5 @@
-import { screen } from '@constants'
-import styled from 'styled-components'
+import { Color, screen } from '@constants'
+import styled, { css } from 'styled-components'
 
 export const PrivateRootWrapper = styled.section`
   display: grid;
@@ -7,7 +7,7 @@ export const PrivateRootWrapper = styled.section`
   width: 100%;
   margin: 0 auto;
   padding: 0 2rem;
-  grid-template-columns: minmax(150px, 230px) minmax(500px, 900px) minmax(230px, 300px);
+  grid-template-columns: minmax(150px, 230px) minmax(500px, 900px) minmax(260px, 300px);
   grid-column-gap: 1rem;
 
   @media ${screen.xl} {
@@ -15,7 +15,42 @@ export const PrivateRootWrapper = styled.section`
   }
 
   @media ${screen.l} {
-    grid-template-columns: 50px 1fr minmax(230px, 300px);
+    grid-template-columns: 50px 1fr minmax(260px, 300px);
     grid-column-gap: 0;
+  }
+
+  @media ${screen.m} {
+    grid-template-columns: 50px 1fr;
+  }
+`
+
+const visibleAside = css`
+  left: calc(100% - 300px);
+  width: 100%;
+  max-width: 300px;
+  z-index: 5;
+
+  background: ${({ theme }) => theme.bgColor};
+  height: 100%;
+
+  @media ${screen.s} {
+    width: 100%;
+    max-width: unset;
+    left: 0;
+  }
+`
+
+export const RightAside = styled.aside<{ $visible: boolean }>`
+  transition: left 0.3s linear;
+
+  background: ${({ theme }) => theme.bgColor};
+
+  @media ${screen.m} {
+    position: fixed;
+    left: 1000px;
+
+    border-left: 1px solid ${Color.PALE_GRAY};
+
+    ${({ $visible }) => $visible && visibleAside};
   }
 `

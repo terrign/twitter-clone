@@ -1,25 +1,29 @@
 import { Navigation, YouMightLike } from '@components'
 import { useAppSelector, useGetUserSuggestionsQuery } from '@store'
+import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 
-import { PrivateRootWrapper } from './styled'
+import { PrivateRootWrapper, RightAside } from './styled'
 
 export const PrivateRoot = () => {
+  const [asideVisible, setAsideVisible] = useState<boolean>(false)
   const { uid } = useAppSelector((state) => state.user.user)
   const { data } = useGetUserSuggestionsQuery(uid)
+
+  const toggleAside = () => {
+    setAsideVisible((prev) => !prev)
+  }
 
   const tweets = data?.tweets
   const users = data?.users
 
-  console.log(tweets, users)
-
   return (
     <PrivateRootWrapper>
       <Navigation />
-      <Outlet />
-      <aside>
-        <YouMightLike tweets={tweets} users={users} />
-      </aside>
+      <Outlet context={toggleAside} />
+      <RightAside $visible={asideVisible}>
+        <YouMightLike tweets={tweets} users={users} toggleAside={toggleAside} />
+      </RightAside>
     </PrivateRootWrapper>
   )
 }
