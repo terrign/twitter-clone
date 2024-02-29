@@ -24,11 +24,23 @@ export const PrivateRootWrapper = styled.section`
   }
 `
 
+export const MainWrapper = styled.section`
+  width: 100%;
+  border-left: 1px solid ${({ theme }) => theme.borderColor};
+  border-right: 1px solid ${({ theme }) => theme.borderColor};
+  margin-top: -1rem;
+  padding: 1rem 0.5rem 0.5rem;
+
+  @media ${screen.l} {
+    margin-top: 0;
+  }
+`
+
 const visibleAside = css`
   left: calc(100% - 300px);
   width: 100%;
   max-width: 300px;
-  z-index: 5;
+  z-index: 300;
 
   background: ${({ theme }) => theme.bgColor};
   height: 100%;
@@ -41,7 +53,7 @@ const visibleAside = css`
 `
 
 export const RightAside = styled.aside<{ $visible: boolean }>`
-  transition: left 0.3s linear;
+  transition: left 0.2s linear;
 
   background: ${({ theme }) => theme.bgColor};
 

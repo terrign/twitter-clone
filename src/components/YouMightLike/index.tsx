@@ -1,6 +1,8 @@
 import { LeftArrow } from '@assets'
+import { Route } from '@router'
 import { Tweet, UserInfo } from '@types'
 import { SearchInput, UserCard } from '@ui'
+import { Link } from 'react-router-dom'
 
 import { FollowButton, Header, StyledYouMightLike, SuggestedImage, SuggestedImages, SuggestedUsers } from './styled'
 
@@ -24,7 +26,11 @@ export const YouMightLike = ({ users, tweets, toggleAside }: Props) => {
 
       <SuggestedImages>
         {tweets?.map(({ imageURL, id }) => {
-          return <SuggestedImage $url={imageURL} key={id} />
+          return (
+            <Link to={`${Route.POST}/${id}`} key={id}>
+              <SuggestedImage $url={imageURL} />
+            </Link>
+          )
         })}
       </SuggestedImages>
 

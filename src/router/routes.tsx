@@ -1,9 +1,10 @@
 import { ErrorBoundary } from '@components'
-import { EditProfile, NotFound, PrivateRoot, Root, TempRoute } from '@pages'
+import { EditProfile, NotFound, Post, PrivateRoot, Root, TempRoute } from '@pages'
 import { lazy, Suspense } from 'react'
 import { RouteObject } from 'react-router-dom'
 
 import { guards } from './loaders/guards'
+import { postLoader } from './loaders/post'
 import { Route } from './types'
 
 const Welcome = lazy(() => import('../pages').then((module) => ({ default: module['Welcome'] })))
@@ -51,6 +52,11 @@ export const routes: RouteObject[] = [
           {
             path: Route.TODO,
             element: <TempRoute />,
+          },
+          {
+            path: `${Route.POST}/:id`,
+            element: <Post />,
+            loader: postLoader,
           },
         ],
       },

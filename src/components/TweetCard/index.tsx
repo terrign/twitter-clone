@@ -1,7 +1,10 @@
 import { Like, LikeFilled } from '@assets'
+import { Route } from '@router'
 import { useAppSelector, useLikeTweetMutation, useUnlikeTweetMutation } from '@store'
 import { Tweet, UserInfo } from '@types'
 import { Avatar, UserName } from '@ui'
+import { MouseEventHandler } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { CardHeader, Likes, StyledTweetCard, TweetAvatar, TweetContent } from './styled'
 
@@ -17,13 +20,16 @@ export const TweetCard = ({
   const { uid } = useAppSelector((state) => state.user.user)
   const [likeTrigger, likeTriggerState] = useLikeTweetMutation()
   const [unlikeTrigger, unlikeTriggerState] = useUnlikeTweetMutation()
+  const nav = useNavigate()
 
   const { photoURL, name, email } = createdByInfo
   const date = new Date(timestamp).toLocaleString('en-US', { month: 'long', day: 'numeric' })
 
   const likedByCurrentUser = likedUserIds.includes(uid)
 
-  const likeClickHandler = async () => {
+  const likeClickHandler: MouseEventHandler<HTMLElement> = async (event) => {
+    event.stopPropagation()
+
     if (likeTriggerState.status === 'pending' || unlikeTriggerState.status === 'pending') {
       return
     }
@@ -35,8 +41,16 @@ export const TweetCard = ({
     }
   }
 
+  const tweetClickHandler = () => {
+    nav(`${Route.POST}/${id}`)
+  }
+
+  const showMoreClickHandler: MouseEventHandler<HTMLElement> = (event) => {
+    event.stopPropagation()
+  }
+
   return (
-    <StyledTweetCard>
+    <StyledTweetCard onClick={tweetClickHandler}>
       <TweetAvatar>
         <Avatar photoURL={photoURL} size="s" />
       </TweetAvatar>
@@ -47,7 +61,7 @@ export const TweetCard = ({
         </div>
       </CardHeader>
       {uid === createdByInfo.uid && (
-        <button>
+        <button onClick={showMoreClickHandler}>
           <span>...</span>
         </button>
       )}

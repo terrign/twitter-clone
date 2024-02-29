@@ -4,7 +4,7 @@ import { tweetService, userService } from '@services'
 export const usersApi = createApi({
   reducerPath: 'usersapi',
   baseQuery: fakeBaseQuery(),
-  tagTypes: ['userSuggestions'],
+  tagTypes: ['userSuggestions', 'userById'],
   endpoints: (builder) => ({
     getUserSuggestions: builder.query({
       async queryFn(userId: string) {
@@ -16,9 +16,19 @@ export const usersApi = createApi({
         return { data: { users, tweets } }
       },
       providesTags: ['userSuggestions'],
-      keepUnusedDataFor: 0.0001,
+      keepUnusedDataFor: 0.001,
+    }),
+
+    getUserById: builder.query({
+      async queryFn(userId: string) {
+        const user = userService.getUserById(userId)
+
+        return { data: user }
+      },
+      providesTags: ['userById'],
+      keepUnusedDataFor: 60,
     }),
   }),
 })
 
-export const { useGetUserSuggestionsQuery } = usersApi
+export const { useGetUserSuggestionsQuery, useGetUserByIdQuery } = usersApi

@@ -8,11 +8,12 @@ import createSagaMiddleware from 'redux-saga'
 import {
   tweetsApi,
   useAddTweetMutation,
+  useFetchTweetQuery,
   useFetchTweetsByUserIdQuery,
   useLikeTweetMutation,
   useUnlikeTweetMutation,
 } from './api/tweets.api'
-import { useGetUserSuggestionsQuery, usersApi } from './api/users.api'
+import { useGetUserByIdQuery, useGetUserSuggestionsQuery, usersApi } from './api/users.api'
 import { rootSaga } from './sagas'
 import { alertSlice, removeAlert, setAlert } from './slices/alert'
 import { authSlice, signInWithEmail, signOut, signUpWithEmail, signUpWithGoogle, updatePassword } from './slices/auth'
@@ -72,7 +73,9 @@ export {
   useAddTweetMutation,
   useAppDispatch,
   useAppSelector,
+  useFetchTweetQuery,
   useFetchTweetsByUserIdQuery,
+  useGetUserByIdQuery,
   useGetUserSuggestionsQuery,
   useLikeTweetMutation,
   usersApi,

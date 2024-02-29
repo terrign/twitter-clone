@@ -10,7 +10,8 @@ class UserService {
 
   public createUser = async (user: UserInfo) => await setDoc(doc(this.db, this.collection, user.uid), user)
 
-  public getUserById = async (uid: string) => (await getDoc(doc(this.db, this.collection, uid))).data()
+  public getUserById = async (uid: string) =>
+    (await getDoc(doc(this.db, this.collection, uid))).data() as UserInfo | undefined
 
   public getUsersByIds = async (userIds: string[]) => {
     const userQuery = query(collection(this.db, this.collection), where('uid', 'in', userIds))

@@ -7,8 +7,8 @@ export const StyledTweetCard = styled.article`
 
   grid-auto-rows: minmax(1rem, auto);
   width: 100%;
-  border-bottom: 1px solid ${({ theme }) => theme.borderColor};
-  padding-bottom: 1rem;
+  border-top: 1px solid ${({ theme }) => theme.borderColor};
+  padding-top: 1rem;
   grid-row-gap: 0.5rem;
 
   @media ${screen.s} {

@@ -45,7 +45,7 @@ export const Options = styled.div<{ $show?: boolean }>`
   border-bottom: none;
   overflow-y: scroll;
   background: ${({ theme }) => theme.bgColor};
-  z-index: 100;
+  z-index: 6;
 `
 
 export const IconWrapper = styled.button`

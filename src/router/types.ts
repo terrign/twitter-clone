@@ -7,4 +7,5 @@ export enum Route {
   HOME = '/home',
   TODO = '/todo',
   EDIT = '/profile/edit',
+  POST = '/post',
 }

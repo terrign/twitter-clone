@@ -38,7 +38,7 @@ export const StyledImageInput = styled.div<{ $image: string }>`
       height: 25px;
       width: 25px;
       color: ${Color.WHITE};
-      z-index: 100;
+      z-index: 2;
     }
   }
 `

@@ -80,7 +80,11 @@ export const tweetsApi = createApi({
     }),
 
     fetchTweet: builder.query({
-      async queryFn(tweetId: string) {
+      async queryFn(tweetId: string | undefined) {
+        if (!tweetId) {
+          return { data: null }
+        }
+
         const tweet = await tweetService.getTweetByid(tweetId)
 
         return { data: tweet }
@@ -89,5 +93,10 @@ export const tweetsApi = createApi({
   }),
 })
 
-export const { useFetchTweetsByUserIdQuery, useAddTweetMutation, useLikeTweetMutation, useUnlikeTweetMutation } =
-  tweetsApi
+export const {
+  useFetchTweetsByUserIdQuery,
+  useAddTweetMutation,
+  useLikeTweetMutation,
+  useUnlikeTweetMutation,
+  useFetchTweetQuery,
+} = tweetsApi

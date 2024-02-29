@@ -207,7 +207,7 @@ const hoverTitle = css<{ $title: string }>`
       ${font}
 
       color: ${Color.WHITE};
-      z-index: 10;
+      z-index: 25;
     }
   }
 `

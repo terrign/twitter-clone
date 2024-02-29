@@ -1,6 +1,7 @@
 import { EditProfile } from './EditProfile'
 import { Home } from './Home'
 import { NotFound } from './NotFound'
+import { Post } from './Post'
 import { PrivateRoot } from './PrivateRoot'
 import { Profile } from './Profile'
 import { Root } from './Root'
@@ -9,4 +10,4 @@ import { SignUp } from './SignUp'
 import { TempRoute } from './TempRoute'
 import { Welcome } from './Welcome'
 
-export { EditProfile, Home, NotFound, PrivateRoot, Profile, Root, SignIn, SignUp, TempRoute, Welcome }
+export { EditProfile, Home, NotFound, Post, PrivateRoot, Profile, Root, SignIn, SignUp, TempRoute, Welcome }

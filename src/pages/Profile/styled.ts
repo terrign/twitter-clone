@@ -1,33 +1,13 @@
 import { screen } from '@constants'
 import styled from 'styled-components'
 
-export const ProfileWrapper = styled.section`
-  width: 100%;
-  border-left: 1px solid ${({ theme }) => theme.borderColor};
-  border-right: 1px solid ${({ theme }) => theme.borderColor};
-  margin-top: -1rem;
-  padding: 1rem 0.5rem 0.5rem;
-
-  @media ${screen.l} {
-    margin-top: 0;
-  }
-`
-
-export const ProfileHeader = styled.header`
-  display: flex;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-
-  background: ${({ theme }) => theme.bgColor};
-
-  div > p:first-child {
+export const UserName = styled.div`
+  p:first-child {
     font-weight: 700;
     word-wrap: break-word;
     max-width: 300px;
   }
-
-  div > p:last-child {
+  p:last-child {
     color: ${({ theme }) => theme.fontColorTertiary};
     font-size: ${({ theme }) => theme.fontS};
   }

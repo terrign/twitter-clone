@@ -11,7 +11,6 @@ export const StyledTweetForm = styled.section`
   grid-row-gap: 1rem;
 
   border-top: 1px solid ${({ theme }) => theme.borderColor};
-  border-bottom: 1px solid ${({ theme }) => theme.borderColor};
 
   @media ${screen.s} {
     grid-template-columns: 50px 1fr;
