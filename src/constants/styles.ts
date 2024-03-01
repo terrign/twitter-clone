@@ -51,6 +51,7 @@ const enum Color {
   PALE_GRAY_2 = '#e4eaed45',
   DARK_GRAY = '#5C6C79',
   FONT_GRAY = 'rgb(83, 100, 113)',
+  PALE_GRAY_3 = '#abb5bd33',
 
   GRAY = '#abb5bd',
   WHITE = '#FFFFFF',
@@ -60,18 +61,22 @@ const enum Color {
 }
 
 const defaultTheme: ThemeObject = {
-  fontXXL: '3rem', //60
-  fontXL: '1.5rem', //30
-  fontL: '1rem', //20
-  fontM: '0.9rem', //18
-  fontS: '0.8rem', //16
-  fontXS: '0.6rem', //12
+  fontXXL: '3rem',
+  fontXL: '1.5rem',
+  fontL: '1rem',
+  fontM: '0.9rem',
+  fontS: '0.8rem',
+  fontXS: '0.6rem',
 
   bgColor: Color.WHITE,
+  reverseBgColor: Color.BLACK,
+
   fontColor: Color.BLACK,
+  reverseFontColor: Color.WHITE,
   fontColorSecondary: Color.FONT_GRAY,
   fontColorTertiary: Color.GRAY,
-  reverseFontColor: Color.WHITE,
+
+  simpleButtonBgHover: Color.PALE_GRAY_3,
 
   modalBgColor: Color.PALE_BLUE,
 
@@ -88,9 +93,13 @@ const defaultTheme: ThemeObject = {
 
 const darkTheme: ThemeObject = {
   ...defaultTheme,
+
   bgColor: Color.BLACK,
+  reverseBgColor: Color.WHITE,
+
   fontColor: Color.WHITE,
   reverseFontColor: Color.BLACK,
+
   disabledButtonBgColor: Color.GRAY,
   borderColor: Color.PALE_GRAY_2,
 }
@@ -99,7 +108,7 @@ const lightTheme: ThemeObject = {
   ...defaultTheme,
 }
 
-const GlobalStyles = createGlobalStyle`
+const GlobalStyles = createGlobalStyle<{ $isLight?: boolean }>`
   :root {
     font-size: 18px;
     ${font}
@@ -111,6 +120,13 @@ const GlobalStyles = createGlobalStyle`
     height: 100%;
     box-sizing: border-box;
     background: ${({ theme }) => theme.bgColor};
+    scroll-behavior: smooth;
+
+    color-scheme: ${({ $isLight }) => ($isLight ? 'light' : 'dark')}
+  }
+
+  body:has(#privateRoot) {
+    overflow-y: scroll;
   }
 
   * {

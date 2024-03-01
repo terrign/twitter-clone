@@ -45,12 +45,16 @@ const convertBase64 = (file: Blob): Promise<string> => {
 
 const nicknameFromEmail = (email: string) => '@' + email.split('@')[0]
 
+const getHumanMonthDayFromTimeStamp = (timestamp: number) =>
+  new Date(timestamp).toLocaleString('en-US', { month: 'long', day: 'numeric' })
+
 export {
   changePasswordValidationSchema,
   convertBase64,
   editProfileValidationSchema,
   generateDays,
   generateYears,
+  getHumanMonthDayFromTimeStamp,
   nicknameFromEmail,
   signUpValidationSchema,
   tweetValidationSchema,

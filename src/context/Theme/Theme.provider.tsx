@@ -10,7 +10,7 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
 
   return (
     <StyledThemeProvider theme={currentThemeObject}>
-      <GlobalStyles />
+      <GlobalStyles $isLight={theme === Theme.LIGHT} />
       {children}
     </StyledThemeProvider>
   )

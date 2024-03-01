@@ -8,7 +8,7 @@ const FIREBASE_CONFIG = {
   measurementId: import.meta.env.APP_MEASUREMENT_ID,
 }
 
-const GOOGLE_PROVIDER_SCOPE = 'https://www.googleapis.com/auth/contacts.readonly'
+const GOOGLE_PROVIDER_SCOPE = 'https://www.googleapis.com/auth/contacts'
 
 const enum Collection {
   USERS = 'users',

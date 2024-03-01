@@ -1,10 +1,12 @@
+import { DEFAULT_CACHE_TIME_S } from '@constants'
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react'
 import { tweetService, userService } from '@services'
 
 export const usersApi = createApi({
   reducerPath: 'usersapi',
   baseQuery: fakeBaseQuery(),
-  tagTypes: ['userSuggestions', 'userById'],
+  tagTypes: ['userSuggestions', 'user', 'userList'],
+  keepUnusedDataFor: DEFAULT_CACHE_TIME_S,
   endpoints: (builder) => ({
     getUserSuggestions: builder.query({
       async queryFn(userId: string) {
@@ -16,19 +18,26 @@ export const usersApi = createApi({
         return { data: { users, tweets } }
       },
       providesTags: ['userSuggestions'],
-      keepUnusedDataFor: 0.001,
     }),
 
     getUserById: builder.query({
       async queryFn(userId: string) {
-        const user = userService.getUserById(userId)
+        const user = await userService.getUserById(userId)
 
         return { data: user }
       },
-      providesTags: ['userById'],
-      keepUnusedDataFor: 60,
+      providesTags: ['user'],
+    }),
+
+    getUsersByIds: builder.query({
+      async queryFn(userIds: string[]) {
+        const users = await userService.getUsersByIds(userIds)
+
+        return { data: users }
+      },
+      providesTags: ['userList'],
     }),
   }),
 })
 
-export const { useGetUserSuggestionsQuery, useGetUserByIdQuery } = usersApi
+export const { useGetUserSuggestionsQuery, useGetUserByIdQuery, useGetUsersByIdsQuery } = usersApi

@@ -1,6 +1,6 @@
-import { store } from '@store'
 import { Tweet } from '@types'
 import {
+  and,
   arrayRemove,
   arrayUnion,
   collection,
@@ -10,6 +10,7 @@ import {
   getDoc,
   getDocs,
   limit,
+  or,
   orderBy,
   query,
   setDoc,
@@ -24,13 +25,12 @@ class TweetService {
   public db: Firestore = db
   private collection = Collection.TWEETS
 
-  public createTweet = async ({ text, imageURL }: Pick<Tweet, 'imageURL' | 'text'>) => {
-    const { uid } = store.getState().user.user
+  public createTweet = async ({ text, imageURL, createdById }: Pick<Tweet, 'imageURL' | 'text' | 'createdById'>) => {
     const tweetId = crypto.randomUUID()
 
     const tweet: Tweet = {
       id: tweetId,
-      createdById: uid,
+      createdById,
       likedUserIds: [],
       imageURL,
       text,
@@ -38,6 +38,15 @@ class TweetService {
     }
 
     await setDoc(doc(this.db, this.collection, tweetId), tweet)
+
+    return null
+  }
+
+  public getAllTweets = async () => {
+    const tweetQuery = query(collection(this.db, this.collection), orderBy('timestamp', 'desc'))
+    const querySnap = await getDocs(tweetQuery)
+
+    return querySnap.docs.map((tweet) => tweet.data()) as Tweet[]
   }
 
   public getTweetsByUserId = async (userId: string) => {
@@ -53,19 +62,25 @@ class TweetService {
   }
 
   public deleteTweet = async (tweetId: string) => {
-    return deleteDoc(doc(this.db, this.collection, tweetId))
+    await deleteDoc(doc(this.db, this.collection, tweetId))
+
+    return null
   }
 
   public likeTweet = async (tweetId: string, uid: string) => {
-    return await updateDoc(doc(this.db, this.collection, tweetId), {
+    await updateDoc(doc(this.db, this.collection, tweetId), {
       likedUserIds: arrayUnion(uid),
     })
+
+    return null
   }
 
   public unlikeTweet = async (tweetId: string, uid: string) => {
-    return await updateDoc(doc(this.db, this.collection, tweetId), {
+    await updateDoc(doc(this.db, this.collection, tweetId), {
       likedUserIds: arrayRemove(uid),
     })
+
+    return null
   }
 
   public getTweetByid = async (tweetId: string) => {
@@ -76,15 +91,34 @@ class TweetService {
     const tweetQuery = query(
       collection(this.db, this.collection),
       where('imageURL', '!=', ''),
-      orderBy('timestamp', 'desc'),
+      // orderBy('timestamp', 'desc'),
       limit(20),
     )
 
     const querySnap = await getDocs(tweetQuery)
 
-    return (querySnap.docs.map((tweet) => tweet.data()) as Tweet[])
+    return querySnap.docs
+      .map((tweet) => tweet.data())
       .filter((tweet) => tweet.createdById !== userId)
-      .slice(0, 6)
+      .slice(0, 6) as Tweet[]
+  }
+
+  public searchTweet = async (queryString: string) => {
+    const tweetQuery = query(
+      collection(this.db, this.collection),
+      or(
+        and(where('text', '>=', queryString), where('text', '<=', queryString + '\uf8ff')),
+        and(
+          where('text', '>=', queryString.charAt(0).toUpperCase() + queryString.slice(1)),
+          where('text', '<=', queryString.charAt(0).toUpperCase() + queryString.slice(1) + '\uf8ff'),
+        ),
+        and(where('text', '>=', queryString.toLowerCase()), where('text', '<=', queryString.toLowerCase() + '\uf8ff')),
+      ),
+    )
+
+    const querySnap = await getDocs(tweetQuery)
+
+    return querySnap.docs.map((tweet) => tweet.data()) as Tweet[]
   }
 }
 

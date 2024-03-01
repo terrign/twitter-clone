@@ -13,7 +13,7 @@ export const TweetForm = () => {
   const [tweet, setTweet] = useState('')
   const [image, setImage] = useState('')
   const [file, setFile] = useState<File | null>(null)
-  const { photoURL } = useAppSelector((state) => state.user.user)
+  const { photoURL, uid } = useAppSelector((state) => state.user.user)
   const imageInputId = useId()
   const dispatch = useAppDispatch()
   const [addTweet, { status }] = useAddTweetMutation()
@@ -40,7 +40,7 @@ export const TweetForm = () => {
       }
     }
 
-    addTweet({ text: tweet, imageURL: imageUploadResult }).then(() => {
+    addTweet({ text: tweet, imageURL: imageUploadResult, createdById: uid }).then(() => {
       setTweet('')
       setFile(null)
       removeImage()

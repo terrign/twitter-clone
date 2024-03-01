@@ -6,8 +6,11 @@ export const StyledUserName = styled.div<{ $col?: boolean }>`
   display: flex;
   justify-content: flex-start;
 
+  a,
   p {
     font-size: ${({ theme }) => theme.fontS};
+
+    color: ${({ theme }) => theme.fontColor};
     flex: 0 2 auto;
     word-wrap: nowrap;
     text-overflow: ellipsis;
@@ -15,11 +18,12 @@ export const StyledUserName = styled.div<{ $col?: boolean }>`
     overflow: hidden;
   }
 
-  p:first-child {
+  a {
     font-weight: 700;
   }
 
   p:last-child {
     color: ${({ theme }) => theme.fontColorTertiary};
+    white-space: pre;
   }
 `

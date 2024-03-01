@@ -1,10 +1,11 @@
-import { ErrorBoundary } from '@components'
 import { EditProfile, NotFound, Post, PrivateRoot, Root, TempRoute } from '@pages'
+import { Loader } from '@ui'
 import { lazy, Suspense } from 'react'
 import { RouteObject } from 'react-router-dom'
 
 import { guards } from './loaders/guards'
 import { postLoader } from './loaders/post'
+import { profileLoader } from './loaders/profile'
 import { Route } from './types'
 
 const Welcome = lazy(() => import('../pages').then((module) => ({ default: module['Welcome'] })))
@@ -17,11 +18,10 @@ export const routes: RouteObject[] = [
   {
     path: '/',
     element: (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader h="100vh" w="100%" />}>
         <Root />
       </Suspense>
     ),
-    errorElement: <ErrorBoundary />,
     loader: guards,
     children: [
       {
@@ -41,9 +41,10 @@ export const routes: RouteObject[] = [
         element: <PrivateRoot />,
         children: [
           {
-            path: Route.PROFILE,
+            path: `${Route.PROFILE}/:uid`,
             element: <Profile />,
-            children: [{ path: Route.EDIT, element: <EditProfile /> }],
+            loader: profileLoader,
+            children: [{ path: `${Route.PROFILE}/:uid/edit`, element: <EditProfile /> }],
           },
           {
             path: Route.HOME,

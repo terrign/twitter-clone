@@ -27,7 +27,7 @@ export const PrivateRoot = () => {
   const users = data?.users
 
   return (
-    <PrivateRootWrapper>
+    <PrivateRootWrapper id="privateRoot">
       <Navigation />
       <MainWrapper>
         <Outlet context={toggleAside} />

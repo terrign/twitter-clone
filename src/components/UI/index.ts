@@ -7,7 +7,9 @@ import { FormInput } from './Form/FormInput'
 import { FormItem } from './Form/FormItem'
 import { DropDownIcon, GoogleIcon, TwitterIcon } from './Icons'
 import { Input } from './Input'
+import { Loader } from './Loader'
 import { Modal } from './Modal'
+import { PopupMenu } from './PopupMenu'
 import { SearchInput } from './SearchInput'
 import { Select } from './Select'
 import { Toggler } from './Toggler'
@@ -25,7 +27,9 @@ export {
   FormItem,
   GoogleIcon,
   Input,
+  Loader,
   Modal,
+  PopupMenu,
   SearchInput,
   Select,
   Toggler,

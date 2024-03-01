@@ -14,6 +14,7 @@ interface ThemeObject {
   modalBgColor: string
   buttonBgColor: string
   disabledButtonBgColor: string
+  simpleButtonBgHover: string
   fontColor: string
   buttonBorderColor: string
   borderColor: string
@@ -21,6 +22,7 @@ interface ThemeObject {
   inputBorderColor: string
   reverseFontColor: string
   fontColorTertiary: string
+  reverseBgColor: string
 
   outlinedButtonHover: string
   filledButtonHover: string

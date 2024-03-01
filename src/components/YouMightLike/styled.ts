@@ -1,9 +1,10 @@
-import { Color, screen } from '@constants'
+import { screen } from '@constants'
 import { Button } from '@ui'
 import styled from 'styled-components'
 
 export const FollowButton = styled(Button)`
-  background: ${Color.BLACK};
+  background: ${({ theme }) => theme.reverseBgColor};
+  color: ${({ theme }) => theme.reverseFontColor};
   height: 25px;
   width: 62px;
 

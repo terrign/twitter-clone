@@ -1,23 +1,24 @@
-import { store, tweetsApi, usersApi } from '@store'
+import { store, tweetsApi } from '@store'
 import { LoaderFunction, redirect } from 'react-router-dom'
 
 import { Route } from '../types'
 
 export const postLoader: LoaderFunction = async ({ request }) => {
   const { pathname } = new URL(request.url)
-  const tweetPromise = store.dispatch(tweetsApi.endpoints.fetchTweet.initiate(pathname.replace(/^\/post\//, '')))
+  const tweetId = pathname.split('/')[2]
+
+  const tweetPromise = store.dispatch(
+    tweetsApi.endpoints.fetchTweet.initiate(tweetId, {
+      subscribe: false,
+      forceRefetch: true,
+    }),
+  )
+
   const tweetRes = await tweetPromise
 
   if (!tweetRes.data) {
-    redirect(Route.HOME)
-    tweetPromise.unsubscribe()
-
-    return null
+    return redirect(Route.HOME)
   }
 
-  const userPromise = store.dispatch(usersApi.endpoints.getUserById.initiate(tweetRes.data.createdById))
-  const userRes = await userPromise
-  userPromise.unsubscribe()
-
-  return { tweet: tweetRes.data, user: userRes.data }
+  return { tweetId, createdById: tweetRes.data.createdById }
 }

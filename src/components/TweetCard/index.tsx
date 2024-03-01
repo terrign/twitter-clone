@@ -1,11 +1,14 @@
 import { Like, LikeFilled } from '@assets'
+import { useDebounceCallback } from '@hooks'
 import { Route } from '@router'
 import { useAppSelector, useLikeTweetMutation, useUnlikeTweetMutation } from '@store'
 import { Tweet, UserInfo } from '@types'
 import { Avatar, UserName } from '@ui'
-import { MouseEventHandler } from 'react'
+import { getHumanMonthDayFromTimeStamp } from '@utils'
+import { MouseEventHandler, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import { Menu } from './Menu'
 import { CardHeader, Likes, StyledTweetCard, TweetAvatar, TweetContent } from './styled'
 
 interface TweetCardProps {
@@ -17,62 +20,68 @@ export const TweetCard = ({
   tweet: { text, imageURL, likedUserIds, timestamp, id },
   createdByInfo,
 }: TweetCardProps) => {
-  const { uid } = useAppSelector((state) => state.user.user)
-  const [likeTrigger, likeTriggerState] = useLikeTweetMutation()
-  const [unlikeTrigger, unlikeTriggerState] = useUnlikeTweetMutation()
+  const userId = useAppSelector((state) => state.user.user.uid)
+  const { photoURL, name, email, uid } = createdByInfo
+
   const nav = useNavigate()
 
-  const { photoURL, name, email } = createdByInfo
-  const date = new Date(timestamp).toLocaleString('en-US', { month: 'long', day: 'numeric' })
+  const [likeTrigger, likeTriggerState] = useLikeTweetMutation()
+  const [unlikeTrigger, unlikeTriggerState] = useUnlikeTweetMutation()
 
-  const likedByCurrentUser = likedUserIds.includes(uid)
+  const isReallyLiked = likedUserIds.includes(userId)
 
-  const likeClickHandler: MouseEventHandler<HTMLElement> = async (event) => {
-    event.stopPropagation()
+  const [liked, setLiked] = useState(isReallyLiked)
+  const [likesCount, setLikesCount] = useState(likedUserIds.length)
 
+  const date = getHumanMonthDayFromTimeStamp(timestamp)
+
+  const toggleLike = () => {
+    if (liked && isReallyLiked) {
+      unlikeTrigger({ tweetId: id, uid: userId, tweetCreatedById: uid })
+    } else if (!liked && !isReallyLiked) {
+      likeTrigger({ tweetId: id, uid: userId, tweetCreatedById: uid })
+    }
+  }
+
+  const toggleLikeDebounced = useDebounceCallback(toggleLike)
+
+  const likeClickHandler: MouseEventHandler<HTMLElement> = async () => {
     if (likeTriggerState.status === 'pending' || unlikeTriggerState.status === 'pending') {
       return
     }
 
-    if (likedUserIds.includes(uid)) {
-      unlikeTrigger({ tweetId: id, uid })
+    if (liked) {
+      setLiked(false)
+      setLikesCount((prevCount) => prevCount - 1)
     } else {
-      likeTrigger({ tweetId: id, uid })
+      setLiked(true)
+      setLikesCount((prevCount) => prevCount + 1)
     }
+
+    toggleLikeDebounced()
   }
 
-  const tweetClickHandler = () => {
+  const toPostPageClickHandler = () => {
     nav(`${Route.POST}/${id}`)
   }
 
-  const showMoreClickHandler: MouseEventHandler<HTMLElement> = (event) => {
-    event.stopPropagation()
-  }
-
   return (
-    <StyledTweetCard onClick={tweetClickHandler}>
+    <StyledTweetCard>
       <TweetAvatar>
         <Avatar photoURL={photoURL} size="s" />
       </TweetAvatar>
       <CardHeader>
-        <div>
-          <UserName name={name} email={email} col />
-          <span>&bull;{date}</span>
-        </div>
+        <UserName name={name} email={email} uid={uid} col date={date} />
       </CardHeader>
-      {uid === createdByInfo.uid && (
-        <button onClick={showMoreClickHandler}>
-          <span>...</span>
-        </button>
-      )}
-      <TweetContent>
+      {userId === createdByInfo.uid && <Menu tweetId={id} />}
+      <TweetContent onClick={toPostPageClickHandler}>
         <span>{text}</span>
         {imageURL && <img src={imageURL} />}
       </TweetContent>
       <Likes>
         <button onClick={likeClickHandler}>
-          {likedByCurrentUser ? <LikeFilled /> : <Like />}
-          {likedUserIds.length}
+          {liked ? <LikeFilled /> : <Like />}
+          {likesCount}
         </button>
       </Likes>
     </StyledTweetCard>

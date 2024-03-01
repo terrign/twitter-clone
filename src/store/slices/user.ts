@@ -5,7 +5,6 @@ import { Theme, UserInfo } from '@types'
 export interface UserStateType {
   theme: Theme
   user: UserInfo
-  recordId: string
 }
 
 const EMPTY_USER: UserInfo = {
@@ -24,7 +23,6 @@ const EMPTY_USER: UserInfo = {
 const initialState: UserStateType = {
   theme: Theme.LIGHT,
   user: EMPTY_USER,
-  recordId: '',
 }
 
 export const userSlice = createSlice({

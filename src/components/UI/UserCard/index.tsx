@@ -6,13 +6,14 @@ export interface UserCardProps {
   url: string
   name: string
   email: string
+  uid: string
 }
 
-export const UserCard = ({ url, name, email }: UserCardProps) => {
+export const UserCard = ({ url, name, email, uid }: UserCardProps) => {
   return (
     <StyledUserCard>
       <Avatar photoURL={url} size="s" />
-      <UserName col name={name} email={email} />
+      <UserName col name={name} email={email} uid={uid} />
     </StyledUserCard>
   )
 }

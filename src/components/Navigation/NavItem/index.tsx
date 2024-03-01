@@ -1,4 +1,5 @@
 import { Route } from '@router'
+import { store } from '@store'
 import { NavLink, useLocation } from 'react-router-dom'
 
 import { StyledNavItem } from './styled'
@@ -15,9 +16,11 @@ export interface NavItemProps {
 export const NavItem = ({ label, icon: { filled, outlined }, path }: NavItemProps) => {
   const { pathname } = useLocation()
 
+  const realPath = label === 'Profile' ? `${path}/${store.getState().user.user.uid}` : path
+
   return (
     <StyledNavItem $title={label}>
-      <NavLink to={path}>
+      <NavLink to={realPath}>
         <div>{pathname.includes(path) ? filled : outlined}</div>
 
         <span>{label}</span>

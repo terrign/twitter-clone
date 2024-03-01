@@ -27,23 +27,14 @@ export const CardHeader = styled.header`
   font-size: ${({ theme }) => theme.fontS};
 
   & > div {
+    width: 100%;
+  }
+
+  & > div > p {
     display: flex;
     flex-wrap: wrap;
-    align-items: end;
-
-    & > span {
-      color: ${({ theme }) => theme.fontColorTertiary};
-    }
-
-    & > span:first-of-type {
-      @media ${screen.s} {
-        display: none;
-      }
-    }
-
-    @media ${screen.l} {
-      flex-wrap: wrap;
-    }
+    max-width: 100% !important;
+    width: 100%;
   }
 
   button {
@@ -84,6 +75,7 @@ export const Likes = styled.footer`
 
 export const TweetContent = styled.p`
   grid-column: 2;
+  cursor: pointer;
 
   span {
     display: block;

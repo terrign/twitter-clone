@@ -83,8 +83,7 @@ function* updatePasswordWorker({
 }
 
 function* signOutWorker() {
-  yield persistor.purge()
-  yield authService.signOut()
+  yield persistor.purge().then(() => authService.signOut())
 }
 
 function* watchGoogleSignUp() {
@@ -103,10 +102,10 @@ function* watchSignIn() {
   yield takeLeading(signInWithEmail.type, signInWorker)
 }
 
-function* wathUpdatePassword() {
+function* watсhUpdatePassword() {
   yield takeLeading(updatePassword.type, updatePasswordWorker)
 }
 
 export function* authSaga() {
-  yield all([watchGoogleSignUp(), watchEmailSignUp(), watchSignOut(), watchSignIn(), wathUpdatePassword()])
+  yield all([watchGoogleSignUp(), watchEmailSignUp(), watchSignOut(), watchSignIn(), watсhUpdatePassword()])
 }
