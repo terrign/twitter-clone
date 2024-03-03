@@ -24,7 +24,7 @@ export const Post = () => {
     <section>
       <Header>Post</Header>
       {!exists && <h3>Post has been removed or never existed</h3>}
-      {exists && <TweetCard tweet={tweet.data!} createdByInfo={user.data!} />}
+      {exists && <TweetCard tweet={tweet.data!} createdByInfo={user.data!} key={tweet.data?.id} />}
     </section>
   )
 }

@@ -15,7 +15,7 @@ export const StyledTweetCard = styled.article<{ $compact?: boolean }>`
   padding-top: 1rem;
   grid-row-gap: 0.5rem;
 
-  ${({ $compact }) => $compact && compactTweetCardStyles}
+  ${({ $compact }) => $compact && compactTweetCardStyles};
 
   @media ${screen.s} {
     ${compactTweetCardStyles}
@@ -61,7 +61,7 @@ const compactTweetAvatarStyles = css`
 `
 
 export const TweetAvatar = styled.div<{ $compact?: boolean }>`
-  grid-row: 1 / 3;
+  grid-row: 1 / 2;
 
   ${({ $compact }) => $compact && compactTweetCardStyles}
   margin-top: ${({ $compact }) => $compact && '-5px'};

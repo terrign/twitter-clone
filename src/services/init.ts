@@ -6,7 +6,7 @@ import { FIREBASE_CONFIG } from './constants'
 
 export const app = initializeApp(FIREBASE_CONFIG)
 
-const isDev = false //import.meta.env.DEV
+const isDev = import.meta.env.DEV
 
 const db = getFirestore(app)
 
