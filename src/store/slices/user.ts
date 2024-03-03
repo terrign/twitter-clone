@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { signOut } from '@store'
+import { signOut, usersApi } from '@store'
 import { Theme, UserInfo } from '@types'
 
 export interface UserStateType {
@@ -49,7 +49,15 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(signOut, (store) => {
       store.user = EMPTY_USER
-    })
+    }),
+      builder.addMatcher(usersApi.endpoints.getUserById.matchFulfilled, (state, { payload }) => {
+        console.log('asdasdasd')
+
+        if (payload && state.user.uid === payload?.uid) {
+          console.log('asdfasdfasdfasdf')
+          state.user = payload
+        }
+      })
   },
 })
 

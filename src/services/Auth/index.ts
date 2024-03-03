@@ -10,7 +10,6 @@ import {
   updatePassword,
   UserCredential,
 } from 'firebase/auth'
-
 import { GOOGLE_PROVIDER_SCOPE } from '../constants'
 import { auth } from '../init'
 

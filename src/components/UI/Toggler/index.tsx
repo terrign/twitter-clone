@@ -1,5 +1,4 @@
 import { useRef } from 'react'
-
 import { StyledTogggler, TogglerBar } from './styled'
 
 interface TogglerProps {

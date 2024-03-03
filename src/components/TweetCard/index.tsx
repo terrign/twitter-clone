@@ -1,3 +1,5 @@
+import { MouseEventHandler, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Like, LikeFilled } from '@assets'
 import { useDebounceCallback } from '@hooks'
 import { Route } from '@router'
@@ -5,9 +7,6 @@ import { useAppSelector, useLikeTweetMutation, useUnlikeTweetMutation } from '@s
 import { Tweet, UserInfo } from '@types'
 import { Avatar, UserName } from '@ui'
 import { getHumanMonthDayFromTimeStamp } from '@utils'
-import { MouseEventHandler, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-
 import { Menu } from './Menu'
 import { CardHeader, Likes, StyledTweetCard, TweetAvatar, TweetContent } from './styled'
 
@@ -25,8 +24,8 @@ export const TweetCard = ({
 
   const nav = useNavigate()
 
-  const [likeTrigger, likeTriggerState] = useLikeTweetMutation()
-  const [unlikeTrigger, unlikeTriggerState] = useUnlikeTweetMutation()
+  const [likeTrigger] = useLikeTweetMutation()
+  const [unlikeTrigger] = useUnlikeTweetMutation()
 
   const isReallyLiked = likedUserIds.includes(userId)
 
@@ -35,21 +34,17 @@ export const TweetCard = ({
 
   const date = getHumanMonthDayFromTimeStamp(timestamp)
 
-  const toggleLike = () => {
-    if (liked && isReallyLiked) {
-      unlikeTrigger({ tweetId: id, uid: userId, tweetCreatedById: uid })
-    } else if (!liked && !isReallyLiked) {
+  const toggleLike = (like: boolean) => {
+    if (like && !isReallyLiked) {
       likeTrigger({ tweetId: id, uid: userId, tweetCreatedById: uid })
+    } else if (!like && isReallyLiked) {
+      unlikeTrigger({ tweetId: id, uid: userId, tweetCreatedById: uid })
     }
   }
 
-  const toggleLikeDebounced = useDebounceCallback(toggleLike)
+  const toggleLikeDebounced = useDebounceCallback(toggleLike, 500)
 
   const likeClickHandler: MouseEventHandler<HTMLElement> = async () => {
-    if (likeTriggerState.status === 'pending' || unlikeTriggerState.status === 'pending') {
-      return
-    }
-
     if (liked) {
       setLiked(false)
       setLikesCount((prevCount) => prevCount - 1)
@@ -58,7 +53,7 @@ export const TweetCard = ({
       setLikesCount((prevCount) => prevCount + 1)
     }
 
-    toggleLikeDebounced()
+    toggleLikeDebounced(!liked)
   }
 
   const toPostPageClickHandler = () => {
@@ -71,7 +66,7 @@ export const TweetCard = ({
         <Avatar photoURL={photoURL} size="s" />
       </TweetAvatar>
       <CardHeader>
-        <UserName name={name} email={email} uid={uid} col date={date} />
+        <UserName name={name} email={email} uid={uid} col date={date} link />
       </CardHeader>
       {userId === createdByInfo.uid && <Menu tweetId={id} />}
       <TweetContent onClick={toPostPageClickHandler}>

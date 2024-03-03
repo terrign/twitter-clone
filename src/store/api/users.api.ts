@@ -21,7 +21,11 @@ export const usersApi = createApi({
     }),
 
     getUserById: builder.query({
-      async queryFn(userId: string) {
+      async queryFn(userId: string | undefined) {
+        if (!userId) {
+          return { data: null }
+        }
+
         const user = await userService.getUserById(userId)
 
         return { data: user }

@@ -1,8 +1,7 @@
-import { EditProfile, NotFound, Post, PrivateRoot, Root, TempRoute } from '@pages'
-import { Loader } from '@ui'
 import { lazy, Suspense } from 'react'
 import { RouteObject } from 'react-router-dom'
-
+import { EditProfile, NotFound, Post, PrivateRoot, Root, TempRoute } from '@pages'
+import { Loader } from '@ui'
 import { guards } from './loaders/guards'
 import { postLoader } from './loaders/post'
 import { profileLoader } from './loaders/profile'
@@ -41,10 +40,10 @@ export const routes: RouteObject[] = [
         element: <PrivateRoot />,
         children: [
           {
-            path: `${Route.PROFILE}/:uid`,
+            path: `${Route.PROFILE}/:userId`,
             element: <Profile />,
             loader: profileLoader,
-            children: [{ path: `${Route.PROFILE}/:uid/edit`, element: <EditProfile /> }],
+            children: [{ path: `${Route.PROFILE}/:userId/edit`, element: <EditProfile /> }],
           },
           {
             path: Route.HOME,
@@ -55,7 +54,7 @@ export const routes: RouteObject[] = [
             element: <TempRoute />,
           },
           {
-            path: `${Route.POST}/:id`,
+            path: `${Route.POST}/:tweetId`,
             element: <Post />,
             loader: postLoader,
           },

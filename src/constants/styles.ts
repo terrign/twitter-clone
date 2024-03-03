@@ -42,7 +42,7 @@ const font = css`
   color: ${({ theme }) => theme.fontColor};
 `
 
-const enum Color {
+enum Color {
   BLACK = '#000000',
   BLUE = '#1D9BF0',
   DARK_BLUE = '#005995de',
@@ -207,7 +207,7 @@ const GlobalStyles = createGlobalStyle<{ $isLight?: boolean }>`
 
 `
 
-const hoverTitle = css<{ $title: string }>`
+const hoverTitle = css<{ $title?: string }>`
   &:hover {
     &::after {
       content: ${({ $title }) => `'${$title}'`};
@@ -218,7 +218,11 @@ const hoverTitle = css<{ $title: string }>`
       width: 100px;
       padding: 0.5rem;
       background: ${({ theme }) => theme.buttonBgColor};
-      border: 1px solid ${({ theme }) => theme.buttonBorderColor};
+
+      box-shadow:
+        ${({ theme }) => theme.fontColor} 0px 0px 15px,
+        ${({ theme }) => theme.fontColor} 0px 0px 3px 1px;
+
       border-radius: 6px;
       ${font}
 

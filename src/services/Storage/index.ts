@@ -1,5 +1,4 @@
 import { FirebaseStorage, getDownloadURL, list, ref, uploadBytesResumable } from 'firebase/storage'
-
 import { storage } from '../init'
 
 class StorageService {

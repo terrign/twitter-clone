@@ -1,22 +1,19 @@
-import { combineSlices, configureStore } from '@reduxjs/toolkit'
 import { useDispatch, useSelector } from 'react-redux'
+import { combineSlices, configureStore } from '@reduxjs/toolkit'
 import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist'
-// eslint-disable-next-line import/no-unresolved
-import localStorage from 'redux-persist/es/storage'
+import storage from 'redux-persist/lib/storage'
 import createSagaMiddleware from 'redux-saga'
-
 import { tweetsApi } from './api/tweets.api'
 import { usersApi } from './api/users.api'
-import { rootSaga } from './saga'
 import { alertSlice } from './slices/alert'
 import { authSlice } from './slices/auth'
 import { userSlice } from './slices/user'
+import { rootSaga } from './saga'
 
 const rootPersistConfig = {
   key: 'root',
-  storage: localStorage,
-
-  blacklist: ['auth', 'alert'],
+  storage,
+  blacklist: ['auth', 'alert', 'tweetsApi', 'usersapi'],
 }
 
 const sagaMiddleware = createSagaMiddleware()

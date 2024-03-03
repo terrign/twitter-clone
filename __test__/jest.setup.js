@@ -9,3 +9,7 @@ jest.mock('redux-persist', () => {
     persistReducer: jest.fn().mockImplementation((config, reducers) => reducers),
   }
 })
+
+import dotenv from 'dotenv'
+
+dotenv.config()

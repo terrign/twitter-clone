@@ -1,21 +1,27 @@
+import { useEffect } from 'react'
+// import { ChangeEvent, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { LeftArrow } from '@assets'
 // import { useDebounceCallback } from '@hooks'
 import { Route } from '@router'
 // import { useSearchTweetQuery } from '@store'
 import { Tweet, UserInfo } from '@types'
 import { SearchInput, UserCard } from '@ui'
-// import { ChangeEvent, useState } from 'react'
-import { Link } from 'react-router-dom'
-
 import { FollowButton, Header, StyledYouMightLike, SuggestedImage, SuggestedImages, SuggestedUsers } from './styled'
 
 interface Props {
   tweets?: Tweet[]
   users?: UserInfo[]
-  toggleAside: () => void
+  toggleAside: (close?: false) => void
 }
 
 export const YouMightLike = ({ users, tweets, toggleAside }: Props) => {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    toggleAside(false)
+  }, [pathname])
+
   // const [slug, setSlug] = useState('')
   // const debouncedSetSlug = useDebounceCallback(setSlug, 1000)
 
@@ -29,11 +35,13 @@ export const YouMightLike = ({ users, tweets, toggleAside }: Props) => {
 
   // // console.log(result.data)
 
+  const closeAside = () => toggleAside(false)
+
   return (
     <StyledYouMightLike>
       <Header>
         <button>
-          <LeftArrow onClick={toggleAside} />
+          <LeftArrow onClick={closeAside} />
         </button>
         <SearchInput>
           <input placeholder="Search people" />
@@ -56,7 +64,7 @@ export const YouMightLike = ({ users, tweets, toggleAside }: Props) => {
             {users.map(({ photoURL, name, email, uid }) => {
               return (
                 <div key={uid}>
-                  <UserCard url={photoURL} name={name} email={email} uid={uid} />
+                  <UserCard url={photoURL} name={name} email={email} uid={uid} link />
                   <FollowButton $type="filled">Follow</FollowButton>
                 </div>
               )

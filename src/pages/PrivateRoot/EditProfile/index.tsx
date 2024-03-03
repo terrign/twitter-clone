@@ -1,7 +1,7 @@
+import { useNavigate } from 'react-router-dom'
 import { ChangePasswordForm, EditProfileForm } from '@components'
 import { useAppSelector } from '@store'
 import { Modal } from '@ui'
-import { useNavigate } from 'react-router-dom'
 
 export const EditProfile = () => {
   const { authProvider } = useAppSelector((state) => state.user.user)

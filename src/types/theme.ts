@@ -1,4 +1,4 @@
-const enum Theme {
+enum Theme {
   LIGHT,
   DARK,
 }

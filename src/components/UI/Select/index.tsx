@@ -1,7 +1,6 @@
+import { useRef, useState } from 'react'
 import { useOuterClickHandler } from '@hooks'
 import { DropDownIcon, Input } from '@ui'
-import { useRef, useState } from 'react'
-
 import { IconWrapper, Option, Options, StyledSelect } from './styled'
 
 export interface SelectProps {

@@ -1,6 +1,5 @@
 import { UserInfo } from '@types'
 import { collection, doc, Firestore, getDoc, getDocs, limit, query, setDoc, where } from 'firebase/firestore'
-
 import { Collection } from '../constants'
 import { db } from '../init'
 

@@ -1,10 +1,9 @@
-import { Alert } from '@components'
-import { authService } from '@services'
-import { onAuthStateChanged } from 'firebase/auth'
 import { useEffect } from 'react'
 import { Outlet } from 'react-router'
 import { useLocation, useRevalidator } from 'react-router-dom'
-
+import { Alert } from '@components'
+import { authService } from '@services'
+import { onAuthStateChanged } from 'firebase/auth'
 import { Main } from './styled'
 
 export const Root = () => {

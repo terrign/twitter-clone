@@ -1,11 +1,10 @@
+import { FormProvider, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { storageService } from '@services'
 import { setAlert, updateUser, useAppDispatch, useAppSelector } from '@store'
 import { Button, Form, FormInput, FormItem } from '@ui'
 import { editProfileValidationSchema } from '@utils'
-import { FormProvider, useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
-
 import { ImageInput } from './ImageInput'
 
 export const EditProfileForm = () => {

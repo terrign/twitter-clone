@@ -1,20 +1,30 @@
+import { useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { Header, TweetCard } from '@components'
 import { useFetchTweetQuery, useGetUserByIdQuery } from '@store'
-import { useLoaderData } from 'react-router-dom'
+import { Loader } from '@ui'
 
 export const Post = () => {
-  const { tweetId, createdById } = useLoaderData() as { tweetId: string; createdById: string }
+  const { tweetId } = useParams<{ tweetId: string }>()
+  const [skip, setSkip] = useState(true)
+  const tweet = useFetchTweetQuery(tweetId, { skip })
+  const user = useGetUserByIdQuery(tweet.data?.createdById, { skip })
 
-  const tweet = useFetchTweetQuery(tweetId)
+  if (skip) {
+    setSkip(false)
+  }
 
-  const user = useGetUserByIdQuery(createdById)
+  if (tweet.isFetching || user.isFetching) {
+    return <Loader h="200px" />
+  }
 
-  console.log(user.data?.uid, tweet.data?.likedUserIds)
+  const exists = Boolean(tweet.data && user.data)
 
   return (
     <section>
       <Header>Post</Header>
-      {tweet.data && user.data && <TweetCard tweet={tweet.data} createdByInfo={user.data} />}
+      {!exists && <h3>Post has been removed or never existed</h3>}
+      {exists && <TweetCard tweet={tweet.data!} createdByInfo={user.data!} />}
     </section>
   )
 }

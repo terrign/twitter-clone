@@ -1,12 +1,13 @@
 import { DEFAULT_CACHE_TIME_S } from '@constants'
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react'
 import { tweetService } from '@services'
+import { store } from '@store'
 import { Tweet } from '@types'
 
 export const tweetsApi = createApi({
-  reducerPath: 'tweets',
+  reducerPath: 'tweetsApi',
   baseQuery: fakeBaseQuery(),
-  tagTypes: ['userTweets', 'fetchTweet', 'fetchAllTweets'],
+  tagTypes: ['tweetsByUserId', 'fetchTweet', 'fetchAllTweets'],
   keepUnusedDataFor: DEFAULT_CACHE_TIME_S,
   endpoints: (builder) => ({
     fetchTweetsByUserId: builder.query({
@@ -15,7 +16,6 @@ export const tweetsApi = createApi({
 
         return { data: tweets }
       },
-      providesTags: ['userTweets'],
     }),
 
     fetchAllTweets: builder.query({
@@ -37,17 +37,46 @@ export const tweetsApi = createApi({
 
         return { data: tweet }
       },
-      providesTags: ['fetchTweet'],
+      providesTags: (result) => {
+        return [{ type: 'fetchTweet', id: result?.id }]
+      },
     }),
 
     addTweet: builder.mutation({
-      async queryFn(tweet: Pick<Tweet, 'text' | 'imageURL' | 'createdById'>) {
+      async queryFn(tweet: Tweet) {
         await tweetService.createTweet(tweet)
 
         return { data: null }
       },
 
-      invalidatesTags: ['userTweets', 'fetchAllTweets'],
+      async onQueryStarted(tweet, { dispatch, queryFulfilled }) {
+        const patchFetchTweetsByUserId = dispatch(
+          tweetsApi.util.updateQueryData('fetchTweetsByUserId', tweet.createdById, (draft) => {
+            const index = draft.findIndex((existingTweet) => existingTweet.id === tweet.id)
+
+            if (index === -1) {
+              draft.unshift(tweet)
+            }
+          }),
+        )
+
+        const patchfetchAllTweets = dispatch(
+          tweetsApi.util.updateQueryData('fetchAllTweets', {}, (draft) => {
+            const index = draft.findIndex((existingTweet) => existingTweet.id === tweet.id)
+
+            if (index === -1) {
+              draft.unshift(tweet)
+            }
+          }),
+        )
+
+        try {
+          await queryFulfilled
+        } catch {
+          patchFetchTweetsByUserId.undo()
+          patchfetchAllTweets.undo()
+        }
+      },
     }),
 
     deleteTweet: builder.mutation({
@@ -56,7 +85,38 @@ export const tweetsApi = createApi({
 
         return { data: null }
       },
-      invalidatesTags: ['userTweets', 'fetchAllTweets'],
+
+      async onQueryStarted(tweetId, { dispatch, queryFulfilled }) {
+        const userId = store.getState().user.user.uid
+
+        const patchFetchTweetsByUserId = dispatch(
+          tweetsApi.util.updateQueryData('fetchTweetsByUserId', userId, (draft) => {
+            const tweetIndex = draft.findIndex((tweet) => tweet.id === tweetId)
+
+            if (tweetIndex !== -1) {
+              draft.splice(tweetIndex, 1)
+            }
+          }),
+        )
+
+        const patchfetchAllTweets = dispatch(
+          tweetsApi.util.updateQueryData('fetchAllTweets', {}, (draft) => {
+            const tweetIndex = draft.findIndex((tweet) => tweet.id === tweetId)
+
+            if (tweetIndex !== -1) {
+              draft.splice(tweetIndex, 1)
+            }
+          }),
+        )
+
+        try {
+          await queryFulfilled
+          tweetsApi.util.invalidateTags([{ type: 'fetchTweet', id: tweetId }])
+        } catch {
+          patchFetchTweetsByUserId.undo()
+          patchfetchAllTweets.undo()
+        }
+      },
     }),
 
     likeTweet: builder.mutation({
@@ -79,7 +139,7 @@ export const tweetsApi = createApi({
         )
 
         const patchfetchAllTweets = dispatch(
-          tweetsApi.util.updateQueryData('fetchAllTweets', undefined, (draft) => {
+          tweetsApi.util.updateQueryData('fetchAllTweets', {}, (draft) => {
             draft.find((tweet) => tweet.id === tweetId)?.likedUserIds.push(uid)
           }),
         )
@@ -109,7 +169,7 @@ export const tweetsApi = createApi({
               return
             }
 
-            const likedUserIdIndex = draft[tweetIndex].likedUserIds.findIndex((id) => id === uid)
+            const likedUserIdIndex = draft[tweetIndex].likedUserIds.indexOf(uid)
 
             if (likedUserIdIndex === -1) {
               return
@@ -121,9 +181,9 @@ export const tweetsApi = createApi({
 
         const patchFetchTweet = dispatch(
           tweetsApi.util.updateQueryData('fetchTweet', tweetId, (draft) => {
-            const likedUserIdIndex = draft?.likedUserIds.findIndex((id) => id === uid)
+            const likedUserIdIndex = draft?.likedUserIds.indexOf(uid)
 
-            if (likedUserIdIndex === -1 || !likedUserIdIndex) {
+            if (likedUserIdIndex === -1 || likedUserIdIndex === undefined) {
               return
             }
 
@@ -132,14 +192,14 @@ export const tweetsApi = createApi({
         )
 
         const patchFetchAllTweets = dispatch(
-          tweetsApi.util.updateQueryData('fetchAllTweets', undefined, (draft) => {
+          tweetsApi.util.updateQueryData('fetchAllTweets', {}, (draft) => {
             const tweetIndex = draft.findIndex((tweet) => tweet.id === tweetId)
 
             if (tweetIndex === -1) {
               return
             }
 
-            const likedUserIdIndex = draft[tweetIndex].likedUserIds.findIndex((id) => id === uid)
+            const likedUserIdIndex = draft[tweetIndex].likedUserIds.indexOf(uid)
 
             if (likedUserIdIndex === -1) {
               return

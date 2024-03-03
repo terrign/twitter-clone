@@ -1,6 +1,5 @@
-import { useOuterClickHandler } from '@hooks'
 import { PropsWithChildren, ReactNode, useRef } from 'react'
-
+import { useOuterClickHandler } from '@hooks'
 import { Menu, StyledPopupMenu } from './styled'
 
 interface Props extends PropsWithChildren {

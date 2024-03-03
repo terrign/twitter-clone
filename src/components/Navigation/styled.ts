@@ -1,4 +1,4 @@
-import { Color, screen } from '@constants'
+import { Color, hoverTitle, screen } from '@constants'
 import { Button } from '@ui'
 import styled from 'styled-components'
 
@@ -55,9 +55,11 @@ export const StyledAsideNavigation = styled.aside`
   }
 `
 
-export const LogoutButton = styled(Button)`
+export const LogoutButton = styled(Button)<{ $title: string }>`
   background: ${({ theme }) => theme.disabledButtonBgColor};
   color: ${Color.WHITE};
+
+  position: relative;
 
   padding: 0;
 
@@ -82,5 +84,9 @@ export const LogoutButton = styled(Button)`
     span {
       display: none;
     }
+  }
+
+  @media ${screen.l} and (hover: hover) {
+    ${hoverTitle}
   }
 `

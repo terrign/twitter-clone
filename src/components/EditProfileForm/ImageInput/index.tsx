@@ -1,8 +1,7 @@
-import { AddPhoto, DefaultAvatarImage } from '@assets'
-import { convertBase64 } from '@utils'
 import { ChangeEvent, useId, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
-
+import { AddPhoto, DefaultAvatarImage } from '@assets'
+import { convertBase64 } from '@utils'
 import { StyledImageInput } from './styled'
 
 export const ImageInput = ({ photoURL }: { photoURL: string }) => {

@@ -1,9 +1,8 @@
+import { useRef, useState } from 'react'
+import { Outlet } from 'react-router-dom'
 import { Navigation, YouMightLike } from '@components'
 import { useOuterClickHandler } from '@hooks'
 import { useAppSelector, useGetUserSuggestionsQuery } from '@store'
-import { useRef, useState } from 'react'
-import { Outlet } from 'react-router-dom'
-
 import { MainWrapper, PrivateRootWrapper, RightAside } from './styled'
 
 export const PrivateRoot = () => {
@@ -13,8 +12,8 @@ export const PrivateRoot = () => {
 
   const asideRef = useRef<HTMLElement>(null)
 
-  const toggleAside = () => {
-    setAsideVisible((prev) => !prev)
+  const toggleAside = (close?: false) => {
+    setAsideVisible((prev) => close ?? !prev)
   }
 
   const closeAsideIfOpen = () => {

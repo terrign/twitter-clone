@@ -1,4 +1,4 @@
-import { Color, screen } from '@constants'
+import { Color, hoverTitle, screen } from '@constants'
 import styled, { css } from 'styled-components'
 
 const outlinedButtonBorder = css`
@@ -28,10 +28,13 @@ export const Button = styled.button<{ $type: 'filled' | 'outlined' }>`
   }
 `
 
-export const TweetButton = styled(Button)`
+export const TweetButton = styled(Button)<{ $title?: string }>`
+  position: relative;
+
   svg {
     display: none;
   }
+
   @media ${screen.l} {
     height: 40px;
     width: 40px;
@@ -46,5 +49,9 @@ export const TweetButton = styled(Button)`
     span {
       display: none;
     }
+  }
+
+  @media ${screen.l} and (hover: hover) {
+    ${({ $title }) => $title && hoverTitle}
   }
 `

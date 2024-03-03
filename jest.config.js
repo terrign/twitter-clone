@@ -2,14 +2,8 @@
 
 module.exports = {
   testEnvironment: 'jest-environment-jsdom',
-  extensionsToTreatAsEsm: ['.tsx'],
-  collectCoverageFrom: [
-    './src/**/*.{ts,tsx,js}',
-    '!**/node_modules/**',
-    '!**/vendor/**',
-    '!./src/index.tsx',
-    '!src/**/*.stories.tsx',
-  ],
+  extensionsToTreatAsEsm: ['.tsx', '.ts'],
+  collectCoverageFrom: ['./src/**/*.{ts,tsx,js}', '!**/node_modules/**', '!**/vendor/**', '!./src/index.tsx'],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/__test__/__mocks__/fileMock.js',
@@ -28,12 +22,12 @@ module.exports = {
     '^@hooks': '<rootDir>/src/hooks/index',
     '^@ui': '<rootDir>/src/components/UI/index',
   },
+
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
+    '^.+\\.(js|jsx)$': '<rootDir>/node_modules/babel-jest',
+    '^.+\\.(ts|tsx)$': '<rootDir>/node_modules/ts-jest',
   },
   setupFiles: ['<rootDir>/__test__/jest.polyfills.js'],
   setupFilesAfterEnv: ['<rootDir>/__test__/jest.setup.js'],
-  testEnvironmentOptions: {
-    customExportConditions: [''],
-  },
+  transformIgnorePatterns: ['/node_modules/(?!(firebase|@firebase)/)'],
 }

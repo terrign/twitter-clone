@@ -4,6 +4,7 @@ import {
   signUpValidationSchema,
   tweetValidationSchema,
 } from './formValidationSchemas'
+import { newTweet } from './newTweet'
 
 const generateYears = () => {
   const years = []
@@ -55,6 +56,7 @@ export {
   generateDays,
   generateYears,
   getHumanMonthDayFromTimeStamp,
+  newTweet,
   nicknameFromEmail,
   signUpValidationSchema,
   tweetValidationSchema,

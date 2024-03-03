@@ -1,11 +1,10 @@
+import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import { TweetButtonIcon } from '@assets'
 import { TweetForm } from '@components'
 import { Route } from '@router'
 import { signOut, useAppDispatch, useAppSelector } from '@store'
 import { Avatar, Modal, TweetButton, TwitterIcon, UserCard } from '@ui'
-import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
-
 import { navLinks } from './constants'
 import { NavItem } from './NavItem'
 import { LogoutButton, StyledAsideNavigation } from './styled'
@@ -13,7 +12,7 @@ import { LogoutButton, StyledAsideNavigation } from './styled'
 export const Navigation = () => {
   const dispatch = useAppDispatch()
 
-  const { name, email, photoURL } = useAppSelector((state) => state.user.user)
+  const { name, email, photoURL, uid } = useAppSelector((state) => state.user.user)
 
   const [tweetModalOpen, setTweetModalOpen] = useState(false)
 
@@ -41,21 +40,21 @@ export const Navigation = () => {
         ))}
       </nav>
 
-      <TweetButton $type="filled" onClick={openModal} title="Tweet">
+      <TweetButton $type="filled" onClick={openModal} $title="Tweet">
         <span>Tweet</span>
 
         <TweetButtonIcon />
       </TweetButton>
       <div>
-        <UserCard name={name} email={email} url={photoURL} />
+        <UserCard name={name} email={email} url={photoURL} uid={uid} />
       </div>
 
-      <LogoutButton $type="filled" onClick={logoutHandler} title="Logout">
+      <LogoutButton $type="filled" onClick={logoutHandler} $title="Logout">
         <span>Log out</span>
         <Avatar size="s" photoURL={photoURL} />
       </LogoutButton>
       <Modal open={tweetModalOpen} onClose={closeModal} header="Add tweet">
-        <TweetForm />
+        <TweetForm onSubmit={closeModal} />
       </Modal>
     </StyledAsideNavigation>
   )

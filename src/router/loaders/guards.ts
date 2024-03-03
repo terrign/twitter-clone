@@ -1,6 +1,5 @@
-import { authService } from '@services'
 import { LoaderFunction, redirect } from 'react-router-dom'
-
+import { authService } from '@services'
 import { Route } from '../types'
 
 const PRIVATE_ROUTES: (Route | string)[] = [Route.PROFILE, Route.HOME, Route.EDIT, Route.TODO]

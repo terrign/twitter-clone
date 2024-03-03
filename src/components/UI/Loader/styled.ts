@@ -3,18 +3,52 @@ import { Centered } from '@ui'
 import styled, { keyframes } from 'styled-components'
 
 const animation = keyframes`
- 0% {
-      top: 0;
-      color: white;
-    }
-    50% {
-      top: 30px;
-      color: rgba(255, 255, 255, 0.2);
-    }
-    100% {
-      top: 0;
-      color: white;
-    }
+ 0%,
+  100% {
+    box-shadow: 0 -3em 0 0.2em,
+    2em -2em 0 0em, 3em 0 0 -1em,
+    2em 2em 0 -1em, 0 3em 0 -1em,
+    -2em 2em 0 -1em, -3em 0 0 -1em,
+    -2em -2em 0 0;
+  }
+  12.5% {
+    box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em,
+    3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em,
+    -2em 2em 0 -1em, -3em 0 0 -1em,
+    -2em -2em 0 -1em;
+  }
+  25% {
+    box-shadow: 0 -3em 0 -0.5em,
+    2em -2em 0 0, 3em 0 0 0.2em,
+    2em 2em 0 0, 0 3em 0 -1em,
+    -2em 2em 0 -1em, -3em 0 0 -1em,
+    -2em -2em 0 -1em;
+  }
+  37.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+     3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em,
+     -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  50% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+     3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em,
+     -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  62.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+     3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0,
+     -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+  }
+  75% {
+    box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em,
+    3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em,
+    -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+  }
+  87.5% {
+    box-shadow: 0em -3em 0 0, 2em -2em 0 -1em,
+    3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em,
+    -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+  }
 `
 
 export const LoaderCenter = styled(Centered)<{ $h?: string; $w?: string }>`
@@ -22,42 +56,14 @@ export const LoaderCenter = styled(Centered)<{ $h?: string; $w?: string }>`
   width: ${({ $w }) => $w};
 `
 
-export const StyledLoader = styled.span`
-  width: 16px;
-  height: 16px;
-  box-shadow:
-    0 30px,
-    0 -30px;
-  border-radius: 4px;
-  background: currentColor;
-  display: block;
-  margin: -50px auto 0;
+export const StyledLoader = styled.span<{ $size?: 'l' | 's'; $color?: Color }>`
+  color: ${({ $color }) => $color ?? Color.BLUE};
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
   position: relative;
-  color: ${({ theme }) => theme.fontColor};
-  transform: translateY(30px);
-  box-sizing: border-box;
-  animation: ${animation} 2s ease infinite;
-
-  &::after,
-  &::before {
-    content: '';
-    box-sizing: border-box;
-    width: 16px;
-    height: 16px;
-    box-shadow:
-      0 30px,
-      0 -30px;
-    border-radius: 4px;
-    background: currentColor;
-    color: ${Color.BLUE};
-    position: absolute;
-    left: 30px;
-    top: 0;
-    animation: ${animation} 2s 0.2s ease infinite;
-  }
-
-  &::before {
-    animation-delay: 0.4s;
-    left: 60px;
-  }
+  text-indent: -9999em;
+  animation: ${animation} 1.3s infinite linear;
+  transform: translateZ(0) scale(${({ $size }) => ($size === 'l' ? 1.5 : $size === 's' ? 0.5 : 1)});
 `

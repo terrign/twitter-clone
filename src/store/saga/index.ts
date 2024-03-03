@@ -1,5 +1,4 @@
 import { all, spawn } from 'redux-saga/effects'
-
 import { authSaga } from './auth'
 import { userSaga } from './user'
 

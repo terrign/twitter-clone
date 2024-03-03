@@ -1,11 +1,10 @@
+import { Link } from 'react-router-dom'
 import { WelcomeTwitterBackGroundImage } from '@assets'
 import { Footer } from '@components'
 import { LINKS } from '@constants'
 import { Route } from '@router'
 import { signUpWithGoogle, useAppDispatch } from '@store'
 import { Button, GoogleIcon, TwitterIcon } from '@ui'
-import { Link } from 'react-router-dom'
-
 import { Content, HomeLoginText, HomeTermsText, HomeWrapper, Main, TwitterBackGround } from './styled'
 
 export const Welcome = () => {

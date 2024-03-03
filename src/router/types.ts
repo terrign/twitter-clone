@@ -1,4 +1,4 @@
-export enum Route {
+export const enum Route {
   WELCOME = '/',
   SIGN_IN = '/signin',
   SIGN_UP = '/signup',

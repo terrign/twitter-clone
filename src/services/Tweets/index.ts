@@ -17,7 +17,6 @@ import {
   updateDoc,
   where,
 } from 'firebase/firestore'
-
 import { Collection } from '../constants'
 import { db } from '../init'
 
@@ -25,21 +24,10 @@ class TweetService {
   public db: Firestore = db
   private collection = Collection.TWEETS
 
-  public createTweet = async ({ text, imageURL, createdById }: Pick<Tweet, 'imageURL' | 'text' | 'createdById'>) => {
-    const tweetId = crypto.randomUUID()
+  public createTweet = async (tweet: Tweet) => {
+    await setDoc(doc(this.db, this.collection, tweet.id), tweet)
 
-    const tweet: Tweet = {
-      id: tweetId,
-      createdById,
-      likedUserIds: [],
-      imageURL,
-      text,
-      timestamp: Date.now(),
-    }
-
-    await setDoc(doc(this.db, this.collection, tweetId), tweet)
-
-    return null
+    return tweet
   }
 
   public getAllTweets = async () => {
@@ -88,12 +76,7 @@ class TweetService {
   }
 
   public getSuggestedTweets = async (userId: string) => {
-    const tweetQuery = query(
-      collection(this.db, this.collection),
-      where('imageURL', '!=', ''),
-      // orderBy('timestamp', 'desc'),
-      limit(20),
-    )
+    const tweetQuery = query(collection(this.db, this.collection), where('imageURL', '!=', ''), limit(20))
 
     const querySnap = await getDocs(tweetQuery)
 

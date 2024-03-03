@@ -1,9 +1,8 @@
+import { useNavigate } from 'react-router-dom'
 import { Route } from '@router'
 import { useAppSelector } from '@store'
 import { UserInfo } from '@types'
 import { Avatar, Button, UserName } from '@ui'
-import { useNavigate } from 'react-router-dom'
-
 import { Bio, StyledProfileInfo } from './styled'
 
 export const ProfileInfo = ({ user }: { user: UserInfo }) => {

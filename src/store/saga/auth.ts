@@ -4,7 +4,6 @@ import { persistor } from '@store'
 import { AuthProvider, EmailSignUpPayload, UserInfo } from '@types'
 import { AuthError, UserCredential } from 'firebase/auth'
 import { all, call, put, takeLeading } from 'redux-saga/effects'
-
 import { setAlert } from '../slices/alert'
 import { signInWithEmail, signOut, signUpWithEmail, signUpWithGoogle, updatePassword } from '../slices/auth'
 import { createUser, updateUser } from '../slices/user'

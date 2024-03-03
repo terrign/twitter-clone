@@ -1,8 +1,8 @@
 import { PayloadAction } from '@reduxjs/toolkit'
 import { userService } from '@services'
+import { usersApi } from '@store'
 import { UserInfo } from '@types'
 import { all, call, put, takeEvery } from 'redux-saga/effects'
-
 import { createUser, setUser, updateUser } from '../slices/user'
 
 export function* getUser(uid: string) {
@@ -21,6 +21,14 @@ function* createUserWorker({ payload }: PayloadAction<UserInfo>) {
 
 function* updateUserWorker({ payload }: PayloadAction<Partial<UserInfo> & { uid: string }>) {
   yield call(userService.updateUser, payload.uid, payload)
+
+  yield put(
+    usersApi.util.updateQueryData('getUserById', payload.uid, (draft) => {
+      if (draft && payload) {
+        Object.assign(draft, payload)
+      }
+    }),
+  )
 }
 
 function* watchCreateUser() {

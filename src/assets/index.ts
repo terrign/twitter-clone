@@ -1,3 +1,4 @@
+import NotFoundBackGround from './404-background.svg?react'
 import AddImageOutlined from './add-image.svg?react'
 import AddPhoto from './add-photo.svg?react'
 import WelcomeTwitterBackGroundImage from './back-twitter.jpg'
@@ -50,6 +51,7 @@ export {
   MessagesFilled,
   MessagesOutlined,
   More,
+  NotFoundBackGround,
   NotificationFilled,
   NotificationOutlined,
   ProfileFilled,

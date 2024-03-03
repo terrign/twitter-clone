@@ -1,7 +1,6 @@
+import { NavLink, useLocation } from 'react-router-dom'
 import { Route } from '@router'
 import { store } from '@store'
-import { NavLink, useLocation } from 'react-router-dom'
-
 import { StyledNavItem } from './styled'
 
 export interface NavItemProps {

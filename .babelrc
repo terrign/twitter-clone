@@ -4,7 +4,9 @@
     ["@babel/preset-env", { "targets": { "node": true, "esmodules": true } }],
     "@babel/preset-typescript"
   ],
+
   "plugins": [
+    "babel-plugin-transform-import-meta",
     ["@babel/plugin-transform-typescript", { "allowDeclareFields": true, "legacy": true }],
     "@babel/plugin-proposal-class-properties"
   ],

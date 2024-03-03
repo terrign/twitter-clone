@@ -8,6 +8,25 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'import/no-default-export': 'error',
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'simple-import-sort/imports': [
+      'error',
+      {
+        groups: [
+          [
+            '^\\u0000',
+            '^react',
+            '^(assert|buffer|child_process|cluster|console|constants|crypto|dgram|dns|domain|events|fs|http|https|module|net|os|path|punycode|querystring|readline|repl|stream|string_decoder|sys|timers|tls|tty|url|util|vm|zlib|freelist|v8|process|async_hooks|http2|perf_hooks)(/.*|$)',
+            '^@?\\w',
+            '^\\.\\.(?!/?$)',
+            '^\\.\\./?$',
+            '^\\./(?=.*/)(?!/?$)',
+            '^\\.(?!/?$)',
+            '^\\./?$',
+            '^.+\\.s?css$',
+          ],
+        ],
+      },
+    ],
 
     'no-console': 'off',
     '@stylistic/arrow-parens': ['error', 'always'],
@@ -31,13 +50,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*stories.tsx'],
-      rules: {
-        'import/no-default-export': 'off',
-      },
-    },
-    {
-      files: ['./src/assets/index.ts'],
+      files: ['./src/assets/index.ts', './src/App.tsx', './src/store/store.ts'],
       rules: {
         'import/no-unresolved': 'off',
       },
@@ -73,7 +86,7 @@ module.exports = {
   },
   ignorePatterns: [
     '__test__/**/*',
-    '*.eslintrc.cjs',
+    '*.eslintrc.js',
     '*.config.cjs',
     '*.config.ts',
     '*.config.js',
