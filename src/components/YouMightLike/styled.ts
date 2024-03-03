@@ -1,15 +1,5 @@
 import { screen } from '@constants'
-import { Button } from '@ui'
 import styled from 'styled-components'
-
-export const FollowButton = styled(Button)`
-  background: ${({ theme }) => theme.reverseBgColor};
-  color: ${({ theme }) => theme.reverseFontColor};
-  height: 25px;
-  width: 62px;
-
-  font-size: ${({ theme }) => theme.fontS};
-`
 
 export const StyledYouMightLike = styled.section`
   display: grid;
@@ -51,16 +41,8 @@ export const SuggestedImage = styled.div<{ $url: string }>`
   cursor: pointer;
 `
 
-export const SuggestedUsers = styled.div`
-  & > div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-`
-
 export const Header = styled.header`
-  display: flex;
+  display: none;
 
   & > div {
     flex-grow: 1;
@@ -72,6 +54,7 @@ export const Header = styled.header`
   }
 
   @media ${screen.m} {
+    display: flex;
     button {
       display: block;
       transform: scaleX(-1);

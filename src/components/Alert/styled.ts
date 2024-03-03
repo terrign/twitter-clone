@@ -27,7 +27,7 @@ export const StyledAlert = styled.div<{ $type: 'error' | 'success' }>`
   background: ${({ $type }) => ($type === 'success' ? Color.BLUE : Color.RED)};
   color: ${Color.WHITE};
 
-  position: absolute;
+  position: fixed;
   top: 2rem;
   left: calc(100% - 300px - 2rem);
   border-radius: 6px;
@@ -39,8 +39,8 @@ export const StyledAlert = styled.div<{ $type: 'error' | 'success' }>`
 export const CloseButton = styled.button.attrs({ type: 'button' })`
   position: absolute;
   color: inherit;
-  height: 1rem;
-  width: 1rem;
+  height: 30px;
+  width: 30px;
   top: 0.5rem;
-  left: calc(100% - 1.5rem);
+  left: calc(100% - 30px - 0.5rem);
 `

@@ -238,4 +238,5 @@ export const {
   useDeleteTweetMutation,
   useFetchAllTweetsQuery,
   useSearchTweetQuery,
+  useLazySearchTweetQuery,
 } = tweetsApi

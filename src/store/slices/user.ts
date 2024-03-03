@@ -51,10 +51,7 @@ export const userSlice = createSlice({
       store.user = EMPTY_USER
     }),
       builder.addMatcher(usersApi.endpoints.getUserById.matchFulfilled, (state, { payload }) => {
-        console.log('asdasdasd')
-
         if (payload && state.user.uid === payload?.uid) {
-          console.log('asdfasdfasdfasdf')
           state.user = payload
         }
       })

@@ -1,5 +1,5 @@
 import { UserInfo } from '@types'
-import { collection, doc, Firestore, getDoc, getDocs, limit, query, setDoc, where } from 'firebase/firestore'
+import { and, collection, doc, Firestore, getDoc, getDocs, limit, or, query, setDoc, where } from 'firebase/firestore'
 import { Collection } from '../constants'
 import { db } from '../init'
 
@@ -37,6 +37,24 @@ class UserService {
     await setDoc(doc(this.db, this.collection, uid), userInfo, { merge: true })
 
     return null
+  }
+
+  public searchUsers = async (queryString: string) => {
+    const userQuery = query(
+      collection(this.db, this.collection),
+      or(
+        and(where('name', '>=', queryString), where('name', '<=', queryString + '\uf8ff')),
+        and(
+          where('name', '>=', queryString.charAt(0).toUpperCase() + queryString.slice(1)),
+          where('name', '<=', queryString.charAt(0).toUpperCase() + queryString.slice(1) + '\uf8ff'),
+        ),
+        and(where('name', '>=', queryString.toLowerCase()), where('name', '<=', queryString.toLowerCase() + '\uf8ff')),
+      ),
+    )
+
+    const querySnap = await getDocs(userQuery)
+
+    return querySnap.docs.map((tweet) => tweet.data()) as UserInfo[]
   }
 }
 

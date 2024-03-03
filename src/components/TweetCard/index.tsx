@@ -13,11 +13,13 @@ import { CardHeader, Likes, StyledTweetCard, TweetAvatar, TweetContent } from '.
 interface TweetCardProps {
   tweet: Tweet
   createdByInfo: UserInfo
+  compact?: boolean
 }
 
 export const TweetCard = ({
   tweet: { text, imageURL, likedUserIds, timestamp, id },
   createdByInfo,
+  compact,
 }: TweetCardProps) => {
   const userId = useAppSelector((state) => state.user.user.uid)
   const { photoURL, name, email, uid } = createdByInfo
@@ -42,7 +44,7 @@ export const TweetCard = ({
     }
   }
 
-  const toggleLikeDebounced = useDebounceCallback(toggleLike, 500)
+  const [toggleLikeDebounced] = useDebounceCallback(toggleLike, 500)
 
   const likeClickHandler: MouseEventHandler<HTMLElement> = async () => {
     if (liked) {
@@ -61,19 +63,19 @@ export const TweetCard = ({
   }
 
   return (
-    <StyledTweetCard>
-      <TweetAvatar>
+    <StyledTweetCard $compact={compact}>
+      <TweetAvatar $compact={compact}>
         <Avatar photoURL={photoURL} size="s" />
       </TweetAvatar>
       <CardHeader>
         <UserName name={name} email={email} uid={uid} col date={date} link />
       </CardHeader>
-      {userId === createdByInfo.uid && <Menu tweetId={id} />}
-      <TweetContent onClick={toPostPageClickHandler}>
+      {userId === createdByInfo.uid && !compact && <Menu tweetId={id} />}
+      <TweetContent onClick={toPostPageClickHandler} $compact={compact}>
         <span>{text}</span>
         {imageURL && <img src={imageURL} />}
       </TweetContent>
-      <Likes>
+      <Likes $compact={compact}>
         <button onClick={likeClickHandler}>
           {liked ? <LikeFilled /> : <Like />}
           {likesCount}

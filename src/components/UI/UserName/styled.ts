@@ -4,7 +4,7 @@ export const StyledUserName = styled.div<{ $col?: boolean }>`
   flex-direction: ${({ $col }) => ($col ? 'column' : 'row')};
 
   display: flex;
-  justify-content: flex-start;
+  justify-content: ${({ $col }) => ($col ? 'space-evenly' : 'flex-start')};
 
   a,
   p {

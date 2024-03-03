@@ -10,6 +10,7 @@ import { Input } from './Input'
 import { Loader } from './Loader'
 import { Modal } from './Modal'
 import { PopupMenu } from './PopupMenu'
+import { Search } from './Search'
 import { SearchInput } from './SearchInput'
 import { Select } from './Select'
 import { Toggler } from './Toggler'
@@ -30,6 +31,7 @@ export {
   Loader,
   Modal,
   PopupMenu,
+  Search,
   SearchInput,
   Select,
   Toggler,

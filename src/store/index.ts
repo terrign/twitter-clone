@@ -5,11 +5,18 @@ import {
   useFetchAllTweetsQuery,
   useFetchTweetQuery,
   useFetchTweetsByUserIdQuery,
+  useLazySearchTweetQuery,
   useLikeTweetMutation,
   useSearchTweetQuery,
   useUnlikeTweetMutation,
 } from './api/tweets.api'
-import { useGetUserByIdQuery, useGetUsersByIdsQuery, useGetUserSuggestionsQuery, usersApi } from './api/users.api'
+import {
+  useGetUserByIdQuery,
+  useGetUsersByIdsQuery,
+  useGetUserSuggestionsQuery,
+  useLazySearchUsersQuery,
+  usersApi,
+} from './api/users.api'
 import { removeAlert, setAlert } from './slices/alert'
 import { signInWithEmail, signOut, signUpWithEmail, signUpWithGoogle, updatePassword } from './slices/auth'
 import { setUser, switchTheme, updateUser } from './slices/user'
@@ -41,6 +48,8 @@ export {
   useGetUserByIdQuery,
   useGetUsersByIdsQuery,
   useGetUserSuggestionsQuery,
+  useLazySearchTweetQuery,
+  useLazySearchUsersQuery,
   useLikeTweetMutation,
   usersApi,
   useSearchTweetQuery,

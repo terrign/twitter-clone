@@ -8,7 +8,7 @@ export interface UserNameProps {
   email: string
   uid: string
   col?: boolean
-  date?: string
+  date?: string | false
   link?: boolean
 }
 

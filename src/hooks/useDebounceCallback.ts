@@ -5,7 +5,7 @@ type DebouncedFunction<T extends unknown[]> = (...args: T) => void
 export const useDebounceCallback = <T extends unknown[]>(
   callback: DebouncedFunction<T>,
   delay: number = 500,
-): DebouncedFunction<T> => {
+): [DebouncedFunction<T>, () => void] => {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
@@ -26,5 +26,9 @@ export const useDebounceCallback = <T extends unknown[]>(
     }, delay)
   }
 
-  return debouncedCallback
+  const abort = () => {
+    timeoutRef.current && clearTimeout(timeoutRef.current)
+  }
+
+  return [debouncedCallback, abort]
 }

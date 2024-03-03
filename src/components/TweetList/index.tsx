@@ -7,9 +7,10 @@ import { StyledTweetList } from './styled'
 
 export interface TweetListProps {
   tweets: Tweet[]
+  compact?: boolean
 }
 
-export const TweetList = ({ tweets }: TweetListProps) => {
+export const TweetList = ({ tweets, compact }: TweetListProps) => {
   const [skip, setSkip] = useState(true)
 
   const { data, isFetching } = useGetUsersByIdsQuery([...new Set(tweets.map((tweet) => tweet.createdById))], { skip })
@@ -19,7 +20,7 @@ export const TweetList = ({ tweets }: TweetListProps) => {
   }
 
   if (isFetching) {
-    return <Loader />
+    return <Loader size={compact ? 's' : 'l'} />
   }
 
   return (
@@ -28,7 +29,7 @@ export const TweetList = ({ tweets }: TweetListProps) => {
         {tweets.map((tweet) => {
           const userInfo = data.find(({ uid }) => uid === tweet.createdById)
 
-          return userInfo && <TweetCard tweet={tweet} key={tweet.id} createdByInfo={userInfo} />
+          return userInfo && <TweetCard tweet={tweet} key={tweet.id} createdByInfo={userInfo} compact={compact} />
         })}
       </StyledTweetList>
     )

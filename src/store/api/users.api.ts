@@ -41,7 +41,16 @@ export const usersApi = createApi({
       },
       providesTags: ['userList'],
     }),
+
+    searchUsers: builder.query({
+      async queryFn(searchQuery: string) {
+        const res = await userService.searchUsers(searchQuery)
+
+        return { data: res }
+      },
+    }),
   }),
 })
 
-export const { useGetUserSuggestionsQuery, useGetUserByIdQuery, useGetUsersByIdsQuery } = usersApi
+export const { useGetUserSuggestionsQuery, useGetUserByIdQuery, useGetUsersByIdsQuery, useLazySearchUsersQuery } =
+  usersApi
