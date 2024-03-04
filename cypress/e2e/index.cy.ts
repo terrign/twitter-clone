@@ -1,8 +1,28 @@
 describe('SignUp', () => {
-  it('Renders correct markers amount', () => {
+  it('Email signUp works', () => {
+    cy.viewport(1100, 700)
     cy.visit('/')
-    cy.get('button:contains("Sign up with Google")').click()
-    cy.get('li:contains("Panda")').click()
-    cy.screenshot()
+    cy.get('button:contains("Sign up with email")').click()
+    cy.get('input[placeholder="Name"]').type('Test Name')
+    cy.get('input[placeholder="Email"]').type('Email@gmail.com')
+    cy.get('input[placeholder="Phone number"]').type('+375692586415')
+    cy.get('input[placeholder="Password"]').type('$#@wAerrASDS_f213Ad')
+    cy.get('input[placeholder="Confirm password"]').type('$#@wAerrASDS_f213Ad')
+    cy.get('input[placeholder="Month"]').click()
+    cy.get('button:contains("January")').click()
+    cy.get('input[placeholder="Day"]').click()
+    cy.get('button:contains("02")').click()
+    cy.get('input[placeholder="Year"]').click()
+    cy.get('button:contains("2010")').click()
+    cy.get('button:contains("Log out")').click()
+  })
+
+  it('Email signIn works', () => {
+    cy.visit('/signin')
+    cy.viewport(1100, 700)
+    cy.get('input[placeholder="Email address"]').type('Email@gmail.com')
+    cy.get('input[placeholder="Password"]').type('$#@wAerrASDS_f213Ad')
+    cy.get('button:contains("Login")').click()
+    cy.get('button:contains("Log out")').click()
   })
 })
