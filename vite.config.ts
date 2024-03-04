@@ -13,7 +13,11 @@ export default defineConfig({
       include: '**/*.svg?react',
     }),
     react(),
-    ViteImageOptimizer(),
+    ViteImageOptimizer({
+      webp: {
+        quality: 80,
+      },
+    }),
   ],
   resolve: {
     alias: [
