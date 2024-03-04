@@ -1,2 +1,2 @@
-#yarn test:unit
-#yarn test:e2e
+yarn test:unit
+yarn test:e2e

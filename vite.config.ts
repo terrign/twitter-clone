@@ -4,7 +4,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 import svgr from 'vite-plugin-svgr'
-import EnvironmentPlugin from 'vite-plugin-environment'
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,7 +13,7 @@ export default defineConfig({
       include: '**/*.svg?react',
     }),
     react(),
-    EnvironmentPlugin('all'),
+    ViteImageOptimizer(),
   ],
   resolve: {
     alias: [
@@ -31,5 +31,6 @@ export default defineConfig({
       { find: '@ui', replacement: path.resolve(__dirname, './src/components/UI/index') },
     ],
   },
+
   envPrefix: 'APP_',
 })

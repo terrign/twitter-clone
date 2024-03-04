@@ -1,4 +1,4 @@
-name: E2E tests-test
+name: E2E tests
 on: [push]
 jobs:
   E2ETests:

@@ -2,11 +2,9 @@ import { initializeApp } from 'firebase/app'
 import { connectAuthEmulator, getAuth } from 'firebase/auth'
 import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore'
 import { connectStorageEmulator, getStorage } from 'firebase/storage'
-import { FIREBASE_CONFIG } from './constants'
+import { FIREBASE_CONFIG, isDev } from './config'
 
 export const app = initializeApp(FIREBASE_CONFIG)
-
-const isDev = import.meta.env.DEV
 
 const db = getFirestore(app)
 

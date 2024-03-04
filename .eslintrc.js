@@ -28,7 +28,7 @@ module.exports = {
       },
     ],
 
-    'no-console': 'off',
+    'no-console': 'error',
     '@stylistic/arrow-parens': ['error', 'always'],
     '@stylistic/padding-line-between-statements': [
       'error',

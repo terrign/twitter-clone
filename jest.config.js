@@ -9,6 +9,7 @@ module.exports = {
       '<rootDir>/__test__/__mocks__/fileMock.js',
     '\\.(css|less)$': 'identity-obj-proxy',
     '\\.svg\\?react': '<rootDir>/__test__/__mocks__/svg.js',
+    '<rootDir>/src/services/config': '<rootDir>/__test__/__mocks__/firebaseConfig.js',
     '^@components': '<rootDir>/src/components/index',
     '^@pages': '<rootDir>/src/pages/index',
     '^@router': '<rootDir>/src/router/index',

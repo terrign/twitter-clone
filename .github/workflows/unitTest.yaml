@@ -1,8 +1,8 @@
-name: Test
+name: Unit tests
 on: [push]
 jobs:
   unitTest:
-    name: Test
+    name: Unit tests
     runs-on: ubuntu-latest
 
     steps:
@@ -15,5 +15,4 @@ jobs:
       - run: yarn install
 
       - run: yarn emulate &
-          yarn dev &
           yarn test:unit

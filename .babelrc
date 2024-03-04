@@ -6,7 +6,6 @@
   ],
 
   "plugins": [
-    "babel-plugin-transform-import-meta",
     ["@babel/plugin-transform-typescript", { "allowDeclareFields": true, "legacy": true }],
     "@babel/plugin-proposal-class-properties"
   ],
