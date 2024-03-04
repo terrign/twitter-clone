@@ -1,7 +1,8 @@
 import { EditFormFields, SignUpFormFields } from '@types'
 import { generateDays, generateYears } from '@utils'
+import { Color, darkTheme, defaultTheme, font, GlobalStyles, hoverTitle, lightTheme, screen } from './styles'
 
-import { Color, darkTheme, defaultTheme, font, GlobalStyles, lightTheme, screen } from './styles'
+const DEFAULT_CACHE_TIME_S = 15
 
 const LINKS = {
   about: { label: 'About', href: '#' },
@@ -66,9 +67,11 @@ export {
   Color,
   darkTheme,
   DAYS,
+  DEFAULT_CACHE_TIME_S,
   defaultTheme,
   font,
   GlobalStyles,
+  hoverTitle,
   inputNameMap,
   lightTheme,
   LINKS,

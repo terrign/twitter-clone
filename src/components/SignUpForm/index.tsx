@@ -1,12 +1,11 @@
+import { FormProvider, useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Route } from '@router'
 import { signUpWithEmail, useAppDispatch } from '@store'
 import { EmailSignUpPayload } from '@types'
 import { Button, Form, FormDatepicker, FormInput, FormItem, TwitterIcon } from '@ui'
 import { signUpValidationSchema } from '@utils'
-import { FormProvider, useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
-
 import { DateOfBirth, Paragraph, Wrapper } from './styled'
 
 export const SignUpForm = () => {

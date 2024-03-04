@@ -1,4 +1,5 @@
-import { Color, font } from '@constants'
+import { Color, font, screen } from '@constants'
+import { TweetButton } from '@ui'
 import styled from 'styled-components'
 
 export const StyledTweetForm = styled.section`
@@ -9,8 +10,11 @@ export const StyledTweetForm = styled.section`
 
   grid-row-gap: 1rem;
 
-  border-top: 1px solid ${({ theme }) => theme.buttonBorderColor};
-  border-bottom: 1px solid ${({ theme }) => theme.buttonBorderColor};
+  border-top: 1px solid ${({ theme }) => theme.borderColor};
+
+  @media ${screen.s} {
+    grid-template-columns: 50px 1fr;
+  }
 
   form {
     position: relative;
@@ -20,12 +24,20 @@ export const StyledTweetForm = styled.section`
     padding: 0;
     height: 125px;
   }
+`
 
-  button {
-    top: 70px;
-    width: 120px;
-    display: block;
-    place-self: end;
+export const FirstColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
+export const TweetFormSubmitButton = styled(TweetButton)`
+  width: 120px;
+  place-self: end;
+
+  @media ${screen.l} {
+    width: 40px;
   }
 `
 
@@ -37,6 +49,8 @@ export const StyledTextArea = styled.div`
   textarea {
     ${font};
     font-size: ${({ theme }) => theme.fontM};
+
+    padding-top: 1rem;
 
     flex: 1 0 auto;
 
@@ -80,9 +94,16 @@ export const StyledTextArea = styled.div`
 `
 
 export const CloseButton = styled.button.attrs({ type: 'button' })`
+  position: absolute;
+  left: calc(100% - 25px);
+  top: 0;
   height: 25px;
   width: 25px;
   padding: 0;
+
+  text-shadow:
+    0 0 2px ${Color.WHITE},
+    0 0 2px ${Color.WHITE};
 
   transition: transform 0.1s linear;
 
@@ -91,4 +112,11 @@ export const CloseButton = styled.button.attrs({ type: 'button' })`
       transform: scale(1.4);
     }
   }
+`
+
+export const AddedImage = styled.div`
+  position: relative;
+
+  width: 50px;
+  height: 50px;
 `

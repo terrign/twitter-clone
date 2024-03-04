@@ -2,21 +2,20 @@ import { initializeApp } from 'firebase/app'
 import { connectAuthEmulator, getAuth } from 'firebase/auth'
 import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore'
 import { connectStorageEmulator, getStorage } from 'firebase/storage'
-
-import { FIREBASE_CONFIG } from './constants'
+import { FIREBASE_CONFIG, isDev } from './config'
 
 export const app = initializeApp(FIREBASE_CONFIG)
 
-const db = getFirestore()
+const db = getFirestore(app)
 
-const auth = getAuth()
+const auth = getAuth(app)
 
-const storage = getStorage()
+const storage = getStorage(app)
 
-import.meta.env.DEV && connectFirestoreEmulator(db, '127.0.0.1', 9096)
+isDev && connectFirestoreEmulator(db, '127.0.0.1', 9096)
 
-import.meta.env.DEV && connectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings: true })
+isDev && connectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings: true })
 
-import.meta.env.DEV && connectStorageEmulator(storage, '127.0.0.1', 9097)
+isDev && connectStorageEmulator(storage, '127.0.0.1', 9097)
 
 export { auth, db, storage }

@@ -1,22 +1,24 @@
-import { AddImageOutlined } from '@assets'
+import { ChangeEvent, FormEvent, useId, useState } from 'react'
+import { AddImageOutlined, TweetButtonIcon } from '@assets'
+import { Color } from '@constants'
 import { storageService } from '@services'
 import { setAlert, useAddTweetMutation, useAppDispatch, useAppSelector } from '@store'
-import { Avatar, Button } from '@ui'
-import { convertBase64 } from '@utils'
-import { ChangeEvent, FormEvent, useId, useState } from 'react'
-
-import { CloseButton, StyledTextArea, StyledTweetForm } from './styled'
+import { Avatar, Loader } from '@ui'
+import { convertBase64, newTweet } from '@utils'
+import { AddedImage, CloseButton, FirstColumn, StyledTextArea, StyledTweetForm, TweetFormSubmitButton } from './styled'
 
 const MAX_CHARACTERS = 500
 
-export const TweetForm = () => {
+export const TweetForm = ({ onSubmit }: { onSubmit?: () => void }) => {
   const [tweet, setTweet] = useState('')
   const [image, setImage] = useState('')
   const [file, setFile] = useState<File | null>(null)
-  const { photoURL } = useAppSelector((state) => state.user.user)
+  const { photoURL, uid } = useAppSelector((state) => state.user.user)
   const imageInputId = useId()
   const dispatch = useAppDispatch()
-  const [addTweet, { status }] = useAddTweetMutation()
+  const [addTweet, { isLoading }] = useAddTweetMutation()
+
+  const [isImageLoading, setIsImageLoading] = useState(false)
 
   const tweetChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setTweet(event.target.value)
@@ -31,6 +33,7 @@ export const TweetForm = () => {
     let imageUploadResult: Error | string = ''
 
     if (file) {
+      setIsImageLoading(true)
       imageUploadResult = await storageService.addFile(file)
 
       if (imageUploadResult instanceof Error) {
@@ -40,10 +43,13 @@ export const TweetForm = () => {
       }
     }
 
-    addTweet({ text: tweet, imageURL: imageUploadResult }).then(() => {
+    setIsImageLoading(false)
+
+    addTweet(newTweet({ text: tweet, imageURL: imageUploadResult, createdById: uid })).then(() => {
       setTweet('')
       setFile(null)
       removeImage()
+      onSubmit && onSubmit()
     })
   }
 
@@ -59,19 +65,19 @@ export const TweetForm = () => {
     setFile(files[0])
   }
 
-  const buttonDisabed = (tweet.trim().length === 0 && image.length === 0) || status === 'pending'
+  const buttonDisabed = tweet.trim().length === 0 && image.length === 0
 
   return (
     <StyledTweetForm>
-      <div>
+      <FirstColumn>
         <Avatar size="s" photoURL={photoURL} />
         {image && (
-          <div>
+          <AddedImage>
             <CloseButton onClick={removeImage}>✖</CloseButton>
             <img src={image} height={50} width={50} />
-          </div>
+          </AddedImage>
         )}
-      </div>
+      </FirstColumn>
 
       <form onSubmit={submitHandler}>
         <StyledTextArea>
@@ -88,9 +94,10 @@ export const TweetForm = () => {
           </div>
         </StyledTextArea>
 
-        <Button $type="filled" disabled={buttonDisabed}>
-          Tweet
-        </Button>
+        <TweetFormSubmitButton $type="filled" disabled={buttonDisabed}>
+          {isLoading || isImageLoading ? <Loader size="s" color={Color.WHITE} /> : <span>Tweet</span>}
+          <TweetButtonIcon />
+        </TweetFormSubmitButton>
       </form>
     </StyledTweetForm>
   )

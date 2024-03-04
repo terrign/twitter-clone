@@ -1,7 +1,7 @@
+import { PropsWithChildren } from 'react'
 import { darkTheme, GlobalStyles, lightTheme } from '@constants'
 import { useAppSelector } from '@store'
 import { Theme } from '@types'
-import { PropsWithChildren } from 'react'
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 
 export const ThemeProvider = ({ children }: PropsWithChildren) => {
@@ -10,7 +10,7 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
 
   return (
     <StyledThemeProvider theme={currentThemeObject}>
-      <GlobalStyles />
+      <GlobalStyles $isLight={theme === Theme.LIGHT} />
       {children}
     </StyledThemeProvider>
   )

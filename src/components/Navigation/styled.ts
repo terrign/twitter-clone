@@ -1,4 +1,4 @@
-import { Color, screen } from '@constants'
+import { Color, hoverTitle, screen } from '@constants'
 import { Button } from '@ui'
 import styled from 'styled-components'
 
@@ -11,26 +11,19 @@ export const StyledAsideNavigation = styled.aside`
   height: calc(100vh - 2rem);
   width: 100%;
   max-width: 230px;
-  /* overflow-x: hidden; */
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
 
   @media ${screen.l} {
-    justify-content: center;
+    align-items: center;
   }
 
-  @media ${screen.s} {
+  @media ${screen.l} {
     padding-top: 1rem;
     top: 0;
 
     a {
       margin: 0 auto;
-    }
-    max-height: 90dvh;
-
-    & > * {
-      overflow: visible !important;
     }
   }
 
@@ -51,11 +44,8 @@ export const StyledAsideNavigation = styled.aside`
   }
 
   & > div {
-    margin-top: auto !important;
-
-    p {
-      max-width: 150px;
-    }
+    max-width: 100%;
+    overflow: hidden;
 
     @media ${screen.l} {
       div:first-child {
@@ -65,8 +55,12 @@ export const StyledAsideNavigation = styled.aside`
   }
 `
 
-export const LogoutButton = styled(Button)`
-  background-color: ${Color.GRAY};
+export const LogoutButton = styled(Button)<{ $title: string }>`
+  background: ${({ theme }) => theme.disabledButtonBgColor};
+  color: ${Color.WHITE};
+
+  position: relative;
+
   padding: 0;
 
   div {
@@ -76,13 +70,9 @@ export const LogoutButton = styled(Button)`
   @media ${screen.l} {
     height: 40px;
     width: 40px;
-    margin: 0 auto;
+
     border: none;
     background: none;
-
-    &:hover {
-      background: none;
-    }
 
     div {
       display: block;
@@ -95,25 +85,8 @@ export const LogoutButton = styled(Button)`
       display: none;
     }
   }
-`
 
-export const TweetButton = styled(Button)`
-  svg {
-    display: none;
-  }
-  @media ${screen.l} {
-    height: 40px;
-    width: 40px;
-    margin: 0 auto;
-
-    svg {
-      display: block;
-      width: 25px;
-      height: 25px;
-    }
-
-    span {
-      display: none;
-    }
+  @media ${screen.l} and (hover: hover) {
+    ${hoverTitle}
   }
 `

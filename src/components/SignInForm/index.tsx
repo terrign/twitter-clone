@@ -1,8 +1,8 @@
+import { ChangeEvent, FormEvent, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Route } from '@router'
 import { signInWithEmail, useAppDispatch } from '@store'
 import { Button, Centered, Form, FormItem, Input, TwitterIcon } from '@ui'
-import { ChangeEvent, FormEvent, useState } from 'react'
-import { Link } from 'react-router-dom'
 
 export const SignInForm = () => {
   const [email, setEmail] = useState('')

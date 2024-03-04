@@ -4,7 +4,7 @@ import { createGlobalStyle, css } from 'styled-components'
 const breakpoints = {
   xxs: '320px',
   xs: '375px',
-  s: '425px',
+  s: '475px',
   m: '768px',
   l: '1024px',
   xl: '1440px',
@@ -20,7 +20,7 @@ const screen = {
    */
   xs: `screen and (max-width: ${breakpoints.xs})`,
   /**
-   * 425px
+   * 475px
    */
   s: `screen and (max-width: ${breakpoints.s})`,
   /**
@@ -39,18 +39,21 @@ const screen = {
 
 const font = css`
   font-family: 'Roboto', sans-serif;
-  color: black;
+  color: ${({ theme }) => theme.fontColor};
 `
 
-const enum Color {
+enum Color {
   BLACK = '#000000',
   BLUE = '#1D9BF0',
   DARK_BLUE = '#005995de',
   PALE_BLUE = '#1d9bf040',
   PALE_GRAY = '#E4EAED',
   PALE_GRAY_2 = '#e4eaed45',
+  DARK_GRAY = '#5C6C79',
   FONT_GRAY = 'rgb(83, 100, 113)',
-  GRAY = '#00000033',
+  PALE_GRAY_3 = '#abb5bd33',
+
+  GRAY = '#abb5bd',
   WHITE = '#FFFFFF',
   RED = '#ff0000',
   ALERT_TEAL = '#8df7c2',
@@ -58,31 +61,54 @@ const enum Color {
 }
 
 const defaultTheme: ThemeObject = {
-  fontXXL: '3rem', //60
-  fontXL: '1.5rem', //30
-  fontL: '1rem', //20
-  fontM: '0.9rem', //18
-  fontS: '0.8rem', //16
-  fontXS: '0.6rem', //12
+  fontXXL: '3rem',
+  fontXL: '1.5rem',
+  fontL: '1rem',
+  fontM: '0.9rem',
+  fontS: '0.8rem',
+  fontXS: '0.6rem',
+
+  bgColor: Color.WHITE,
+  reverseBgColor: Color.BLACK,
+
+  fontColor: Color.BLACK,
+  reverseFontColor: Color.WHITE,
+  fontColorSecondary: Color.FONT_GRAY,
+  fontColorTertiary: Color.GRAY,
+
+  simpleButtonBgHover: Color.PALE_GRAY_3,
+
+  modalBgColor: Color.PALE_BLUE,
+
+  inputBorderColor: Color.GRAY,
+
   buttonBgColor: Color.BLUE,
   buttonBorderColor: Color.PALE_GRAY,
-  inputBorderColor: Color.GRAY,
-  bgColor: Color.WHITE,
+  disabledButtonBgColor: Color.PALE_GRAY,
+  borderColor: Color.GRAY,
+
   outlinedButtonHover: Color.PALE_GRAY_2,
   filledButtonHover: Color.DARK_BLUE,
-  modalBgColor: Color.PALE_BLUE,
-  fontSecondary: Color.FONT_GRAY,
 }
 
 const darkTheme: ThemeObject = {
   ...defaultTheme,
+
+  bgColor: Color.BLACK,
+  reverseBgColor: Color.WHITE,
+
+  fontColor: Color.WHITE,
+  reverseFontColor: Color.BLACK,
+
+  disabledButtonBgColor: Color.GRAY,
+  borderColor: Color.PALE_GRAY_2,
 }
 
 const lightTheme: ThemeObject = {
   ...defaultTheme,
 }
 
-const GlobalStyles = createGlobalStyle`
+const GlobalStyles = createGlobalStyle<{ $isLight?: boolean }>`
   :root {
     font-size: 18px;
     ${font}
@@ -93,6 +119,14 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     height: 100%;
     box-sizing: border-box;
+    background: ${({ theme }) => theme.bgColor};
+    scroll-behavior: smooth;
+
+    color-scheme: ${({ $isLight }) => ($isLight ? 'light' : 'dark')}
+  }
+
+  body:has(#privateRoot) {
+    overflow-y: scroll;
   }
 
   * {
@@ -145,6 +179,57 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
+  @media ${screen.m} {
+    body {
+      overflow-x: hidden;
+    }
+  }
+
+  @media ${screen.m} {
+    h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media ${screen.xs} {
+    :root {
+      font-size: 16px;
+    }
+
+    body {
+      overflow-x: auto;
+    }
+  }
+
 `
 
-export { Color, darkTheme, defaultTheme, font, GlobalStyles, lightTheme, screen }
+const hoverTitle = css<{ $title?: string }>`
+  &:hover {
+    &::after {
+      content: ${({ $title }) => `'${$title}'`};
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 2rem;
+      width: 100px;
+      padding: 0.5rem;
+      background: ${({ theme }) => theme.buttonBgColor};
+
+      box-shadow:
+        ${({ theme }) => theme.fontColor} 0px 0px 15px,
+        ${({ theme }) => theme.fontColor} 0px 0px 3px 1px;
+
+      border-radius: 6px;
+      ${font}
+
+      color: ${Color.WHITE};
+      z-index: 25;
+    }
+  }
+`
+
+export { Color, darkTheme, defaultTheme, font, GlobalStyles, hoverTitle, lightTheme, screen }

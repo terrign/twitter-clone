@@ -1,5 +1,4 @@
-import { FirebaseStorage, getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
-
+import { FirebaseStorage, getDownloadURL, list, ref, uploadBytesResumable } from 'firebase/storage'
 import { storage } from '../init'
 
 class StorageService {
@@ -28,6 +27,12 @@ class StorageService {
     } catch (e) {
       return new Error('Upload failed, please try again')
     }
+  }
+
+  public getSuggestedImages = async () => {
+    const fileList = await list(this.storageRef, { maxResults: 6 })
+
+    return fileList.items.map((item) => item.toString().replace(/^gs/gi, 'https'))
   }
 }
 

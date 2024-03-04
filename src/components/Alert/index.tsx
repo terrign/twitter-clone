@@ -1,8 +1,7 @@
-import { Close } from '@assets'
-import { removeAlert, useAppDispatch, useAppSelector } from '@store'
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-
+import { Close } from '@assets'
+import { removeAlert, useAppDispatch, useAppSelector } from '@store'
 import { CloseButton, StyledAlert } from './styled'
 
 const ALERT_EXPIRATION_TIME_MS = 5000

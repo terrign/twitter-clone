@@ -1,14 +1,25 @@
-import { Color } from '@constants'
-import styled from 'styled-components'
+import { screen } from '@constants'
+import styled, { css } from 'styled-components'
 
-export const StyledTweetCard = styled.article`
+const compactTweetCardStyles = css`
+  grid-template-columns: 50px 1fr 50px;
+`
+
+export const StyledTweetCard = styled.article<{ $compact?: boolean }>`
   display: grid;
   grid-template-columns: 70px minmax(200px, 1fr) 70px;
-  grid-template-rows: 1rem 1fr 1rem;
+
+  grid-auto-rows: minmax(1rem, auto);
   width: 100%;
-  border-bottom: 1px solid ${Color.GRAY};
-  padding-bottom: 1rem;
+  border-top: 1px solid ${({ theme }) => theme.borderColor};
+  padding-top: 1rem;
   grid-row-gap: 0.5rem;
+
+  ${({ $compact }) => $compact && compactTweetCardStyles};
+
+  @media ${screen.s} {
+    ${compactTweetCardStyles}
+  }
 `
 
 export const CardHeader = styled.header`
@@ -17,21 +28,19 @@ export const CardHeader = styled.header`
   flex-wrap: nowrap;
   justify-content: space-between;
 
-  height: 1rem;
   line-height: 1rem;
 
   font-size: ${({ theme }) => theme.fontS};
 
-  div {
+  & > div {
+    width: 100%;
+  }
+
+  & > div > p {
     display: flex;
-
-    & > *:not(:first-child) {
-      margin-left: 0.2rem;
-    }
-
-    & > span {
-      color: ${Color.GRAY};
-    }
+    flex-wrap: wrap;
+    max-width: 100% !important;
+    width: 100%;
   }
 
   button {
@@ -45,24 +54,46 @@ export const CardHeader = styled.header`
   }
 `
 
-export const TweetAvatar = styled.div`
-  grid-row: 1 / 3;
+const compactTweetAvatarStyles = css`
+  grid-row: 1;
+  grid-column: 1;
+  margin-left: -5px;
 `
 
-export const Likes = styled.footer`
+export const TweetAvatar = styled.div<{ $compact?: boolean }>`
+  grid-row: 1 / 2;
+
+  ${({ $compact }) => $compact && compactTweetCardStyles}
+  margin-top: ${({ $compact }) => $compact && '-5px'};
+
+  @media ${screen.s} {
+    ${compactTweetAvatarStyles}
+  }
+`
+
+export const Likes = styled.footer<{ $compact?: boolean }>`
   color: ${({ theme }) => theme.fontSecondary};
 
-  display: flex;
+  display: ${({ $compact }) => ($compact ? 'none' : 'flex')};
   grid-column: 2;
 
   button {
     font-size: ${({ theme }) => theme.fontS};
     padding: 0;
   }
+
+  @media ${screen.s} {
+    grid-column: 1;
+  }
 `
 
-export const TweetContent = styled.p`
+const compactTweetContentStyles = css`
+  grid-column: 1 / span 3;
+`
+
+export const TweetContent = styled.p<{ $compact?: boolean }>`
   grid-column: 2;
+  cursor: pointer;
 
   span {
     display: block;
@@ -81,5 +112,11 @@ export const TweetContent = styled.p`
     border-radius: 6px;
 
     height: auto;
+  }
+
+  ${({ $compact }) => $compact && compactTweetContentStyles}
+
+  @media ${screen.s} {
+    ${compactTweetContentStyles}
   }
 `

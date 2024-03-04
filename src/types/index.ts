@@ -39,7 +39,7 @@ interface EmailSignUpPayload {
   userInfo: Omit<UserInfo, 'uid' | 'photoURL' | 'authProvider'>
 }
 
-const enum AuthProvider {
+enum AuthProvider {
   EMAIL = 'email',
   GOOGLE = 'google',
 }
@@ -53,10 +53,13 @@ interface Tweet {
   timestamp: number
 }
 
+type NewTweet = Pick<Tweet, 'createdById' | 'imageURL' | 'text'>
+
 export {
   AuthProvider,
   type EditFormFields,
   type EmailSignUpPayload,
+  type NewTweet,
   type SignUpFormFields,
   Theme,
   type ThemeObject,

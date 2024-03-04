@@ -1,25 +1,18 @@
-name: Test
+name: Unit tests
 on: [push]
 jobs:
   unitTest:
-    name: Test
+    name: Unit tests
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Set Node
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: latest
 
-      - name: Install
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: install
+      - run: yarn install
 
-      - name: Test
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: test:unit
+      - run: yarn emulate &
+          yarn test:unit

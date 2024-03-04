@@ -1,8 +1,14 @@
-import { font } from '@constants'
+import { font, screen } from '@constants'
 import styled from 'styled-components'
 
 export const StyledSelect = styled.div`
   position: relative;
+
+  @media ${screen.m} {
+    input {
+      padding: 0.5rem;
+    }
+  }
 `
 
 export const Option = styled.button`
@@ -35,17 +41,16 @@ export const Options = styled.div<{ $show?: boolean }>`
   height: 200px;
   top: -195px;
   width: 100%;
-  border: 1px solid ${({ theme }) => theme.inputBorderColor};
+  border: 1px solid ${({ theme }) => theme.borderColor};
   border-bottom: none;
   overflow-y: scroll;
   background: ${({ theme }) => theme.bgColor};
-  z-index: 100;
+  z-index: 6;
 `
 
 export const IconWrapper = styled.button`
   position: absolute;
-  top: 15px;
-  height: 1rem;
-  width: 1rem;
+  top: 18px;
+
   left: calc(100% - 1rem - 15px);
 `

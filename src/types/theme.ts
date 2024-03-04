@@ -1,4 +1,4 @@
-const enum Theme {
+enum Theme {
   LIGHT,
   DARK,
 }
@@ -10,14 +10,22 @@ interface ThemeObject {
   fontM: string
   fontS: string
   fontXS: string
-  buttonBgColor: string
-  buttonBorderColor: string
-  inputBorderColor: string
-  fontSecondary: string
   bgColor: string
+  modalBgColor: string
+  buttonBgColor: string
+  disabledButtonBgColor: string
+  simpleButtonBgHover: string
+  fontColor: string
+  buttonBorderColor: string
+  borderColor: string
+  fontColorSecondary: string
+  inputBorderColor: string
+  reverseFontColor: string
+  fontColorTertiary: string
+  reverseBgColor: string
+
   outlinedButtonHover: string
   filledButtonHover: string
-  modalBgColor: string
 }
 
 export { Theme, type ThemeObject }

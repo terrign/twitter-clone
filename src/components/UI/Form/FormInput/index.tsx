@@ -1,6 +1,6 @@
+import { useFormContext } from 'react-hook-form'
 import { inputNameMap } from '@constants'
 import { FormItem, Input } from '@ui'
-import { useFormContext } from 'react-hook-form'
 
 interface FormInputProps {
   labeled?: boolean

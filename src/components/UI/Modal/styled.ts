@@ -1,3 +1,4 @@
+import { screen } from '@constants'
 import { Centered } from '@ui'
 import styled from 'styled-components'
 
@@ -8,6 +9,7 @@ export const Background = styled(Centered)`
   left: 0;
   top: 0;
   background-color: ${({ theme }) => theme.modalBgColor};
+  z-index: 200;
 `
 
 export const Container = styled.div`
@@ -17,8 +19,19 @@ export const Container = styled.div`
   border-radius: 6px;
   flex-grow: 1;
   max-width: 600px;
-  max-height: 80vh;
+  max-height: 90vh;
   overflow-y: auto;
+
+  @media ${screen.s} {
+    max-width: 100%;
+    max-height: 100%;
+    height: 100%;
+    width: 100%;
+
+    & > form {
+      padding: 0;
+    }
+  }
 `
 
 export const CloseButton = styled.button.attrs({ type: 'button' })`

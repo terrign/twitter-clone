@@ -1,7 +1,6 @@
-import { useEventListener, useOuterClickHandler } from '@hooks'
 import { PropsWithChildren, useRef } from 'react'
 import { createPortal } from 'react-dom'
-
+import { useEventListener, useOuterClickHandler } from '@hooks'
 import { Background, CloseButton, Container, ModalHeader } from './styled'
 
 export interface ModalProps extends PropsWithChildren {

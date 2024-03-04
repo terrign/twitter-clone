@@ -1,11 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { signOut } from '@store'
+import { signOut, usersApi } from '@store'
 import { Theme, UserInfo } from '@types'
 
 export interface UserStateType {
   theme: Theme
   user: UserInfo
-  recordId: string
 }
 
 const EMPTY_USER: UserInfo = {
@@ -24,7 +23,6 @@ const EMPTY_USER: UserInfo = {
 const initialState: UserStateType = {
   theme: Theme.LIGHT,
   user: EMPTY_USER,
-  recordId: '',
 }
 
 export const userSlice = createSlice({
@@ -39,8 +37,8 @@ export const userSlice = createSlice({
       state.user = payload
     },
 
-    switchTheme(state, { payload }: PayloadAction<Theme>) {
-      state.theme = payload ^ 1
+    switchTheme(state) {
+      state.theme = state.theme ^ 1
     },
 
     updateUser(state, { payload }: PayloadAction<Partial<UserInfo> & { uid: string }>) {
@@ -51,7 +49,12 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(signOut, (store) => {
       store.user = EMPTY_USER
-    })
+    }),
+      builder.addMatcher(usersApi.endpoints.getUserById.matchFulfilled, (state, { payload }) => {
+        if (payload && state.user.uid === payload?.uid) {
+          state.user = payload
+        }
+      })
   },
 })
 

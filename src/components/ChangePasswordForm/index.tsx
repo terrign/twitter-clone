@@ -1,9 +1,9 @@
+import { FormProvider, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { updatePassword, useAppDispatch } from '@store'
 import { Button, Form, FormInput, FormItem } from '@ui'
 import { changePasswordValidationSchema } from '@utils'
-import { FormProvider, useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
 
 export const ChangePasswordForm = () => {
   const form = useForm({

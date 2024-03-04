@@ -1,5 +1,4 @@
 import { LINKS } from '@constants'
-
 import { StyledFooter } from './styled'
 
 export const Footer = () => {
