@@ -63,12 +63,22 @@ const inputNameMap: Record<inputNameMapKeyType, { label: string; type: string }>
   newPassword: { label: 'New password', type: 'password' },
 }
 
+const firebaseErrorMap: Record<string, string> = {
+  'auth/email-already-in-use': 'Email already in use',
+  'auth/wrong-password': 'Invalid email or password',
+  'auth/invalid-email': 'Invalid email or password',
+  'auth/invalid-credential': 'Invalid email or password',
+  'auth/user-not-found': 'Invalid email or password',
+  'auth/too-many-requests': 'Too many attempts. Access to this account has been temporarily disabled',
+}
+
 export {
   Color,
   darkTheme,
   DAYS,
   DEFAULT_CACHE_TIME_S,
   defaultTheme,
+  firebaseErrorMap,
   font,
   GlobalStyles,
   hoverTitle,

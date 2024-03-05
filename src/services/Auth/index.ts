@@ -1,6 +1,6 @@
+import { mapErrorMessage } from '@utils'
 import {
   Auth,
-  AuthError,
   createUserWithEmailAndPassword,
   EmailAuthProvider,
   GoogleAuthProvider,
@@ -21,13 +21,13 @@ class AuthService {
     this.googleProvider.addScope(GOOGLE_PROVIDER_SCOPE)
   }
 
-  public emailSignUp = async (email: string, password: string): Promise<UserCredential | AuthError> => {
+  public emailSignUp = async (email: string, password: string): Promise<UserCredential | Error> => {
     try {
       const emailSignUpResult = await createUserWithEmailAndPassword(this.auth, email, password)
 
       return emailSignUpResult
     } catch (error) {
-      return error as AuthError
+      return mapErrorMessage(error)
     }
   }
 
@@ -37,7 +37,7 @@ class AuthService {
 
       return signUnResult
     } catch (error) {
-      return error as AuthError
+      return mapErrorMessage(error)
     }
   }
 
@@ -47,7 +47,7 @@ class AuthService {
 
       return emailSignInResult
     } catch (error) {
-      return error as AuthError
+      return mapErrorMessage(error)
     }
   }
 
@@ -58,7 +58,7 @@ class AuthService {
         await reauthenticateWithCredential(this.auth.currentUser, credential)
         await updatePassword(this.auth.currentUser, newPassword)
       } catch (error) {
-        return error as AuthError
+        return mapErrorMessage(error)
       }
     }
   }

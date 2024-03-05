@@ -8,7 +8,7 @@ const NAME_REGEXP = /^[a-zA-ZА-Яa-я' ]+$/
 
 const PHONE_REGEXP = /^[+]\d+$/
 
-enum ValidationError {
+export enum ValidationError {
   INVALID_EMAIL = 'Invalid email',
   EMAIL_REQUIRED = 'Enter your email',
 

@@ -2,7 +2,7 @@ import { PayloadAction } from '@reduxjs/toolkit'
 import { authService } from '@services'
 import { persistor } from '@store'
 import { AuthProvider, EmailSignUpPayload, UserInfo } from '@types'
-import { AuthError, UserCredential } from 'firebase/auth'
+import { UserCredential } from 'firebase/auth'
 import { all, call, put, takeLeading } from 'redux-saga/effects'
 import { setAlert } from '../slices/alert'
 import { signInWithEmail, signOut, signUpWithEmail, signUpWithGoogle, updatePassword } from '../slices/auth'
@@ -10,7 +10,7 @@ import { createUser, updateUser } from '../slices/user'
 import { getUser } from './user'
 
 function* googleSignUpWorker() {
-  const signUpResult: UserCredential | AuthError = yield authService.googleSignUp()
+  const signUpResult: UserCredential | Error = yield authService.googleSignUp()
 
   if (signUpResult instanceof Error) {
     yield put(setAlert({ type: 'error', message: signUpResult.message }))
@@ -42,7 +42,7 @@ function* googleSignUpWorker() {
 }
 
 function* emailSignUpWorker({ payload: { email, password, userInfo } }: PayloadAction<EmailSignUpPayload>) {
-  const result: UserCredential | AuthError = yield call(authService.emailSignUp, email, password)
+  const result: UserCredential | Error = yield call(authService.emailSignUp, email, password)
 
   if (result instanceof Error) {
     yield put(setAlert({ type: 'error', message: result.message }))
@@ -60,7 +60,7 @@ function* emailSignUpWorker({ payload: { email, password, userInfo } }: PayloadA
 
 function* signInWorker({ payload }: PayloadAction<{ email: string; password: string }>) {
   const { email, password } = payload
-  const result: UserCredential | AuthError = yield authService.emailSignIn(email, password)
+  const result: UserCredential | Error = yield authService.emailSignIn(email, password)
 
   if (result instanceof Error) {
     yield put(setAlert({ type: 'error', message: result.message }))
@@ -72,7 +72,7 @@ function* signInWorker({ payload }: PayloadAction<{ email: string; password: str
 function* updatePasswordWorker({
   payload: { currentPassword, newPassword },
 }: PayloadAction<{ currentPassword: string; newPassword: string }>) {
-  const result: AuthError | undefined = yield authService.updatePassword(currentPassword, newPassword)
+  const result: Error | undefined = yield authService.updatePassword(currentPassword, newPassword)
 
   if (result instanceof Error) {
     yield put(setAlert({ type: 'error', message: result.message }))

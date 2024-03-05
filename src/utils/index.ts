@@ -3,8 +3,10 @@ import {
   editProfileValidationSchema,
   signUpValidationSchema,
   tweetValidationSchema,
+  ValidationError,
 } from './formValidationSchemas'
 import { newTweet } from './newTweet'
+import { mapErrorMessage } from './transformErrorMessage'
 
 const generateYears = () => {
   const years = []
@@ -56,8 +58,10 @@ export {
   generateDays,
   generateYears,
   getHumanMonthDayFromTimeStamp,
+  mapErrorMessage,
   newTweet,
   nicknameFromEmail,
   signUpValidationSchema,
   tweetValidationSchema,
+  ValidationError,
 }
