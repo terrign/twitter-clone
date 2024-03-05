@@ -1,5 +1,5 @@
-import { Color, hoverTitle, screen } from '@constants'
-import { Button } from '@ui'
+import { Button } from '@components/UI/Button'
+import { Color, hoverTitle, screen } from '@constants/styles'
 import styled from 'styled-components'
 
 export const StyledAsideNavigation = styled.aside`
@@ -8,7 +8,8 @@ export const StyledAsideNavigation = styled.aside`
   left: 0;
   margin: 0 auto;
 
-  height: calc(100vh - 2rem);
+  height: 100%;
+  max-height: calc(100vh - 1rem);
   width: 100%;
   max-width: 230px;
   display: flex;

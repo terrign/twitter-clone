@@ -1,9 +1,9 @@
 import { NavLink, useLocation } from 'react-router-dom'
-import { Route } from '@router'
-import { store } from '@store'
+import { Route } from '@router/types'
+import { store } from '@store/index'
 import { StyledNavItem } from './styled'
 
-export interface NavItemProps {
+interface Props {
   label: string
   icon: {
     filled: JSX.Element
@@ -12,9 +12,10 @@ export interface NavItemProps {
   path: Route
 }
 
-export const NavItem = ({ label, icon: { filled, outlined }, path }: NavItemProps) => {
+export const NavItem = (props: Props) => {
+  const { label, icon, path } = props
+  const { filled, outlined } = icon
   const { pathname } = useLocation()
-
   const realPath = label === 'Profile' ? `${path}/${store.getState().user.user.uid}` : path
 
   return (

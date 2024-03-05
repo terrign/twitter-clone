@@ -1,8 +1,8 @@
-import { DEFAULT_CACHE_TIME_S } from '@constants'
+import { DEFAULT_CACHE_TIME_S } from '@constants/index'
+import { Tweet } from '@models/index'
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react'
-import { tweetService } from '@services'
-import { store } from '@store'
-import { Tweet } from '@types'
+import { tweetService } from '@services/Tweets'
+import { store } from '@store/index'
 
 export const tweetsApi = createApi({
   reducerPath: 'tweetsApi',

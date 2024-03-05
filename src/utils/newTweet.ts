@@ -1,4 +1,4 @@
-import { Tweet } from '@types'
+import { Tweet } from '@models/index'
 
 type NewTweet = Pick<Tweet, 'createdById' | 'imageURL' | 'text'>
 

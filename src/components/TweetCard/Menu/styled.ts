@@ -1,5 +1,5 @@
-import { Color } from '@constants'
-import { Button } from '@ui'
+import { Button } from '@components/UI/Button'
+import { Color } from '@constants/styles'
 import styled from 'styled-components'
 
 export const MenuButton = styled.button`

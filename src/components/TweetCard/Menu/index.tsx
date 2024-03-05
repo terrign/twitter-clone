@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { Route } from '@router'
-import { useDeleteTweetMutation } from '@store'
-import { PopupMenu } from '@ui'
+import { ButtonType } from '@components/UI/Button'
+import { PopupMenu, PopupMenuPosition } from '@components/UI/PopupMenu'
+import { Route } from '@router/types'
+import { useDeleteTweetMutation } from '@store/api/tweets'
 import { MenuButton, MenuOptionButton } from './styled'
 
 interface Props {
@@ -11,16 +12,16 @@ interface Props {
 
 export const Menu = ({ tweetId }: Props) => {
   const [popupVisible, setPopupVisible] = useState(false)
-  const loc = useLocation()
-  const nav = useNavigate()
+  const { pathname } = useLocation()
+  const navigate = useNavigate()
 
   const [trigger] = useDeleteTweetMutation()
 
   const deleteHandler = () => {
     trigger(tweetId)
 
-    if (loc.pathname.includes('post')) {
-      nav(Route.HOME)
+    if (pathname.includes('post')) {
+      navigate(Route.HOME)
     }
   }
 
@@ -33,9 +34,9 @@ export const Menu = ({ tweetId }: Props) => {
       controlButton={<MenuButton onClick={togglePopup}>...</MenuButton>}
       visible={popupVisible}
       setVisible={setPopupVisible}
-      position="left"
+      position={PopupMenuPosition.LEFT}
     >
-      <MenuOptionButton $type="filled" onClick={deleteHandler}>
+      <MenuOptionButton $type={ButtonType.FILLED} onClick={deleteHandler}>
         Delete
       </MenuOptionButton>
     </PopupMenu>

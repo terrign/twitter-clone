@@ -1,4 +1,4 @@
-import { ThemeObject } from '@types'
+import { ThemeObject } from '@models/index'
 import { createGlobalStyle, css } from 'styled-components'
 
 const breakpoints = {
@@ -39,6 +39,7 @@ const screen = {
 
 const font = css`
   font-family: 'Roboto', sans-serif;
+
   color: ${({ theme }) => theme.fontColor};
 `
 
@@ -109,15 +110,21 @@ const lightTheme: ThemeObject = {
 }
 
 const GlobalStyles = createGlobalStyle<{ $isLight?: boolean }>`
+
   :root {
     font-size: 18px;
     ${font}
+  }
+
+  #root  {
+    height: 100%;
   }
 
   body, html {
     margin: 0;
     padding: 0;
     height: 100%;
+    min-height: 100%;
     box-sizing: border-box;
     background: ${({ theme }) => theme.bgColor};
     scroll-behavior: smooth;

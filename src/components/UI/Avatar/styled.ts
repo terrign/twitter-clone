@@ -1,21 +1,20 @@
+import { AvatarSize } from '@components/UI/Avatar'
 import styled from 'styled-components'
 
-const sizeMap = {
-  l: '130px',
-  s: '50px',
-  m: '60px',
+interface Props {
+  $size: AvatarSize
+  $url: string
 }
 
-export const StyledAvatar = styled.div<{ $size: keyof typeof sizeMap; $url: string }>`
-  height: ${({ $size }) => sizeMap[$size]};
-  width: ${({ $size }) => sizeMap[$size]};
+export const StyledAvatar = styled.div<Props>`
+  height: ${({ $size }) => $size};
+  width: ${({ $size }) => $size};
 
   border: 5px solid ${({ theme }) => theme.bgColor};
-  border-radius: 50%;
-
-  overflow: hidden;
-
   background-image: url(${({ $url }) => $url});
+
+  border-radius: 50%;
+  overflow: hidden;
   background-color: ${({ theme }) => theme.bgColor};
   background-repeat: no-repeat;
   background-size: cover;

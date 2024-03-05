@@ -1,4 +1,4 @@
-import { firebaseErrorMap } from '@constants'
+import { firebaseErrorMap } from '@constants/index'
 import { FirebaseError } from 'firebase/app'
 
 export const mapErrorMessage = (error: unknown) => {

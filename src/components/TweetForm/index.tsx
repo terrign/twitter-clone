@@ -1,10 +1,15 @@
 import { ChangeEvent, FormEvent, useId, useState } from 'react'
-import { AddImageOutlined, TweetButtonIcon } from '@assets'
-import { Color } from '@constants'
-import { storageService } from '@services'
-import { setAlert, useAddTweetMutation, useAppDispatch, useAppSelector } from '@store'
-import { Avatar, Loader } from '@ui'
-import { convertBase64, newTweet } from '@utils'
+import { AddImageOutlined, TweetButtonIcon } from '@assets/index'
+import { Avatar, AvatarSize } from '@components/UI/Avatar'
+import { ButtonType } from '@components/UI/Button'
+import { Loader } from '@components/UI/Loader'
+import { Color } from '@constants/styles'
+import { storageService } from '@services/Storage'
+import { useAddTweetMutation } from '@store/api/tweets'
+import { useAppDispatch, useAppSelector } from '@store/index'
+import { setAlert } from '@store/slices/alert'
+import { convertBase64 } from '@utils/index'
+import { newTweet } from '@utils/newTweet'
 import { AddedImage, CloseButton, FirstColumn, StyledTextArea, StyledTweetForm, TweetFormSubmitButton } from './styled'
 
 const MAX_CHARACTERS = 500
@@ -70,7 +75,7 @@ export const TweetForm = ({ onSubmit }: { onSubmit?: () => void }) => {
   return (
     <StyledTweetForm>
       <FirstColumn>
-        <Avatar size="s" photoURL={photoURL} />
+        <Avatar size={AvatarSize.SMALL} photoURL={photoURL} />
         {image && (
           <AddedImage>
             <CloseButton onClick={removeImage}>✖</CloseButton>
@@ -94,7 +99,7 @@ export const TweetForm = ({ onSubmit }: { onSubmit?: () => void }) => {
           </div>
         </StyledTextArea>
 
-        <TweetFormSubmitButton $type="filled" disabled={buttonDisabed}>
+        <TweetFormSubmitButton $type={ButtonType.FILLED} disabled={buttonDisabed}>
           {isLoading || isImageLoading ? <Loader size="s" color={Color.WHITE} /> : <span>Tweet</span>}
           <TweetButtonIcon />
         </TweetFormSubmitButton>

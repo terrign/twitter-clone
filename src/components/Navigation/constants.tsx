@@ -14,8 +14,8 @@ import {
   NotificationOutlined,
   ProfileFilled,
   ProfileOutlined,
-} from '@assets'
-import { Route } from '@router'
+} from '@assets/index'
+import { Route } from '@router/types'
 
 export const navLinks = [
   { label: 'Home', icon: { filled: <HomeFilled />, outlined: <HomeOutlined /> }, path: Route.HOME },

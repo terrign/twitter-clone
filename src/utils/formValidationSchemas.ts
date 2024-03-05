@@ -1,6 +1,9 @@
 import * as yup from 'yup'
 
-const STRONG_PASS_REGEXP = /^(?=.*[a-zа-я])(?=.*[A-ZА-Я])(?=.*\d)(?=.*[\W_~!@#$%^&*+]).{8,}$/ // 1 special character, 1 lowercase, 1 uppercase, 1 number
+/**
+ * 1 special character, 1 lowercase, 1 uppercase, 1 number
+ */
+const STRONG_PASS_REGEXP = /^(?=.*[a-zа-я])(?=.*[A-ZА-Я])(?=.*\d)(?=.*[\W_~!@#$%^&*+]).{8,}$/
 
 const EMAIL_REGEXP = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,5}$/
 

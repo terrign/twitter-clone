@@ -1,11 +1,17 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
+import { Button, ButtonType } from '@components/UI/Button'
+import { Form } from '@components/UI/Form'
+import { FormDatepicker } from '@components/UI/Form/FormDatePicker'
+import { FormInput } from '@components/UI/Form/FormInput'
+import { FormItem } from '@components/UI/Form/FormItem'
+import { TwitterIcon } from '@components/UI/Icons'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Route } from '@router'
-import { signUpWithEmail, useAppDispatch } from '@store'
-import { EmailSignUpPayload } from '@types'
-import { Button, Form, FormDatepicker, FormInput, FormItem, TwitterIcon } from '@ui'
-import { signUpValidationSchema } from '@utils'
+import { EmailSignUpPayload } from '@models/index'
+import { Route } from '@router/types'
+import { useAppDispatch } from '@store/index'
+import { signUpWithEmail } from '@store/slices/auth'
+import { signUpValidationSchema } from '@utils/formValidationSchemas'
 import { DateOfBirth, Paragraph, Wrapper } from './styled'
 
 export const SignUpForm = () => {
@@ -79,7 +85,7 @@ export const SignUpForm = () => {
           <FormDatepicker />
 
           <FormItem>
-            <Button $type="filled" type="submit">
+            <Button $type={ButtonType.FILLED} type="submit">
               Next
             </Button>
           </FormItem>

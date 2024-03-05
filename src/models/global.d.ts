@@ -1,5 +1,5 @@
 import 'styled-components'
-import { ThemeObject } from '@types'
+import { ThemeObject } from '@models/index'
 
 declare module 'styled-components' {
   export interface DefaultTheme extends ThemeObject {}

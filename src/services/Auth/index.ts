@@ -1,4 +1,4 @@
-import { mapErrorMessage } from '@utils'
+import { mapErrorMessage } from '@utils/mapErrorMessage'
 import {
   Auth,
   createUserWithEmailAndPassword,

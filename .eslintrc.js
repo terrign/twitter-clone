@@ -50,7 +50,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['./src/assets/index.ts', './src/App.tsx', './src/store/store.ts'],
+      files: ['./src/assets/index.ts', './src/App.tsx', './src/store/index.ts'],
       rules: {
         'import/no-unresolved': 'off',
       },
@@ -67,23 +67,23 @@ module.exports = {
     'import/resolver': {
       alias: {
         map: [
-          ['@components', './src/components/index'],
-          ['@pages', './src/pages/index'],
-          ['@router', './src/router/index'],
-          ['@services', './src/services/index'],
-          ['@types', './src/types/index'],
-          ['@constants', './src/constants/index'],
-          ['@utils', './src/utils/index'],
-          ['@context', './src/context/index'],
-          ['@store', './src/store/index'],
-          ['@assets', './src/assets/index'],
-          ['@hooks', './src/hooks/index'],
-          ['@ui', './src/components/UI/index'],
+          ['@components', './src/components'],
+          ['@pages', './src/pages'],
+          ['@router', './src/router'],
+          ['@services', './src/services'],
+          ['@models', './src/models'],
+          ['@constants', './src/constants'],
+          ['@utils', './src/utils'],
+          ['@context', './src/context'],
+          ['@store', './src/store'],
+          ['@assets', './src/assets'],
+          ['@hooks', './src/hooks'],
         ],
         extensions: ['.tsx', '.ts'],
       },
     },
   },
+
   ignorePatterns: [
     '__test__/**/*',
     '*.eslintrc.js',

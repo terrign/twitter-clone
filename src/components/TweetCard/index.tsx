@@ -1,30 +1,34 @@
 import { MouseEventHandler, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Like, LikeFilled } from '@assets'
-import { useDebounceCallback } from '@hooks'
-import { Route } from '@router'
-import { useAppSelector, useLikeTweetMutation, useUnlikeTweetMutation } from '@store'
-import { Tweet, UserInfo } from '@types'
-import { Avatar, UserName } from '@ui'
-import { getHumanMonthDayFromTimeStamp } from '@utils'
+import { Like, LikeFilled } from '@assets/index'
+import { Avatar, AvatarSize } from '@components/UI/Avatar'
+import { UserName } from '@components/UI/UserName'
+import { useDebounceCallback } from '@hooks/useDebounceCallback'
+import { Tweet, UserInfo } from '@models/index'
+import { Route } from '@router/types'
+import { useLikeTweetMutation, useUnlikeTweetMutation } from '@store/api/tweets'
+import { useAppSelector } from '@store/index'
+import { getHumanMonthDayFromTimeStamp } from '@utils/index'
 import { Menu } from './Menu'
 import { CardHeader, Likes, StyledTweetCard, TweetAvatar, TweetContent } from './styled'
 
-interface TweetCardProps {
+interface Props {
   tweet: Tweet
   createdByInfo: UserInfo
   compact?: boolean
 }
 
-export const TweetCard = ({
-  tweet: { text, imageURL, likedUserIds, timestamp, id },
-  createdByInfo,
-  compact,
-}: TweetCardProps) => {
+export const TweetCard = (props: Props) => {
+  const {
+    tweet: { text, imageURL, likedUserIds, timestamp, id },
+    createdByInfo,
+    compact,
+  } = props
+
   const userId = useAppSelector((state) => state.user.user.uid)
   const { photoURL, name, email, uid } = createdByInfo
 
-  const nav = useNavigate()
+  const navigate = useNavigate()
 
   const [likeTrigger] = useLikeTweetMutation()
   const [unlikeTrigger] = useUnlikeTweetMutation()
@@ -59,13 +63,13 @@ export const TweetCard = ({
   }
 
   const toPostPageClickHandler = () => {
-    nav(`${Route.POST}/${id}`)
+    navigate(`${Route.POST}/${id}`)
   }
 
   return (
     <StyledTweetCard $compact={compact}>
       <TweetAvatar $compact={compact}>
-        <Avatar photoURL={photoURL} size="s" />
+        <Avatar photoURL={photoURL} size={AvatarSize.SMALL} />
       </TweetAvatar>
       <CardHeader>
         <UserName name={name} email={email} uid={uid} col date={date} link />

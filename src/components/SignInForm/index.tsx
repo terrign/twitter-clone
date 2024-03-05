@@ -1,8 +1,14 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Route } from '@router'
-import { signInWithEmail, useAppDispatch } from '@store'
-import { Button, Centered, Form, FormItem, Input, TwitterIcon } from '@ui'
+import { Button, ButtonType } from '@components/UI/Button'
+import { Centered } from '@components/UI/Centered'
+import { Form } from '@components/UI/Form'
+import { FormItem } from '@components/UI/Form/FormItem'
+import { TwitterIcon } from '@components/UI/Icons'
+import { Input } from '@components/UI/Input'
+import { Route } from '@router/types'
+import { useAppDispatch } from '@store/index'
+import { signInWithEmail } from '@store/slices/auth'
 
 export const SignInForm = () => {
   const [email, setEmail] = useState('')
@@ -36,15 +42,15 @@ export const SignInForm = () => {
         </FormItem>
 
         <FormItem>
-          <Input placeholder="Email address" type="email" value={email} onChange={loginChangeHandler} />
+          <Input placeholder="Email address" type="email" value={email} onChange={loginChangeHandler} required />
         </FormItem>
 
         <FormItem>
-          <Input placeholder="Password" type="password" value={password} onChange={passwordChangeHandler} />
+          <Input placeholder="Password" type="password" value={password} onChange={passwordChangeHandler} required />
         </FormItem>
 
         <FormItem>
-          <Button $type="filled" type="submit">
+          <Button $type={ButtonType.FILLED} type="submit">
             Login
           </Button>
         </FormItem>

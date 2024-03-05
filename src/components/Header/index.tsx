@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react'
 import { Link, useLocation, useOutletContext } from 'react-router-dom'
-import { LeftArrow } from '@assets'
-import { Route } from '@router'
+import { LeftArrow } from '@assets/index'
+import { Route } from '@router/types'
 import { AsideButton, HeaderBlock, StyledHeader } from './styled'
 import { ThemeToggler } from './ThemeToggler'
 

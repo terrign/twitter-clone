@@ -1,4 +1,4 @@
-import { screen } from '@constants'
+import { screen } from '@constants/styles'
 import styled from 'styled-components'
 
 export const StyledYouMightLike = styled.section`

@@ -6,6 +6,11 @@ export const StyledUserName = styled.div<{ $col?: boolean }>`
   display: flex;
   justify-content: ${({ $col }) => ($col ? 'space-evenly' : 'flex-start')};
 
+  p:first-child,
+  a {
+    font-weight: 700;
+  }
+
   a,
   p {
     font-size: ${({ theme }) => theme.fontS};
@@ -16,10 +21,6 @@ export const StyledUserName = styled.div<{ $col?: boolean }>`
     text-overflow: ellipsis;
     max-width: 150px;
     overflow: hidden;
-  }
-
-  a {
-    font-weight: 700;
   }
 
   p:last-child {

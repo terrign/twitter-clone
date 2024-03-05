@@ -1,7 +1,7 @@
+import { AuthProvider, EmailSignUpPayload, UserInfo } from '@models/index'
 import { PayloadAction } from '@reduxjs/toolkit'
-import { authService } from '@services'
-import { persistor } from '@store'
-import { AuthProvider, EmailSignUpPayload, UserInfo } from '@types'
+import { authService } from '@services/Auth'
+import { persistor } from '@store/index'
 import { UserCredential } from 'firebase/auth'
 import { all, call, put, takeLeading } from 'redux-saga/effects'
 import { setAlert } from '../slices/alert'
@@ -13,7 +13,9 @@ function* googleSignUpWorker() {
   const signUpResult: UserCredential | Error = yield authService.googleSignUp()
 
   if (signUpResult instanceof Error) {
-    yield put(setAlert({ type: 'error', message: signUpResult.message }))
+    if (signUpResult.message !== 'auth/popup-closed-by-user') {
+      yield put(setAlert({ type: 'error', message: signUpResult.message }))
+    }
   } else {
     const { email, uid, phoneNumber, photoURL, displayName } = signUpResult.user
     const user: UserInfo | undefined = yield call(getUser, signUpResult.user.uid)

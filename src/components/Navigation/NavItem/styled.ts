@@ -1,4 +1,4 @@
-import { font, hoverTitle, screen } from '@constants'
+import { font, hoverTitle, screen } from '@constants/styles'
 import styled from 'styled-components'
 
 export const StyledNavItem = styled.li<{ $title: string }>`
@@ -37,7 +37,7 @@ export const StyledNavItem = styled.li<{ $title: string }>`
     justify-content: center;
   }
 
-  @media ${screen.l} and (hover: hover) {
+  @media ${screen.l} and (hover: hover) and (pointer: fine) {
     ${hoverTitle}
   }
 `

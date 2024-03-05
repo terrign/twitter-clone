@@ -1,10 +1,11 @@
-import { Color, screen } from '@constants'
+import { Color, screen } from '@constants/styles'
 import styled, { css } from 'styled-components'
 
 export const PrivateRootWrapper = styled.section`
   display: grid;
   max-width: 1440px;
   width: 100%;
+  min-height: 100%;
   margin: 0 auto;
   padding: 0 2rem;
   grid-template-columns: minmax(150px, 230px) minmax(500px, 900px) minmax(260px, 300px);

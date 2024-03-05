@@ -1,5 +1,5 @@
-import { screen } from '@constants'
-import { Centered } from '@ui'
+import { Centered } from '@components/UI/Centered'
+import { screen } from '@constants/styles'
 import styled from 'styled-components'
 
 export const Background = styled(Centered)`
@@ -19,7 +19,7 @@ export const Container = styled.div`
   border-radius: 6px;
   flex-grow: 1;
   max-width: 600px;
-  max-height: 90vh;
+  max-height: 90%;
   overflow-y: auto;
 
   @media ${screen.s} {

@@ -1,4 +1,4 @@
-import { Color } from '@constants'
+import { Color } from '@constants/styles'
 import styled from 'styled-components'
 
 export const StyledTogggler = styled.button`

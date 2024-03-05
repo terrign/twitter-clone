@@ -1,17 +1,22 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { Button, ButtonType } from '@components/UI/Button'
+import { Form } from '@components/UI/Form'
+import { FormInput } from '@components/UI/Form/FormInput'
+import { FormItem } from '@components/UI/Form/FormItem'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { storageService } from '@services'
-import { setAlert, updateUser, useAppDispatch, useAppSelector } from '@store'
-import { Button, Form, FormInput, FormItem } from '@ui'
-import { editProfileValidationSchema } from '@utils'
+import { storageService } from '@services/Storage'
+import { useAppDispatch, useAppSelector } from '@store/index'
+import { setAlert } from '@store/slices/alert'
+import { updateUser } from '@store/slices/user'
+import { editProfileValidationSchema } from '@utils/formValidationSchemas'
 import { ImageInput } from './ImageInput'
 
 export const EditProfileForm = () => {
   const { photoURL, name, bio, gender, tgLink, uid } = useAppSelector((state) => state.user.user)
   const dispatch = useAppDispatch()
 
-  const nav = useNavigate()
+  const navigate = useNavigate()
 
   const form = useForm({
     mode: 'onChange',
@@ -34,11 +39,11 @@ export const EditProfileForm = () => {
         dispatch(setAlert({ type: 'error', message: urlUploadResult.message }))
       } else {
         dispatch(updateUser({ ...rest, uid, photoURL: urlUploadResult }))
-        nav(-1)
+        navigate(-1)
       }
     } else {
       dispatch(updateUser({ ...rest, uid }))
-      nav(-1)
+      navigate(-1)
     }
   })
 
@@ -56,7 +61,7 @@ export const EditProfileForm = () => {
         <FormInput name="gender" labeled />
 
         <FormItem>
-          <Button $type="filled" type="submit">
+          <Button $type={ButtonType.FILLED} type="submit">
             Save
           </Button>
         </FormItem>

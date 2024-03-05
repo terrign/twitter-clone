@@ -1,7 +1,7 @@
+import { UserInfo } from '@models/index'
 import { PayloadAction } from '@reduxjs/toolkit'
-import { userService } from '@services'
-import { usersApi } from '@store'
-import { UserInfo } from '@types'
+import { userService } from '@services/User'
+import { usersApi } from '@store/api/users'
 import { all, call, put, takeEvery } from 'redux-saga/effects'
 import { createUser, setUser, updateUser } from '../slices/user'
 

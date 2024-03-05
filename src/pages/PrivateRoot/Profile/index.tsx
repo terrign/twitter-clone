@@ -1,9 +1,14 @@
 import { useState } from 'react'
 import { Outlet, useParams } from 'react-router-dom'
-import { DefaultProfileBackGround } from '@assets'
-import { Header, ProfileInfo, TweetForm, TweetList } from '@components'
-import { useAppSelector, useFetchTweetsByUserIdQuery, useGetUserByIdQuery } from '@store'
-import { Loader } from '@ui'
+import { DefaultProfileBackGround } from '@assets/index'
+import { Header } from '@components/Header'
+import { ProfileInfo } from '@components/ProfileInfo'
+import { TweetForm } from '@components/TweetForm'
+import { TweetList } from '@components/TweetList'
+import { Loader } from '@components/UI/Loader'
+import { useFetchTweetsByUserIdQuery } from '@store/api/tweets'
+import { useGetUserByIdQuery } from '@store/api/users'
+import { useAppSelector } from '@store/index'
 import { ProfileBackground, UserName } from './styled'
 
 export const Profile = () => {

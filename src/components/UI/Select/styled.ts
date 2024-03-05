@@ -1,4 +1,4 @@
-import { font, screen } from '@constants'
+import { font, screen } from '@constants/styles'
 import styled from 'styled-components'
 
 export const StyledSelect = styled.div`

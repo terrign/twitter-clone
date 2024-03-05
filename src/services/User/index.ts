@@ -1,4 +1,4 @@
-import { UserInfo } from '@types'
+import { UserInfo } from '@models/index'
 import { and, collection, doc, Firestore, getDoc, getDocs, limit, or, query, setDoc, where } from 'firebase/firestore'
 import { Collection } from '../constants'
 import { db } from '../init'

@@ -1,5 +1,5 @@
-import { firebaseErrorMap } from '@constants'
-import { ValidationError } from '@utils'
+import { firebaseErrorMap } from '@constants/index'
+import { ValidationError } from '@utils/formValidationSchemas'
 
 describe('SignUp', () => {
   beforeEach(() => {

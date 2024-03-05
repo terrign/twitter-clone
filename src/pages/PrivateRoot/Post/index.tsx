@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Header, TweetCard } from '@components'
-import { useFetchTweetQuery, useGetUserByIdQuery } from '@store'
-import { Loader } from '@ui'
+import { Header } from '@components/Header'
+import { TweetCard } from '@components/TweetCard'
+import { Loader } from '@components/UI/Loader'
+import { useFetchTweetQuery } from '@store/api/tweets'
+import { useGetUserByIdQuery } from '@store/api/users'
 
 export const Post = () => {
   const { tweetId } = useParams<{ tweetId: string }>()

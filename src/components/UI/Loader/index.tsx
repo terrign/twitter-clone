@@ -1,4 +1,4 @@
-import { Color } from '@constants'
+import { Color } from '@constants/styles'
 import { LoaderCenter, StyledLoader } from './styled'
 
 interface Props {
@@ -8,7 +8,9 @@ interface Props {
   color?: Color
 }
 
-export const Loader = ({ h, w, size, color }: Props) => {
+export const Loader = (props: Props) => {
+  const { h, w, size, color } = props
+
   return (
     <LoaderCenter $h={h} $w={w}>
       <StyledLoader $size={size} $color={color} />

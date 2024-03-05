@@ -1,7 +1,8 @@
-import { Avatar, UserName } from '@ui'
+import { Avatar, AvatarSize } from '@components/UI/Avatar'
+import { UserName } from '@components/UI/UserName'
 import { StyledUserCard } from './styled'
 
-export interface UserCardProps {
+interface Props {
   url: string
   name: string
   email: string
@@ -9,10 +10,12 @@ export interface UserCardProps {
   link?: boolean
 }
 
-export const UserCard = ({ url, name, email, uid, link }: UserCardProps) => {
+export const UserCard = (props: Props) => {
+  const { url, name, email, uid, link } = props
+
   return (
     <StyledUserCard>
-      <Avatar photoURL={url} size="s" />
+      <Avatar photoURL={url} size={AvatarSize.SMALL} />
       <UserName col name={name} email={email} uid={uid} link={link} />
     </StyledUserCard>
   )

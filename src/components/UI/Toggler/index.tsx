@@ -1,12 +1,12 @@
 import { useRef } from 'react'
 import { StyledTogggler, TogglerBar } from './styled'
 
-interface TogglerProps {
+interface Props {
   checked?: boolean
   onChange?: () => void
 }
 
-export function Toggler({ checked, onChange }: TogglerProps) {
+export function Toggler({ checked, onChange }: Props) {
   const checkBoxRef = useRef<HTMLInputElement>(null)
 
   const clickHandler = () => {

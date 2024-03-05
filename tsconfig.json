@@ -8,18 +8,17 @@
     "skipLibCheck": true,
 
     "paths": {
-      "@components": ["components/index"],
-      "@pages": ["pages/index"],
-      "@router": ["router/index"],
-      "@services": ["services/index"],
-      "@types": ["types/index"],
-      "@constants": ["constants/index"],
-      "@utils": ["utils/index"],
-      "@context": ["context/index"],
-      "@store": ["store/index"],
-      "@assets": ["assets/index"],
-      "@hooks": ["hooks/index"],
-      "@ui": ["components/UI/index"]
+      "@components/*": ["components/*"],
+      "@pages/*": ["pages/*"],
+      "@router/*": ["router/*"],
+      "@services/*": ["services/*"],
+      "@models/*": ["models/*"],
+      "@constants/*": ["constants/*"],
+      "@utils/*": ["utils/*"],
+      "@context/*": ["context/*"],
+      "@store/*": ["store/*"],
+      "@assets/*": ["assets/*"],
+      "@hooks/*": ["hooks/*"]
     },
 
     "allowJs": true,

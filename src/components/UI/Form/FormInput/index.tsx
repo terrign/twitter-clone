@@ -1,13 +1,14 @@
 import { useFormContext } from 'react-hook-form'
-import { inputNameMap } from '@constants'
-import { FormItem, Input } from '@ui'
+import { FormItem } from '@components/UI/Form/FormItem'
+import { Input } from '@components/UI/Input'
+import { inputNameMap } from '@constants/index'
 
-interface FormInputProps {
+interface Props {
   labeled?: boolean
   name: keyof typeof inputNameMap
 }
 
-export const FormInput = ({ name, labeled }: FormInputProps) => {
+export const FormInput = ({ name, labeled }: Props) => {
   const { register, formState } = useFormContext()
   const error = formState.errors[name]?.message
 

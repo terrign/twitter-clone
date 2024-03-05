@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { TweetCard } from '@components'
-import { useGetUsersByIdsQuery } from '@store'
-import { Tweet } from '@types'
-import { Loader } from '@ui'
+import { TweetCard } from '@components/TweetCard'
+import { Loader } from '@components/UI/Loader'
+import { Tweet } from '@models/index'
+import { useGetUsersByIdsQuery } from '@store/api/users'
 import { StyledTweetList } from './styled'
 
 export interface TweetListProps {

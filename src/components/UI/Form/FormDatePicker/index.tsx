@@ -1,7 +1,8 @@
 import { useFormContext } from 'react-hook-form'
-import { DAYS, MONTHS, YEARS } from '@constants'
-import { SignUpFormFields } from '@types'
-import { FormItem, Select } from '@ui'
+import { FormItem } from '@components/UI/Form/FormItem'
+import { Select } from '@components/UI/Select'
+import { DAYS, MONTHS, YEARS } from '@constants/index'
+import { SignUpFormFields } from '@models/index'
 import { StyledDatePicker } from './styled'
 
 export const FormDatepicker = () => {

@@ -1,6 +1,5 @@
-import { EditFormFields, SignUpFormFields } from '@types'
-import { generateDays, generateYears } from '@utils'
-import { Color, darkTheme, defaultTheme, font, GlobalStyles, hoverTitle, lightTheme, screen } from './styles'
+import { EditFormFields, SignUpFormFields } from '@models/index'
+import { generateDays, generateYears } from '@utils/index'
 
 const DEFAULT_CACHE_TIME_S = 15
 
@@ -47,7 +46,9 @@ type inputNameMapKeyType =
   | 'currentPassword'
   | 'newPassword'
 
-const inputNameMap: Record<inputNameMapKeyType, { label: string; type: string }> = {
+type InputNameMap = Record<inputNameMapKeyType, { label: string; type: string }>
+
+const inputNameMap: InputNameMap = {
   password: { label: 'Password', type: 'password' },
   name: { label: 'Name', type: 'text' },
   email: { label: 'Email', type: 'email' },
@@ -72,20 +73,4 @@ const firebaseErrorMap: Record<string, string> = {
   'auth/too-many-requests': 'Too many attempts. Access to this account has been temporarily disabled',
 }
 
-export {
-  Color,
-  darkTheme,
-  DAYS,
-  DEFAULT_CACHE_TIME_S,
-  defaultTheme,
-  firebaseErrorMap,
-  font,
-  GlobalStyles,
-  hoverTitle,
-  inputNameMap,
-  lightTheme,
-  LINKS,
-  MONTHS,
-  screen,
-  YEARS,
-}
+export { DAYS, DEFAULT_CACHE_TIME_S, firebaseErrorMap, inputNameMap, LINKS, MONTHS, YEARS }

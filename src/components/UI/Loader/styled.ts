@@ -1,5 +1,5 @@
-import { Color } from '@constants'
-import { Centered } from '@ui'
+import { Centered } from '@components/UI/Centered'
+import { Color } from '@constants/styles'
 import styled, { keyframes } from 'styled-components'
 
 const animation = keyframes`

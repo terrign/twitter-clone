@@ -7,6 +7,5 @@ export const Centered = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 1px;
   min-height: 100%;
 `

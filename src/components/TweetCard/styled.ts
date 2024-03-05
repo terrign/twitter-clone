@@ -1,4 +1,4 @@
-import { screen } from '@constants'
+import { screen } from '@constants/styles'
 import styled, { css } from 'styled-components'
 
 const compactTweetCardStyles = css`

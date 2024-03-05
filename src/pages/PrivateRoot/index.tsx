@@ -1,8 +1,10 @@
 import { useRef, useState } from 'react'
 import { Outlet } from 'react-router-dom'
-import { Navigation, YouMightLike } from '@components'
-import { useOuterClickHandler } from '@hooks'
-import { useAppSelector, useGetUserSuggestionsQuery } from '@store'
+import { Navigation } from '@components/Navigation'
+import { YouMightLike } from '@components/YouMightLike'
+import { useOuterClickHandler } from '@hooks/useOuterClickHandler'
+import { useGetUserSuggestionsQuery } from '@store/api/users'
+import { useAppSelector } from '@store/index'
 import { MainWrapper, PrivateRootWrapper, RightAside } from './styled'
 
 export const PrivateRoot = () => {

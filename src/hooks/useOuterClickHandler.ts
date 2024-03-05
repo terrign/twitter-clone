@@ -1,5 +1,5 @@
 import { RefObject } from 'react'
-import { useEventListener } from '@hooks'
+import { useEventListener } from '@hooks/useEventListener'
 
 export interface OuterClickHandlerHook {
   (target: RefObject<HTMLElement> | HTMLElement, handler: () => void): void

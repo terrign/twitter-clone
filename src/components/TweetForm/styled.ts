@@ -1,5 +1,5 @@
-import { Color, font, screen } from '@constants'
-import { TweetButton } from '@ui'
+import { TweetButton } from '@components/UI/Button'
+import { Color, font, screen } from '@constants/styles'
 import styled from 'styled-components'
 
 export const StyledTweetForm = styled.section`

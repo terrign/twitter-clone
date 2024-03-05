@@ -1,6 +1,7 @@
 import { DetailedHTMLProps, InputHTMLAttributes, ReactNode, useRef, useState } from 'react'
-import { useOuterClickHandler } from '@hooks'
-import { Loader, SearchInput } from '@ui'
+import { Loader } from '@components/UI/Loader'
+import { SearchInput } from '@components/UI/SearchInput'
+import { useOuterClickHandler } from '@hooks/useOuterClickHandler'
 import { SearchResults, StyledSearch } from './styled'
 
 interface Props extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
@@ -8,7 +9,8 @@ interface Props extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>,
   isLoading: boolean
 }
 
-export const Search = ({ result, isLoading, ...rest }: Props) => {
+export const Search = (props: Props) => {
+  const { result, isLoading, ...rest } = props
   const [searchVisible, setSearchVisible] = useState(false)
   const searchRef = useRef<HTMLDivElement>(null)
 

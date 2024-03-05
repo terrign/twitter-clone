@@ -1,4 +1,4 @@
-import { font } from '@constants'
+import { font } from '@constants/styles'
 import styled from 'styled-components'
 
 export const Input = styled.input`

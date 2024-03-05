@@ -1,12 +1,17 @@
+import { PopupMenuPosition } from '@components/UI/PopupMenu'
 import styled from 'styled-components'
 
 export const StyledPopupMenu = styled.div`
   position: relative;
-
   width: min-content;
 `
 
-export const Menu = styled.div<{ $position: 'left' | 'right'; $visible: boolean }>`
+interface Props {
+  $position: PopupMenuPosition
+  $visible: boolean
+}
+
+export const Menu = styled.div<Props>`
   background: ${({ theme }) => theme.bgColor};
 
   box-shadow:
@@ -22,5 +27,5 @@ export const Menu = styled.div<{ $position: 'left' | 'right'; $visible: boolean 
   border-radius: 6px;
 
   top: 100%;
-  left: ${({ $position }) => ($position === 'left' ? '-150px' : '100%')};
+  left: ${({ $position }) => ($position === PopupMenuPosition.LEFT ? '-150px' : '100%')};
 `

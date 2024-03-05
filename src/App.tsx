@@ -1,11 +1,10 @@
 import { Provider } from 'react-redux'
-import { ErrorBoundary } from '@components'
-import { ThemeProvider } from '@context'
-import { Router } from '@router'
-import { persistor, store } from '@store'
-import { Loader } from '@ui'
+import { ErrorBoundary } from '@components/ErrorBoundary'
+import { Loader } from '@components/UI/Loader'
+import { ThemeProvider } from '@context/Theme'
+import { Router } from '@router/index'
+import { persistor, store } from '@store/index'
 import { PersistGate } from 'redux-persist/lib/integration/react'
-import './App.css'
 
 export const App = () => {
   return (

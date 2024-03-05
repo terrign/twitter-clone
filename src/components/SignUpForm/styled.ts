@@ -1,4 +1,4 @@
-import { Centered } from '@ui'
+import { Centered } from '@components/UI/Centered'
 import styled from 'styled-components'
 
 export const Wrapper = styled(Centered)`

@@ -1,8 +1,8 @@
 import { ChangeEvent } from 'react'
-import { useDebounceCallback } from '@hooks'
-import { useLazySearchUsersQuery } from '@store'
-import { UserInfo } from '@types'
-import { Search } from '@ui'
+import { Search } from '@components/UI/Search'
+import { useDebounceCallback } from '@hooks/useDebounceCallback'
+import { UserInfo } from '@models/index'
+import { useLazySearchUsersQuery } from '@store/api/users'
 import { UserList } from '../UserList'
 
 export const UsersSearch = () => {

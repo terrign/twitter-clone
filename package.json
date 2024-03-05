@@ -6,7 +6,7 @@
     "dev": "vite --host",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint \"src/**/*.{js,mjs,cjs,ts,mts,jsx,tsx}\" --fix",
+    "lint": "eslint src --ext .tsx --ext .ts --fix",
     "prettier": "prettier ./src --write",
     "prepare": "husky",
     "test:unit": "jest --coverage.enabled --coverage.all",

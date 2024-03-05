@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { Outlet } from 'react-router'
 import { useLocation, useRevalidator } from 'react-router-dom'
-import { Alert } from '@components'
-import { authService } from '@services'
+import { Notification } from '@components/Notification'
+import { authService } from '@services/Auth'
 import { onAuthStateChanged } from 'firebase/auth'
 import { Main } from './styled'
 
@@ -26,7 +26,7 @@ export const Root = () => {
 
   return (
     <Main>
-      <Alert />
+      <Notification />
       <Outlet />
     </Main>
   )

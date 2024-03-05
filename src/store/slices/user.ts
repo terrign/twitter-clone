@@ -1,6 +1,7 @@
+import { Theme, UserInfo } from '@models/index'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { signOut, usersApi } from '@store'
-import { Theme, UserInfo } from '@types'
+import { usersApi } from '@store/api/users'
+import { signOut } from '@store/slices/auth'
 
 export interface UserStateType {
   theme: Theme

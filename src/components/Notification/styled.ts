@@ -1,4 +1,4 @@
-import { Color } from '@constants'
+import { Color } from '@constants/styles'
 import styled, { css, keyframes } from 'styled-components'
 
 const ANIMATION_DURATION = '0.5s'
@@ -20,7 +20,7 @@ const appearAnimation = css`
   animation-iteration-count: 1;
 `
 
-export const StyledAlert = styled.div<{ $type: 'error' | 'success' }>`
+export const StyledNotification = styled.div<{ $type: 'error' | 'success' }>`
   ${appearAnimation}
 
   font-size: ${({ theme }) => theme.fontS};
@@ -28,6 +28,7 @@ export const StyledAlert = styled.div<{ $type: 'error' | 'success' }>`
   color: ${Color.WHITE};
 
   position: fixed;
+  z-index: 666;
   top: 2rem;
   left: calc(100% - 300px - 2rem);
   border-radius: 6px;

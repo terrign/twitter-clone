@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
-import { WelcomeTwitterBackGroundImage } from '@assets'
-import { Footer } from '@components'
-import { LINKS } from '@constants'
-import { Route } from '@router'
-import { signUpWithGoogle, useAppDispatch } from '@store'
-import { Button, GoogleIcon, TwitterIcon } from '@ui'
+import { WelcomeTwitterBackGroundImage } from '@assets/index'
+import { Footer } from '@components/Footer'
+import { Button, ButtonType } from '@components/UI/Button'
+import { GoogleIcon, TwitterIcon } from '@components/UI/Icons'
+import { LINKS } from '@constants/index'
+import { Route } from '@router/types'
+import { useAppDispatch } from '@store/index'
+import { signUpWithGoogle } from '@store/slices/auth'
 import { Content, HomeLoginText, HomeTermsText, HomeWrapper, Main, TwitterBackGround } from './styled'
 
 export const Welcome = () => {
@@ -30,7 +32,7 @@ export const Welcome = () => {
           <div>
             <h2>Join Twitter today</h2>
 
-            <Button $type="outlined" onClick={googleHanlder}>
+            <Button $type={ButtonType.OUTLINED} onClick={googleHanlder}>
               <span>
                 <GoogleIcon />
                 Sign up with Google
@@ -38,7 +40,7 @@ export const Welcome = () => {
             </Button>
 
             <Link to={Route.SIGN_UP}>
-              <Button $type="outlined">Sign up with email</Button>
+              <Button $type={ButtonType.OUTLINED}>Sign up with email</Button>
             </Link>
 
             <HomeTermsText>

@@ -1,4 +1,4 @@
-import { Tweet } from '@types'
+import { Tweet } from '@models/index'
 import {
   and,
   arrayRemove,
