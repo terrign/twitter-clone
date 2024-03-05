@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useId, useState } from 'react'
 import { AddImageOutlined, TweetButtonIcon } from '@assets/index'
 import { Avatar, AvatarSize } from '@components/UI/Avatar'
 import { ButtonType } from '@components/UI/Button'
-import { Loader } from '@components/UI/Loader'
+import { Loader, LoaderSize } from '@components/UI/Loader'
 import { Color } from '@constants/styles'
 import { storageService } from '@services/Storage'
 import { useAddTweetMutation } from '@store/api/tweets'
@@ -100,7 +100,7 @@ export const TweetForm = ({ onSubmit }: { onSubmit?: () => void }) => {
         </StyledTextArea>
 
         <TweetFormSubmitButton $type={ButtonType.FILLED} disabled={buttonDisabed}>
-          {isLoading || isImageLoading ? <Loader size="s" color={Color.WHITE} /> : <span>Tweet</span>}
+          {isLoading || isImageLoading ? <Loader size={LoaderSize.SMALL} color={Color.WHITE} /> : <span>Tweet</span>}
           <TweetButtonIcon />
         </TweetFormSubmitButton>
       </form>

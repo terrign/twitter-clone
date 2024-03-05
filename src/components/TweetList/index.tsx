@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { TweetCard } from '@components/TweetCard'
-import { Loader } from '@components/UI/Loader'
+import { Loader, LoaderSize } from '@components/UI/Loader'
 import { Tweet } from '@models/index'
 import { useGetUsersByIdsQuery } from '@store/api/users'
 import { StyledTweetList } from './styled'
@@ -20,7 +20,7 @@ export const TweetList = ({ tweets, compact }: TweetListProps) => {
   }
 
   if (isFetching) {
-    return <Loader size={compact ? 's' : 'l'} />
+    return <Loader size={compact ? LoaderSize.SMALL : LoaderSize.DEFAULT} />
   }
 
   return (

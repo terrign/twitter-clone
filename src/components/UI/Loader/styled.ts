@@ -1,4 +1,5 @@
 import { Centered } from '@components/UI/Centered'
+import { LoaderSize } from '@components/UI/Loader'
 import { Color } from '@constants/styles'
 import styled, { keyframes } from 'styled-components'
 
@@ -56,14 +57,18 @@ export const LoaderCenter = styled(Centered)<{ $h?: string; $w?: string }>`
   width: ${({ $w }) => $w};
 `
 
-export const StyledLoader = styled.span<{ $size?: 'l' | 's'; $color?: Color }>`
-  color: ${({ $color }) => $color ?? Color.BLUE};
-  font-size: 10px;
-  width: 1em;
-  height: 1em;
+interface LoaderProps {
+  $size: LoaderSize
+  $color: Color
+}
+
+export const StyledLoader = styled.span<LoaderProps>`
+  color: ${({ $color }) => $color};
+  font-size: 0.3rem;
+  width: 0.3rem;
+  height: 0.3rem;
   border-radius: 50%;
   position: relative;
-  text-indent: -9999em;
   animation: ${animation} 1.3s infinite linear;
-  transform: translateZ(0) scale(${({ $size }) => ($size === 'l' ? 1.5 : $size === 's' ? 0.5 : 1)});
+  transform: scale(${({ $size }) => $size});
 `
