@@ -1,6 +1,6 @@
 /// <reference types="vite-plugin-svgr/client" />
 
-import { defineConfig } from 'vite'
+import { defineConfig, splitVendorChunkPlugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 import svgr from 'vite-plugin-svgr'
@@ -18,7 +18,9 @@ export default defineConfig({
         quality: 80,
       },
     }),
+    splitVendorChunkPlugin(),
   ],
+
   resolve: {
     alias: [
       { find: '@components', replacement: path.resolve(__dirname, './src/components/index') },
@@ -34,6 +36,27 @@ export default defineConfig({
       { find: '@hooks', replacement: path.resolve(__dirname, './src/hooks/index') },
       { find: '@ui', replacement: path.resolve(__dirname, './src/components/UI/index') },
     ],
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        compact: true,
+        manualChunks(id: string) {
+          if (id.includes('react-router-dom') || id.includes('react-dom') || id.includes('react')) {
+            return 'react'
+          }
+          if (id.includes('firebase/firestore')) {
+            return 'store'
+          }
+          if (id.includes('firebase/auth')) {
+            return 'auth'
+          }
+          if (id.includes('firebase/storage')) {
+            return 'storage'
+          }
+        },
+      },
+    },
   },
 
   envPrefix: 'APP_',
