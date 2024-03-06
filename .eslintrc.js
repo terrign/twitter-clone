@@ -50,7 +50,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['./src/assets/index.ts', './src/App.tsx', './src/store/index.ts'],
+      files: ['./src/App.tsx', './src/store/index.ts'],
       rules: {
         'import/no-unresolved': 'off',
       },
@@ -92,5 +92,6 @@ module.exports = {
     '*.config.js',
     '/dist',
     '/cypress/*',
+    'src/models/vite-env.d.ts',
   ],
 }

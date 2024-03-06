@@ -3,6 +3,7 @@
 module.exports = {
   testEnvironment: 'jest-environment-jsdom',
   extensionsToTreatAsEsm: ['.tsx', '.ts'],
+  // transform: { '^.+\\.jsx?$': 'babel-jest', '^.+\\.svg$': 'jest-svg-transformer' },
   collectCoverageFrom: [
     './src/**/*.{ts,tsx,js}',
     '!**/node_modules/**',
@@ -12,10 +13,10 @@ module.exports = {
     '!.src/main.tsx',
   ],
   moduleNameMapper: {
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/__test__/__mocks__/fileMock.js',
     '\\.(css|less)$': 'identity-obj-proxy',
-    // '\\.svg\\?react': '<rootDir>/__test__/__mocks__/svg.js',
+    '\\.svg$': '<rootDir>/__test__/__mocks__/svgrMock.tsx',
     '<rootDir>/src/services/config': '<rootDir>/__test__/__mocks__/firebaseConfig.js',
     '^@components/(.*)$': '<rootDir>/src/components/$1',
     '^@pages/(.*)$': '<rootDir>/src/pages/$1',

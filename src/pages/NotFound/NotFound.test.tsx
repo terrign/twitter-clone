@@ -1,10 +1,16 @@
 import '@testing-library/jest-dom'
+import { MemoryRouter } from 'react-router-dom'
 import { render, screen } from '@testing-library/react'
 import { NotFound } from '.'
 
 describe('test', () => {
   it('renders', async () => {
-    render(<NotFound />)
-    expect(screen.getByText(/Oops/gi)).toBeInTheDocument()
+    render(
+      <MemoryRouter initialEntries={['/asdfasdfasdf']}>
+        <NotFound />
+      </MemoryRouter>,
+    )
+
+    expect(screen.getByText(/Oops/i)).toBeInTheDocument()
   })
 })
