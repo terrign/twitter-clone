@@ -1,5 +1,5 @@
-import { Color } from '@constants/styles'
 import styled, { css, keyframes } from 'styled-components'
+import { Color } from '@constants/styles'
 
 const ANIMATION_DURATION = '0.5s'
 

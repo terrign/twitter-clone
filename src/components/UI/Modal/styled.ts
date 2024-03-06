@@ -1,6 +1,6 @@
+import styled from 'styled-components'
 import { Centered } from '@components/UI/Centered'
 import { screen } from '@constants/styles'
-import styled from 'styled-components'
 
 export const Background = styled(Centered)`
   position: fixed;

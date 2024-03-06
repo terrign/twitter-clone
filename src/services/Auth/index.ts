@@ -1,4 +1,5 @@
 import { mapErrorMessage } from '@utils/mapErrorMessage'
+import { FirebaseError } from 'firebase/app'
 import {
   Auth,
   createUserWithEmailAndPassword,
@@ -13,6 +14,8 @@ import {
 import { GOOGLE_PROVIDER_SCOPE } from '../constants'
 import { auth } from '../init'
 
+export type AuthReturnType = UserCredential | FirebaseError | undefined
+
 class AuthService {
   public auth: Auth = auth
   private googleProvider: GoogleAuthProvider = new GoogleAuthProvider()
@@ -21,7 +24,7 @@ class AuthService {
     this.googleProvider.addScope(GOOGLE_PROVIDER_SCOPE)
   }
 
-  public emailSignUp = async (email: string, password: string): Promise<UserCredential | Error> => {
+  public emailSignUp = async (email: string, password: string): Promise<AuthReturnType> => {
     try {
       const emailSignUpResult = await createUserWithEmailAndPassword(this.auth, email, password)
 
@@ -31,7 +34,7 @@ class AuthService {
     }
   }
 
-  public googleSignUp = async () => {
+  public googleSignUp = async (): Promise<AuthReturnType> => {
     try {
       const signUnResult = await signInWithPopup(this.auth, this.googleProvider)
 
@@ -41,7 +44,7 @@ class AuthService {
     }
   }
 
-  public emailSignIn = async (email: string, password: string) => {
+  public emailSignIn = async (email: string, password: string): Promise<AuthReturnType> => {
     try {
       const emailSignInResult = await signInWithEmailAndPassword(this.auth, email, password)
 
@@ -51,7 +54,7 @@ class AuthService {
     }
   }
 
-  public updatePassword = async (oldPassword: string, newPassword: string) => {
+  public updatePassword = async (oldPassword: string, newPassword: string): Promise<AuthReturnType> => {
     if (this.auth.currentUser) {
       try {
         const credential = EmailAuthProvider.credential(this.auth.currentUser.email ?? '', oldPassword)

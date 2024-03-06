@@ -1,6 +1,6 @@
+import styled from 'styled-components'
 import { TweetButton } from '@components/UI/Button'
 import { Color, font, screen } from '@constants/styles'
-import styled from 'styled-components'
 
 export const StyledTweetForm = styled.section`
   display: grid;

@@ -1,7 +1,7 @@
+import styled from 'styled-components'
 import { Button } from '@components/UI/Button'
 import { Centered } from '@components/UI/Centered'
 import { screen } from '@constants/styles'
-import styled from 'styled-components'
 
 export const StyledNotFound = styled.section`
   height: 100%;

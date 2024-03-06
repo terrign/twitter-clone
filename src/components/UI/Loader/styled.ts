@@ -1,7 +1,7 @@
+import styled, { keyframes } from 'styled-components'
 import { Centered } from '@components/UI/Centered'
 import { LoaderSize } from '@components/UI/Loader'
 import { Color } from '@constants/styles'
-import styled, { keyframes } from 'styled-components'
 
 const animation = keyframes`
  0%,

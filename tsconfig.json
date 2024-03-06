@@ -3,7 +3,14 @@
     "target": "ES2015",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "types": ["node", "jest", "@testing-library/jest-dom", "@testing-library/react", "@testing-library/user-event"],
+    "types": [
+      "node",
+      "jest",
+      "@testing-library/jest-dom",
+      "@testing-library/react",
+      "@testing-library/user-event",
+      "vite-plugin-svgr/client"
+    ],
     "module": "ESNext",
     "skipLibCheck": true,
 

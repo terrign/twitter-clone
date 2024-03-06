@@ -1,5 +1,5 @@
-import { font, screen } from '@constants/styles'
 import styled from 'styled-components'
+import { font, screen } from '@constants/styles'
 
 export const StyledSelect = styled.div`
   position: relative;

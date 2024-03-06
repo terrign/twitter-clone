@@ -1,5 +1,5 @@
-import { font, hoverTitle, screen } from '@constants/styles'
 import styled from 'styled-components'
+import { font, hoverTitle, screen } from '@constants/styles'
 
 export const StyledNavItem = styled.li<{ $title: string }>`
   display: flex;

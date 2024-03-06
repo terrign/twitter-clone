@@ -1,5 +1,5 @@
-import { screen } from '@constants/styles'
 import styled from 'styled-components'
+import { screen } from '@constants/styles'
 
 export const HomeWrapper = styled.div`
   display: flex;

@@ -1,5 +1,5 @@
-import { PopupMenuPosition } from '@components/UI/PopupMenu'
 import styled from 'styled-components'
+import { PopupMenuPosition } from '@components/UI/PopupMenu'
 
 export const StyledPopupMenu = styled.div`
   position: relative;

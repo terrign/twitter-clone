@@ -1,5 +1,5 @@
-import { DropDownArrow, GoogleLogo, TwitterLogo } from '@assets/index'
 import styled from 'styled-components'
+import { DropDownArrow, GoogleLogo, TwitterLogo } from '@assets/index'
 
 const TwitterIconSizeMap = {
   big: {

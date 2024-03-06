@@ -1,5 +1,5 @@
-import { ThemeObject } from '@models/index'
 import { createGlobalStyle, css } from 'styled-components'
+import { ThemeObject } from '@models/index'
 
 const breakpoints = {
   xxs: '320px',

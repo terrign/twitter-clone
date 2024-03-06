@@ -1,6 +1,6 @@
+import styled from 'styled-components'
 import { Button } from '@components/UI/Button'
 import { Color, hoverTitle, screen } from '@constants/styles'
-import styled from 'styled-components'
 
 export const StyledAsideNavigation = styled.aside`
   position: sticky;

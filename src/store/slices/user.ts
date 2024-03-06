@@ -1,5 +1,5 @@
-import { Theme, UserInfo } from '@models/index'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { Theme, UserInfo } from '@models/index'
 import { usersApi } from '@store/api/users'
 import { signOut } from '@store/slices/auth'
 

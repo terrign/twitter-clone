@@ -1,5 +1,5 @@
-import { DEFAULT_CACHE_TIME_S } from '@constants/index'
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react'
+import { DEFAULT_CACHE_TIME_S } from '@constants/index'
 import { tweetService } from '@services/Tweets'
 import { userService } from '@services/User'
 

@@ -1,5 +1,5 @@
-import { font } from '@constants/styles'
 import styled from 'styled-components'
+import { font } from '@constants/styles'
 
 export const StyledFooter = styled.footer`
   font-size: ${({ theme }) => theme.fontXS};

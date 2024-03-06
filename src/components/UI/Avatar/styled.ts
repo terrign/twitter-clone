@@ -1,5 +1,5 @@
-import { AvatarSize } from '@components/UI/Avatar'
 import styled from 'styled-components'
+import { AvatarSize } from '@components/UI/Avatar'
 
 interface Props {
   $size: AvatarSize

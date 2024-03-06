@@ -1,5 +1,5 @@
-import { screen } from '@constants/styles'
 import styled, { css } from 'styled-components'
+import { screen } from '@constants/styles'
 
 const compactTweetCardStyles = css`
   grid-template-columns: 50px 1fr 50px;

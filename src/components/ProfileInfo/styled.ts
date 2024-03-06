@@ -1,4 +1,3 @@
-import { Color } from '@constants/styles'
 import styled from 'styled-components'
 
 export const StyledProfileInfo = styled.section`
@@ -21,7 +20,6 @@ export const StyledProfileInfo = styled.section`
 `
 
 export const Bio = styled.p`
-  /* color: ${Color.GRAY}; */
   margin-top: 1rem;
   font-size: ${({ theme }) => theme.fontS};
 `

@@ -1,5 +1,5 @@
-import { Color } from '@constants/styles'
 import styled from 'styled-components'
+import { Color } from '@constants/styles'
 
 export const StyledImageInput = styled.div<{ $image: string }>`
   display: flex;

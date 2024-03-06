@@ -1,6 +1,6 @@
+import styled from 'styled-components'
 import { Button } from '@components/UI/Button'
 import { Color } from '@constants/styles'
-import styled from 'styled-components'
 
 export const MenuButton = styled.button`
   height: 2rem;

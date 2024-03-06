@@ -6,9 +6,7 @@ export const mapErrorMessage = (error: unknown) => {
     error.message = firebaseErrorMap[error.code]
 
     return error
-  } else if (error instanceof Error) {
-    return error
   }
 
-  return new Error('Unknown error occured, please try to reload the page')
+  return new FirebaseError('unknown error', 'Unknown error occured, please try to reload the page')
 }

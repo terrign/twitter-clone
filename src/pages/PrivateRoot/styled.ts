@@ -1,5 +1,5 @@
-import { Color, screen } from '@constants/styles'
 import styled, { css } from 'styled-components'
+import { Color, screen } from '@constants/styles'
 
 export const PrivateRootWrapper = styled.section`
   display: grid;
