@@ -14,6 +14,9 @@ declare namespace Cypress {
     selectMonth(): Chainable
     selectDay(): Chainable
     selectYear(): Chainable
+    login(): Chainable
+    logout(): Chainable
+    button(text: string): Chainable
   }
 }
 
@@ -58,4 +61,25 @@ Cypress.Commands.add('fillSignUpFormInCorrect', () => {
       cy.get('input[placeholder="Password"]').type(user.pass_weak)
       cy.get('input[placeholder="Confirm password"]').type(user.pass_weak + 'asd')
     })
+})
+
+Cypress.Commands.add('login', () => {
+  cy.visit('/')
+  cy.get('a:contains("Log in")').click()
+  cy.fixture('./correctUserData').then((user) => {
+    cy.get('input[placeholder="Email address"]').type(user.email)
+    cy.get('input[placeholder="Password"]').type(user.pass)
+  })
+
+  cy.button('Login').click()
+  cy.wait(2000)
+})
+
+Cypress.Commands.add('button', (text: string) => {
+  cy.get('button').contains(text)
+})
+
+Cypress.Commands.add('logout', () => {
+  cy.wait(2000)
+  cy.button('Log out').click()
 })

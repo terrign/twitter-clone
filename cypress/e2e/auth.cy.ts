@@ -9,8 +9,16 @@ describe('SignUp', () => {
   it('Email signUp works', () => {
     cy.visit('/signup')
     cy.fillSignUpFormCorrect()
-    cy.get('button').contains('Next').click()
-    cy.get('button').contains('Log out').click()
+    cy.button('Next').click()
+    cy.button('Tweet').click()
+
+    cy.get('#modal textarea').type('init tweet')
+
+    cy.get('#modal').within(() => {
+      cy.button('Tweet').click()
+    })
+    cy.get('*').contains('init tweet').should('exist')
+    cy.logout()
   })
 
   it('Shows error if email already exists', () => {
@@ -20,14 +28,8 @@ describe('SignUp', () => {
   })
 
   it('Email signIn works', () => {
-    cy.visit('/signin')
-    cy.fixture('./correctUserData').then((user) => {
-      cy.get('input[placeholder="Email address"]').type(user.email)
-      cy.get('input[placeholder="Password"]').type(user.pass)
-    })
-
-    cy.get('button').contains('Login').click()
-    cy.get('button').contains('Log out').click()
+    cy.login()
+    cy.logout()
   })
 
   it('Shows error on invalid password', () => {
@@ -48,7 +50,7 @@ describe('SignUp', () => {
 
   it('Shows validation erorrs', () => {
     cy.visit('/signup')
-    cy.get('button').contains('Next').click()
+    cy.button('Next').click()
     cy.get('*').contains(ValidationError.EMAIL_REQUIRED)
     cy.get('*').contains(ValidationError.NAME_REQUIRED)
     cy.get('*').contains(ValidationError.PASS_CONFIRM_REQUIRED)

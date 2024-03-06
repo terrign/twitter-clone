@@ -26,7 +26,7 @@ export const Modal = (props: Props) => {
     open &&
     createPortal(
       <Background>
-        <Container ref={containerRef}>
+        <Container ref={containerRef} id="modal">
           <ModalHeader>
             {header}
             <CloseButton onClick={onClose}>✖</CloseButton>
