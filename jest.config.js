@@ -3,7 +3,9 @@
 module.exports = {
   testEnvironment: 'jest-environment-jsdom',
   extensionsToTreatAsEsm: ['.tsx', '.ts'],
-  // transform: { '^.+\\.jsx?$': 'babel-jest', '^.+\\.svg$': 'jest-svg-transformer' },
+  transform: {
+    '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
+  },
   collectCoverageFrom: [
     './src/**/*.{ts,tsx,js}',
     '!**/node_modules/**',
@@ -31,10 +33,6 @@ module.exports = {
     '^@hooks/(.*)$': '<rootDir>/src/hooks/$1',
   },
 
-  transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
-    // '^.+\\.(ts|tsx)$': '<rootDir>/node_modules/ts-jest',
-  },
   setupFiles: ['<rootDir>/__test__/jest.polyfills.js'],
   setupFilesAfterEnv: ['<rootDir>/__test__/jest.setup.js'],
   transformIgnorePatterns: ['/node_modules/(?!(firebase|@firebase)/)'],

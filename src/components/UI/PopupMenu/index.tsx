@@ -10,15 +10,15 @@ export enum PopupMenuPosition {
 interface Props extends PropsWithChildren {
   position: PopupMenuPosition
   visible: boolean
-  setVisible: (visible: boolean) => void
+  closePopup: () => void
   controlButton: ReactNode
 }
 
 export const PopupMenu = (props: Props) => {
-  const { children, position, visible, setVisible, controlButton } = props
+  const { children, position, visible, closePopup, controlButton } = props
   const ref = useRef<HTMLDivElement>(null)
 
-  useOuterClickHandler(ref, () => setVisible(false))
+  useOuterClickHandler(ref, closePopup)
 
   return (
     <StyledPopupMenu ref={ref}>

@@ -11,8 +11,12 @@ import { EmailSignUpPayload } from '@models/index'
 import { Route } from '@router/types'
 import { useAppDispatch } from '@store/index'
 import { signUpWithEmail } from '@store/slices/auth'
+import { getIsoDateFromParts } from '@utils/date'
 import { signUpValidationSchema } from '@utils/formValidationSchemas'
+import { config } from './config'
 import { DateOfBirth, Paragraph, Wrapper } from './styled'
+
+const { dateOfBirthHeader, dateOfBirthText, submitButtonLabel, header, linkLabel } = config
 
 export const SignUpForm = () => {
   const form = useForm({
@@ -32,7 +36,7 @@ export const SignUpForm = () => {
         email,
         name,
         phoneNumber,
-        dateOfBirth: `${year}-${month}-${day}`,
+        dateOfBirth: getIsoDateFromParts(day, month, year),
         gender: '',
         tgLink: '',
         bio: '',
@@ -53,7 +57,7 @@ export const SignUpForm = () => {
           </FormItem>
 
           <FormItem>
-            <h2>Create an account</h2>
+            <h2>{header}</h2>
           </FormItem>
 
           <FormInput name="name" />
@@ -67,26 +71,22 @@ export const SignUpForm = () => {
           <FormInput name="confirmPassword" />
 
           <FormItem>
-            <Link to={Route.HOME}>Use email</Link>
+            <Link to={Route.HOME}>{linkLabel}</Link>
           </FormItem>
 
           <FormItem>
-            <DateOfBirth>Date of Birth</DateOfBirth>
+            <DateOfBirth>{dateOfBirthHeader}</DateOfBirth>
           </FormItem>
 
           <FormItem>
-            <Paragraph>
-              Facilisi sem pulvinar velit nunc, gravida scelerisque amet nibh sit. Quis bibendum ante phasellus metus,
-              magna lacinia sed augue. Odio enim nascetur leo mauris vel eget. Pretium id ullamcorper blandit viverra
-              dignissim eget tellus. Nibh mi massa in molestie a sit. Elit congue.
-            </Paragraph>
+            <Paragraph>{dateOfBirthText}</Paragraph>
           </FormItem>
 
           <FormDatepicker />
 
           <FormItem>
             <Button $type={ButtonType.FILLED} type="submit">
-              Next
+              {submitButtonLabel}
             </Button>
           </FormItem>
         </Form>

@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { TweetButtonIcon } from '@assets/index'
 import { TweetForm } from '@components/TweetForm'
@@ -7,6 +6,7 @@ import { ButtonType, TweetButton } from '@components/UI/Button'
 import { TwitterIcon } from '@components/UI/Icons'
 import { Modal } from '@components/UI/Modal'
 import { UserCard } from '@components/UI/UserCard'
+import { useBooleanState } from '@hooks/useBooleanState'
 import { Route } from '@router/types'
 import { useAppDispatch, useAppSelector } from '@store/index'
 import { signOut } from '@store/slices/auth'
@@ -17,18 +17,10 @@ import { LogoutButton, StyledAsideNavigation } from './styled'
 export const Navigation = () => {
   const dispatch = useAppDispatch()
   const { name, email, photoURL, uid } = useAppSelector((state) => state.user.user)
-  const [tweetModalOpen, setTweetModalOpen] = useState(false)
+  const [modalOpen, , openModal, closeModal] = useBooleanState(false)
 
   const logoutHandler = () => {
     dispatch(signOut())
-  }
-
-  const closeModal = () => {
-    setTweetModalOpen(false)
-  }
-
-  const openModal = () => {
-    setTweetModalOpen(true)
   }
 
   return (
@@ -56,7 +48,7 @@ export const Navigation = () => {
         <span>Log out</span>
         <Avatar size={AvatarSize.SMALL} photoURL={photoURL} />
       </LogoutButton>
-      <Modal open={tweetModalOpen} onClose={closeModal} header="Add tweet">
+      <Modal open={modalOpen} onClose={closeModal} header="Add tweet">
         <TweetForm onSubmit={closeModal} />
       </Modal>
     </StyledAsideNavigation>

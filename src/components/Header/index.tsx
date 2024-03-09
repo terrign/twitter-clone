@@ -9,10 +9,12 @@ export const Header = ({ children }: PropsWithChildren) => {
   const { pathname } = useLocation()
   const toggleAside = useOutletContext<() => void>()
 
+  const isAtHomeRoute = pathname === Route.HOME
+
   return (
     <StyledHeader>
       <HeaderBlock>
-        {pathname !== Route.HOME && (
+        {!isAtHomeRoute && (
           <Link to={Route.HOME}>
             <LeftArrow />
           </Link>
@@ -21,7 +23,7 @@ export const Header = ({ children }: PropsWithChildren) => {
         <div>{children}</div>
       </HeaderBlock>
       <HeaderBlock>
-        {pathname === Route.HOME && <ThemeToggler />}
+        {isAtHomeRoute && <ThemeToggler />}
         <AsideButton onClick={toggleAside}>
           <LeftArrow />
         </AsideButton>

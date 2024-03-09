@@ -24,8 +24,10 @@ export const ImageInput = ({ photoURL }: Props) => {
     }
   }
 
+  const displayImageUrl = backgroundImage || photoURL || DefaultAvatarImage
+
   return (
-    <StyledImageInput $image={backgroundImage || photoURL || DefaultAvatarImage}>
+    <StyledImageInput $image={displayImageUrl}>
       <label htmlFor={id}>
         <div>
           <AddPhoto />

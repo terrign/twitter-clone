@@ -4,6 +4,7 @@ import { Avatar, AvatarSize } from '@components/UI/Avatar'
 import { ButtonType } from '@components/UI/Button'
 import { Loader, LoaderSize } from '@components/UI/Loader'
 import { Color } from '@constants/styles'
+import { useBooleanState } from '@hooks/useBooleanState'
 import { storageService } from '@services/Storage'
 import { useAddTweetMutation } from '@store/api/tweets'
 import { useAppDispatch, useAppSelector } from '@store/index'
@@ -23,7 +24,7 @@ export const TweetForm = ({ onSubmit }: { onSubmit?: () => void }) => {
   const dispatch = useAppDispatch()
   const [addTweet, { isLoading }] = useAddTweetMutation()
 
-  const [isImageLoading, setIsImageLoading] = useState(false)
+  const [loaderVisible, , showLoader, hideLoader] = useBooleanState(false)
 
   const tweetChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setTweet(event.target.value)
@@ -38,7 +39,7 @@ export const TweetForm = ({ onSubmit }: { onSubmit?: () => void }) => {
     let imageUploadResult: Error | string = ''
 
     if (file) {
-      setIsImageLoading(true)
+      showLoader()
       imageUploadResult = await storageService.addFile(file)
 
       if (imageUploadResult instanceof Error) {
@@ -48,7 +49,7 @@ export const TweetForm = ({ onSubmit }: { onSubmit?: () => void }) => {
       }
     }
 
-    setIsImageLoading(false)
+    hideLoader()
 
     addTweet(newTweet({ text: tweet, imageURL: imageUploadResult, createdById: uid })).then(() => {
       setTweet('')
@@ -100,7 +101,7 @@ export const TweetForm = ({ onSubmit }: { onSubmit?: () => void }) => {
         </StyledTextArea>
 
         <TweetFormSubmitButton $type={ButtonType.FILLED} disabled={buttonDisabed}>
-          {isLoading || isImageLoading ? <Loader size={LoaderSize.SMALL} color={Color.WHITE} /> : <span>Tweet</span>}
+          {isLoading || loaderVisible ? <Loader size={LoaderSize.SMALL} color={Color.WHITE} /> : <span>Tweet</span>}
           <TweetButtonIcon />
         </TweetFormSubmitButton>
       </form>

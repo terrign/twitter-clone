@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { Close } from '@assets/index'
+import { useBooleanState } from '@hooks/useBooleanState'
 import { useAppDispatch, useAppSelector } from '@store/index'
 import { removeAlert } from '@store/slices/alert'
 import { CloseButton, StyledNotification } from './styled'
@@ -8,19 +9,19 @@ import { CloseButton, StyledNotification } from './styled'
 const ALERT_EXPIRATION_TIME_MS = 5000
 
 export const Notification = () => {
-  const [alertVisible, setAlertVisible] = useState(false)
+  const [notificationVisible, , showNotification, hideNotification] = useBooleanState(false)
   const { message, type } = useAppSelector((state) => state.alert)
   const dispatch = useAppDispatch()
   const intervalRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const clearAlert = () => {
-    setAlertVisible(false)
+    hideNotification()
     dispatch(removeAlert())
   }
 
   useEffect(() => {
     if (message) {
-      setAlertVisible(true)
+      showNotification()
 
       intervalRef.current = setTimeout(clearAlert, ALERT_EXPIRATION_TIME_MS)
 
@@ -43,7 +44,7 @@ export const Notification = () => {
   }
 
   return (
-    alertVisible &&
+    notificationVisible &&
     createPortal(
       <StyledNotification $type={type} onMouseEnter={mouseEnterHandler} onMouseLeave={mouseLeaveHandler}>
         <CloseButton onClick={closeHandler}>

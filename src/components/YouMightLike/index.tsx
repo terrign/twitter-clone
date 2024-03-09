@@ -28,8 +28,8 @@ export const YouMightLike = ({ users, tweets, toggleAside }: Props) => {
   return (
     <StyledYouMightLike>
       <Header>
-        <button>
-          <LeftArrow onClick={closeAside} />
+        <button onClick={closeAside}>
+          <LeftArrow />
         </button>
       </Header>
       {search}
@@ -46,6 +46,7 @@ export const YouMightLike = ({ users, tweets, toggleAside }: Props) => {
             })}
           </SuggestedImages>
           <h3>You might like</h3>
+
           <UserList users={users} />
         </>
       )}

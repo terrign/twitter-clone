@@ -8,7 +8,7 @@ import { Tweet, UserInfo } from '@models/index'
 import { Route } from '@router/types'
 import { useLikeTweetMutation, useUnlikeTweetMutation } from '@store/api/tweets'
 import { useAppSelector } from '@store/index'
-import { getHumanMonthDayFromTimeStamp } from '@utils/index'
+import { getHumanMonthDayFromTimeStamp } from '@utils/date'
 import { Menu } from './Menu'
 import { CardHeader, Likes, StyledTweetCard, TweetAvatar, TweetContent } from './styled'
 

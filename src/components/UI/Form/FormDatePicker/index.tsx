@@ -1,8 +1,9 @@
 import { useFormContext } from 'react-hook-form'
 import { FormItem } from '@components/UI/Form/FormItem'
 import { Select } from '@components/UI/Select'
-import { DAYS, MONTHS, YEARS } from '@constants/index'
+import { MONTH_NAMES, YEARS } from '@constants/index'
 import { SignUpFormFields } from '@models/index'
+import { getDayArrayFromMonthAndYear, getNewDayIfNotLegitDate } from '@utils/date'
 import { StyledDatePicker } from './styled'
 
 export const FormDatepicker = () => {
@@ -14,8 +15,16 @@ export const FormDatepicker = () => {
   } = useFormContext<SignUpFormFields>()
 
   const getSelectHandler = (type: 'day' | 'month' | 'year') => (value: string) => {
-    const definedValue = type === 'month' ? MONTHS[value as keyof typeof MONTHS] : value
-    setValue(type, definedValue)
+    const { day, month, year } = getValues()
+    const currentMonth = type === 'month' ? value : month
+    const currentYear = type === 'year' ? value : year
+    const validatedDay = getNewDayIfNotLegitDate(day, MONTH_NAMES.indexOf(currentMonth), currentYear)
+
+    if (day !== validatedDay) {
+      setValue('day', validatedDay)
+    }
+
+    setValue(type, value)
     trigger(type)
   }
 
@@ -27,12 +36,14 @@ export const FormDatepicker = () => {
 
   const { day, month, year } = getValues()
 
+  const dayOptions = getDayArrayFromMonthAndYear(MONTH_NAMES.indexOf(month), year)
+
   return (
     <FormItem errorMessage={getError()}>
       <StyledDatePicker>
-        <Select value={month} onSelect={getSelectHandler('month')} options={Object.keys(MONTHS)} placeHolder="Month" />
+        <Select value={month} onSelect={getSelectHandler('month')} options={MONTH_NAMES} placeHolder="Month" />
 
-        <Select value={day} onSelect={getSelectHandler('day')} options={DAYS} placeHolder="Day" />
+        <Select value={day} onSelect={getSelectHandler('day')} options={dayOptions} placeHolder="Day" />
 
         <Select value={year} onSelect={getSelectHandler('year')} options={YEARS} placeHolder="Year" />
       </StyledDatePicker>

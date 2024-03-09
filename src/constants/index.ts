@@ -1,5 +1,5 @@
 import { EditFormFields, SignUpFormFields } from '@models/index'
-import { generateDays, generateYears } from '@utils/index'
+import { generateYears } from '@utils/date'
 
 const DEFAULT_CACHE_TIME_S = 15
 
@@ -23,22 +23,21 @@ const LINKS = {
 }
 
 const YEARS = generateYears()
-const DAYS = generateDays()
 
-const MONTHS = {
-  January: '01',
-  February: '02',
-  March: '03',
-  April: '04',
-  May: '05',
-  June: '06',
-  July: '07',
-  August: '08',
-  September: '09',
-  October: '10',
-  November: '11',
-  December: '12',
-}
+const MONTH_NAMES = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+]
 
 type inputNameMapKeyType =
   | keyof SignUpFormFields
@@ -73,4 +72,4 @@ const firebaseErrorMap: Record<string, string> = {
   'auth/too-many-requests': 'Too many attempts. Access to this account has been temporarily disabled',
 }
 
-export { DAYS, DEFAULT_CACHE_TIME_S, firebaseErrorMap, inputNameMap, LINKS, MONTHS, YEARS }
+export { DEFAULT_CACHE_TIME_S, firebaseErrorMap, inputNameMap, LINKS, MONTH_NAMES, YEARS }
