@@ -57,6 +57,12 @@ export const userSlice = createSlice({
         }
       })
   },
+  selectors: {
+    selectUser: (state) => state.user,
+    selectTheme: (state) => state.theme,
+  },
 })
 
 export const { setUser, createUser, switchTheme, updateUser } = userSlice.actions
+
+export const { selectUser, selectTheme } = userSlice.selectors

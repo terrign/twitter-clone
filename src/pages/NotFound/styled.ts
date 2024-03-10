@@ -21,7 +21,7 @@ export const BackHomeButton = styled(Button)`
 
 export const Container = styled(Centered)`
   max-height: 500px;
-  max-width: 1200px;
+  max-width: ${screen.l};
 
   div {
     max-height: 500px;

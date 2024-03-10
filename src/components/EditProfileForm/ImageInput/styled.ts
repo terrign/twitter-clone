@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Color } from '@constants/styles'
+import { Color, mediaHover } from '@constants/styles'
 
 export const StyledImageInput = styled.div<{ $image: string }>`
   display: flex;
@@ -28,7 +28,7 @@ export const StyledImageInput = styled.div<{ $image: string }>`
     cursor: pointer;
     transition: transform 0.1s linear;
 
-    @media (hover: hover) {
+    @media ${mediaHover} {
       &:hover {
         transform: scale(1.2);
       }

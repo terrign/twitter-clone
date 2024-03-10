@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export const StyledProfileInfo = styled.section`
+  font-size: ${({ theme }) => theme.fontS};
+
   display: flex;
   justify-content: space-between;
   align-items: start;
@@ -21,5 +23,15 @@ export const StyledProfileInfo = styled.section`
 
 export const Bio = styled.p`
   margin-top: 1rem;
-  font-size: ${({ theme }) => theme.fontS};
+`
+
+export const TelegramIcon = styled.img.attrs({ alt: 'telegram' })`
+  height: 1rem;
+  width: 1rem;
+`
+
+export const TelegramLink = styled.a`
+  margin-top: 0.2rem;
+  display: flex;
+  align-items: center;
 `

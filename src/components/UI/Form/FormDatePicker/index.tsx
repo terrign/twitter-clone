@@ -26,12 +26,16 @@ export const FormDatepicker = () => {
 
     setValue(type, value)
     trigger(type)
+
+    if (currentMonth && currentYear && validatedDay) {
+      trigger('date')
+    }
   }
 
   const getError = () => {
-    const { day, month, year } = errors
+    const { day, month, year, date } = errors
 
-    return month?.message || day?.message || year?.message
+    return month?.message || day?.message || year?.message || date?.message
   }
 
   const { day, month, year } = getValues()

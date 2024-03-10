@@ -1,7 +1,9 @@
 import styled from 'styled-components'
+import { Centered } from '@components/UI/Centered'
+import { breakpoints } from '@constants/styles'
 
-export const Wrapper = styled.div`
-  max-width: 450px;
+export const Wrapper = styled(Centered)`
+  max-width: ${breakpoints.xs};
   width: 100%;
   display: flex;
   flex-direction: column;

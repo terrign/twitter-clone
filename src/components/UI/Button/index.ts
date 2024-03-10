@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { Color, screen } from '@constants/styles'
+import { Color, mediaHover, screen } from '@constants/styles'
 
 export enum ButtonType {
   FILLED,
@@ -20,7 +20,7 @@ export const Button = styled.button<{ $type: ButtonType }>`
 
   color: ${({ $type }) => $type === ButtonType.FILLED && Color.WHITE};
 
-  @media (hover: hover) {
+  @media ${mediaHover} {
     &:hover {
       background: ${({ theme, $type }) =>
         $type === ButtonType.FILLED ? theme.filledButtonHover : theme.outlinedButtonHover};

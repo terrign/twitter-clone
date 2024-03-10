@@ -3,6 +3,10 @@ import { generateYears } from '@utils/date'
 
 const DEFAULT_CACHE_TIME_S = 15
 
+const MAX_TWEET_LENGTH = 500
+
+const MIN_USER_AGE = 18
+
 const LINKS = {
   about: { label: 'About', href: '#' },
   help: { label: 'Help Center', href: '#' },
@@ -39,13 +43,13 @@ const MONTH_NAMES = [
   'December',
 ]
 
-type inputNameMapKeyType =
-  | keyof SignUpFormFields
+type InputNameMapKeyType =
+  | keyof Omit<SignUpFormFields, 'date'>
   | keyof Omit<EditFormFields, 'image'>
   | 'currentPassword'
   | 'newPassword'
 
-type InputNameMap = Record<inputNameMapKeyType, { label: string; type: string }>
+type InputNameMap = Record<InputNameMapKeyType, { label: string; type: string }>
 
 const inputNameMap: InputNameMap = {
   password: { label: 'Password', type: 'password' },
@@ -72,4 +76,13 @@ const firebaseErrorMap: Record<string, string> = {
   'auth/too-many-requests': 'Too many attempts. Access to this account has been temporarily disabled',
 }
 
-export { DEFAULT_CACHE_TIME_S, firebaseErrorMap, inputNameMap, LINKS, MONTH_NAMES, YEARS }
+export {
+  DEFAULT_CACHE_TIME_S,
+  firebaseErrorMap,
+  inputNameMap,
+  LINKS,
+  MAX_TWEET_LENGTH,
+  MIN_USER_AGE,
+  MONTH_NAMES,
+  YEARS,
+}

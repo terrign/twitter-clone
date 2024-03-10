@@ -1,5 +1,3 @@
-// import { Route } from '@router/types'
-
 describe('Tweet', () => {
   beforeEach(() => {
     cy.viewport(1440, 900)
@@ -19,7 +17,31 @@ describe('Tweet', () => {
     cy.logout()
   })
 
-  it('Tweet visible on Home and profile pages', () => {
+  it('Can like and unlike tweet, changes applied to all pages', () => {
+    cy.login()
+    cy.get('article:contains("New Test Tweet") button[name="likeButton"]').as('likeButton').click()
+    cy.wait(1000)
+    cy.get('@likeButton').should('have.text', '1')
+    cy.get('article:contains("New Test Tweet")').contains('New Test Tweet').click()
+    cy.get('@likeButton').should('have.text', '1')
+    cy.get('li:contains("Home")').click()
+    cy.get('@likeButton').should('have.text', '1')
+    cy.get('li:contains("Profile")').click()
+    cy.get('@likeButton').should('have.text', '1')
+
+    cy.get('@likeButton').click()
+    cy.wait(1000)
+    cy.get('article:contains("New Test Tweet")').contains('New Test Tweet').click()
+    cy.get('@likeButton').should('have.text', '0')
+    cy.get('li:contains("Home")').click()
+    cy.get('@likeButton').should('have.text', '0')
+    cy.get('li:contains("Profile")').click()
+    cy.get('@likeButton').should('have.text', '0')
+
+    cy.logout()
+  })
+
+  it('Tweet visible on Home and Profile pages', () => {
     cy.login()
 
     cy.get('li:contains("Home")').click()
@@ -49,6 +71,10 @@ describe('Tweet', () => {
         cy.button('...').click()
         cy.button('Delete').click()
       })
+
+    cy.get('#modal').within(() => {
+      cy.button('Delete tweet').click()
+    })
 
     cy.get('@tweet').should('not.exist')
     cy.logout()

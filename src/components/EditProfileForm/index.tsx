@@ -7,13 +7,13 @@ import { FormInput } from '@components/UI/Form/FormInput'
 import { FormItem } from '@components/UI/Form/FormItem'
 import { storageService } from '@services/Storage'
 import { useAppDispatch, useAppSelector } from '@store/index'
-import { setAlert } from '@store/slices/alert'
-import { updateUser } from '@store/slices/user'
+import { setErrorNotification } from '@store/slices/notification'
+import { selectUser, updateUser } from '@store/slices/user'
 import { editProfileValidationSchema } from '@utils/formValidationSchemas'
 import { ImageInput } from './ImageInput'
 
 export const EditProfileForm = () => {
-  const { photoURL, name, bio, gender, tgLink, uid } = useAppSelector((state) => state.user.user)
+  const { photoURL, name, bio, gender, tgLink, uid } = useAppSelector(selectUser)
   const dispatch = useAppDispatch()
 
   const navigate = useNavigate()
@@ -36,7 +36,7 @@ export const EditProfileForm = () => {
       const urlUploadResult: Error | string = await storageService.addUserAvatar(image, uid)
 
       if (urlUploadResult instanceof Error) {
-        dispatch(setAlert({ type: 'error', message: urlUploadResult.message }))
+        dispatch(setErrorNotification(urlUploadResult.message))
       } else {
         dispatch(updateUser({ ...rest, uid, photoURL: urlUploadResult }))
         navigate(-1)

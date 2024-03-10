@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Color } from '@constants/styles'
+import { Color, mediaHover } from '@constants/styles'
 
 export const StyledTogggler = styled.button`
   display: flex;
@@ -28,7 +28,7 @@ export const StyledTogggler = styled.button`
     background-color: ${Color.ALERT_TEAL};
   }
 
-  @media (hover: hover) {
+  @media ${mediaHover} {
     &:hover {
       cursor: pointer;
     }

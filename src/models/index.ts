@@ -50,6 +50,7 @@ interface SignUpFormFields {
   day: string
   month: string
   year: string
+  date?: string
 }
 
 interface EditFormFields {

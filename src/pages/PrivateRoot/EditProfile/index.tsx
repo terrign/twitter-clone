@@ -3,9 +3,10 @@ import { ChangePasswordForm } from '@components/ChangePasswordForm'
 import { EditProfileForm } from '@components/EditProfileForm'
 import { Modal } from '@components/UI/Modal'
 import { useAppSelector } from '@store/index'
+import { selectUser } from '@store/slices/user'
 
 export const EditProfile = () => {
-  const { authProvider } = useAppSelector((state) => state.user.user)
+  const { authProvider } = useAppSelector(selectUser)
   const navigate = useNavigate()
 
   const closeHandler = () => {

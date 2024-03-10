@@ -5,8 +5,8 @@ import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, R
 import storage from 'redux-persist/lib/storage'
 import { tweetsApi } from './api/tweets'
 import { usersApi } from './api/users'
-import { alertSlice } from './slices/alert'
 import { authSlice } from './slices/auth'
+import { notificationSlice } from './slices/notification'
 import { userSlice } from './slices/user'
 import { rootSaga } from './saga'
 
@@ -17,7 +17,7 @@ const rootPersistConfig = {
 }
 
 const sagaMiddleware = createSagaMiddleware()
-const rootReducer = combineSlices(userSlice, alertSlice, authSlice, tweetsApi, usersApi)
+const rootReducer = combineSlices(userSlice, notificationSlice, authSlice, tweetsApi, usersApi)
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer)
 

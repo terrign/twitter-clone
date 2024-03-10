@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { font, hoverTitle, screen } from '@constants/styles'
+import { font, hoverTitle, mediaHover, screen } from '@constants/styles'
 
 export const StyledNavItem = styled.li<{ $title: string }>`
   display: flex;
@@ -37,7 +37,7 @@ export const StyledNavItem = styled.li<{ $title: string }>`
     justify-content: center;
   }
 
-  @media ${screen.l} and (hover: hover) and (pointer: fine) {
+  @media ${screen.l} and ${mediaHover} {
     ${hoverTitle}
   }
 `

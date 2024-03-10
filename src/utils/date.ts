@@ -1,4 +1,4 @@
-import { MONTH_NAMES } from '@constants/index'
+import { MIN_USER_AGE, MONTH_NAMES } from '@constants/index'
 
 enum MonthMaxDays {
   FEBRUARY_NON_LEAP = 28,
@@ -11,7 +11,7 @@ const LONG_MONTH_INDEXES = [0, 2, 4, 6, 7, 9, 11]
 
 const generateYears = () => {
   const years = []
-  let nowYear = new Date().getFullYear()
+  let nowYear = new Date().getFullYear() - MIN_USER_AGE
 
   for (let i = 0; i < 150; i++) {
     years.push(String(nowYear))
@@ -45,7 +45,11 @@ const isLeapYear = (year: string | undefined) => {
     return true
   }
 
-  return (0 == numYear % 4 && 0 != numYear % 100) || 0 == numYear % 400
+  /**
+   * extra leap day occurs in each year that is a multiple of 4, except for years evenly divisible by 100 but not by 400.
+   * https://en.wikipedia.org/wiki/Leap_year
+   */
+  return (numYear % 4 === 0 && numYear % 100 != 0) || numYear % 400 === 0
 }
 
 const getDayCount = (monthIndex: number, year?: string) => {

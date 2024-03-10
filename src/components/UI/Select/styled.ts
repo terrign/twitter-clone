@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { font, screen } from '@constants/styles'
+import { font, mediaHover, screen } from '@constants/styles'
 
 export const StyledSelect = styled.div`
   position: relative;
@@ -27,7 +27,7 @@ export const Option = styled.button`
     background: ${({ theme }) => theme.outlinedButtonHover};
   }
 
-  @media (hover: hover) {
+  @media ${mediaHover} {
     &:hover {
       background: ${({ theme }) => theme.outlinedButtonHover};
     }

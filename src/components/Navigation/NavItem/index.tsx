@@ -20,7 +20,7 @@ export const NavItem = (props: Props) => {
 
   return (
     <StyledNavItem $title={label}>
-      <NavLink to={realPath}>
+      <NavLink to={realPath} title={label} aria-description={label}>
         <div>{pathname.includes(path) ? filled : outlined}</div>
 
         <span>{label}</span>

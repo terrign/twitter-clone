@@ -3,14 +3,14 @@ import { createPortal } from 'react-dom'
 import { Close } from '@assets/index'
 import { useBooleanState } from '@hooks/useBooleanState'
 import { useAppDispatch, useAppSelector } from '@store/index'
-import { removeAlert } from '@store/slices/alert'
+import { removeAlert, selectNotification } from '@store/slices/notification'
 import { CloseButton, StyledNotification } from './styled'
 
 const ALERT_EXPIRATION_TIME_MS = 5000
 
 export const Notification = () => {
   const [notificationVisible, , showNotification, hideNotification] = useBooleanState(false)
-  const { message, type } = useAppSelector((state) => state.alert)
+  const { message, type } = useAppSelector(selectNotification)
   const dispatch = useAppDispatch()
   const intervalRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 

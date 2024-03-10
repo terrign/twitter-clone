@@ -18,6 +18,7 @@ import Like from './like.svg'
 import LikeFilled from './like-filled.svg'
 import ListsFilled from './lists-filled.svg'
 import ListsOutlined from './lists-outlined.svg'
+import LogoutIcon from './logout.svg'
 import MessagesFilled from './messages-filled.svg'
 import MessagesOutlined from './messages-outlined.svg'
 import More from './more.svg'
@@ -26,6 +27,7 @@ import NotificationOutlined from './notification-outlined.svg'
 import ProfileFilled from './profile-filled.svg'
 import ProfileOutlined from './profile-outlined.svg'
 import SearchIcon from './search.svg'
+import TelegramLogo from './tg-logo.png'
 import TweetButtonIcon from './tweet-button.svg'
 import TwitterLogo from './twitter-logo.svg'
 
@@ -48,6 +50,7 @@ export {
   LikeFilled,
   ListsFilled,
   ListsOutlined,
+  LogoutIcon,
   MessagesFilled,
   MessagesOutlined,
   More,
@@ -57,6 +60,7 @@ export {
   ProfileFilled,
   ProfileOutlined,
   SearchIcon,
+  TelegramLogo,
   TweetButtonIcon,
   TwitterLogo,
   WelcomeTwitterBackGroundImage,

@@ -1,13 +1,12 @@
 import styled from 'styled-components'
-import { font } from '@constants/styles'
+import { font, mediaHover } from '@constants/styles'
 
 export const StyledFooter = styled.footer`
   font-size: ${({ theme }) => theme.fontXS};
-  padding: 0px 1rem;
   display: flex;
   justify-content: center;
   width: 100%;
-  word-wrap: nowrap;
+  white-space: nowrap;
   flex-wrap: wrap;
 
   * {
@@ -23,7 +22,7 @@ export const StyledFooter = styled.footer`
     ${font}
   }
 
-  @media (hover: hover) {
+  @media ${mediaHover} {
     a:hover {
       text-decoration: underline;
     }

@@ -32,7 +32,7 @@ Cypress.Commands.add('selectDay', () => {
 
 Cypress.Commands.add('selectYear', () => {
   cy.get('input[placeholder="Year"]').click()
-  cy.get('button:contains("2010")').click()
+  cy.get('button:contains("2000")').click()
 })
 
 Cypress.Commands.add('fillSignUpFormCorrect', () => {
@@ -82,4 +82,7 @@ Cypress.Commands.add('button', (text: string) => {
 Cypress.Commands.add('logout', () => {
   cy.wait(2000)
   cy.button('Log out').click()
+  cy.get('#modal').within(() => {
+    cy.button('Log out').click()
+  })
 })

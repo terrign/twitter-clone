@@ -2,11 +2,29 @@ import { createGlobalStyle, css } from 'styled-components'
 import { ThemeObject } from '@models/index'
 
 const breakpoints = {
+  /**
+   * 320px
+   */
   xxs: '320px',
+  /**
+   * 375px
+   */
   xs: '375px',
+  /**
+   * 475px
+   */
   s: '475px',
+  /**
+   * 768px
+   */
   m: '768px',
+  /**
+   * 1024px
+   */
   l: '1024px',
+  /**
+   * 1440px
+   */
   xl: '1440px',
 }
 
@@ -37,8 +55,11 @@ const screen = {
   xl: `screen and (max-width: ${breakpoints.xl})`,
 }
 
+const mediaHover = '(hover: hover) and (pointer: fine)'
+
 const font = css`
   font-family: 'Roboto', sans-serif;
+  font-weight: 500;
 
   color: ${({ theme }) => theme.fontColor};
 `
@@ -145,7 +166,7 @@ const GlobalStyles = createGlobalStyle<{ $isLight?: boolean }>`
     color: ${Color.BLUE}
   }
 
-  h1,h2,h4,h5,h6,p {
+  h1,h2,h3,h4,h5,h6,p {
     margin: 0;
     padding: 0;
   }
@@ -160,6 +181,10 @@ const GlobalStyles = createGlobalStyle<{ $isLight?: boolean }>`
   }
 
   h2 {
+    font-size: ${({ theme }) => theme.fontXL};
+  }
+
+  h3 {
     font-size: ${({ theme }) => theme.fontXL};
   }
 
@@ -180,7 +205,7 @@ const GlobalStyles = createGlobalStyle<{ $isLight?: boolean }>`
     justify-content: center;
   }
 
-  @media (hover: hover) {
+  @media ${mediaHover} {
     a:hover {
       text-decoration: underline;
     }
@@ -239,4 +264,4 @@ const hoverTitle = css<{ $title?: string }>`
   }
 `
 
-export { Color, darkTheme, defaultTheme, font, GlobalStyles, hoverTitle, lightTheme, screen }
+export { breakpoints, Color, darkTheme, defaultTheme, font, GlobalStyles, hoverTitle, lightTheme, mediaHover, screen }

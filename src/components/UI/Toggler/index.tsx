@@ -22,7 +22,7 @@ export function Toggler({ checked, onChange }: Props) {
   }
 
   return (
-    <StyledTogggler type="button" onClick={clickHandler} aria-hidden>
+    <StyledTogggler type="button" onClick={clickHandler} name="themeToggler">
       <input type="checkbox" checked={checked} ref={checkBoxRef} readOnly />
       <TogglerBar />
     </StyledTogggler>

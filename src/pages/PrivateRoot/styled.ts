@@ -3,21 +3,18 @@ import { Color, screen } from '@constants/styles'
 
 export const PrivateRootWrapper = styled.section`
   display: grid;
-  max-width: 1440px;
+  max-width: ${screen.xl};
   width: 100%;
   min-height: 100%;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
   grid-template-columns: minmax(150px, 230px) minmax(500px, 900px) minmax(260px, 300px);
   grid-column-gap: 1rem;
-
-  @media ${screen.xl} {
-    padding: 0;
-  }
 
   @media ${screen.l} {
     grid-template-columns: 50px 1fr minmax(260px, 300px);
     grid-column-gap: 0;
+    padding: 0;
   }
 
   @media ${screen.m} {

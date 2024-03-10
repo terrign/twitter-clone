@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Centered } from '@components/UI/Centered'
-import { screen } from '@constants/styles'
+import { breakpoints, mediaHover, screen } from '@constants/styles'
 
 export const Background = styled(Centered)`
   position: fixed;
@@ -18,7 +18,7 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.bgColor};
   border-radius: 6px;
   flex-grow: 1;
-  max-width: 600px;
+  max-width: ${breakpoints.s};
   max-height: 90%;
   overflow-y: auto;
 
@@ -41,7 +41,7 @@ export const CloseButton = styled.button.attrs({ type: 'button' })`
 
   transition: transform 0.1s linear;
 
-  @media (hover: hover) {
+  @media ${mediaHover} {
     &:hover {
       transform: scale(1.4);
     }
@@ -56,6 +56,4 @@ export const ModalHeader = styled.h3`
   justify-content: space-between;
   font-weight: 700;
   margin: 0 0 1rem 0;
-
-  font-size: ${({ theme }) => theme.fontM};
 `

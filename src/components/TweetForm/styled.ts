@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { TweetButton } from '@components/UI/Button'
-import { Color, font, screen } from '@constants/styles'
+import { Color, font, mediaHover, screen } from '@constants/styles'
 
 export const StyledTweetForm = styled.section`
   display: grid;
@@ -107,7 +107,7 @@ export const CloseButton = styled.button.attrs({ type: 'button' })`
 
   transition: transform 0.1s linear;
 
-  @media (hover: hover) {
+  @media ${mediaHover} {
     &:hover {
       transform: scale(1.4);
     }

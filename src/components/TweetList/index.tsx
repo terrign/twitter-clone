@@ -1,6 +1,6 @@
-import { useState } from 'react'
 import { TweetCard } from '@components/TweetCard'
 import { Loader, LoaderSize } from '@components/UI/Loader'
+import { useBooleanState } from '@hooks/useBooleanState'
 import { Tweet } from '@models/index'
 import { useGetUsersByIdsQuery } from '@store/api/users'
 import { StyledTweetList } from './styled'
@@ -11,12 +11,14 @@ export interface TweetListProps {
 }
 
 export const TweetList = ({ tweets, compact }: TweetListProps) => {
-  const [skip, setSkip] = useState(true)
+  const [skipUsersQuery, , , initUsersQuery] = useBooleanState(true)
 
-  const { data, isFetching } = useGetUsersByIdsQuery([...new Set(tweets.map((tweet) => tweet.createdById))], { skip })
+  const { data, isFetching } = useGetUsersByIdsQuery([...new Set(tweets.map((tweet) => tweet.createdById))], {
+    skip: skipUsersQuery,
+  })
 
-  if (tweets.length >= 0 && skip) {
-    setSkip(false)
+  if (tweets.length > 0 && skipUsersQuery) {
+    initUsersQuery()
   }
 
   if (isFetching) {

@@ -3,8 +3,8 @@ import { all, call, put, takeLeading } from 'redux-saga/effects'
 import { AuthProvider, EmailSignUpPayload, UserInfo } from '@models/index'
 import { AuthReturnType, authService } from '@services/Auth'
 import { persistor } from '@store/index'
-import { setAlert } from '../slices/alert'
 import { signInWithEmail, signOut, signUpWithEmail, signUpWithGoogle, updatePassword } from '../slices/auth'
+import { setErrorNotification, setSucessNotification } from '../slices/notification'
 import { createUser, updateUser } from '../slices/user'
 import { getUser } from './user'
 
@@ -13,7 +13,7 @@ function* googleSignUpWorker() {
 
   if (signUpResult instanceof Error) {
     if (signUpResult.code !== 'auth/popup-closed-by-user') {
-      yield put(setAlert({ type: 'error', message: signUpResult.message }))
+      yield put(setErrorNotification(signUpResult.message))
     }
   } else if (signUpResult) {
     const { email, uid, phoneNumber, photoURL, displayName } = signUpResult.user
@@ -46,7 +46,7 @@ function* emailSignUpWorker({ payload: { email, password, userInfo } }: PayloadA
   const result: AuthReturnType = yield call(authService.emailSignUp, email, password)
 
   if (result instanceof Error) {
-    yield put(setAlert({ type: 'error', message: result.message }))
+    yield put(setErrorNotification(result.message))
   } else if (result) {
     const user = {
       ...userInfo,
@@ -64,7 +64,7 @@ function* signInWorker({ payload }: PayloadAction<{ email: string; password: str
   const result: AuthReturnType = yield authService.emailSignIn(email, password)
 
   if (result instanceof Error) {
-    yield put(setAlert({ type: 'error', message: result.message }))
+    yield put(setErrorNotification(result.message))
   } else if (result) {
     yield call(getUser, result.user.uid)
   }
@@ -76,9 +76,9 @@ function* updatePasswordWorker({
   const result: AuthReturnType = yield authService.updatePassword(currentPassword, newPassword)
 
   if (result instanceof Error) {
-    yield put(setAlert({ type: 'error', message: result.message }))
+    yield put(setErrorNotification(result.message))
   } else {
-    yield put(setAlert({ type: 'success', message: 'Password has been updated' }))
+    yield put(setSucessNotification('Password has been updated'))
   }
 }
 

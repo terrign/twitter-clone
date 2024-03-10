@@ -3,28 +3,32 @@ import { AddImageOutlined, TweetButtonIcon } from '@assets/index'
 import { Avatar, AvatarSize } from '@components/UI/Avatar'
 import { ButtonType } from '@components/UI/Button'
 import { Loader, LoaderSize } from '@components/UI/Loader'
+import { MAX_TWEET_LENGTH } from '@constants/index'
 import { Color } from '@constants/styles'
 import { useBooleanState } from '@hooks/useBooleanState'
 import { storageService } from '@services/Storage'
 import { useAddTweetMutation } from '@store/api/tweets'
 import { useAppDispatch, useAppSelector } from '@store/index'
-import { setAlert } from '@store/slices/alert'
+import { setErrorNotification } from '@store/slices/notification'
+import { selectUser } from '@store/slices/user'
 import { convertBase64 } from '@utils/index'
 import { newTweet } from '@utils/newTweet'
 import { AddedImage, CloseButton, FirstColumn, StyledTextArea, StyledTweetForm, TweetFormSubmitButton } from './styled'
 
-const MAX_CHARACTERS = 500
+interface Props {
+  onSubmit?: () => void
+}
 
-export const TweetForm = ({ onSubmit }: { onSubmit?: () => void }) => {
+export const TweetForm = ({ onSubmit }: Props) => {
   const [tweet, setTweet] = useState('')
   const [image, setImage] = useState('')
   const [file, setFile] = useState<File | null>(null)
-  const { photoURL, uid } = useAppSelector((state) => state.user.user)
+  const { photoURL, uid } = useAppSelector(selectUser)
   const imageInputId = useId()
   const dispatch = useAppDispatch()
   const [addTweet, { isLoading }] = useAddTweetMutation()
 
-  const [loaderVisible, , showLoader, hideLoader] = useBooleanState(false)
+  const [imageLoading, setImageLoading] = useBooleanState(false)
 
   const tweetChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setTweet(event.target.value)
@@ -39,17 +43,17 @@ export const TweetForm = ({ onSubmit }: { onSubmit?: () => void }) => {
     let imageUploadResult: Error | string = ''
 
     if (file) {
-      showLoader()
+      setImageLoading(true)
       imageUploadResult = await storageService.addFile(file)
 
       if (imageUploadResult instanceof Error) {
-        dispatch(setAlert({ type: 'error', message: imageUploadResult.message }))
+        dispatch(setErrorNotification(imageUploadResult.message))
 
         return
       }
     }
 
-    hideLoader()
+    setImageLoading(false)
 
     addTweet(newTweet({ text: tweet, imageURL: imageUploadResult, createdById: uid })).then(() => {
       setTweet('')
@@ -73,6 +77,8 @@ export const TweetForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 
   const buttonDisabed = tweet.trim().length === 0 && image.length === 0
 
+  const showLoader = imageLoading || isLoading
+
   return (
     <StyledTweetForm>
       <FirstColumn>
@@ -80,14 +86,19 @@ export const TweetForm = ({ onSubmit }: { onSubmit?: () => void }) => {
         {image && (
           <AddedImage>
             <CloseButton onClick={removeImage}>✖</CloseButton>
-            <img src={image} height={50} width={50} />
+            <img src={image} height={50} width={50} alt="image" />
           </AddedImage>
         )}
       </FirstColumn>
 
       <form onSubmit={submitHandler}>
         <StyledTextArea>
-          <textarea placeholder="What's happening" maxLength={500} onChange={tweetChangeHandler} value={tweet} />
+          <textarea
+            placeholder="What's happening"
+            maxLength={MAX_TWEET_LENGTH}
+            onChange={tweetChangeHandler}
+            value={tweet}
+          />
           <div>
             <label htmlFor={imageInputId}>
               <AddImageOutlined />
@@ -95,13 +106,13 @@ export const TweetForm = ({ onSubmit }: { onSubmit?: () => void }) => {
             </label>
 
             <span>
-              {tweet.length} / {MAX_CHARACTERS}
+              {tweet.length} / {MAX_TWEET_LENGTH}
             </span>
           </div>
         </StyledTextArea>
 
         <TweetFormSubmitButton $type={ButtonType.FILLED} disabled={buttonDisabed}>
-          {isLoading || loaderVisible ? <Loader size={LoaderSize.SMALL} color={Color.WHITE} /> : <span>Tweet</span>}
+          {showLoader ? <Loader size={LoaderSize.SMALL} color={Color.WHITE} /> : <span>Tweet</span>}
           <TweetButtonIcon />
         </TweetFormSubmitButton>
       </form>

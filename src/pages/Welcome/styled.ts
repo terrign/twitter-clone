@@ -5,9 +5,6 @@ export const HomeWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding-right: 1rem;
-  margin-top: -1rem;
-  margin-left: -1rem;
 
   section {
     flex: 1 0 auto;
@@ -16,11 +13,11 @@ export const HomeWrapper = styled.div`
   footer {
     flex: 0 0 auto;
     margin-top: 0.5rem;
-    margin-bottom: -1rem;
+    padding: 1rem;
   }
 
   @media ${screen.m} {
-    margin-right: -1rem;
+    padding-right: 0;
   }
 `
 
@@ -57,7 +54,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 2rem;
+  margin: 0 1rem 0 2rem;
   flex: 1 1 auto;
 
   h2 {
@@ -97,7 +94,7 @@ export const Content = styled.div`
 
   @media ${screen.m} {
     padding: 1rem;
-    margin-left: 1rem;
+    margin: 0rem;
   }
 `
 

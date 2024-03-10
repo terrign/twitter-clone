@@ -6,11 +6,12 @@ import { useBooleanState } from '@hooks/useBooleanState'
 import { useOuterClickHandler } from '@hooks/useOuterClickHandler'
 import { useGetUserSuggestionsQuery } from '@store/api/users'
 import { useAppSelector } from '@store/index'
+import { selectUser } from '@store/slices/user'
 import { MainWrapper, PrivateRootWrapper, RightAside } from './styled'
 
 export const PrivateRoot = () => {
   const [asideVisible, toggleAside, , hideAside] = useBooleanState(false)
-  const { uid } = useAppSelector((state) => state.user.user)
+  const { uid } = useAppSelector(selectUser)
   const { data } = useGetUserSuggestionsQuery(uid)
 
   const asideRef = useRef<HTMLElement>(null)

@@ -3,9 +3,10 @@ import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import { darkTheme, GlobalStyles, lightTheme } from '@constants/styles'
 import { Theme } from '@models/index'
 import { useAppSelector } from '@store/index'
+import { selectTheme } from '@store/slices/user'
 
 export const ThemeProvider = ({ children }: PropsWithChildren) => {
-  const theme = useAppSelector((state) => state.user.theme)
+  const theme = useAppSelector(selectTheme)
   const currentThemeObject = theme === Theme.LIGHT ? lightTheme : darkTheme
 
   return (

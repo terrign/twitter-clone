@@ -20,7 +20,7 @@ const Root = lazy(() => import('../pages/Root').then((module) => ({ default: mod
 
 export const routes: RouteObject[] = [
   {
-    path: '/',
+    path: Route.WELCOME,
     element: (
       <Suspense fallback={<Loader h="100%" w="100%" />}>
         <Root />
@@ -41,14 +41,14 @@ export const routes: RouteObject[] = [
         element: <SignUp />,
       },
       {
-        path: '',
+        path: Route.WELCOME,
         element: <PrivateRoot />,
         children: [
           {
             path: `${Route.PROFILE}/:userId`,
             element: <Profile />,
             loader: profileLoader,
-            children: [{ path: `${Route.PROFILE}/:userId/edit`, element: <EditProfile /> }],
+            children: [{ path: `${Route.PROFILE}/:userId${Route.EDIT}`, element: <EditProfile /> }],
           },
           {
             path: Route.HOME,
@@ -68,7 +68,7 @@ export const routes: RouteObject[] = [
     ],
   },
   {
-    path: '/*',
+    path: Route.NOT_FOUND,
     element: <NotFound />,
   },
 ]
