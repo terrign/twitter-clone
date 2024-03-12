@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["cypress", "node"],
+    "types": ["cypress", "node", "cypress-file-upload"],
     "baseUrl": "../src/"
   },
   "include": [
@@ -8,9 +8,10 @@
     "cypress",
     "**/*.cy.tsx",
     "**/*.cy.ts",
-    "../cypress/support/*.ts",
+    "./support/*.ts",
     "../src/**/*.ts",
-    "../src/**/*.tsx"
+    "../src/**/*.tsx",
+    "e2e/profile.ts"
   ],
   "extends": "../tsconfig.json"
 }

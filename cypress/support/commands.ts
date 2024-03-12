@@ -1,12 +1,5 @@
 /// <reference types="cypress" />
 
-const testUserIncorrect = {
-  name: '2asd',
-  email: 'asd',
-  tel: 'tel',
-  pass: '123',
-}
-
 declare namespace Cypress {
   interface Chainable {
     fillSignUpFormCorrect(): Chainable
@@ -17,6 +10,7 @@ declare namespace Cypress {
     login(): Chainable
     logout(): Chainable
     button(text: string): Chainable
+    byTestId(id: string): Chainable
   }
 }
 
@@ -80,9 +74,13 @@ Cypress.Commands.add('button', (text: string) => {
 })
 
 Cypress.Commands.add('logout', () => {
-  cy.wait(2000)
   cy.button('Log out').click()
   cy.get('#modal').within(() => {
     cy.button('Log out').click()
   })
+  cy.wait(1000)
+})
+
+Cypress.Commands.add('byTestId', (id: string) => {
+  cy.get(`[data-testid="${id}"]`)
 })

@@ -20,7 +20,7 @@ export const ProfileInfo = ({ user }: { user: UserInfo }) => {
 
   return (
     <StyledProfileInfo>
-      <div>
+      <div data-testid="profileAvatar">
         <Avatar size={AvatarSize.LARGE} photoURL={photoURL} />
         <UserName name={name} email={email} uid={uid} col />
         {tgLink && (

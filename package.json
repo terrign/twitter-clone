@@ -66,6 +66,7 @@
     "babel-plugin-transform-import-meta": "^2.2.1",
     "babel-preset-jest": "^29.6.3",
     "cypress": "^13.6.4",
+    "cypress-file-upload": "^5.0.8",
     "dotenv": "^16.4.5",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",

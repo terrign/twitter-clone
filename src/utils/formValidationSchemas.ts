@@ -29,7 +29,7 @@ export enum ValidationError {
 
   NAME_REQUIRED = 'Enter your name',
   NAME_NO_SPECIAL = 'No special characters or numbers allowed',
-  NAME_LONG = 'Maximum 50 characters',
+  LONG = 'Maximum 50 characters',
 
   PASS_WEAK = 'Password must contain special characters, numbers, uppercase and lowercase letters',
   PASS_SHORT = 'Password must contain atleast 8 symbols',
@@ -77,7 +77,7 @@ const name = yup
   .string()
   .required(ValidationError.NAME_REQUIRED)
   .matches(NAME_REGEXP, ValidationError.NAME_NO_SPECIAL)
-  .max(MAX_USER_INFO_TEXT_FIELD_LENGTH, ValidationError.NAME_LONG)
+  .max(MAX_USER_INFO_TEXT_FIELD_LENGTH, ValidationError.LONG)
 
 const email = yup.string().required(ValidationError.EMAIL_REQUIRED).matches(EMAIL_REGEXP, ValidationError.INVALID_EMAIL)
 
@@ -113,10 +113,13 @@ export const signUpValidationSchema = () =>
 export const editProfileValidationSchema = () =>
   yup.object().shape({
     name: name,
-    bio: yup.string().max(MAX_USER_INFO_TEXT_FIELD_LENGTH),
-    tgLink: yup.string().max(MAX_USER_INFO_TEXT_FIELD_LENGTH).matches(TG_LINK_REGEXP, ValidationError.INVALID_TG_LINK),
+    bio: yup.string().max(MAX_USER_INFO_TEXT_FIELD_LENGTH, ValidationError.LONG),
+    tgLink: yup
+      .string()
+      .max(MAX_USER_INFO_TEXT_FIELD_LENGTH, ValidationError.LONG)
+      .matches(TG_LINK_REGEXP, ValidationError.INVALID_TG_LINK),
     image: yup.mixed(),
-    gender: yup.string().max(MAX_USER_INFO_TEXT_FIELD_LENGTH),
+    gender: yup.string().max(MAX_USER_INFO_TEXT_FIELD_LENGTH, ValidationError.LONG),
   })
 
 export const changePasswordValidationSchema = () =>

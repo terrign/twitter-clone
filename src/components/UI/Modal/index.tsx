@@ -25,7 +25,7 @@ export const Modal = (props: Props) => {
   return (
     open &&
     createPortal(
-      <Background>
+      <Background data-testid="modalBg">
         <Container ref={containerRef} id="modal">
           <ModalHeader>
             {header}
