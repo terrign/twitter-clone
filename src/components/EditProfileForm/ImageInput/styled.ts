@@ -1,10 +1,8 @@
 import styled from 'styled-components'
-import { Color, mediaHover } from '@constants/styles'
+import { centerFlex, Color, mediaHover } from '@constants/styles'
 
 export const StyledImageInput = styled.div<{ $image: string }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  ${centerFlex}
 
   height: 130px;
   width: 130px;
@@ -17,9 +15,7 @@ export const StyledImageInput = styled.div<{ $image: string }>`
   background-position: center;
 
   label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    ${centerFlex}
     height: 40px;
     width: 40px;
     background-color: ${Color.BLACK};

@@ -37,9 +37,11 @@ export const YouMightLike = ({ users, tweets, toggleAside }: Props) => {
       {users && tweets && (
         <>
           <SuggestedImages>
-            {tweets.map(({ imageURL, id }) => {
+            {tweets.map(({ imageURL, id, text }) => {
+              const desc = text.split(' ')[0] || 'tweetLink'
+
               return (
-                <Link to={`${Route.POST}/${id}`} key={id}>
+                <Link to={`${Route.POST}/${id}`} key={id} title={desc} aria-description={desc}>
                   <SuggestedImage $url={imageURL} />
                 </Link>
               )

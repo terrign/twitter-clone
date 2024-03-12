@@ -25,7 +25,8 @@
       "@context/*": ["context/*"],
       "@store/*": ["store/*"],
       "@assets/*": ["assets/*"],
-      "@hooks/*": ["hooks/*"]
+      "@hooks/*": ["hooks/*"],
+      "@testUtils/*": ["testUtils/*"]
     },
 
     "allowJs": true,

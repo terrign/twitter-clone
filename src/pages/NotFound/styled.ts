@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Button } from '@components/UI/Button'
 import { Centered } from '@components/UI/Centered'
-import { screen } from '@constants/styles'
+import { columnFlex, screen } from '@constants/styles'
 
 export const StyledNotFound = styled.section`
   height: 100%;
@@ -24,12 +24,11 @@ export const Container = styled(Centered)`
   max-width: ${screen.l};
 
   div {
+    ${columnFlex};
+    justify-content: space-between;
     max-height: 500px;
     padding: 2rem;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
     @media ${screen.m} {
       padding: 0;
@@ -48,7 +47,6 @@ export const Container = styled(Centered)`
   }
 
   h1 {
-    font-size: 70px;
     text-align: center;
     margin-bottom: 1rem;
   }

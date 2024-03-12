@@ -1,19 +1,18 @@
 import styled from 'styled-components'
 import { Button } from '@components/UI/Button'
-import { Color, hoverTitle, mediaHover, screen } from '@constants/styles'
+import { Color, columnFlex, hoverTitle, mediaHover, screen } from '@constants/styles'
 
 export const StyledAsideNavigation = styled.aside`
+  ${columnFlex};
+
   position: sticky;
   top: 1rem;
   left: 0;
   margin: 0 auto;
-
   height: 100%;
   max-height: calc(100vh - 1rem);
   width: 100%;
   max-width: 230px;
-  display: flex;
-  flex-direction: column;
 
   @media ${screen.l} {
     align-items: center;
@@ -89,7 +88,7 @@ export const LogoutButton = styled(Button)<{ $title: string }>`
     }
   }
 
-  @media ${screen.l} and ${mediaHover} {
+  @media ${screen.l} and (${mediaHover}) {
     ${hoverTitle}
 
     &:hover {

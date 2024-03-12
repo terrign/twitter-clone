@@ -87,11 +87,14 @@ const getIsoDateFromParts = (day: string, month: string, year: string) => {
   return `${year}-${String(MONTH_NAMES.indexOf(month) + 1).padStart(2, '0')}-${day}`
 }
 
+// eslint-disable-next-line simple-import-sort/exports
 export {
   generateDays,
   generateYears,
+  getDayCount,
   getDayArrayFromMonthAndYear,
   getHumanMonthDayFromTimeStamp,
   getIsoDateFromParts,
   getNewDayIfNotLegitDate,
+  isLeapYear,
 }

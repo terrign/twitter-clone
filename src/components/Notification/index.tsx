@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '@store/index'
 import { removeAlert, selectNotification } from '@store/slices/notification'
 import { CloseButton, StyledNotification } from './styled'
 
-const ALERT_EXPIRATION_TIME_MS = 5000
+const NOTIFICATION_EXPIRATION_TIME_MS = 5000
 
 export const Notification = () => {
   const [notificationVisible, , showNotification, hideNotification] = useBooleanState(false)
@@ -23,7 +23,7 @@ export const Notification = () => {
     if (message) {
       showNotification()
 
-      intervalRef.current = setTimeout(clearAlert, ALERT_EXPIRATION_TIME_MS)
+      intervalRef.current = setTimeout(clearAlert, NOTIFICATION_EXPIRATION_TIME_MS)
 
       return () => {
         intervalRef.current && clearTimeout(intervalRef.current)
@@ -40,7 +40,7 @@ export const Notification = () => {
   }
 
   const mouseLeaveHandler = () => {
-    intervalRef.current = setTimeout(clearAlert, ALERT_EXPIRATION_TIME_MS)
+    intervalRef.current = setTimeout(clearAlert, NOTIFICATION_EXPIRATION_TIME_MS)
   }
 
   return (

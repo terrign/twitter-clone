@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Centered } from '@components/UI/Centered'
-import { breakpoints, mediaHover, screen } from '@constants/styles'
+import { breakpoints, mediaHover, screen, spaceFlex } from '@constants/styles'
 
 export const Background = styled(Centered)`
   position: fixed;
@@ -49,11 +49,11 @@ export const CloseButton = styled.button.attrs({ type: 'button' })`
 `
 
 export const ModalHeader = styled.h3`
-  display: flex;
+  ${spaceFlex};
+  align-items: center;
+
   width: 100%;
   height: 1rem;
-  align-items: center;
-  justify-content: space-between;
   font-weight: 700;
   margin: 0 0 1rem 0;
 `

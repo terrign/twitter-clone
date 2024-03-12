@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { screen } from '@constants/styles'
+import { centerFlex, screen, spaceFlex } from '@constants/styles'
 
 export const StyledHeader = styled.header`
-  display: flex;
-  justify-content: space-between;
+  ${spaceFlex}
+
   align-items: center;
   position: sticky;
   top: 0rem;
@@ -16,8 +16,7 @@ export const StyledHeader = styled.header`
 `
 
 export const HeaderBlock = styled.div`
-  display: flex;
-  align-items: center;
+  ${centerFlex}
 
   & > *:last-child {
     margin-left: 0.5rem;

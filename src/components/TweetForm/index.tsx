@@ -111,9 +111,9 @@ export const TweetForm = ({ onSubmit }: Props) => {
           </div>
         </StyledTextArea>
 
-        <TweetFormSubmitButton $type={ButtonType.FILLED} disabled={buttonDisabed}>
+        <TweetFormSubmitButton $type={ButtonType.FILLED} disabled={buttonDisabed} aria-label="Add tweet">
           {showLoader ? <Loader size={LoaderSize.SMALL} color={Color.WHITE} /> : <span>Tweet</span>}
-          <TweetButtonIcon />
+          {!showLoader && <TweetButtonIcon />}
         </TweetFormSubmitButton>
       </form>
     </StyledTweetForm>

@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { screen } from '@constants/styles'
+import { centerFlex, columnFlex, screen } from '@constants/styles'
 
 export const HomeWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${columnFlex};
+
   height: 100%;
 
   section {
@@ -22,8 +22,7 @@ export const HomeWrapper = styled.div`
 `
 
 export const Main = styled.section`
-  display: flex;
-  align-items: center;
+  ${centerFlex};
 
   @media ${screen.m} {
     flex-direction: column;
@@ -51,8 +50,8 @@ export const TwitterBackGround = styled.div<{ $url: string }>`
 `
 
 export const Content = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${columnFlex};
+
   justify-content: center;
   margin: 0 1rem 0 2rem;
   flex: 1 1 auto;
@@ -78,6 +77,7 @@ export const Content = styled.div`
     button {
       line-height: 30px;
       margin-top: 1rem;
+
       span {
         display: grid;
         justify-content: center;

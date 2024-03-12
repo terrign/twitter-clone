@@ -1,7 +1,7 @@
 import { firebaseErrorMap } from '@constants/index'
 import { ValidationError } from '@utils/formValidationSchemas'
 
-describe('SignUp', () => {
+describe('Auth', () => {
   beforeEach(() => {
     cy.viewport(1440, 900)
   })

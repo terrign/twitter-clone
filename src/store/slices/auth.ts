@@ -1,9 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { EmailSignUpPayload } from '@models/index'
 
-export interface AuthStateType {}
-
-const initialState: AuthStateType = {}
+const initialState = {}
 
 export const authSlice = createSlice({
   name: 'auth',

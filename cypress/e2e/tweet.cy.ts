@@ -55,7 +55,7 @@ describe('Tweet', () => {
     cy.login()
 
     cy.get('article:contains("New Test Tweet")').contains('New Test Tweet').click()
-    cy.wait(5000)
+    cy.wait(2000)
     cy.location().should((loc) => {
       expect(loc.pathname).to.contain('post')
     })

@@ -55,6 +55,7 @@ export const Header = styled.header`
 
   @media ${screen.m} {
     display: flex;
+
     button {
       display: block;
       transform: scaleX(-1);

@@ -1,11 +1,10 @@
 import styled from 'styled-components'
+import { spaceFlex } from '@constants/styles'
 
 export const StyledProfileInfo = styled.section`
   font-size: ${({ theme }) => theme.fontS};
 
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
+  ${spaceFlex};
   padding: 1rem;
 
   & > div {

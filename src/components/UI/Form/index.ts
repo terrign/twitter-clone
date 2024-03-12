@@ -1,7 +1,9 @@
 import styled from 'styled-components'
-import { screen } from '@constants/styles'
+import { columnFlex, screen } from '@constants/styles'
 
 export const Form = styled.form`
+  ${columnFlex};
+
   font-size: ${({ theme }) => theme.fontS};
 
   max-width: 600px;
@@ -10,8 +12,6 @@ export const Form = styled.form`
   gap: 1rem;
   width: 100%;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
 
   div:has(a):last-child {
     place-self: end;

@@ -1,8 +1,8 @@
 import styled from 'styled-components'
+import { columnFlex } from '@constants/styles'
 
 export const StyledTweetList = styled.section`
-  display: flex;
-  flex-direction: column;
+  ${columnFlex};
   width: 100%;
 
   & > * {

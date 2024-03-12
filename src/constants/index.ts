@@ -1,5 +1,5 @@
 import { EditFormFields, SignUpFormFields } from '@models/index'
-import { generateYears } from '@utils/date'
+import { generateYears } from '@utils/date.ts'
 
 const DEFAULT_CACHE_TIME_S = 15
 

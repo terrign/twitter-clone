@@ -1,10 +1,10 @@
 import styled from 'styled-components'
-import { font, mediaHover } from '@constants/styles'
+import { centerFlex, font, mediaHover } from '@constants/styles'
 
 export const StyledFooter = styled.footer`
+  ${centerFlex}
   font-size: ${({ theme }) => theme.fontXS};
-  display: flex;
-  justify-content: center;
+
   width: 100%;
   white-space: nowrap;
   flex-wrap: wrap;

@@ -5,7 +5,10 @@ import { PopupMenu, PopupMenuPosition } from '@components/UI/PopupMenu'
 import { useBooleanState } from '@hooks/useBooleanState'
 import { Route } from '@router/types'
 import { useDeleteTweetMutation } from '@store/api/tweets'
+import { config } from './config'
 import { MenuButton, MenuOptionButton } from './styled'
+
+const { confirmButtonLabel, confirmHeader, confirmMessage, menuButtonLabel } = config
 
 interface Props {
   tweetId: string
@@ -46,16 +49,16 @@ export const Menu = ({ tweetId }: Props) => {
         position={PopupMenuPosition.LEFT}
       >
         <MenuOptionButton $type={ButtonType.FILLED} onClick={deleteClickHandler}>
-          Delete
+          {menuButtonLabel}
         </MenuOptionButton>
       </PopupMenu>
       <PopConfirm
         open={confirmVisible}
         onClose={hideConfirm}
-        header="Confirm delete"
-        message="Are you sure you want to delete the tweet?"
+        header={confirmHeader}
+        message={confirmMessage}
         onConfirm={deleteHandler}
-        confirmButtonLabel="Delete tweet"
+        confirmButtonLabel={confirmButtonLabel}
       />
     </>
   )

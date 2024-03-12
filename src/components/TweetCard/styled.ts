@@ -23,14 +23,11 @@ export const StyledTweetCard = styled.article<{ $compact?: boolean }>`
 `
 
 export const CardHeader = styled.header`
-  display: flex;
+  font-size: ${({ theme }) => theme.fontS};
+
   width: 100%;
   flex-wrap: nowrap;
-  justify-content: space-between;
-
   line-height: 1rem;
-
-  font-size: ${({ theme }) => theme.fontS};
 
   & > div {
     width: 100%;

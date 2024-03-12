@@ -62,7 +62,7 @@ interface LoaderProps {
   $color: Color
 }
 
-export const StyledLoader = styled.span<LoaderProps>`
+export const StyledLoader = styled.div<LoaderProps>`
   color: ${({ $color }) => $color};
   font-size: 0.3rem;
   width: 0.3rem;

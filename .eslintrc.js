@@ -50,7 +50,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['./src/App.tsx', './src/store/index.ts'],
+      files: ['./src/App.tsx', './src/store/index.ts', './src/testUtils/index.tsx'],
       rules: {
         'import/no-unresolved': 'off',
       },
@@ -78,6 +78,7 @@ module.exports = {
           ['@store', './src/store'],
           ['@assets', './src/assets'],
           ['@hooks', './src/hooks'],
+          ['@testUtils', './src/testUtils'],
         ],
         extensions: ['.tsx', '.ts'],
       },

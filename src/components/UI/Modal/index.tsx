@@ -29,7 +29,9 @@ export const Modal = (props: Props) => {
         <Container ref={containerRef} id="modal">
           <ModalHeader>
             {header}
-            <CloseButton onClick={onClose}>✖</CloseButton>
+            <CloseButton onClick={onClose} aria-label="close modal">
+              ✖
+            </CloseButton>
           </ModalHeader>
 
           {children}

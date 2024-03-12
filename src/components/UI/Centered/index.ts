@@ -1,11 +1,11 @@
 import styled from 'styled-components'
+import { centerFlex } from '@constants/styles'
 
 export const Centered = styled.div`
+  ${centerFlex};
+
   position: relative;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   min-height: 100%;
 `

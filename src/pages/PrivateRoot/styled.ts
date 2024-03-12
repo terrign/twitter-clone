@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components'
-import { Color, screen } from '@constants/styles'
+import { breakpoints, Color, screen } from '@constants/styles'
 
 export const PrivateRootWrapper = styled.section`
   display: grid;
-  max-width: ${screen.xl};
+  max-width: ${breakpoints.xl};
   width: 100%;
   min-height: 100%;
   margin: 0 auto;

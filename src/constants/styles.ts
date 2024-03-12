@@ -60,8 +60,23 @@ const mediaHover = '(hover: hover) and (pointer: fine)'
 const font = css`
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
-
   color: ${({ theme }) => theme.fontColor};
+`
+
+const centerFlex = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const spaceFlex = css`
+  display: flex;
+  justify-content: space-between;
+`
+
+const columnFlex = css`
+  display: flex;
+  flex-direction: column;
 `
 
 enum Color {
@@ -71,10 +86,8 @@ enum Color {
   PALE_BLUE = '#1d9bf040',
   PALE_GRAY = '#E4EAED',
   PALE_GRAY_2 = '#e4eaed45',
-  DARK_GRAY = '#5C6C79',
-  FONT_GRAY = 'rgb(83, 100, 113)',
   PALE_GRAY_3 = '#abb5bd33',
-
+  FONT_GRAY = 'rgb(83, 100, 113)',
   GRAY = '#abb5bd',
   WHITE = '#FFFFFF',
   RED = '#ff0000',
@@ -133,8 +146,9 @@ const lightTheme: ThemeObject = {
 const GlobalStyles = createGlobalStyle<{ $isLight?: boolean }>`
 
   :root {
-    font-size: 18px;
     ${font}
+
+    font-size: 18px;
   }
 
   #root  {
@@ -185,7 +199,7 @@ const GlobalStyles = createGlobalStyle<{ $isLight?: boolean }>`
   }
 
   h3 {
-    font-size: ${({ theme }) => theme.fontXL};
+    font-size: ${({ theme }) => theme.fontL};
   }
 
   button, textarea, input {
@@ -200,9 +214,7 @@ const GlobalStyles = createGlobalStyle<{ $isLight?: boolean }>`
   }
 
   button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${centerFlex};
   }
 
   @media ${mediaHover} {
@@ -214,16 +226,6 @@ const GlobalStyles = createGlobalStyle<{ $isLight?: boolean }>`
   @media ${screen.m} {
     body {
       overflow-x: hidden;
-    }
-  }
-
-  @media ${screen.m} {
-    h1 {
-      font-size: 2rem;
-    }
-
-    h2 {
-      font-size: 1.5rem;
     }
   }
 
@@ -264,4 +266,18 @@ const hoverTitle = css<{ $title?: string }>`
   }
 `
 
-export { breakpoints, Color, darkTheme, defaultTheme, font, GlobalStyles, hoverTitle, lightTheme, mediaHover, screen }
+export {
+  breakpoints,
+  centerFlex,
+  Color,
+  columnFlex,
+  darkTheme,
+  defaultTheme,
+  font,
+  GlobalStyles,
+  hoverTitle,
+  lightTheme,
+  mediaHover,
+  screen,
+  spaceFlex,
+}

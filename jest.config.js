@@ -8,6 +8,7 @@ module.exports = {
   },
   collectCoverageFrom: [
     './src/**/*.{ts,tsx,js}',
+    '!./src/**/styled.ts',
     '!**/node_modules/**',
     '!**/vendor/**',
     '!./src/index.tsx',
@@ -31,6 +32,7 @@ module.exports = {
     '^@store/(.*)$': '<rootDir>/src/store/$1',
     '^@assets/(.*)$': '<rootDir>/src/assets/$1',
     '^@hooks/(.*)$': '<rootDir>/src/hooks/$1',
+    '^@testUtils/(.*)$': '<rootDir>/src/testUtils/$1',
   },
 
   setupFiles: ['<rootDir>/__test__/jest.polyfills.js'],

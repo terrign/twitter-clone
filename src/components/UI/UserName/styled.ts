@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 export const StyledUserName = styled.div<{ $col?: boolean }>`
-  flex-direction: ${({ $col }) => ($col ? 'column' : 'row')};
-
   display: flex;
+
+  flex-direction: ${({ $col }) => ($col ? 'column' : 'row')};
   justify-content: ${({ $col }) => ($col ? 'space-evenly' : 'flex-start')};
 
   p:first-child,

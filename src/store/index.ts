@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { combineSlices, configureStore } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
+import { userSlice } from '@store/slices/user'
 import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import { tweetsApi } from './api/tweets'
 import { usersApi } from './api/users'
 import { authSlice } from './slices/auth'
 import { notificationSlice } from './slices/notification'
-import { userSlice } from './slices/user'
 import { rootSaga } from './saga'
 
 const rootPersistConfig = {

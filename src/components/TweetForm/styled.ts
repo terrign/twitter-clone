@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { TweetButton } from '@components/UI/Button'
-import { Color, font, mediaHover, screen } from '@constants/styles'
+import { Color, columnFlex, font, mediaHover, screen, spaceFlex } from '@constants/styles'
 
 export const StyledTweetForm = styled.section`
   display: grid;
@@ -27,14 +27,13 @@ export const StyledTweetForm = styled.section`
 `
 
 export const FirstColumn = styled.div`
-  display: flex;
+  ${spaceFlex};
   flex-direction: column;
-  justify-content: space-between;
 `
 
 export const TweetFormSubmitButton = styled(TweetButton)`
   width: 120px;
-  place-self: end;
+  align-self: end;
 
   @media ${screen.l} {
     width: 40px;
@@ -42,8 +41,7 @@ export const TweetFormSubmitButton = styled(TweetButton)`
 `
 
 export const StyledTextArea = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${columnFlex};
   width: 100%;
 
   textarea {
@@ -82,14 +80,15 @@ export const StyledTextArea = styled.div`
   }
 
   div {
-    display: flex;
-    justify-content: space-between;
-    padding-right: 1rem;
-    height: 20px;
+    ${spaceFlex};
 
     font-size: ${({ theme }) => theme.fontXS};
-    line-height: 33px;
+
     color: ${Color.GRAY};
+
+    padding-right: 1rem;
+    height: 20px;
+    line-height: 33px;
   }
 `
 
