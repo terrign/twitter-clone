@@ -1,12 +1,30 @@
-import { ThemeObject } from '@types'
-import { createGlobalStyle, css } from 'styled-components'
+import { createGlobalStyle, css, keyframes } from 'styled-components'
+import { ThemeObject } from '@models/index'
 
 const breakpoints = {
+  /**
+   * 320px
+   */
   xxs: '320px',
+  /**
+   * 375px
+   */
   xs: '375px',
+  /**
+   * 475px
+   */
   s: '475px',
+  /**
+   * 768px
+   */
   m: '768px',
+  /**
+   * 1024px
+   */
   l: '1024px',
+  /**
+   * 1440px
+   */
   xl: '1440px',
 }
 
@@ -37,9 +55,32 @@ const screen = {
   xl: `screen and (max-width: ${breakpoints.xl})`,
 }
 
+const mediaHover = '(hover: hover) and (pointer: fine)'
+
 const font = css`
   font-family: 'Roboto', sans-serif;
+  font-weight: 500;
   color: ${({ theme }) => theme.fontColor};
+`
+
+const centerFlex = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const spaceFlex = css`
+  display: flex;
+  justify-content: space-between;
+`
+
+const columnFlex = css`
+  display: flex;
+  flex-direction: column;
+`
+
+const defaultBorderRadius = css`
+  border-radius: 6px;
 `
 
 enum Color {
@@ -49,10 +90,8 @@ enum Color {
   PALE_BLUE = '#1d9bf040',
   PALE_GRAY = '#E4EAED',
   PALE_GRAY_2 = '#e4eaed45',
-  DARK_GRAY = '#5C6C79',
-  FONT_GRAY = 'rgb(83, 100, 113)',
   PALE_GRAY_3 = '#abb5bd33',
-
+  FONT_GRAY = 'rgb(83, 100, 113)',
   GRAY = '#abb5bd',
   WHITE = '#FFFFFF',
   RED = '#ff0000',
@@ -109,15 +148,22 @@ const lightTheme: ThemeObject = {
 }
 
 const GlobalStyles = createGlobalStyle<{ $isLight?: boolean }>`
+
   :root {
-    font-size: 18px;
     ${font}
+
+    font-size: 18px;
+  }
+
+  #root  {
+    height: 100%;
   }
 
   body, html {
     margin: 0;
     padding: 0;
     height: 100%;
+    min-height: 100%;
     box-sizing: border-box;
     background: ${({ theme }) => theme.bgColor};
     scroll-behavior: smooth;
@@ -138,7 +184,7 @@ const GlobalStyles = createGlobalStyle<{ $isLight?: boolean }>`
     color: ${Color.BLUE}
   }
 
-  h1,h2,h4,h5,h6,p {
+  h1,h2,h3,h4,h5,h6,p {
     margin: 0;
     padding: 0;
   }
@@ -156,6 +202,10 @@ const GlobalStyles = createGlobalStyle<{ $isLight?: boolean }>`
     font-size: ${({ theme }) => theme.fontXL};
   }
 
+  h3 {
+    font-size: ${({ theme }) => theme.fontL};
+  }
+
   button, textarea, input {
     ${font}
     font-size: ${({ theme }) => theme.fontM};
@@ -168,12 +218,10 @@ const GlobalStyles = createGlobalStyle<{ $isLight?: boolean }>`
   }
 
   button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${centerFlex};
   }
 
-  @media (hover: hover) {
+  @media ${mediaHover} {
     a:hover {
       text-decoration: underline;
     }
@@ -182,16 +230,6 @@ const GlobalStyles = createGlobalStyle<{ $isLight?: boolean }>`
   @media ${screen.m} {
     body {
       overflow-x: hidden;
-    }
-  }
-
-  @media ${screen.m} {
-    h1 {
-      font-size: 2rem;
-    }
-
-    h2 {
-      font-size: 1.5rem;
     }
   }
 
@@ -232,4 +270,40 @@ const hoverTitle = css<{ $title?: string }>`
   }
 `
 
-export { Color, darkTheme, defaultTheme, font, GlobalStyles, hoverTitle, lightTheme, screen }
+const APPEAR_ANIMATION_DURATION = '0.2s'
+
+const appearFrames = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`
+
+const appearAnimation = css`
+  animation-name: ${appearFrames};
+  animation-duration: ${APPEAR_ANIMATION_DURATION};
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+`
+
+export {
+  APPEAR_ANIMATION_DURATION,
+  appearAnimation,
+  breakpoints,
+  centerFlex,
+  Color,
+  columnFlex,
+  darkTheme,
+  defaultBorderRadius,
+  defaultTheme,
+  font,
+  GlobalStyles,
+  hoverTitle,
+  lightTheme,
+  mediaHover,
+  screen,
+  spaceFlex,
+}

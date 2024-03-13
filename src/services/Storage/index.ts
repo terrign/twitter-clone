@@ -1,6 +1,8 @@
 import { FirebaseStorage, getDownloadURL, list, ref, uploadBytesResumable } from 'firebase/storage'
 import { storage } from '../init'
 
+const ERROR_MESSAGE = 'Upload failed, please try again'
+
 class StorageService {
   public storage: FirebaseStorage = storage
   public storageRef = ref(this.storage)
@@ -13,7 +15,7 @@ class StorageService {
 
       return url
     } catch (e) {
-      return new Error('Upload failed, please try again')
+      return new Error(ERROR_MESSAGE)
     }
   }
 
@@ -25,7 +27,7 @@ class StorageService {
 
       return url
     } catch (e) {
-      return new Error('Upload failed, please try again')
+      return new Error(ERROR_MESSAGE)
     }
   }
 

@@ -1,8 +1,17 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Route } from '@router'
-import { signInWithEmail, useAppDispatch } from '@store'
-import { Button, Centered, Form, FormItem, Input, TwitterIcon } from '@ui'
+import { Button, ButtonType } from '@components/UI/Button'
+import { Form } from '@components/UI/Form'
+import { FormItem } from '@components/UI/Form/FormItem'
+import { TwitterIcon } from '@components/UI/Icons'
+import { Input } from '@components/UI/Input'
+import { Route } from '@router/types'
+import { useAppDispatch } from '@store/index'
+import { signInWithEmail } from '@store/slices/auth'
+import { config } from './config'
+import { Wrapper } from './styled'
+
+const { loginButtonLabel, signUpLinkLabel, header, passwordPlaceholder, emailPlaceholder } = config
 
 export const SignInForm = () => {
   const [email, setEmail] = useState('')
@@ -23,7 +32,7 @@ export const SignInForm = () => {
   }
 
   return (
-    <Centered>
+    <Wrapper>
       <Form onSubmit={submitHandler}>
         <FormItem>
           <Link to={Route.WELCOME}>
@@ -32,27 +41,33 @@ export const SignInForm = () => {
         </FormItem>
 
         <FormItem>
-          <h2>Login to Twitter</h2>
+          <h2>{header}</h2>
         </FormItem>
 
         <FormItem>
-          <Input placeholder="Email address" type="email" value={email} onChange={loginChangeHandler} />
+          <Input placeholder={emailPlaceholder} type="email" value={email} onChange={loginChangeHandler} required />
         </FormItem>
 
         <FormItem>
-          <Input placeholder="Password" type="password" value={password} onChange={passwordChangeHandler} />
+          <Input
+            placeholder={passwordPlaceholder}
+            type="password"
+            value={password}
+            onChange={passwordChangeHandler}
+            required
+          />
         </FormItem>
 
         <FormItem>
-          <Button $type="filled" type="submit">
-            Login
+          <Button $type={ButtonType.FILLED} type="submit">
+            {loginButtonLabel}
           </Button>
         </FormItem>
 
         <FormItem>
-          <Link to={Route.WELCOME}>Sign up to Twitter</Link>
+          <Link to={Route.WELCOME}>{signUpLinkLabel}</Link>
         </FormItem>
       </Form>
-    </Centered>
+    </Wrapper>
   )
 }

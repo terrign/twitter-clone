@@ -1,10 +1,14 @@
 import { ChangeEvent, useId, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
-import { AddPhoto, DefaultAvatarImage } from '@assets'
-import { convertBase64 } from '@utils'
+import { AddPhoto, DefaultAvatarImage } from '@assets/index'
+import { convertBase64 } from '@utils/index'
 import { StyledImageInput } from './styled'
 
-export const ImageInput = ({ photoURL }: { photoURL: string }) => {
+interface Props {
+  photoURL: string
+}
+
+export const ImageInput = ({ photoURL }: Props) => {
   const id = useId()
   const [backgroundImage, setBackgroundImage] = useState<string>('')
   const { setValue } = useFormContext()
@@ -20,8 +24,10 @@ export const ImageInput = ({ photoURL }: { photoURL: string }) => {
     }
   }
 
+  const displayImageUrl = backgroundImage || photoURL || DefaultAvatarImage
+
   return (
-    <StyledImageInput $image={backgroundImage || photoURL || DefaultAvatarImage}>
+    <StyledImageInput $image={displayImageUrl}>
       <label htmlFor={id}>
         <div>
           <AddPhoto />

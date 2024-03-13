@@ -1,10 +1,10 @@
-import { Color } from '@constants'
 import styled from 'styled-components'
+import { spaceFlex } from '@constants/styles'
 
 export const StyledProfileInfo = styled.section`
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
+  font-size: ${({ theme }) => theme.fontS};
+
+  ${spaceFlex};
   padding: 1rem;
 
   & > div {
@@ -21,7 +21,16 @@ export const StyledProfileInfo = styled.section`
 `
 
 export const Bio = styled.p`
-  /* color: ${Color.GRAY}; */
   margin-top: 1rem;
-  font-size: ${({ theme }) => theme.fontS};
+`
+
+export const TelegramIcon = styled.img.attrs({ alt: 'telegram' })`
+  height: 1rem;
+  width: 1rem;
+`
+
+export const TelegramLink = styled.a`
+  margin-top: 0.2rem;
+  display: flex;
+  align-items: center;
 `

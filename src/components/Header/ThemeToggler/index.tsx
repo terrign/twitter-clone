@@ -1,9 +1,10 @@
-import { switchTheme, useAppDispatch, useAppSelector } from '@store'
-import { Theme } from '@types'
-import { Toggler } from '@ui'
+import { Toggler } from '@components/UI/Toggler'
+import { Theme } from '@models/index'
+import { useAppDispatch, useAppSelector } from '@store/index'
+import { selectTheme, switchTheme } from '@store/slices/user'
 
 export const ThemeToggler = () => {
-  const theme = useAppSelector((state) => state.user.theme)
+  const theme = useAppSelector(selectTheme)
 
   const dispatch = useAppDispatch()
 

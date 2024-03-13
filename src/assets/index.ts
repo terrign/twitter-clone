@@ -1,33 +1,35 @@
-import NotFoundBackGround from './404-background.svg?react'
-import AddImageOutlined from './add-image.svg?react'
-import AddPhoto from './add-photo.svg?react'
+import NotFoundBackGround from './404-background.svg'
+import AddImageOutlined from './add-image.svg'
+import AddPhoto from './add-photo.svg'
 import WelcomeTwitterBackGroundImage from './back-twitter.webp'
-import BookmarksFilled from './bookmarks-filled.svg?react'
-import BookmarksOutlined from './bookmarks-outlined.svg?react'
-import Close from './close.svg?react'
+import BookmarksFilled from './bookmarks-filled.svg'
+import BookmarksOutlined from './bookmarks-outlined.svg'
+import Close from './close.svg'
 import DefaultAvatarImage from './default-avatar.png'
 import DefaultProfileBackGround from './default-profile-bg.webp'
-import DropDownArrow from './drop-down.svg?react'
-import ExploreFilled from './explore-filled.svg?react'
-import ExploreOutlined from './explore-outlined.svg?react'
-import GoogleLogo from './google.svg?react'
-import HomeFilled from './home-filled.svg?react'
-import HomeOutlined from './home-outlined.svg?react'
-import LeftArrow from './left-arrow.svg?react'
-import Like from './like.svg?react'
-import LikeFilled from './like-filled.svg?react'
-import ListsFilled from './lists-filled.svg?react'
-import ListsOutlined from './lists-outlined.svg?react'
-import MessagesFilled from './messages-filled.svg?react'
-import MessagesOutlined from './messages-outlined.svg?react'
-import More from './more.svg?react'
-import NotificationFilled from './notification-filled.svg?react'
-import NotificationOutlined from './notification-outlined.svg?react'
-import ProfileFilled from './profile-filled.svg?react'
-import ProfileOutlined from './profile-outlined.svg?react'
-import SearchIcon from './search.svg?react'
-import TweetButtonIcon from './tweet-button.svg?react'
-import TwitterLogo from './twitter-logo.svg?react'
+import DropDownArrow from './drop-down.svg'
+import ExploreFilled from './explore-filled.svg'
+import ExploreOutlined from './explore-outlined.svg'
+import GoogleLogo from './google.svg'
+import HomeFilled from './home-filled.svg'
+import HomeOutlined from './home-outlined.svg'
+import LeftArrow from './left-arrow.svg'
+import Like from './like.svg'
+import LikeFilled from './like-filled.svg'
+import ListsFilled from './lists-filled.svg'
+import ListsOutlined from './lists-outlined.svg'
+import LogoutIcon from './logout.svg'
+import MessagesFilled from './messages-filled.svg'
+import MessagesOutlined from './messages-outlined.svg'
+import More from './more.svg'
+import NotificationFilled from './notification-filled.svg'
+import NotificationOutlined from './notification-outlined.svg'
+import ProfileFilled from './profile-filled.svg'
+import ProfileOutlined from './profile-outlined.svg'
+import SearchIcon from './search.svg'
+import TelegramLogo from './tg-logo.png'
+import TweetButtonIcon from './tweet-button.svg'
+import TwitterLogo from './twitter-logo.svg'
 
 export {
   AddImageOutlined,
@@ -48,6 +50,7 @@ export {
   LikeFilled,
   ListsFilled,
   ListsOutlined,
+  LogoutIcon,
   MessagesFilled,
   MessagesOutlined,
   More,
@@ -57,6 +60,7 @@ export {
   ProfileFilled,
   ProfileOutlined,
   SearchIcon,
+  TelegramLogo,
   TweetButtonIcon,
   TwitterLogo,
   WelcomeTwitterBackGroundImage,

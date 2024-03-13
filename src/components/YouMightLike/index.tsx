@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { LeftArrow } from '@assets'
-import { Route } from '@router'
-import { Tweet, UserInfo } from '@types'
+import { LeftArrow } from '@assets/index'
+import { Tweet, UserInfo } from '@models/index'
+import { Route } from '@router/types'
 import { Header, StyledYouMightLike, SuggestedImage, SuggestedImages } from './styled'
 import { TweetsSearch } from './TweetsSearch'
 import { UserList } from './UserList'
@@ -28,8 +28,8 @@ export const YouMightLike = ({ users, tweets, toggleAside }: Props) => {
   return (
     <StyledYouMightLike>
       <Header>
-        <button>
-          <LeftArrow onClick={closeAside} />
+        <button onClick={closeAside}>
+          <LeftArrow />
         </button>
       </Header>
       {search}
@@ -37,15 +37,18 @@ export const YouMightLike = ({ users, tweets, toggleAside }: Props) => {
       {users && tweets && (
         <>
           <SuggestedImages>
-            {tweets.map(({ imageURL, id }) => {
+            {tweets.map(({ imageURL, id, text }) => {
+              const desc = text.split(' ')[0] || 'tweetLink'
+
               return (
-                <Link to={`${Route.POST}/${id}`} key={id}>
+                <Link to={`${Route.POST}/${id}`} key={id} title={desc} aria-description={desc}>
                   <SuggestedImage $url={imageURL} />
                 </Link>
               )
             })}
           </SuggestedImages>
           <h3>You might like</h3>
+
           <UserList users={users} />
         </>
       )}

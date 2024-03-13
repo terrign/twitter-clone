@@ -1,13 +1,10 @@
-import { screen } from '@constants'
 import styled from 'styled-components'
+import { centerFlex, columnFlex, screen } from '@constants/styles'
 
 export const HomeWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${columnFlex};
+
   height: 100%;
-  padding-right: 1rem;
-  margin-top: -1rem;
-  margin-left: -1rem;
 
   section {
     flex: 1 0 auto;
@@ -16,17 +13,16 @@ export const HomeWrapper = styled.div`
   footer {
     flex: 0 0 auto;
     margin-top: 0.5rem;
-    margin-bottom: -1rem;
+    padding: 1rem;
   }
 
   @media ${screen.m} {
-    margin-right: -1rem;
+    padding-right: 0;
   }
 `
 
 export const Main = styled.section`
-  display: flex;
-  align-items: center;
+  ${centerFlex};
 
   @media ${screen.m} {
     flex-direction: column;
@@ -54,10 +50,10 @@ export const TwitterBackGround = styled.div<{ $url: string }>`
 `
 
 export const Content = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${columnFlex};
+
   justify-content: center;
-  margin-left: 2rem;
+  margin: 0 1rem 0 2rem;
   flex: 1 1 auto;
 
   h2 {
@@ -81,6 +77,7 @@ export const Content = styled.div`
     button {
       line-height: 30px;
       margin-top: 1rem;
+
       span {
         display: grid;
         justify-content: center;
@@ -97,7 +94,7 @@ export const Content = styled.div`
 
   @media ${screen.m} {
     padding: 1rem;
-    margin-left: 1rem;
+    margin: 0rem;
   }
 `
 

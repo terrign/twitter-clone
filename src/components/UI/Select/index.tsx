@@ -1,28 +1,23 @@
-import { useRef, useState } from 'react'
-import { useOuterClickHandler } from '@hooks'
-import { DropDownIcon, Input } from '@ui'
+import { useRef } from 'react'
+import { DropDownIcon } from '@components/UI/Icons'
+import { Input } from '@components/UI/Input'
+import { useBooleanState } from '@hooks/useBooleanState'
+import { useOuterClickHandler } from '@hooks/useOuterClickHandler'
 import { IconWrapper, Option, Options, StyledSelect } from './styled'
 
-export interface SelectProps {
+interface Props {
   options: string[]
   value: string
   onSelect: (value: string) => void
   placeHolder?: string
 }
 
-export const Select = ({ options, value, onSelect, placeHolder }: SelectProps) => {
-  const [optionsVisible, setOptionsVisible] = useState(false)
+export const Select = (props: Props) => {
+  const { options, value, onSelect, placeHolder } = props
+  const [optionsVisible, , showOptions, hideOptions] = useBooleanState(false)
 
   const selectRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
-
-  const hideOptions = () => {
-    setOptionsVisible(false)
-  }
-
-  const showOptions = () => {
-    setOptionsVisible(true)
-  }
 
   useOuterClickHandler(selectRef, hideOptions)
 

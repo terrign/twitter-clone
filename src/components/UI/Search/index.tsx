@@ -1,6 +1,8 @@
-import { DetailedHTMLProps, InputHTMLAttributes, ReactNode, useRef, useState } from 'react'
-import { useOuterClickHandler } from '@hooks'
-import { Loader, SearchInput } from '@ui'
+import { DetailedHTMLProps, InputHTMLAttributes, ReactNode, useRef } from 'react'
+import { Loader } from '@components/UI/Loader'
+import { SearchInput } from '@components/UI/SearchInput'
+import { useBooleanState } from '@hooks/useBooleanState'
+import { useOuterClickHandler } from '@hooks/useOuterClickHandler'
 import { SearchResults, StyledSearch } from './styled'
 
 interface Props extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
@@ -8,17 +10,10 @@ interface Props extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>,
   isLoading: boolean
 }
 
-export const Search = ({ result, isLoading, ...rest }: Props) => {
-  const [searchVisible, setSearchVisible] = useState(false)
+export const Search = (props: Props) => {
+  const { result, isLoading, ...rest } = props
+  const [resultsVisible, , showResults, hideResults] = useBooleanState(false)
   const searchRef = useRef<HTMLDivElement>(null)
-
-  const hideResults = () => {
-    setSearchVisible(false)
-  }
-
-  const showResults = () => {
-    setSearchVisible(true)
-  }
 
   useOuterClickHandler(searchRef, hideResults)
 
@@ -27,7 +22,7 @@ export const Search = ({ result, isLoading, ...rest }: Props) => {
       <SearchInput>
         <input {...rest} onFocus={showResults} />
       </SearchInput>
-      <SearchResults $visible={searchVisible}>{isLoading ? <Loader /> : result}</SearchResults>
+      <SearchResults $visible={resultsVisible}>{isLoading ? <Loader /> : result}</SearchResults>
     </StyledSearch>
   )
 }

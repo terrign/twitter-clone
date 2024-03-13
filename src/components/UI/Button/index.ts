@@ -1,36 +1,40 @@
-import { Color, hoverTitle, screen } from '@constants'
 import styled, { css } from 'styled-components'
+import { Color, mediaHover, screen } from '@constants/styles'
+
+export enum ButtonType {
+  FILLED,
+  OUTLINED,
+}
 
 const outlinedButtonBorder = css`
   border: 1px solid ${({ theme }) => theme.buttonBorderColor};
 `
 
-export const Button = styled.button<{ $type: 'filled' | 'outlined' }>`
+export const Button = styled.button<{ $type: ButtonType }>`
   display: block;
-  background: ${({ theme, $type }) => ($type === 'filled' ? theme.buttonBgColor : 'none')};
-  ${({ $type }) => ($type === 'filled' ? 'border: none' : outlinedButtonBorder)};
+  background: ${({ theme, $type }) => ($type === ButtonType.FILLED ? theme.buttonBgColor : 'none')};
+  ${({ $type }) => ($type === ButtonType.FILLED ? 'border: none' : outlinedButtonBorder)};
   border-radius: 42px;
   height: 50px;
   width: 100%;
 
-  color: ${({ $type }) => $type === 'filled' && Color.WHITE};
+  color: ${({ $type }) => $type === ButtonType.FILLED && Color.WHITE};
 
-  @media (hover: hover) {
+  @media ${mediaHover} {
     &:hover {
-      background: ${({ theme, $type }) => ($type === 'filled' ? theme.filledButtonHover : theme.outlinedButtonHover)};
+      background: ${({ theme, $type }) =>
+        $type === ButtonType.FILLED ? theme.filledButtonHover : theme.outlinedButtonHover};
     }
   }
 
   &:disabled {
-    background: ${({ $type, theme }) => ($type === 'filled' ? theme.disabledButtonBgColor : 'none')};
+    background: ${({ $type, theme }) => ($type === ButtonType.FILLED ? theme.disabledButtonBgColor : 'none')};
 
-    color: ${({ $type, theme }) => $type === 'outlined' && theme.fontColorSecondary};
+    color: ${({ $type, theme }) => $type === ButtonType.OUTLINED && theme.fontColorSecondary};
   }
 `
 
-export const TweetButton = styled(Button)<{ $title?: string }>`
-  position: relative;
-
+export const TweetButton = styled(Button)`
   svg {
     display: none;
   }
@@ -49,9 +53,5 @@ export const TweetButton = styled(Button)<{ $title?: string }>`
     span {
       display: none;
     }
-  }
-
-  @media ${screen.l} and (hover: hover) {
-    ${({ $title }) => $title && hoverTitle}
   }
 `

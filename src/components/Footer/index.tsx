@@ -1,4 +1,4 @@
-import { LINKS } from '@constants'
+import { LINKS } from '@constants/index'
 import { StyledFooter } from './styled'
 
 export const Footer = () => {

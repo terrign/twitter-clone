@@ -1,15 +1,17 @@
 import { PropsWithChildren, useRef } from 'react'
 import { createPortal } from 'react-dom'
-import { useEventListener, useOuterClickHandler } from '@hooks'
+import { useEventListener } from '@hooks/useEventListener'
+import { useOuterClickHandler } from '@hooks/useOuterClickHandler'
 import { Background, CloseButton, Container, ModalHeader } from './styled'
 
-export interface ModalProps extends PropsWithChildren {
+interface Props extends PropsWithChildren {
   open: boolean
   onClose: () => void
   header?: JSX.Element | string
 }
 
-export const Modal = ({ open, onClose, children, header }: ModalProps) => {
+export const Modal = (props: Props) => {
+  const { open, onClose, children, header } = props
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEventListener(document.body, 'keydown', (event) => {
@@ -23,11 +25,13 @@ export const Modal = ({ open, onClose, children, header }: ModalProps) => {
   return (
     open &&
     createPortal(
-      <Background>
-        <Container ref={containerRef}>
+      <Background data-testid="modalBg">
+        <Container ref={containerRef} id="modal">
           <ModalHeader>
             {header}
-            <CloseButton onClick={onClose}>✖</CloseButton>
+            <CloseButton onClick={onClose} aria-label="close modal">
+              ✖
+            </CloseButton>
           </ModalHeader>
 
           {children}

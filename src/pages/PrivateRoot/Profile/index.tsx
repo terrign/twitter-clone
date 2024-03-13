@@ -1,43 +1,58 @@
-import { useState } from 'react'
 import { Outlet, useParams } from 'react-router-dom'
-import { DefaultProfileBackGround } from '@assets'
-import { Header, ProfileInfo, TweetForm, TweetList } from '@components'
-import { useAppSelector, useFetchTweetsByUserIdQuery, useGetUserByIdQuery } from '@store'
-import { Loader } from '@ui'
+import { DefaultProfileBackGround } from '@assets/index'
+import { Header } from '@components/Header'
+import { ProfileInfo } from '@components/ProfileInfo'
+import { TweetForm } from '@components/TweetForm'
+import { TweetList } from '@components/TweetList'
+import { Loader } from '@components/UI/Loader'
+import { useBooleanState } from '@hooks/useBooleanState'
+import { useFetchTweetsByUserIdQuery } from '@store/api/tweets'
+import { useGetUserByIdQuery } from '@store/api/users'
+import { useAppSelector } from '@store/index'
+import { selectUser } from '@store/slices/user'
 import { ProfileBackground, UserName } from './styled'
 
 export const Profile = () => {
   const { userId } = useParams<{ userId: string }>()
-  const [skip, setSkip] = useState(true)
-  const { uid } = useAppSelector((state) => state.user.user)
-  const user = useGetUserByIdQuery(userId, { skip })
-  const tweets = useFetchTweetsByUserIdQuery(userId as string, { skip })
 
-  if (skip && userId) {
-    setSkip(false)
+  const [skipTweetsQuery, , , initTweetsQuery] = useBooleanState(true)
+  const [skipUserQuery, , , initUserQuery] = useBooleanState(true)
+  const { uid } = useAppSelector(selectUser)
+  const userQuery = useGetUserByIdQuery(userId, { skip: skipUserQuery })
+  const tweetsQuery = useFetchTweetsByUserIdQuery(userId as string, { skip: skipTweetsQuery })
+
+  const user = userQuery.data
+  const tweets = tweetsQuery.data
+
+  if (skipUserQuery && userId) {
+    initUserQuery()
   }
 
-  if (tweets.isFetching || user.isFetching) {
+  if (skipTweetsQuery && user?.uid) {
+    initTweetsQuery()
+  }
+
+  if (tweetsQuery.isFetching || userQuery.isFetching) {
     return <Loader h="200px" />
   }
 
   return (
     <>
       <Header>
-        {user.data && (
+        {user && (
           <UserName>
-            <p>{user.data?.name}</p>
-            <p>{tweets.data?.length ?? 0} tweets</p>
+            <p>{user.name}</p>
+            <p>{tweets?.length ?? 0} tweets</p>
           </UserName>
         )}
       </Header>
-      {!user.data && <h3>Profile has been removed or never existed</h3>}
-      {user.data && (
+      {!user && <h3>Profile has been removed or never existed</h3>}
+      {user && (
         <>
           <ProfileBackground $url={DefaultProfileBackGround} />
-          {user.data && <ProfileInfo user={user.data} />}
+          {user && <ProfileInfo user={user} />}
           {uid === userId && <TweetForm />}
-          {tweets.data && <TweetList tweets={tweets.data} />}
+          {tweets && <TweetList tweets={tweets} />}
           <Outlet />
         </>
       )}

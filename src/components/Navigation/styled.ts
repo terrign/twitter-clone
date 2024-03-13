@@ -1,18 +1,18 @@
-import { Color, hoverTitle, screen } from '@constants'
-import { Button } from '@ui'
 import styled from 'styled-components'
+import { Button } from '@components/UI/Button'
+import { Color, columnFlex, hoverTitle, mediaHover, screen } from '@constants/styles'
 
 export const StyledAsideNavigation = styled.aside`
+  ${columnFlex};
+
   position: sticky;
   top: 1rem;
   left: 0;
   margin: 0 auto;
-
-  height: calc(100vh - 2rem);
+  height: 100%;
+  max-height: calc(100vh - 1rem);
   width: 100%;
   max-width: 230px;
-  display: flex;
-  flex-direction: column;
 
   @media ${screen.l} {
     align-items: center;
@@ -27,7 +27,9 @@ export const StyledAsideNavigation = styled.aside`
     }
   }
 
-  nav {
+  nav > ul {
+    margin: 0;
+    padding: 0;
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -63,7 +65,7 @@ export const LogoutButton = styled(Button)<{ $title: string }>`
 
   padding: 0;
 
-  div {
+  svg {
     display: none;
   }
 
@@ -74,7 +76,7 @@ export const LogoutButton = styled(Button)<{ $title: string }>`
     border: none;
     background: none;
 
-    div {
+    svg {
       display: block;
       width: 40px;
       height: 40px;
@@ -86,7 +88,11 @@ export const LogoutButton = styled(Button)<{ $title: string }>`
     }
   }
 
-  @media ${screen.l} and (hover: hover) {
+  @media ${screen.l} and (${mediaHover}) {
     ${hoverTitle}
+
+    &:hover {
+      background: none;
+    }
   }
 `

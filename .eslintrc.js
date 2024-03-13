@@ -15,7 +15,7 @@ module.exports = {
           [
             '^\\u0000',
             '^react',
-            '^(assert|buffer|child_process|cluster|console|constants|crypto|dgram|dns|domain|events|fs|http|https|module|net|os|path|punycode|querystring|readline|repl|stream|string_decoder|sys|timers|tls|tty|url|util|vm|zlib|freelist|v8|process|async_hooks|http2|perf_hooks)(/.*|$)',
+            '^(styled-components|@reduxjs/toolkit|@hookform/resolvers|redux-saga)(/.*|$)',
             '^@?\\w',
             '^\\.\\.(?!/?$)',
             '^\\.\\./?$',
@@ -50,7 +50,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['./src/assets/index.ts', './src/App.tsx', './src/store/store.ts'],
+      files: ['./src/App.tsx', './src/store/index.ts', './src/testUtils/index.tsx'],
       rules: {
         'import/no-unresolved': 'off',
       },
@@ -67,23 +67,24 @@ module.exports = {
     'import/resolver': {
       alias: {
         map: [
-          ['@components', './src/components/index'],
-          ['@pages', './src/pages/index'],
-          ['@router', './src/router/index'],
-          ['@services', './src/services/index'],
-          ['@types', './src/types/index'],
-          ['@constants', './src/constants/index'],
-          ['@utils', './src/utils/index'],
-          ['@context', './src/context/index'],
-          ['@store', './src/store/index'],
-          ['@assets', './src/assets/index'],
-          ['@hooks', './src/hooks/index'],
-          ['@ui', './src/components/UI/index'],
+          ['@components', './src/components'],
+          ['@pages', './src/pages'],
+          ['@router', './src/router'],
+          ['@services', './src/services'],
+          ['@models', './src/models'],
+          ['@constants', './src/constants'],
+          ['@utils', './src/utils'],
+          ['@context', './src/context'],
+          ['@store', './src/store'],
+          ['@assets', './src/assets'],
+          ['@hooks', './src/hooks'],
+          ['@testUtils', './src/testUtils'],
         ],
         extensions: ['.tsx', '.ts'],
       },
     },
   },
+
   ignorePatterns: [
     '__test__/**/*',
     '*.eslintrc.js',
@@ -92,5 +93,6 @@ module.exports = {
     '*.config.js',
     '/dist',
     '/cypress/*',
+    'src/models/vite-env.d.ts',
   ],
 }

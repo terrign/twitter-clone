@@ -1,5 +1,5 @@
-import { screen } from '@constants'
 import styled, { css } from 'styled-components'
+import { defaultBorderRadius, screen } from '@constants/styles'
 
 const compactTweetCardStyles = css`
   grid-template-columns: 50px 1fr 50px;
@@ -23,14 +23,11 @@ export const StyledTweetCard = styled.article<{ $compact?: boolean }>`
 `
 
 export const CardHeader = styled.header`
-  display: flex;
+  font-size: ${({ theme }) => theme.fontS};
+
   width: 100%;
   flex-wrap: nowrap;
-  justify-content: space-between;
-
   line-height: 1rem;
-
-  font-size: ${({ theme }) => theme.fontS};
 
   & > div {
     width: 100%;
@@ -105,12 +102,11 @@ export const TweetContent = styled.p<{ $compact?: boolean }>`
   }
 
   img {
+    ${defaultBorderRadius}
+
     display: block;
     margin: 1rem 0;
     max-width: 100%;
-
-    border-radius: 6px;
-
     height: auto;
   }
 

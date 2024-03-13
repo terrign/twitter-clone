@@ -1,12 +1,14 @@
 import { PropsWithChildren } from 'react'
 import { StyledFormItem } from './styled'
 
-export interface FormItemProps extends PropsWithChildren {
+interface Props extends PropsWithChildren {
   errorMessage?: string
   labeled?: boolean
 }
 
-export const FormItem = ({ children, errorMessage, labeled }: FormItemProps) => {
+export const FormItem = (props: Props) => {
+  const { children, errorMessage, labeled } = props
+
   return (
     <StyledFormItem $hasError={Boolean(errorMessage)} $labeled={labeled}>
       {children}

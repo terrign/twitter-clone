@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { signOut, usersApi } from '@store'
-import { Theme, UserInfo } from '@types'
+import { Theme, UserInfo } from '@models/index'
+import { usersApi } from '@store/api/users'
+import { signOut } from '@store/slices/auth'
 
 export interface UserStateType {
   theme: Theme
@@ -56,6 +57,12 @@ export const userSlice = createSlice({
         }
       })
   },
+  selectors: {
+    selectUser: (state) => state.user,
+    selectTheme: (state) => state.theme,
+  },
 })
 
 export const { setUser, createUser, switchTheme, updateUser } = userSlice.actions
+
+export const { selectUser, selectTheme } = userSlice.selectors

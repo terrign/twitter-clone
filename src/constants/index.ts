@@ -1,8 +1,11 @@
-import { EditFormFields, SignUpFormFields } from '@types'
-import { generateDays, generateYears } from '@utils'
-import { Color, darkTheme, defaultTheme, font, GlobalStyles, hoverTitle, lightTheme, screen } from './styles'
+import { EditFormFields, SignUpFormFields } from '@models/index'
+import { generateYears } from '@utils/date.ts'
 
 const DEFAULT_CACHE_TIME_S = 15
+
+const MAX_TWEET_LENGTH = 500
+
+const MIN_USER_AGE = 18
 
 const LINKS = {
   about: { label: 'About', href: '#' },
@@ -24,30 +27,31 @@ const LINKS = {
 }
 
 const YEARS = generateYears()
-const DAYS = generateDays()
 
-const MONTHS = {
-  January: '01',
-  February: '02',
-  March: '03',
-  April: '04',
-  May: '05',
-  June: '06',
-  July: '07',
-  August: '08',
-  September: '09',
-  October: '10',
-  November: '11',
-  December: '12',
-}
+const MONTH_NAMES = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+]
 
-type inputNameMapKeyType =
-  | keyof SignUpFormFields
+type InputNameMapKeyType =
+  | keyof Omit<SignUpFormFields, 'date'>
   | keyof Omit<EditFormFields, 'image'>
   | 'currentPassword'
   | 'newPassword'
 
-const inputNameMap: Record<inputNameMapKeyType, { label: string; type: string }> = {
+type InputNameMap = Record<InputNameMapKeyType, { label: string; type: string }>
+
+const inputNameMap: InputNameMap = {
   password: { label: 'Password', type: 'password' },
   name: { label: 'Name', type: 'text' },
   email: { label: 'Email', type: 'email' },
@@ -63,19 +67,22 @@ const inputNameMap: Record<inputNameMapKeyType, { label: string; type: string }>
   newPassword: { label: 'New password', type: 'password' },
 }
 
+const firebaseErrorMap: Record<string, string> = {
+  'auth/email-already-in-use': 'Email already in use',
+  'auth/wrong-password': 'Invalid email or password',
+  'auth/invalid-email': 'Invalid email or password',
+  'auth/invalid-credential': 'Invalid email or password',
+  'auth/user-not-found': 'Invalid email or password',
+  'auth/too-many-requests': 'Too many attempts. Access to this account has been temporarily disabled',
+}
+
 export {
-  Color,
-  darkTheme,
-  DAYS,
   DEFAULT_CACHE_TIME_S,
-  defaultTheme,
-  font,
-  GlobalStyles,
-  hoverTitle,
+  firebaseErrorMap,
   inputNameMap,
-  lightTheme,
   LINKS,
-  MONTHS,
-  screen,
+  MAX_TWEET_LENGTH,
+  MIN_USER_AGE,
+  MONTH_NAMES,
   YEARS,
 }

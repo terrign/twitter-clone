@@ -1,9 +1,13 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { updatePassword, useAppDispatch } from '@store'
-import { Button, Form, FormInput, FormItem } from '@ui'
-import { changePasswordValidationSchema } from '@utils'
+import { Button, ButtonType } from '@components/UI/Button'
+import { Form } from '@components/UI/Form'
+import { FormInput } from '@components/UI/Form/FormInput'
+import { FormItem } from '@components/UI/Form/FormItem'
+import { useAppDispatch } from '@store/index'
+import { updatePassword } from '@store/slices/auth'
+import { changePasswordValidationSchema } from '@utils/formValidationSchemas'
 
 export const ChangePasswordForm = () => {
   const form = useForm({
@@ -12,14 +16,12 @@ export const ChangePasswordForm = () => {
   })
 
   const { handleSubmit } = form
-
-  const nav = useNavigate()
-
+  const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
   const submitHandler = handleSubmit(async ({ currentPassword, newPassword }) => {
     dispatch(updatePassword({ currentPassword, newPassword }))
-    nav(-1)
+    navigate(-1)
   })
 
   return (
@@ -36,7 +38,7 @@ export const ChangePasswordForm = () => {
         <FormInput name="confirmPassword" labeled />
 
         <FormItem>
-          <Button $type="filled" type="submit">
+          <Button $type={ButtonType.FILLED} type="submit">
             Update
           </Button>
         </FormItem>

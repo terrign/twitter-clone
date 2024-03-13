@@ -1,10 +1,8 @@
-import { screen } from '@constants'
 import styled from 'styled-components'
+import { screen } from '@constants/styles'
 
 export const Main = styled.main`
-  height: 1px;
-  min-height: 100vh;
-  padding: 1rem;
+  height: 100%;
 
   @media ${screen.l} {
     padding: 0;

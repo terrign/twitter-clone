@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import { Route } from '@router'
-import { nicknameFromEmail } from '@utils'
+import { Route } from '@router/types'
+import { nicknameFromEmail } from '@utils/index'
 import { StyledUserName } from './styled'
 
-export interface UserNameProps {
+export interface Props {
   name: string
   email: string
   uid: string
@@ -12,11 +12,14 @@ export interface UserNameProps {
   link?: boolean
 }
 
-export const UserName = ({ name, email, col, uid, date, link }: UserNameProps) => {
+export const UserName = (props: Props) => {
+  const { name, email, col, uid, date, link } = props
+  const displayName = name.split(' ')[0]
+
   return (
     <StyledUserName $col={col}>
-      {!link && <p>{name.split(' ')[0]}</p>}
-      {link && <Link to={`${Route.PROFILE}/${uid}`}>{name.split(' ')[0]}</Link>}
+      {!link && <p>{displayName}</p>}
+      {link && <Link to={`${Route.PROFILE}/${uid}`}>{displayName}</Link>}
       <p>
         {Boolean(email) && nicknameFromEmail(email)} {date && <span>&bull; {date}</span>}
       </p>

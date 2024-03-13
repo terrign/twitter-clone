@@ -1,28 +1,38 @@
 import { useNavigate } from 'react-router-dom'
-import { Route } from '@router'
-import { useAppSelector } from '@store'
-import { UserInfo } from '@types'
-import { Avatar, Button, UserName } from '@ui'
-import { Bio, StyledProfileInfo } from './styled'
+import { TelegramLogo } from '@assets/index'
+import { Avatar, AvatarSize } from '@components/UI/Avatar'
+import { Button, ButtonType } from '@components/UI/Button'
+import { UserName } from '@components/UI/UserName'
+import { UserInfo } from '@models/index'
+import { Route } from '@router/types'
+import { useAppSelector } from '@store/index'
+import { selectUser } from '@store/slices/user'
+import { Bio, StyledProfileInfo, TelegramIcon, TelegramLink } from './styled'
 
 export const ProfileInfo = ({ user }: { user: UserInfo }) => {
-  const { photoURL, name, email, bio, uid } = user
+  const { photoURL, name, email, bio, uid, tgLink } = user
 
-  const currentUserId = useAppSelector((state) => state.user.user.uid)
+  const currentUserId = useAppSelector(selectUser).uid
 
-  const nav = useNavigate()
+  const navigate = useNavigate()
 
   const isCurrentUserProfile = currentUserId === uid
 
   return (
     <StyledProfileInfo>
-      <div>
-        <Avatar size="l" photoURL={photoURL} />
+      <div data-testid="profileAvatar">
+        <Avatar size={AvatarSize.LARGE} photoURL={photoURL} />
         <UserName name={name} email={email} uid={uid} col />
+        {tgLink && (
+          <TelegramLink href={tgLink}>
+            <TelegramIcon src={TelegramLogo} />
+            Telegram
+          </TelegramLink>
+        )}
         <Bio>{bio}</Bio>
       </div>
       {isCurrentUserProfile && (
-        <Button $type="outlined" onClick={() => nav(`${Route.PROFILE}/${uid}/edit`)}>
+        <Button $type={ButtonType.OUTLINED} onClick={() => navigate(`${Route.PROFILE}/${uid}${Route.EDIT}`)}>
           Edit profile
         </Button>
       )}

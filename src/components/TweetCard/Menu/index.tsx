@@ -1,43 +1,65 @@
-import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { Route } from '@router'
-import { useDeleteTweetMutation } from '@store'
-import { PopupMenu } from '@ui'
+import { ButtonType } from '@components/UI/Button'
+import { PopConfirm } from '@components/UI/PopConfirm'
+import { PopupMenu, PopupMenuPosition } from '@components/UI/PopupMenu'
+import { useBooleanState } from '@hooks/useBooleanState'
+import { Route } from '@router/types'
+import { useDeleteTweetMutation } from '@store/api/tweets'
+import { config } from './config'
 import { MenuButton, MenuOptionButton } from './styled'
+
+const { confirmButtonLabel, confirmHeader, confirmMessage, menuButtonLabel } = config
 
 interface Props {
   tweetId: string
 }
 
 export const Menu = ({ tweetId }: Props) => {
-  const [popupVisible, setPopupVisible] = useState(false)
-  const loc = useLocation()
-  const nav = useNavigate()
+  const [popupVisible, togglePopup, , closePopup] = useBooleanState(false)
+
+  const [confirmVisible, , showConfirm, hideConfirm] = useBooleanState(false)
+  const { pathname } = useLocation()
+  const navigate = useNavigate()
 
   const [trigger] = useDeleteTweetMutation()
 
   const deleteHandler = () => {
     trigger(tweetId)
 
-    if (loc.pathname.includes('post')) {
-      nav(Route.HOME)
+    if (pathname.includes('post')) {
+      navigate(Route.HOME)
     }
   }
 
-  const togglePopup = () => {
-    setPopupVisible((prev) => !prev)
+  const menuButtonClickHandler = () => {
+    togglePopup()
+  }
+
+  const deleteClickHandler = () => {
+    showConfirm()
+    closePopup()
   }
 
   return (
-    <PopupMenu
-      controlButton={<MenuButton onClick={togglePopup}>...</MenuButton>}
-      visible={popupVisible}
-      setVisible={setPopupVisible}
-      position="left"
-    >
-      <MenuOptionButton $type="filled" onClick={deleteHandler}>
-        Delete
-      </MenuOptionButton>
-    </PopupMenu>
+    <>
+      <PopupMenu
+        controlButton={<MenuButton onClick={menuButtonClickHandler}>...</MenuButton>}
+        visible={popupVisible}
+        closePopup={closePopup}
+        position={PopupMenuPosition.LEFT}
+      >
+        <MenuOptionButton $type={ButtonType.FILLED} onClick={deleteClickHandler}>
+          {menuButtonLabel}
+        </MenuOptionButton>
+      </PopupMenu>
+      <PopConfirm
+        open={confirmVisible}
+        onClose={hideConfirm}
+        header={confirmHeader}
+        message={confirmMessage}
+        onConfirm={deleteHandler}
+        confirmButtonLabel={confirmButtonLabel}
+      />
+    </>
   )
 }

@@ -1,18 +1,24 @@
 import { PropsWithChildren, ReactNode, useRef } from 'react'
-import { useOuterClickHandler } from '@hooks'
+import { useOuterClickHandler } from '@hooks/useOuterClickHandler'
 import { Menu, StyledPopupMenu } from './styled'
 
+export enum PopupMenuPosition {
+  LEFT,
+  RIGHT,
+}
+
 interface Props extends PropsWithChildren {
-  position: 'left' | 'right'
+  position: PopupMenuPosition
   visible: boolean
-  setVisible: (visible: boolean) => void
+  closePopup: () => void
   controlButton: ReactNode
 }
 
-export const PopupMenu = ({ children, position, visible, setVisible, controlButton }: Props) => {
+export const PopupMenu = (props: Props) => {
+  const { children, position, visible, closePopup, controlButton } = props
   const ref = useRef<HTMLDivElement>(null)
 
-  useOuterClickHandler(ref, () => setVisible(false))
+  useOuterClickHandler(ref, closePopup)
 
   return (
     <StyledPopupMenu ref={ref}>

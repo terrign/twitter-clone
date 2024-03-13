@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom'
-import { NotFoundBackGround } from '@assets'
-import { Route } from '@router'
+import { NotFoundBackGround } from '@assets/index'
+import { ButtonType } from '@components/UI/Button'
+import { Route } from '@router/types'
+import { config } from './config'
 import { BackHomeButton, Container, StyledNotFound } from './styled'
+
+const { header, text, buttonLabel } = config
 
 export const NotFound = () => {
   return (
@@ -9,11 +13,11 @@ export const NotFound = () => {
       <Container>
         <div>
           <article>
-            <h1>Oops</h1>
-            <p>The page you are looking for does not exist</p>
+            <h1>{header}</h1>
+            <p>{text}</p>
           </article>
           <Link to={Route.WELCOME}>
-            <BackHomeButton $type="filled">Back Home</BackHomeButton>
+            <BackHomeButton $type={ButtonType.FILLED}>{buttonLabel}</BackHomeButton>
           </Link>
         </div>
 

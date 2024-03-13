@@ -1,20 +1,21 @@
 import { PayloadAction } from '@reduxjs/toolkit'
-import { authService } from '@services'
-import { persistor } from '@store'
-import { AuthProvider, EmailSignUpPayload, UserInfo } from '@types'
-import { AuthError, UserCredential } from 'firebase/auth'
 import { all, call, put, takeLeading } from 'redux-saga/effects'
-import { setAlert } from '../slices/alert'
+import { AuthProvider, EmailSignUpPayload, UserInfo } from '@models/index'
+import { AuthReturnType, authService } from '@services/Auth'
+import { persistor } from '@store/index'
 import { signInWithEmail, signOut, signUpWithEmail, signUpWithGoogle, updatePassword } from '../slices/auth'
+import { setErrorNotification, setSucessNotification } from '../slices/notification'
 import { createUser, updateUser } from '../slices/user'
 import { getUser } from './user'
 
 function* googleSignUpWorker() {
-  const signUpResult: UserCredential | AuthError = yield authService.googleSignUp()
+  const signUpResult: AuthReturnType = yield authService.googleSignUp()
 
   if (signUpResult instanceof Error) {
-    yield put(setAlert({ type: 'error', message: signUpResult.message }))
-  } else {
+    if (signUpResult.code !== 'auth/popup-closed-by-user') {
+      yield put(setErrorNotification(signUpResult.message))
+    }
+  } else if (signUpResult) {
     const { email, uid, phoneNumber, photoURL, displayName } = signUpResult.user
     const user: UserInfo | undefined = yield call(getUser, signUpResult.user.uid)
 
@@ -42,11 +43,11 @@ function* googleSignUpWorker() {
 }
 
 function* emailSignUpWorker({ payload: { email, password, userInfo } }: PayloadAction<EmailSignUpPayload>) {
-  const result: UserCredential | AuthError = yield call(authService.emailSignUp, email, password)
+  const result: AuthReturnType = yield call(authService.emailSignUp, email, password)
 
   if (result instanceof Error) {
-    yield put(setAlert({ type: 'error', message: result.message }))
-  } else {
+    yield put(setErrorNotification(result.message))
+  } else if (result) {
     const user = {
       ...userInfo,
       uid: result.user.uid,
@@ -60,11 +61,11 @@ function* emailSignUpWorker({ payload: { email, password, userInfo } }: PayloadA
 
 function* signInWorker({ payload }: PayloadAction<{ email: string; password: string }>) {
   const { email, password } = payload
-  const result: UserCredential | AuthError = yield authService.emailSignIn(email, password)
+  const result: AuthReturnType = yield authService.emailSignIn(email, password)
 
   if (result instanceof Error) {
-    yield put(setAlert({ type: 'error', message: result.message }))
-  } else {
+    yield put(setErrorNotification(result.message))
+  } else if (result) {
     yield call(getUser, result.user.uid)
   }
 }
@@ -72,12 +73,12 @@ function* signInWorker({ payload }: PayloadAction<{ email: string; password: str
 function* updatePasswordWorker({
   payload: { currentPassword, newPassword },
 }: PayloadAction<{ currentPassword: string; newPassword: string }>) {
-  const result: AuthError | undefined = yield authService.updatePassword(currentPassword, newPassword)
+  const result: AuthReturnType = yield authService.updatePassword(currentPassword, newPassword)
 
   if (result instanceof Error) {
-    yield put(setAlert({ type: 'error', message: result.message }))
+    yield put(setErrorNotification(result.message))
   } else {
-    yield put(setAlert({ type: 'success', message: 'Password has been updated' }))
+    yield put(setSucessNotification('Password has been updated'))
   }
 }
 

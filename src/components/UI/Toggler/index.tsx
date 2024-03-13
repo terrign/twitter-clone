@@ -1,12 +1,12 @@
 import { useRef } from 'react'
 import { StyledTogggler, TogglerBar } from './styled'
 
-interface TogglerProps {
+interface Props {
   checked?: boolean
   onChange?: () => void
 }
 
-export function Toggler({ checked, onChange }: TogglerProps) {
+export function Toggler({ checked, onChange }: Props) {
   const checkBoxRef = useRef<HTMLInputElement>(null)
 
   const clickHandler = () => {
@@ -22,7 +22,7 @@ export function Toggler({ checked, onChange }: TogglerProps) {
   }
 
   return (
-    <StyledTogggler type="button" onClick={clickHandler} aria-hidden>
+    <StyledTogggler type="button" onClick={clickHandler} aria-label="theme toggler">
       <input type="checkbox" checked={checked} ref={checkBoxRef} readOnly />
       <TogglerBar />
     </StyledTogggler>

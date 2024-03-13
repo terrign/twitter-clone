@@ -3,9 +3,9 @@ export const enum Route {
   SIGN_IN = '/signin',
   SIGN_UP = '/signup',
   PROFILE = '/profile',
-  ICONS = '/icons',
   HOME = '/home',
   TODO = '/todo',
-  EDIT = '/profile/edit',
   POST = '/post',
+  NOT_FOUND = '/*',
+  EDIT = '/edit',
 }

@@ -1,5 +1,5 @@
-import { Button } from '@ui'
 import styled from 'styled-components'
+import { Button } from '@components/UI/Button'
 
 export const StyledUserList = styled.div`
   & > div {

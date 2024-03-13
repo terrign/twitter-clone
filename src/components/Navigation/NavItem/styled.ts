@@ -1,9 +1,8 @@
-import { font, hoverTitle, screen } from '@constants'
 import styled from 'styled-components'
+import { centerFlex, font, hoverTitle, mediaHover, screen, spaceFlex } from '@constants/styles'
 
 export const StyledNavItem = styled.li<{ $title: string }>`
-  display: flex;
-  justify-content: space-between;
+  ${spaceFlex};
   position: relative;
   flex-wrap: nowrap;
   align-items: center;
@@ -32,12 +31,10 @@ export const StyledNavItem = styled.li<{ $title: string }>`
   div {
     height: 30px;
     width: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${centerFlex};
   }
 
-  @media ${screen.l} and (hover: hover) {
+  @media ${screen.l} and (${mediaHover}) {
     ${hoverTitle}
   }
 `

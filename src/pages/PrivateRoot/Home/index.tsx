@@ -1,6 +1,8 @@
-import { Header, TweetForm, TweetList } from '@components'
-import { useFetchAllTweetsQuery } from '@store'
-import { Loader } from '@ui'
+import { Header } from '@components/Header'
+import { TweetForm } from '@components/TweetForm'
+import { TweetList } from '@components/TweetList'
+import { Loader } from '@components/UI/Loader'
+import { useFetchAllTweetsQuery } from '@store/api/tweets'
 
 export const Home = () => {
   const { data, isFetching } = useFetchAllTweetsQuery({})

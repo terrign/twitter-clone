@@ -1,9 +1,9 @@
 import { ChangeEvent } from 'react'
-import { TweetList } from '@components'
-import { useDebounceCallback } from '@hooks'
-import { useLazySearchTweetQuery } from '@store'
-import { Tweet } from '@types'
-import { Search } from '@ui'
+import { TweetList } from '@components/TweetList'
+import { Search } from '@components/UI/Search'
+import { useDebounceCallback } from '@hooks/useDebounceCallback'
+import { Tweet } from '@models/index'
+import { useLazySearchTweetQuery } from '@store/api/tweets'
 
 export const TweetsSearch = () => {
   const [trigger, { data, isUninitialized, isLoading }] = useLazySearchTweetQuery()
@@ -32,11 +32,13 @@ export const TweetsSearch = () => {
           <TweetList tweets={data} compact />
         </>
       )
-    } else if (isUninitialized) {
-      return <p>Try search for tweets</p>
-    } else {
-      return <p>Nothing found</p>
     }
+
+    if (isUninitialized) {
+      return <p>Try search for tweets</p>
+    }
+
+    return <p>Nothing found</p>
   }
 
   return <Search placeholder="Search Twitter" isLoading={isLoading} onChange={changeHandler} result={renderResult()} />

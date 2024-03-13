@@ -1,5 +1,5 @@
-import { font, screen } from '@constants'
 import styled from 'styled-components'
+import { columnFlex, font, mediaHover, screen } from '@constants/styles'
 
 export const StyledSelect = styled.div`
   position: relative;
@@ -27,7 +27,7 @@ export const Option = styled.button`
     background: ${({ theme }) => theme.outlinedButtonHover};
   }
 
-  @media (hover: hover) {
+  @media ${mediaHover} {
     &:hover {
       background: ${({ theme }) => theme.outlinedButtonHover};
     }
@@ -35,8 +35,8 @@ export const Option = styled.button`
 `
 
 export const Options = styled.div<{ $show?: boolean }>`
-  display: flex;
-  flex-direction: column;
+  ${columnFlex};
+
   position: absolute;
   height: 200px;
   top: -195px;

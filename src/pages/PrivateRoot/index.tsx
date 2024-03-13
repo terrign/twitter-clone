@@ -1,26 +1,22 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { Outlet } from 'react-router-dom'
-import { Navigation, YouMightLike } from '@components'
-import { useOuterClickHandler } from '@hooks'
-import { useAppSelector, useGetUserSuggestionsQuery } from '@store'
+import { Navigation } from '@components/Navigation'
+import { YouMightLike } from '@components/YouMightLike'
+import { useBooleanState } from '@hooks/useBooleanState'
+import { useOuterClickHandler } from '@hooks/useOuterClickHandler'
+import { useGetUserSuggestionsQuery } from '@store/api/users'
+import { useAppSelector } from '@store/index'
+import { selectUser } from '@store/slices/user'
 import { MainWrapper, PrivateRootWrapper, RightAside } from './styled'
 
 export const PrivateRoot = () => {
-  const [asideVisible, setAsideVisible] = useState<boolean>(false)
-  const { uid } = useAppSelector((state) => state.user.user)
+  const [asideVisible, toggleAside, , hideAside] = useBooleanState(false)
+  const { uid } = useAppSelector(selectUser)
   const { data } = useGetUserSuggestionsQuery(uid)
 
   const asideRef = useRef<HTMLElement>(null)
 
-  const toggleAside = (close?: false) => {
-    setAsideVisible((prev) => close ?? !prev)
-  }
-
-  const closeAsideIfOpen = () => {
-    asideVisible && setAsideVisible(false)
-  }
-
-  useOuterClickHandler(asideRef, closeAsideIfOpen)
+  useOuterClickHandler(asideRef, hideAside)
 
   const tweets = data?.tweets
   const users = data?.users

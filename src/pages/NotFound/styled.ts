@@ -1,9 +1,10 @@
-import { screen } from '@constants'
-import { Button, Centered } from '@ui'
 import styled from 'styled-components'
+import { Button } from '@components/UI/Button'
+import { Centered } from '@components/UI/Centered'
+import { columnFlex, screen } from '@constants/styles'
 
 export const StyledNotFound = styled.section`
-  height: 100vh;
+  height: 100%;
   width: 100%;
   padding: 2rem;
 
@@ -20,15 +21,14 @@ export const BackHomeButton = styled(Button)`
 
 export const Container = styled(Centered)`
   max-height: 500px;
-  max-width: 1200px;
+  max-width: ${screen.l};
 
   div {
+    ${columnFlex};
+    justify-content: space-between;
     max-height: 500px;
     padding: 2rem;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
     @media ${screen.m} {
       padding: 0;
@@ -47,7 +47,6 @@ export const Container = styled(Centered)`
   }
 
   h1 {
-    font-size: 70px;
     text-align: center;
     margin-bottom: 1rem;
   }

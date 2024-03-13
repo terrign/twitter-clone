@@ -1,14 +1,17 @@
 import { Link } from 'react-router-dom'
-import { WelcomeTwitterBackGroundImage } from '@assets'
-import { Footer } from '@components'
-import { LINKS } from '@constants'
-import { Route } from '@router'
-import { signUpWithGoogle, useAppDispatch } from '@store'
-import { Button, GoogleIcon, TwitterIcon } from '@ui'
+import { WelcomeTwitterBackGroundImage } from '@assets/index'
+import { Footer } from '@components/Footer'
+import { Button, ButtonType } from '@components/UI/Button'
+import { GoogleIcon, TwitterIcon } from '@components/UI/Icons'
+import { Route } from '@router/types'
+import { useAppDispatch } from '@store/index'
+import { signUpWithGoogle } from '@store/slices/auth'
+import { config } from './config'
 import { Content, HomeLoginText, HomeTermsText, HomeWrapper, Main, TwitterBackGround } from './styled'
 
+const { header, subHeader, emailButtonLabel, googleButtonLabel, termsText, loginLinkLabel, loginQuestion } = config
+
 export const Welcome = () => {
-  const { cookie, privacy, terms } = LINKS
   const dispatch = useAppDispatch()
 
   const googleHanlder = () => {
@@ -25,29 +28,26 @@ export const Welcome = () => {
             <TwitterIcon $size="big" />
           </Link>
 
-          <h1>Happening Now</h1>
+          <h1>{header}</h1>
 
           <div>
-            <h2>Join Twitter today</h2>
+            <h2>{subHeader}</h2>
 
-            <Button $type="outlined" onClick={googleHanlder}>
+            <Button $type={ButtonType.OUTLINED} onClick={googleHanlder}>
               <span>
                 <GoogleIcon />
-                Sign up with Google
+                {googleButtonLabel}
               </span>
             </Button>
 
             <Link to={Route.SIGN_UP}>
-              <Button $type="outlined">Sign up with email</Button>
+              <Button $type={ButtonType.OUTLINED}>{emailButtonLabel}</Button>
             </Link>
 
-            <HomeTermsText>
-              By singing up you agree to the <a href={terms.href}>{terms.label}</a> and{' '}
-              <a href={privacy.href}>{privacy.label}</a>, including <a href={cookie.href}>{cookie.label}</a>.
-            </HomeTermsText>
+            <HomeTermsText>{termsText}</HomeTermsText>
 
             <HomeLoginText>
-              Already have an account? <Link to={Route.SIGN_IN}>Log in</Link>
+              {loginQuestion} <Link to={Route.SIGN_IN}>{loginLinkLabel}</Link>
             </HomeLoginText>
           </div>
         </Content>
