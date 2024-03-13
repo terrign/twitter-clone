@@ -1,27 +1,10 @@
-import styled, { css, keyframes } from 'styled-components'
-import { Color } from '@constants/styles'
+import styled from 'styled-components'
+import { appearAnimation, Color, defaultBorderRadius } from '@constants/styles'
+import { NotificationType } from '@store/slices/notification'
 
-const ANIMATION_DURATION = '0.5s'
-
-const appearFrames = keyframes`
-  from {
-    top: -500px;
-  }
-
-  to {
-    top: 2rem;
-  }
-`
-
-const appearAnimation = css`
-  animation-name: ${appearFrames};
-  animation-duration: ${ANIMATION_DURATION};
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: 1;
-`
-
-export const StyledNotification = styled.div<{ $type: 'error' | 'success' }>`
+export const StyledNotification = styled.div<{ $type: NotificationType }>`
   ${appearAnimation}
+  ${defaultBorderRadius}
 
   font-size: ${({ theme }) => theme.fontS};
   background: ${({ $type }) => ($type === 'success' ? Color.BLUE : Color.RED)};
@@ -31,7 +14,6 @@ export const StyledNotification = styled.div<{ $type: 'error' | 'success' }>`
   z-index: 666;
   top: 2rem;
   left: calc(100% - 300px - 2rem);
-  border-radius: 6px;
   width: 300px;
   word-wrap: break-word;
   padding: 1rem 2rem 1rem 1rem;

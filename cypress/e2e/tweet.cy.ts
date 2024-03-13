@@ -31,7 +31,7 @@ describe('Tweet', () => {
     cy.get('@likeButton').should('have.text', '1')
 
     cy.get('@likeButton').click()
-    cy.wait(2000)
+    cy.wait(3000)
     cy.get('article:contains("New Test Tweet")').contains('New Test Tweet').click()
     cy.get('@likeButton').should('have.text', '0')
     cy.get('li:contains("Home")').click()

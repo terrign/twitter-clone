@@ -18,38 +18,41 @@ export const Profile = () => {
   const [skipTweetsQuery, , , initTweetsQuery] = useBooleanState(true)
   const [skipUserQuery, , , initUserQuery] = useBooleanState(true)
   const { uid } = useAppSelector(selectUser)
-  const user = useGetUserByIdQuery(userId, { skip: skipUserQuery })
-  const tweets = useFetchTweetsByUserIdQuery(userId as string, { skip: skipTweetsQuery })
+  const userQuery = useGetUserByIdQuery(userId, { skip: skipUserQuery })
+  const tweetsQuery = useFetchTweetsByUserIdQuery(userId as string, { skip: skipTweetsQuery })
+
+  const user = userQuery.data
+  const tweets = tweetsQuery.data
 
   if (skipUserQuery && userId) {
     initUserQuery()
   }
 
-  if (skipTweetsQuery && user.data?.uid) {
+  if (skipTweetsQuery && user?.uid) {
     initTweetsQuery()
   }
 
-  if (tweets.isFetching || user.isFetching) {
+  if (tweetsQuery.isFetching || userQuery.isFetching) {
     return <Loader h="200px" />
   }
 
   return (
     <>
       <Header>
-        {user.data && (
+        {user && (
           <UserName>
-            <p>{user.data?.name}</p>
-            <p>{tweets.data?.length ?? 0} tweets</p>
+            <p>{user.name}</p>
+            <p>{tweets?.length ?? 0} tweets</p>
           </UserName>
         )}
       </Header>
-      {!user.data && <h3>Profile has been removed or never existed</h3>}
-      {user.data && (
+      {!user && <h3>Profile has been removed or never existed</h3>}
+      {user && (
         <>
           <ProfileBackground $url={DefaultProfileBackGround} />
-          {user.data && <ProfileInfo user={user.data} />}
+          {user && <ProfileInfo user={user} />}
           {uid === userId && <TweetForm />}
-          {tweets.data && <TweetList tweets={tweets.data} />}
+          {tweets && <TweetList tweets={tweets} />}
           <Outlet />
         </>
       )}

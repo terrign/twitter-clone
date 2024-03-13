@@ -53,13 +53,6 @@ describe('Profile', () => {
     cy.get('@tgLink').clear().type('https://t.me/asddasd$')
     cy.get('*').contains(ValidationError.INVALID_TG_LINK).should('be.visible')
     cy.get('body').trigger('keydown', { key: 'Escape' })
-
-    cy.fixture('./correctUserData').then((user) => {
-      cy.get('input[name="currentPassword"]').clear().type(user.pass)
-    })
-
-    cy.get('input[name="newPassword"]').clear().type('test bio')
-    cy.get('input[name="confirmPassword"]').clear().type('https://t.me/test_tg')
   })
 
   it('Updates profile info', () => {

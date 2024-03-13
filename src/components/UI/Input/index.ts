@@ -1,13 +1,13 @@
 import styled from 'styled-components'
-import { font } from '@constants/styles'
+import { defaultBorderRadius, font } from '@constants/styles'
 
 export const Input = styled.input`
   ${font}
+  ${defaultBorderRadius}
 
   border: 1px solid ${({ theme }) => theme.inputBorderColor};
   font-size: ${({ theme }) => theme.fontM};
 
-  border-radius: 6px;
   height: 50px;
   padding: 1rem;
 `

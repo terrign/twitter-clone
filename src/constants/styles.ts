@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from 'styled-components'
+import { createGlobalStyle, css, keyframes } from 'styled-components'
 import { ThemeObject } from '@models/index'
 
 const breakpoints = {
@@ -77,6 +77,10 @@ const spaceFlex = css`
 const columnFlex = css`
   display: flex;
   flex-direction: column;
+`
+
+const defaultBorderRadius = css`
+  border-radius: 6px;
 `
 
 enum Color {
@@ -266,12 +270,34 @@ const hoverTitle = css<{ $title?: string }>`
   }
 `
 
+const APPEAR_ANIMATION_DURATION = '0.2s'
+
+const appearFrames = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`
+
+const appearAnimation = css`
+  animation-name: ${appearFrames};
+  animation-duration: ${APPEAR_ANIMATION_DURATION};
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+`
+
 export {
+  APPEAR_ANIMATION_DURATION,
+  appearAnimation,
   breakpoints,
   centerFlex,
   Color,
   columnFlex,
   darkTheme,
+  defaultBorderRadius,
   defaultTheme,
   font,
   GlobalStyles,

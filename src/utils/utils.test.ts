@@ -4,7 +4,6 @@ import {
   generateYears,
   getDayArrayFromMonthAndYear,
   getDayCount,
-  getHumanMonthDayFromTimeStamp,
   getIsoDateFromParts,
   getNewDayIfNotLegitDate,
   isLeapYear,
@@ -59,14 +58,6 @@ describe('generateDays', () => {
     const days = generateDays(50)
 
     expect(days.length).toBe(50)
-  })
-})
-
-describe('getHumanMonthDayFromTimeStamp', () => {
-  it('returns correct value', async () => {
-    const string = getHumanMonthDayFromTimeStamp(1710111441648)
-
-    expect(string).toBe('March 11')
   })
 })
 

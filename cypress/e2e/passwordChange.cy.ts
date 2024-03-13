@@ -18,9 +18,9 @@ describe('Password change', () => {
     cy.fixture('./correctUserData')
       .as('user')
       .then((user) => {
-        cy.get('input[name="currentPassword"]').clear().type(user.pass_changed)
-        cy.get('input[name="newPassword"]').clear().type(user.pass_changed)
-        cy.get('input[name="confirmPassword"]').clear().type(user.pass_changed)
+        cy.get('input[name="currentPassword"]').type('{selectAll}' + user.pass_changed)
+        cy.get('input[name="newPassword"]').type('{selectAll}' + user.pass)
+        cy.get('input[name="confirmPassword"]').type('{selectAll}' + user.pass)
       })
     cy.button('Update').click()
     cy.wait(2000)
@@ -31,45 +31,45 @@ describe('Password change', () => {
     cy.get('li:contains("Profile")').click()
     cy.button('Edit profile').click()
 
-    cy.get('input[name="currentPassword"]').as('currentPass').clear().type('asdasd')
+    cy.get('input[name="currentPassword"]').as('currentPass').type('{selectAll}asdasd')
     cy.get('span').contains(ValidationError.PASS_SHORT).should('be.visible')
 
-    cy.get('@currentPass').clear().type('123asdasdasd')
+    cy.get('@currentPass').type('{selectAll}123asdasdasd')
     cy.get('span').contains(ValidationError.PASS_WEAK).should('be.visible')
 
-    cy.get('@currentPass').clear().type('123asAdasdasd')
+    cy.get('@currentPass').type('{selectAll}123asAdasdasd')
     cy.get('span').contains(ValidationError.PASS_WEAK).should('be.visible')
 
-    cy.get('@currentPass').clear().type('12@3asAdasdasd')
+    cy.get('@currentPass').type('{selectAll}12@3asAdasdasd')
     cy.get('span').contains(ValidationError.PASS_WEAK).should('not.exist')
 
     cy.get('@currentPass').clear()
     cy.get('span').contains(ValidationError.PASS_REQUIRED).should('be.visible')
 
-    cy.get('@currentPass').clear().type('ASd72128*ASD57as423SDd@31')
+    cy.get('@currentPass').type('{selectAll}ASd72128*ASD57as423SDd@31')
     cy.get('span').contains(ValidationError.PASS_WEAK).should('not.exist')
 
-    cy.get('input[name="newPassword"]').as('newPass').clear().type('asdasd')
+    cy.get('input[name="newPassword"]').as('newPass').type('{selectAll}asdasd')
     cy.get('span').contains(ValidationError.PASS_SHORT).should('be.visible')
 
-    cy.get('@newPass').clear().type('123asdasdasd')
+    cy.get('@newPass').type('{selectAll}123asdasdasd')
     cy.get('span').contains(ValidationError.PASS_WEAK).should('be.visible')
 
-    cy.get('@newPass').clear().type('123asdasdasdA@#')
+    cy.get('@newPass').type('{selectAll}123asdasdasdA@#')
     cy.get('span').contains(ValidationError.PASS_WEAK).should('not.exist')
 
     cy.get('@newPass').clear()
     cy.get('span').contains(ValidationError.PASS_REQUIRED).should('be.visible')
 
-    cy.get('@newPass').clear().type('ASd72128*ASD57as423SDd@31')
+    cy.get('@newPass').type('{selectAll}ASd72128*ASD57as423SDd@31')
 
-    cy.get('input[name="confirmPassword"]').as('confirmPass').clear().type('asdas21123')
+    cy.get('input[name="confirmPassword"]').as('confirmPass').type('{selectAll}asdas21123')
     cy.get('span').contains(ValidationError.PASS_CONFIRM_DONT_MATCH).should('be.visible')
 
     cy.get('@confirmPass').clear()
     cy.get('span').contains(ValidationError.PASS_CONFIRM_REQUIRED).should('be.visible')
 
-    cy.get('@confirmPass').clear().type('ASd72128*ASD57as423SDd@31')
+    cy.get('@confirmPass').type('{selectAll}ASd72128*ASD57as423SDd@31')
     cy.get('span').contains(ValidationError.PASS_CONFIRM_DONT_MATCH).should('not.exist')
 
     cy.get('body').trigger('keydown', { key: 'Escape' })
@@ -84,9 +84,9 @@ describe('Password change', () => {
     cy.fixture('./correctUserData')
       .as('user')
       .then((user) => {
-        cy.get('input[name="currentPassword"]').clear().type(user.pass)
-        cy.get('input[name="newPassword"]').clear().type(user.pass_changed)
-        cy.get('input[name="confirmPassword"]').clear().type(user.pass_changed)
+        cy.get('input[name="currentPassword"]').type('{selectAll}' + user.pass)
+        cy.get('input[name="newPassword"]').type('{selectAll}' + user.pass_changed)
+        cy.get('input[name="confirmPassword"]').type('{selectAll}' + user.pass_changed)
       })
     cy.button('Update').click()
     cy.wait(2000)
@@ -97,9 +97,9 @@ describe('Password change', () => {
     cy.fixture('./correctUserData')
       .as('user')
       .then((user) => {
-        cy.get('input[name="currentPassword"]').clear().type(user.pass_changed)
-        cy.get('input[name="newPassword"]').clear().type(user.pass)
-        cy.get('input[name="confirmPassword"]').clear().type(user.pass)
+        cy.get('input[name="currentPassword"]').type('{selectAll}' + user.pass_changed)
+        cy.get('input[name="newPassword"]').type('{selectAll}' + user.pass)
+        cy.get('input[name="confirmPassword"]').type('{selectAll}' + user.pass)
       })
     cy.button('Update').click()
   })

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { screen } from '@constants/styles'
+import { defaultBorderRadius, screen } from '@constants/styles'
 
 export const StyledYouMightLike = styled.section`
   display: grid;
@@ -20,13 +20,14 @@ export const StyledYouMightLike = styled.section`
 `
 
 export const SuggestedImages = styled.div`
+  ${defaultBorderRadius}
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2px;
   flex-wrap: wrap;
   width: 100%;
   height: 150px;
-  border-radius: 6px;
   overflow: hidden;
 `
 

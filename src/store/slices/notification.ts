@@ -1,8 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+export type NotificationType = 'success' | 'error'
+
 export type AlertState = {
   message: string
-  type: 'success' | 'error'
+  type: NotificationType
 }
 
 const initialState: AlertState = {

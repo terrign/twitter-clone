@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Centered } from '@components/UI/Centered'
-import { breakpoints, mediaHover, screen, spaceFlex } from '@constants/styles'
+import { breakpoints, defaultBorderRadius, mediaHover, screen, spaceFlex } from '@constants/styles'
 
 export const Background = styled(Centered)`
   position: fixed;
@@ -13,12 +13,14 @@ export const Background = styled(Centered)`
 `
 
 export const Container = styled.div`
+  ${defaultBorderRadius}
+
+  max-width: ${breakpoints.s};
+  background-color: ${({ theme }) => theme.bgColor};
+
   position: relative;
   padding: 1rem;
-  background-color: ${({ theme }) => theme.bgColor};
-  border-radius: 6px;
   flex-grow: 1;
-  max-width: ${breakpoints.s};
   max-height: 90%;
   overflow-y: auto;
 

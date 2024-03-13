@@ -1,24 +1,5 @@
-import styled, { css, keyframes } from 'styled-components'
-import { Color, font } from '@constants/styles'
-
-const ANIMATION_DURATION = '0.3s'
-
-const appearFrames = keyframes`
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-`
-
-const appearAnimation = css`
-  animation-name: ${appearFrames};
-  animation-duration: ${ANIMATION_DURATION};
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: 1;
-`
+import styled, { css } from 'styled-components'
+import { APPEAR_ANIMATION_DURATION, appearAnimation, Color, font } from '@constants/styles'
 
 const nextElemMargin = css`
   + * {
@@ -28,7 +9,7 @@ const nextElemMargin = css`
 
 export const StyledFormItem = styled.div<{ $hasError?: boolean; $labeled?: boolean }>`
   position: relative;
-  transition: margin-top ${ANIMATION_DURATION} ease-in-out;
+  transition: margin-top ${APPEAR_ANIMATION_DURATION} ease-in-out;
 
   ${({ $hasError }) => $hasError && nextElemMargin}
 
