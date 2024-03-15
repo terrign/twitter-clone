@@ -14,6 +14,7 @@ const initialState: AlertState = {
 
 export const notificationSlice = createSlice({
   name: 'alert',
+  reducerPath: 'alert',
   initialState,
   reducers: {
     setErrorNotification(state, { payload }: PayloadAction<string>) {

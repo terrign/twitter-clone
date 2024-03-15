@@ -7,6 +7,7 @@ module.exports = {
     'simple-import-sort/exports': 'error',
     'import/prefer-default-export': 'off',
     'import/no-default-export': 'error',
+    'import/no-cycle': 'error',
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     'simple-import-sort/imports': [
       'error',
@@ -50,7 +51,12 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['./src/App.tsx', './src/store/index.ts', './src/testUtils/index.tsx'],
+      files: [
+        './src/App.tsx',
+        './src/store/index.ts',
+        './src/testUtils/index.tsx',
+        './src/context/Providers/index.tsx',
+      ],
       rules: {
         'import/no-unresolved': 'off',
       },
@@ -94,5 +100,6 @@ module.exports = {
     '/dist',
     '/cypress/*',
     'src/models/vite-env.d.ts',
+    'wrapper.js',
   ],
 }

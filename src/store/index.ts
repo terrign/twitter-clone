@@ -29,9 +29,9 @@ const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     })
-      .concat(sagaMiddleware)
       .concat(tweetsApi.middleware)
-      .concat(usersApi.middleware),
+      .concat(usersApi.middleware)
+      .concat(sagaMiddleware),
 })
 
 const persistor = persistStore(store)

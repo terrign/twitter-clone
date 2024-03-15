@@ -4,7 +4,7 @@ module.exports = {
   testEnvironment: 'jest-environment-jsdom',
   extensionsToTreatAsEsm: ['.tsx', '.ts'],
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
+    '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/wrapper.js',
   },
   collectCoverageFrom: [
     './src/**/*.{ts,tsx,js}',

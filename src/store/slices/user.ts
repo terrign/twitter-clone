@@ -28,6 +28,7 @@ const initialState: UserStateType = {
 
 export const userSlice = createSlice({
   name: 'user',
+  reducerPath: 'user',
   initialState,
   reducers: {
     setUser(state, { payload }: PayloadAction<UserInfo>) {
