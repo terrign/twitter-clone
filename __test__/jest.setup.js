@@ -2,6 +2,8 @@ import '@testing-library/jest-dom'
 import '@testing-library/react'
 import '@testing-library/user-event'
 import dotenv from 'dotenv'
+import { mockUserList } from './__mocks__/userList'
+import { mockTweetList } from './__mocks__/tweetList'
 
 dotenv.config()
 
@@ -24,3 +26,26 @@ jest.mock('../src/services/config', () => ({
   },
   isDev: true,
 }))
+
+jest.mock('@services/User', () => {
+  return {
+    userService: {
+      getUserById: jest.fn().mockImplementation(async (id) => mockUserList.find((user) => user.uid === id) ?? null),
+      getUsersByIds: jest
+        .fn()
+        .mockImplementation(async (userIdsArray) => mockUserList.filter((user) => userIdsArray.includes(user.uid))),
+    },
+  }
+})
+
+jest.mock('@services/Tweets', () => {
+  return {
+    tweetService: {
+      getTweetById: jest.fn().mockImplementation(async (id) => mockTweetList.find((tweet) => tweet.id === id) ?? null),
+      getTweetsByUserId: jest
+        .fn()
+        .mockImplementation(async (userId) => mockTweetList.filter((tweet) => tweet.createdById === userId)),
+      getAllTweets: jest.fn().mockImplementation(async () => mockTweetList),
+    },
+  }
+})

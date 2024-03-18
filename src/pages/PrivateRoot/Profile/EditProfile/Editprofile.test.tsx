@@ -1,5 +1,5 @@
 import { Providers } from '@context/Providers'
-import { EditProfile } from '@pages/PrivateRoot/EditProfile'
+import { EditProfile } from '@pages/PrivateRoot/Profile/EditProfile'
 import { render } from '@testing-library/react'
 
 describe('EditProfile', () => {

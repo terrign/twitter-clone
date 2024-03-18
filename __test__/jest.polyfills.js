@@ -6,9 +6,11 @@ Object.defineProperties(globalThis, {
   ReadableStream: { value: ReadableStream },
 })
 
-const { Blob, File } = require('node:buffer')
+// const performance = require('perf_hooks').performance
 
-const performance = require('perf_hooks').performance
+Object.defineProperty(global, 'performance', {
+  writable: true,
+})
 
 class LocalStorageMock {
   constructor() {
@@ -31,12 +33,6 @@ class LocalStorageMock {
     delete this.store[key]
   }
 }
-
-Object.defineProperties(globalThis, {
-  Blob: { value: Blob },
-  File: { value: File },
-  performance: { value: performance },
-})
 
 Object.defineProperty(window, 'localStorage', { value: new LocalStorageMock() })
 

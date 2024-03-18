@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { ChangePasswordForm } from '@components/ChangePasswordForm'
-import { EditProfileForm } from '@components/EditProfileForm'
+import { EditProfileForm } from '@components/ProfileInfo/EditProfileForm'
 import { Modal } from '@components/UI/Modal'
 import { useAppSelector } from '@store/index'
 import { selectUser } from '@store/slices/user'

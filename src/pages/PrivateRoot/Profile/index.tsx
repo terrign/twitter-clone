@@ -52,7 +52,7 @@ export const Profile = () => {
           <ProfileBackground $url={DefaultProfileBackGround} />
           {user && <ProfileInfo user={user} />}
           {uid === userId && <TweetForm />}
-          {tweets && <TweetList tweets={tweets} />}
+          {tweets && tweets.length !== 0 && <TweetList tweets={tweets} />}
           <Outlet />
         </>
       )}

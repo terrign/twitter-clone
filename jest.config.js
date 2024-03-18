@@ -13,7 +13,7 @@ module.exports = {
     '!**/vendor/**',
     '!./src/index.tsx',
     '!./src/services/config.ts',
-    '!.src/main.tsx',
+    '!./src/main.tsx',
   ],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
@@ -33,6 +33,7 @@ module.exports = {
     '^@assets/(.*)$': '<rootDir>/src/assets/$1',
     '^@hooks/(.*)$': '<rootDir>/src/hooks/$1',
     '^@testUtils/(.*)$': '<rootDir>/src/testUtils/$1',
+    '^@test/(.*)$': '<rootDir>/__test__/$1',
   },
 
   setupFiles: ['<rootDir>/__test__/jest.polyfills.js'],

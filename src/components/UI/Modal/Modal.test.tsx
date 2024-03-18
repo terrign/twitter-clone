@@ -1,7 +1,6 @@
 import { Modal } from '@components/UI/Modal'
 import { useBooleanState } from '@hooks/useBooleanState'
 import { fireEvent, render, screen } from '@testing-library/react'
-import { Wrappers } from '@testUtils/index'
 
 describe('Modal', () => {
   const TestComponent = () => {
@@ -16,7 +15,7 @@ describe('Modal', () => {
   }
 
   beforeEach(() => {
-    render(<TestComponent />, { wrapper: Wrappers })
+    render(<TestComponent />)
   })
 
   it('Closes on close button click', async () => {

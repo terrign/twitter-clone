@@ -55,7 +55,6 @@ interface SignUpFormFields {
 
 interface EditFormFields {
   name: string
-
   gender: string
   tgLink: string
   image: string
