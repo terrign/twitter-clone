@@ -12,8 +12,10 @@ module.exports = {
     '!**/node_modules/**',
     '!**/vendor/**',
     '!./src/index.tsx',
-    '!./src/services/config.ts',
+    '!./src/services/**',
     '!./src/main.tsx',
+    '!./src/constants/styles.ts',
+    '!./src/**/config.{ts,tsx}',
   ],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':

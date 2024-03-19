@@ -1,3 +1,5 @@
+import 'isomorphic-fetch'
+
 const { TextDecoder, TextEncoder, ReadableStream } = require('node:util')
 
 Object.defineProperties(globalThis, {
@@ -5,8 +7,6 @@ Object.defineProperties(globalThis, {
   TextEncoder: { value: TextEncoder },
   ReadableStream: { value: ReadableStream },
 })
-
-// const performance = require('perf_hooks').performance
 
 Object.defineProperty(global, 'performance', {
   writable: true,
@@ -41,7 +41,3 @@ Object.defineProperty(globalThis, 'crypto', {
     randomUUID: () => 'random',
   },
 })
-
-// HTMLCanvasElement.prototype.getContext = () => {};
-
-// window.URL.createObjectURL = function () {};

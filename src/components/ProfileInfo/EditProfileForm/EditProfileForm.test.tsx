@@ -1,11 +1,12 @@
 import { Route } from 'react-router-dom'
 import { Profile } from '@pages/PrivateRoot/Profile'
 import { EditProfile } from '@pages/PrivateRoot/Profile/EditProfile'
+import { storageService } from '@services/Storage'
 import { store } from '@store/index'
 import { setUser } from '@store/slices/user'
 import { mockUserList } from '@test/__mocks__/userList'
 import { Wrappers } from '@test/utils'
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { ValidationError } from '@utils/formValidationSchemas'
 
@@ -80,5 +81,13 @@ describe('EditProfileForm', () => {
 
     await userEvents.upload(input, [file, file])
     expect(input.files).toHaveLength(1)
+
+    await waitFor(() => setTimeout(() => {}, 2000))
+
+    await act(async () => {
+      fireEvent.click(screen.getByText('Save'))
+    })
+
+    await waitFor(() => expect(storageService.addUserAvatar).toHaveBeenCalledWith(file, user.uid))
   })
 })

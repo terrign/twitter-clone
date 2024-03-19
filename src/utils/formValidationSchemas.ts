@@ -1,4 +1,4 @@
-import { MAX_TWEET_LENGTH, MIN_USER_AGE, MONTH_NAMES } from '@constants/index'
+import { MIN_USER_AGE, MONTH_NAMES } from '@constants/index'
 import * as yup from 'yup'
 
 const MIN_PASSWORD_LENGTH = 8
@@ -129,10 +129,4 @@ export const changePasswordValidationSchema = () =>
     confirmPassword: confirmPassword.test('passwords-match', ValidationError.PASS_CONFIRM_DONT_MATCH, function (value) {
       return this.parent.newPassword === value
     }),
-  })
-
-export const tweetValidationSchema = () =>
-  yup.object().shape({
-    text: yup.string().max(MAX_TWEET_LENGTH),
-    image: yup.mixed(),
   })

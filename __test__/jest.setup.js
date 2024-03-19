@@ -34,6 +34,13 @@ jest.mock('@services/User', () => {
       getUsersByIds: jest
         .fn()
         .mockImplementation(async (userIdsArray) => mockUserList.filter((user) => userIdsArray.includes(user.uid))),
+      updateUser: jest.fn().mockImplementation(async (uid, userInfo) => null),
+      searchUsers: jest
+        .fn()
+        .mockImplementation(async (slug) =>
+          mockUserList.filter((user) => user.name.toLowerCase().startsWith(slug.toLowerCase())),
+        ),
+      getSuggestedUsers: jest.fn().mockImplementation(async () => mockUserList),
     },
   }
 })
@@ -46,6 +53,52 @@ jest.mock('@services/Tweets', () => {
         .fn()
         .mockImplementation(async (userId) => mockTweetList.filter((tweet) => tweet.createdById === userId)),
       getAllTweets: jest.fn().mockImplementation(async () => mockTweetList),
+      deleteTweet: jest.fn().mockImplementation(async (tweetId) => {}),
+      likeTweet: jest.fn().mockImplementation(async (tweetId, uid) => {}),
+      unlikeTweet: jest.fn().mockImplementation(async (tweetId, uid) => {}),
+      createTweet: jest.fn().mockImplementation(async (tweet) => {}),
+      searchTweet: jest
+        .fn()
+        .mockImplementation(async (slug) =>
+          mockTweetList.filter((tweet) => tweet.text.toLowerCase().startsWith(slug.toLowerCase())),
+        ),
+      getSuggestedTweets: jest
+        .fn()
+        .mockImplementation(async () => mockTweetList.filter((tweet) => tweet.imageURL !== '').slice(0, 6)),
     },
   }
 })
+
+jest.mock('@services/Auth', () => {
+  return {
+    authService: {
+      updatePassword: jest.fn().mockImplementation(async (oldPassword, newPassword) => {}),
+      emailSignUp: jest.fn().mockImplementation(async (email, password) => {}),
+      googleSignUp: jest.fn().mockImplementation(async () => {}),
+      auth: {
+        authStateReady: jest.fn().mockImplementation(async () => {}),
+        currentUser: null,
+      },
+    },
+  }
+})
+
+jest.mock('@services/Storage', () => {
+  return {
+    storageService: {
+      addFile: jest.fn().mockImplementation(async (file) => 'test_url'),
+      addUserAvatar: jest.fn().mockImplementation(async (file, uid) => 'test_url'),
+    },
+  }
+})
+
+import { redirect } from 'react-router-dom'
+
+jest.mock('react-router-dom', () => {
+  return {
+    ...jest.requireActual('react-router-dom'),
+    redirect: jest.fn().mockImplementation((url) => url),
+  }
+})
+
+Date.now = jest.fn(() => 1)
