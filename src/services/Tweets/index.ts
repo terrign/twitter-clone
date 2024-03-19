@@ -71,7 +71,7 @@ class TweetService {
     return null
   }
 
-  public getTweetByid = async (tweetId: string) => {
+  public getTweetById = async (tweetId: string) => {
     return (await getDoc(doc(this.db, this.collection, tweetId))).data() as Tweet | undefined
   }
 

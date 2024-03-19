@@ -2,7 +2,6 @@ import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react'
 import { DEFAULT_CACHE_TIME_S } from '@constants/index'
 import { Tweet } from '@models/index'
 import { tweetService } from '@services/Tweets'
-import { store } from '@store/index'
 
 export const tweetsApi = createApi({
   reducerPath: 'tweetsApi',
@@ -33,7 +32,7 @@ export const tweetsApi = createApi({
           return { data: null }
         }
 
-        const tweet = await tweetService.getTweetByid(tweetId)
+        const tweet = await tweetService.getTweetById(tweetId)
 
         return { data: tweet }
       },
@@ -80,15 +79,13 @@ export const tweetsApi = createApi({
     }),
 
     deleteTweet: builder.mutation({
-      async queryFn(tweetId: string) {
+      async queryFn({ tweetId }: { tweetId: string; userId: string }) {
         await tweetService.deleteTweet(tweetId)
 
         return { data: null }
       },
 
-      async onQueryStarted(tweetId, { dispatch, queryFulfilled }) {
-        const userId = store.getState().user.user.uid
-
+      async onQueryStarted({ tweetId, userId }, { dispatch, queryFulfilled }) {
         const patchFetchTweetsByUserId = dispatch(
           tweetsApi.util.updateQueryData('fetchTweetsByUserId', userId, (draft) => {
             const tweetIndex = draft.findIndex((tweet) => tweet.id === tweetId)

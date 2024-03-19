@@ -1,0 +1,156 @@
+export const mockTweetList = [
+  {
+    imageURL:
+      'http://127.0.0.1:9097/v0/b/modsen-twitter-95f28.appspot.com/o/11e92dbd-98bb-4ccd-8da8-b78c0642d9ba?alt=media&token=7e7f8504-35da-4c95-9558-da078d048bd5',
+    likedUserIds: ['qkqxB9FNjDvKHFguag97K4t22jsk'],
+    id: '2ec4eb41-1131-43c4-8441-3c5091d9c01e',
+    text: 'racoon loh',
+    createdById: 'qkqxB9FNjDvKHFguag97K4t22jsk',
+    timestamp: 1709505620614,
+  },
+  {
+    imageURL: '',
+    likedUserIds: ['qkqxB9FNjDvKHFguag97K4t22jsk'],
+    id: '91ed8f45-a66e-41fa-aee7-3c1eb24f1d3e',
+    text: 'chicken tweet',
+    createdById: 'qkqxB9FNjDvKHFguag97K4t22jsk',
+    timestamp: 1709505613598,
+  },
+  {
+    imageURL: '',
+    likedUserIds: ['qkqxB9FNjDvKHFguag97K4t22jsk'],
+    id: 'bb837fd2-e353-4838-ba77-036e69789964',
+    text: 'chicken',
+    createdById: 'qkqxB9FNjDvKHFguag97K4t22jsk',
+    timestamp: 1709505610924,
+  },
+  {
+    imageURL: '',
+    likedUserIds: ['G6g9rSE7Q41C4CWTzGG5fErInBQS'],
+    id: '7f0ed70f-7351-403f-a5a3-5f9d57a3cae6',
+    text: 'lorem',
+    createdById: 'G6g9rSE7Q41C4CWTzGG5fErInBQS',
+    timestamp: 1709505572832,
+  },
+  {
+    imageURL: '',
+    likedUserIds: ['G6g9rSE7Q41C4CWTzGG5fErInBQS', 'qkqxB9FNjDvKHFguag97K4t22jsk'],
+    id: '7b0f66df-0b65-47c3-9b2a-df8df3f6b853',
+    text: 'text',
+    createdById: 'G6g9rSE7Q41C4CWTzGG5fErInBQS',
+    timestamp: 1709505570224,
+  },
+  {
+    imageURL: '',
+    likedUserIds: ['qkqxB9FNjDvKHFguag97K4t22jsk', 'G6g9rSE7Q41C4CWTzGG5fErInBQS'],
+    id: 'e2781be9-53fc-42a5-a683-5586cbe8a7e7',
+    text: 'text',
+    createdById: 'G6g9rSE7Q41C4CWTzGG5fErInBQS',
+    timestamp: 1709505569188,
+  },
+  {
+    imageURL: '',
+    likedUserIds: [],
+    id: 'ad85905d-5886-4022-b415-cd799bdada8a',
+    text: 'text',
+    createdById: 'G6g9rSE7Q41C4CWTzGG5fErInBQS',
+    timestamp: 1709505568561,
+  },
+  {
+    imageURL: '',
+    likedUserIds: ['qkqxB9FNjDvKHFguag97K4t22jsk'],
+    id: '6ffdc30a-6ac0-4499-b0f2-cc572d5836aa',
+    text: 'tweet',
+    createdById: 'G6g9rSE7Q41C4CWTzGG5fErInBQS',
+    timestamp: 1709505564647,
+  },
+  {
+    imageURL: '',
+    likedUserIds: ['G6g9rSE7Q41C4CWTzGG5fErInBQS'],
+    id: '23a183b8-ee96-470a-9579-3232ab3ffb20',
+    text: 'asdfasdfasdf',
+    createdById: 'G6g9rSE7Q41C4CWTzGG5fErInBQS',
+    timestamp: 1709505563354,
+  },
+  {
+    imageURL:
+      'http://127.0.0.1:9097/v0/b/modsen-twitter-95f28.appspot.com/o/7dd75c52-d6f9-4836-9ede-3ac9e219eae4?alt=media&token=2eab1964-112d-4a27-9de1-465490d65b54',
+    likedUserIds: [],
+    id: '61c75b50-9c61-450c-8647-1e60639bfea3',
+    text: '',
+    createdById: 'G6g9rSE7Q41C4CWTzGG5fErInBQS',
+    timestamp: 1709505561532,
+  },
+  {
+    imageURL:
+      'http://127.0.0.1:9097/v0/b/modsen-twitter-95f28.appspot.com/o/586e2f1a-9618-4ff4-aa15-ef39750c147f?alt=media&token=dc45a200-a179-411e-adc0-0af47360e7ae',
+    likedUserIds: [],
+    id: '4c12dd21-c749-411b-a6d0-4c8800c411cc',
+    text: '',
+    createdById: 'G6g9rSE7Q41C4CWTzGG5fErInBQS',
+    timestamp: 1709505558765,
+  },
+  {
+    imageURL:
+      'http://127.0.0.1:9097/v0/b/modsen-twitter-95f28.appspot.com/o/cbf816b1-badd-46f6-bbb8-25b17d18203e?alt=media&token=717487e0-0728-4fff-8609-310c0ff2ac00',
+    likedUserIds: ['G6g9rSE7Q41C4CWTzGG5fErInBQS'],
+    id: '5cb88847-6a0e-4a24-bed9-df469abb49aa',
+    text: '',
+    createdById: 'G6g9rSE7Q41C4CWTzGG5fErInBQS',
+    timestamp: 1709505545897,
+  },
+  {
+    imageURL:
+      'http://127.0.0.1:9097/v0/b/modsen-twitter-95f28.appspot.com/o/4ea8558c-5324-4005-b9de-651689d3d2c5?alt=media&token=559fd125-6a07-48d2-8211-b1a1e1e96f22',
+    likedUserIds: [],
+    id: 'f0caa85c-7095-479c-8f4a-d5b4643810a1',
+    text: 'tweeeet',
+    createdById: 'G6g9rSE7Q41C4CWTzGG5fErInBQS',
+    timestamp: 1709505542698,
+  },
+  {
+    imageURL:
+      'http://127.0.0.1:9097/v0/b/modsen-twitter-95f28.appspot.com/o/a0149532-cb2a-4159-be21-6bbcfc8efc91?alt=media&token=85f7667a-55b8-4ab9-b51b-94a3c58c45f5',
+    likedUserIds: ['G6g9rSE7Q41C4CWTzGG5fErInBQS', 'qkqxB9FNjDvKHFguag97K4t22jsk'],
+    id: '838c62bb-0a64-4e1c-bc2d-2d4cf310c220',
+    text: 'anothertweet',
+    createdById: 'eVUHGkNiYSLcWtCYfNAFP28P2lTw',
+    timestamp: 1709505529533,
+  },
+  {
+    imageURL:
+      'http://127.0.0.1:9097/v0/b/modsen-twitter-95f28.appspot.com/o/2ad1cf54-3542-4abc-ad49-9c2d5be62183?alt=media&token=1db05382-70ef-4bb7-befc-b1e9a4a0d6fb',
+    likedUserIds: [],
+    id: 'b607c7bb-f50c-44b6-b39d-01a68d602ce1',
+    text: 'onemoretweet',
+    createdById: 'eVUHGkNiYSLcWtCYfNAFP28P2lTw',
+    timestamp: 1709505522282,
+  },
+  {
+    imageURL:
+      'http://127.0.0.1:9097/v0/b/modsen-twitter-95f28.appspot.com/o/c8d1d6af-1c7c-4392-8411-c072b3c5057f?alt=media&token=ab5a9d5a-24a8-42c4-8578-2ad6429d29a7',
+    likedUserIds: ['eVUHGkNiYSLcWtCYfNAFP28P2lTw', 'qkqxB9FNjDvKHFguag97K4t22jsk'],
+    id: '1e94451a-be96-4106-8dac-09340f4db649',
+    text: 'tweet',
+    createdById: 'eVUHGkNiYSLcWtCYfNAFP28P2lTw',
+    timestamp: 1709505514466,
+  },
+  {
+    imageURL:
+      'http://127.0.0.1:9097/v0/b/modsen-twitter-95f28.appspot.com/o/7a0a43e9-e09b-43c8-8f29-3831568ad1a0?alt=media&token=3cd50b74-09f7-4005-82e9-9c4c1ccb236a',
+    likedUserIds: ['eVUHGkNiYSLcWtCYfNAFP28P2lTw', 'G6g9rSE7Q41C4CWTzGG5fErInBQS'],
+    id: 'bb4eac72-286b-428f-91e3-a55ee8c2af12',
+    text: 'tweet',
+    createdById: 'eVUHGkNiYSLcWtCYfNAFP28P2lTw',
+    timestamp: 1709505510839,
+  },
+  {
+    imageURL:
+      'http://127.0.0.1:9097/v0/b/modsen-twitter-95f28.appspot.com/o/6668c5c7-a507-4851-b5a1-76f854fd0ded?alt=media&token=289fe830-f3ed-4d63-aa1d-ee18c24a9a40',
+    likedUserIds: ['eVUHGkNiYSLcWtCYfNAFP28P2lTw', 'G6g9rSE7Q41C4CWTzGG5fErInBQS'],
+    id: '3e332cb8-669f-457d-94d5-d03de8a0acbb',
+    text: '',
+    createdById: 'qkqxB9FNjDvKHFguag97K4t22jsk',
+    timestamp: 1709504995822,
+  },
+]

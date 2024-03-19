@@ -102,7 +102,14 @@ export const TweetForm = ({ onSubmit }: Props) => {
           <div>
             <label htmlFor={imageInputId}>
               <AddImageOutlined />
-              <input type="file" hidden accept="image/*" id={imageInputId} onChange={fileInputChangeHandler} />
+              <input
+                type="file"
+                hidden
+                accept="image/*"
+                id={imageInputId}
+                onChange={fileInputChangeHandler}
+                data-testid="tweetFormImageInput"
+              />
             </label>
 
             <span>

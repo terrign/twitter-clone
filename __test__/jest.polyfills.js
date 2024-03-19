@@ -1,3 +1,5 @@
+import 'isomorphic-fetch'
+
 const { TextDecoder, TextEncoder, ReadableStream } = require('node:util')
 
 Object.defineProperties(globalThis, {
@@ -6,9 +8,9 @@ Object.defineProperties(globalThis, {
   ReadableStream: { value: ReadableStream },
 })
 
-const { Blob, File } = require('node:buffer')
-
-const performance = require('perf_hooks').performance
+Object.defineProperty(global, 'performance', {
+  writable: true,
+})
 
 class LocalStorageMock {
   constructor() {
@@ -32,12 +34,6 @@ class LocalStorageMock {
   }
 }
 
-Object.defineProperties(globalThis, {
-  Blob: { value: Blob },
-  File: { value: File },
-  performance: { value: performance },
-})
-
 Object.defineProperty(window, 'localStorage', { value: new LocalStorageMock() })
 
 Object.defineProperty(globalThis, 'crypto', {
@@ -45,7 +41,3 @@ Object.defineProperty(globalThis, 'crypto', {
     randomUUID: () => 'random',
   },
 })
-
-// HTMLCanvasElement.prototype.getContext = () => {};
-
-// window.URL.createObjectURL = function () {};

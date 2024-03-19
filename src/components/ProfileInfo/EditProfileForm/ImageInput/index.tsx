@@ -13,7 +13,7 @@ export const ImageInput = ({ photoURL }: Props) => {
   const [backgroundImage, setBackgroundImage] = useState<string>('')
   const { setValue } = useFormContext()
 
-  const fileChangeHanlder = async (event: ChangeEvent<HTMLInputElement>) => {
+  const fileChangeHandler = async (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files
 
     if (files) {
@@ -33,7 +33,7 @@ export const ImageInput = ({ photoURL }: Props) => {
           <AddPhoto />
         </div>
       </label>
-      <input type="file" accept="image/*" hidden id={id} onChange={fileChangeHanlder} />
+      <input type="file" accept="image/*" hidden id={id} onChange={fileChangeHandler} data-testid="avatarImageInput" />
     </StyledImageInput>
   )
 }

@@ -1,4 +1,4 @@
-const convertBase64 = (file: Blob): Promise<string> => {
+const convertBase64 = (file: File): Promise<string> => {
   return new Promise((resolve) => {
     const fileReader = new FileReader()
 

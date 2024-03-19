@@ -5,6 +5,7 @@ const initialState = {}
 
 export const authSlice = createSlice({
   name: 'auth',
+  reducerPath: 'auth',
   initialState,
   reducers: {
     signUpWithEmail(_, {}: PayloadAction<EmailSignUpPayload>) {},
