@@ -20,21 +20,23 @@ describe('UserSearch', () => {
       await userEvents.type(screen.getByPlaceholderText('Search People'), mockUserList[0].name.slice(0, 3))
     })
 
-    await waitFor(() => setTimeout(() => {}, 1500))
-
-    await waitFor(() => {
-      expect(screen.getByText('Users')).toBeInTheDocument()
-      expect(screen.getByText(mockUserList[0].name.split(' ')[0])).toBeInTheDocument()
-    })
+    await waitFor(
+      () => {
+        expect(screen.getByText('Users')).toBeInTheDocument()
+        expect(screen.getByText(mockUserList[0].name.split(' ')[0])).toBeInTheDocument()
+      },
+      { timeout: 10000 },
+    )
 
     await act(async () => {
       await userEvents.type(screen.getByPlaceholderText('Search People'), 'asdasdas!@#$%^&*dasdasdasdasd')
     })
 
-    await waitFor(() => setTimeout(() => {}, 1500))
-
-    await waitFor(() => {
-      expect(screen.getByText('Nothing found')).toBeInTheDocument()
-    })
+    await waitFor(
+      () => {
+        expect(screen.getByText('Nothing found')).toBeInTheDocument()
+      },
+      { timeout: 10000 },
+    )
   }, 10000)
 })

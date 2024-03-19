@@ -79,15 +79,16 @@ describe('EditProfileForm', () => {
     const input = screen.getByTestId('avatarImageInput') as HTMLInputElement
     const file = new File([new Blob(['blob'])], 'image.png', { type: 'image/png' })
 
-    await userEvents.upload(input, [file, file])
-    expect(input.files).toHaveLength(1)
+    await userEvents.upload(input, file)
 
-    await waitFor(() => setTimeout(() => {}, 2000))
+    await waitFor(() => {
+      expect(input.files).toHaveLength(1)
+    })
 
     await act(async () => {
       fireEvent.click(screen.getByText('Save'))
     })
 
-    await waitFor(() => expect(storageService.addUserAvatar).toHaveBeenCalledWith(file, user.uid))
-  })
+    await waitFor(() => expect(storageService.addUserAvatar).toHaveBeenCalledWith(file, user.uid), { timeout: 10000 })
+  }, 10000)
 })

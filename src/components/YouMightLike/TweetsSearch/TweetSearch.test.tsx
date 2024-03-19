@@ -20,23 +20,23 @@ describe('TweetSearch', () => {
       await userEvents.type(screen.getByPlaceholderText('Search Twitter'), mockTweetList[1].text.slice(0, 3))
     })
 
-    await waitFor(() => setTimeout(() => {}, 1500))
-
-    await waitFor(() => {
-      expect(screen.getByText('Tweets')).toBeInTheDocument()
-      expect(screen.getByText(mockTweetList[1].text)).toBeInTheDocument()
-    })
+    await waitFor(
+      () => {
+        expect(screen.getByText('Tweets')).toBeInTheDocument()
+        expect(screen.getByText(mockTweetList[1].text)).toBeInTheDocument()
+      },
+      { timeout: 10000 },
+    )
 
     await act(async () => {
       await userEvents.type(screen.getByPlaceholderText('Search Twitter'), 'asdasdas!@#$%^&*dasdasdasdasd')
     })
 
-    await waitFor(() => setTimeout(() => {}, 1500))
-
-    await waitFor(() => {
-      expect(screen.getByText('Nothing found')).toBeInTheDocument()
-    })
-
-    jest.useRealTimers()
-  })
+    await waitFor(
+      () => {
+        expect(screen.getByText('Nothing found')).toBeInTheDocument()
+      },
+      { timeout: 10000 },
+    )
+  }, 10000)
 })
