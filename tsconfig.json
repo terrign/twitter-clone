@@ -1,0 +1,51 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "types": [
+      "node",
+      "jest",
+      "@testing-library/jest-dom",
+      "@testing-library/react",
+      "@testing-library/user-event",
+      "vite-plugin-svgr/client"
+    ],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    "paths": {
+      "@components/*": ["components/*"],
+      "@pages/*": ["pages/*"],
+      "@router/*": ["router/*"],
+      "@services/*": ["services/*"],
+      "@models/*": ["models/*"],
+      "@constants/*": ["constants/*"],
+      "@utils/*": ["utils/*"],
+      "@context/*": ["context/*"],
+      "@store/*": ["store/*"],
+      "@assets/*": ["assets/*"],
+      "@hooks/*": ["hooks/*"],
+      "@testUtils/*": ["testUtils/*"],
+      "@test/*": ["../__test__/*"]
+    },
+
+    "allowJs": true,
+    "baseUrl": "./src/",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsxImportSource": "react",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "esModuleInterop": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src", "__test__"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
